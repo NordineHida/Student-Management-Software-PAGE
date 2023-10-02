@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="PAGE" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="9*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10*" />
+        </Grid.ColumnDefinitions>
+        <Image Margin="0,0,727,0" Source="/logo.png" Stretch="Fill" Grid.ColumnSpan="2"/>
+        <Button Content="Se Connecter" HorizontalAlignment="Left" Height="23" Margin="10,0,0,0" VerticalAlignment="Center" Grid.Column="1" Width="77"/>
+        <Button Content="Paramètres" HorizontalAlignment="Left" Height="23" Margin="100,0,0,0" VerticalAlignment="Center" Grid.Column="1" Width="77"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1"/>
     </Grid>
 </Window>
