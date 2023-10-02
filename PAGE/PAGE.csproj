@@ -8,10 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Vue\Ressources\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="VueModel\" />
     <Folder Include="Vue\Ecrans\Elements\" />
     <Folder Include="Vue\Ecrans\Realisations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Vue\Ressources\logo.png" />
   </ItemGroup>
 
 </Project>
