@@ -7,4 +7,11 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="VueModel\" />
+    <Folder Include="Vue\Ecrans\Elements\" />
+    <Folder Include="Vue\Ecrans\Realisations\" />
+  </ItemGroup>
+
 </Project>
