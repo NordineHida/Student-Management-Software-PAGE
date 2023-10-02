@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace PAGE
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PagePrincipale.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
