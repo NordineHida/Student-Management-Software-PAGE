@@ -13,13 +13,12 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*" />
+            <RowDefinition Height="1.5*" />
             <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
-
-        <Image Margin="10,10,0,381" Source="/Logo.png" Stretch="Fill"/>
-        <Image Margin="13,14,707,367" Source="/Logo.png" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <Rectangle Grid.RowSpan="2" Stroke="Black" Grid.Column="1" Margin="85,14,445,367"/>
-        <Button Grid.Column="1" Content="Se Connecter" HorizontalAlignment="Left" Margin="100,13,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="103"/>
-        <Button Grid.Column="1" Content="Paramètres" HorizontalAlignment="Left" Margin="223,13,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="103"/>
+        <Rectangle Stroke="Black" Margin="13,12,428,0" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <Button Grid.Column="1" Content="Se Connecter" HorizontalAlignment="Left" Margin="100,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="28" Width="103"/>
+        <Button Grid.Column="1" Content="Paramètres" HorizontalAlignment="Left" Margin="223,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="28" Width="103"/>
+        <Image Grid.Column="1" Margin="10,12,692,0" Source="/Vue/Ressources/logo.png" Stretch="Fill" Grid.RowSpan="2"/>
     </Grid>
 </Window>
