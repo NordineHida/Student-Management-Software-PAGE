@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:PAGE.Vue.Ressources"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Background="white"
       Title="LoginPage">
     <Grid>
         <Grid.RowDefinitions>

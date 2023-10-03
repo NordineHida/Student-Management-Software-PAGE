@@ -29,5 +29,10 @@ namespace PAGE.Vue
         {
             this.Content = new LoginPage();
         }
+
+        private void OpenParametresPage(object sender, RoutedEventArgs e)
+        {
+            this.Content = new ParametresPage();
+        }
     }
 }

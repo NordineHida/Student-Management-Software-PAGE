@@ -62,7 +62,7 @@ C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\refint\
 C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.pdb
 C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.genruntimeconfig.cache
 C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\ref\PAGE.dll
-C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\Ressources\Login.g.cs
 C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\Ressources\LoginPage.g.cs
-C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\Ressources\Login.baml
 C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\Ressources\LoginPage.baml
+C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\Ressources\ParametresPage.g.cs
+C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\Ressources\ParametresPage.baml

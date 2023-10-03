@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PAGE.Vue.Ressources
 {
     /// <summary>
-    /// Logique d'interaction pour Login.xaml
+    /// Logique d'interaction pour ParametresPage.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class ParametresPage : Page
     {
-        public Login()
+        public ParametresPage()
         {
             InitializeComponent();
         }
