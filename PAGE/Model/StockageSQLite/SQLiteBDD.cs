@@ -17,6 +17,9 @@ namespace PAGE.Model.StockageSQLite
             connectionString = $"Data Source={dbFileName};Version=3;";
         }
 
+        /// <summary>
+        /// Créer la database
+        /// </summary>
         public void CreateDatabase()
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -32,6 +35,72 @@ namespace PAGE.Model.StockageSQLite
                 connection.Close();
             }
         }
+
+        /// <summary>
+        /// Insérer une note
+        /// </summary>
+        /// <param name="titre">titre de la note</param>
+        /// <param name="desc">description de la note</param>
+        public void InsertNote(string titre, string desc)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string insertSQL = "INSERT INTO NoteConfidentiel (Titre) VALUES (@Titre); INSERT INTO NoteConfidentiel (Description) VALUES (@Description);";
+                using (SQLiteCommand command = new SQLiteCommand(insertSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@Titre", titre);
+                    command.Parameters.AddWithValue("@Description", desc);
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// Renvoie toute les notes
+        /// </summary>
+        /// <returns>notes des étudiants</returns>
+        public DataTable GetNote()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string selectSQL = "SELECT * FROM NoteConfidentiel";
+                using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(selectSQL, connection))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Supprime une note en fonction du titre
+        /// </summary>
+        /// <param name="titre"></param>
+        public void DeleteNote(string titre)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string deleteSQL = "DELETE FROM NoteConfidentiel WHERE Titre = @Titre";
+                using (SQLiteCommand command = new SQLiteCommand(deleteSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@Titre", titre);
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
+
+
     }
 
 }
