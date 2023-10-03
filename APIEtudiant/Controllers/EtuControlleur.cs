@@ -19,10 +19,10 @@ namespace PAGE.Controlleurs
             //Cas par défaut
             ActionResult<IEnumerable<Etudiant>> reponse = BadRequest();
 
-            //On récupere les users depuis le manager
+            //On récupere les etudiants depuis le manager
             IEnumerable<Etudiant> etudiants = EtuManager.Instance.GetAllEtu();
 
-            //Si c'est pas null on renvoi un Ok avec les users
+            //Si c'est pas null on renvoi un Ok avec les etudiants
             if (etudiants != null) reponse = Ok(etudiants);
             return reponse;
         }

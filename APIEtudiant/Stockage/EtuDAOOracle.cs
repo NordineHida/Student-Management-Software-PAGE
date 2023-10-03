@@ -38,21 +38,16 @@ namespace APIEtudiant.Stockage
         /// <returns>la liste des étudiants de la BDD Oracle</returns>
         public IEnumerable<Etudiant> GetAllEtu()
         {
-            OracleConnection conn = null;
+            // Création d'une connexion Oracle
+            OracleConnection conn = ConnexionOracle.Instance.GetConnection();
+            conn.Open();
+
             List<Etudiant> etudiants = new List<Etudiant>();
 
             try
             {
-                // Création d'une connexion Oracle
-                conn = new OracleConnection();
-                conn.ConnectionString = "User Id=IQ_BD_HIDA;Password=HIDA0000;Data Source=srv-iq-ora:1521/orclpdb.iut21.u-bourgogne.fr;";
-                conn.Open();
-
                 // Création d'une commande Oracle
                 OracleCommand cmd = new OracleCommand("SELECT numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login FROM Etudiant WHERE numApogee = :numApogee", conn);
-
-                // Paramètre :numApogee
-                cmd.Parameters.Add(new OracleParameter(":numApogee", OracleDbType.Int32)).Value = 12345; // Remplacez 12345 par la valeur souhaitée !!!!!!!!!!!!
 
                 OracleDataReader reader = cmd.ExecuteReader();
 
