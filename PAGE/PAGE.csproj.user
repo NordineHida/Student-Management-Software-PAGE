@@ -10,9 +10,21 @@
     <Compile Update="Vue\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ressources\Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ressources\LoginPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Vue\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ressources\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ressources\LoginPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
