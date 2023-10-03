@@ -80,9 +80,34 @@ namespace PAGE.Model.StockageSQLite
         }
 
         /// <summary>
+        /// Met à jour la note
+        /// </summary>
+        /// <param name="titre">titre de la note à changer</param>
+        /// <param name="nouveauTitre">nouveau titre de la note</param>
+        /// <param name="nouvelleDesc">nouvelle description de la note</param>
+        public void UpdateNote(int titre, string nouveauTitre, string nouvelleDesc)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string updateSQL = "UPDATE NoteConfidentiel SET Titre = @NouveauTitre WHERE Titre = @Titre; UPDATE NoteConfidentiel SET Description = @NouvelleDesc WHERE Titre = @Titre;";
+                using (SQLiteCommand command = new SQLiteCommand(updateSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@NouveauTitre", nouveauTitre);
+                    command.Parameters.AddWithValue("@NouvelleDesc", nouvelleDesc);
+                    command.Parameters.AddWithValue("@Titre", titre);
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
+
+        /// <summary>
         /// Supprime une note en fonction du titre
         /// </summary>
-        /// <param name="titre"></param>
+        /// <param name="titre">titre de la note à supprimer</param>
         public void DeleteNote(string titre)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
