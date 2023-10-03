@@ -26,7 +26,7 @@ namespace PAGE.Model.StockageSQLite
             {
                 connection.Open();
 
-                string createTableSQL = "CREATE TABLE IF NOT EXISTS NoteConfidentiel (Titre VARCHAR(50), Description TEXT);";
+                string createTableSQL = "CREATE TABLE IF NOT EXISTS NoteConfidentiel (IdNote INT PRIMARY KEY, Titre VARCHAR(50), Description TEXT);";
                 using (SQLiteCommand command = new SQLiteCommand(createTableSQL, connection))
                 {
                      command.ExecuteNonQuery();
@@ -47,7 +47,7 @@ namespace PAGE.Model.StockageSQLite
             {
                 connection.Open();
 
-                string insertSQL = "INSERT INTO NoteConfidentiel (Titre) VALUES (@Titre); INSERT INTO NoteConfidentiel (Description) VALUES (@Description);";
+                string insertSQL = "INSERT INTO NoteConfidentiel (Titre, Description) VALUES (@Titre, @Description);";
                 using (SQLiteCommand command = new SQLiteCommand(insertSQL, connection))
                 {
                     command.Parameters.AddWithValue("@Titre", titre);
@@ -63,18 +63,54 @@ namespace PAGE.Model.StockageSQLite
         /// Renvoie toute les notes
         /// </summary>
         /// <returns>notes des étudiants</returns>
-        public DataTable GetNote()
+        public DataTable GetAllNote()
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
-                string selectSQL = "SELECT * FROM NoteConfidentiel";
+                string selectSQL = "SELECT * FROM NoteConfidentiel;";
                 using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(selectSQL, connection))
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     return dataTable;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Renvoie une note grâce à son Id
+        /// </summary>
+        /// <param name="idNote">id de la note</param>
+        /// <returns>note</returns>
+        public DataRow GetNoteById(int idNote)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string selectSQL = "SELECT * FROM NoteConfidentiel WHERE IdNote = @IdNote;";
+                using (SQLiteCommand command = new SQLiteCommand(selectSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@IdNote", idNote);
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Créez un objet DataRow à partir des données lues.
+                            DataTable dataTable = new DataTable();
+                            dataTable.Load(reader);
+                            DataRow row = dataTable.Rows[0];
+                            return row;
+                        }
+                        else
+                        {
+                            // L'enregistrement avec l'ID spécifié n'a pas été trouvé.
+                            return null;
+                        }
+                    }
                 }
             }
         }
@@ -91,7 +127,7 @@ namespace PAGE.Model.StockageSQLite
             {
                 connection.Open();
 
-                string updateSQL = "UPDATE NoteConfidentiel SET Titre = @NouveauTitre WHERE Titre = @Titre; UPDATE NoteConfidentiel SET Description = @NouvelleDesc WHERE Titre = @Titre;";
+                string updateSQL = "UPDATE NoteConfidentiel SET Titre = @NouveauTitre, Description = @NouvelleDesc WHERE Titre = @Titre;";
                 using (SQLiteCommand command = new SQLiteCommand(updateSQL, connection))
                 {
                     command.Parameters.AddWithValue("@NouveauTitre", nouveauTitre);
