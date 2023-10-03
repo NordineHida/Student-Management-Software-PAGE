@@ -8,14 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Vue\Ecrans\**" />
+    <EmbeddedResource Remove="Vue\Ecrans\**" />
+    <None Remove="Vue\Ecrans\**" />
+    <Page Remove="Vue\Ecrans\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Vue\Ressources\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="VueModel\" />
-    <Folder Include="Vue\Ecrans\Elements\" />
-    <Folder Include="Vue\Ecrans\Realisations\" />
+    <Folder Include="Vue\Ecran\" />
   </ItemGroup>
 
   <ItemGroup>

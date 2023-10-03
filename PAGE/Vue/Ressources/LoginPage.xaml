@@ -39,7 +39,7 @@
                 <PasswordBox Name="txtPassword" Width="200" Margin="0,5,0,5" FontSize="14"/>
 
                 <!-- Bouton de connexion -->
-                <Button Content="Se connecter" Width="100" Margin="0,20,0,0" FontSize="16" Background="#007ACC" Foreground="White"/>
+                <Button Content="Se connecter" Width="100" Margin="0,20,0,0" FontSize="16" Background="#007ACC" Foreground="White" Click="CloseLoginWindow"/>
             </StackPanel>
         </Grid>
     </Grid>
