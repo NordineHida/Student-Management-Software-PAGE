@@ -14,23 +14,34 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Entrez vos informations de connexion" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10" FontSize="20" FontStyle="Oblique"/>
+        <!-- TextBlock pour le titre -->
+        <TextBlock Text="Entrez vos informations de connexion" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10" FontSize="24" FontStyle="Italic" FontWeight="Bold" Foreground="#007ACC"/>
 
+        <!-- Grid pour organiser les éléments -->
         <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <!-- StackPanel pour les éléments de connexion -->
             <StackPanel Margin="10">
-                <Label Content="Nom d'utilisateur ou E-mail"/>
-                <TextBox Name="txtUsername" Width="200" Margin="0,5,0,5"/>
+                <!-- Label pour Nom d'utilisateur ou E-mail -->
+                <Label Content="Nom d'utilisateur ou E-mail" FontSize="16" Foreground="#007ACC"/>
 
-                <Label Content="Mot de passe"/>
-                <PasswordBox Name="txtPassword" Width="200" Margin="0,5,0,5"/>
+                <!-- TextBox pour le nom d'utilisateur -->
+                <TextBox Name="txtUsername" Width="200" Margin="0,5,0,5" FontSize="14"/>
 
-                <Button Content="Se connecter" Width="100" Margin="0,20,0,0"/>
+                <!-- Label pour le mot de passe -->
+                <Label Content="Mot de passe" FontSize="16" Foreground="#007ACC"/>
+
+                <!-- PasswordBox pour le mot de passe -->
+                <PasswordBox Name="txtPassword" Width="200" Margin="0,5,0,5" FontSize="14"/>
+
+                <!-- Bouton de connexion -->
+                <Button Content="Se connecter" Width="100" Margin="0,20,0,0" FontSize="16" Background="#007ACC" Foreground="White"/>
             </StackPanel>
         </Grid>
     </Grid>
+
 </Page>
