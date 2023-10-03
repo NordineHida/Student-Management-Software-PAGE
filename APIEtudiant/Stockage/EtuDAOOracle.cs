@@ -40,12 +40,22 @@ namespace APIEtudiant.Stockage
         {
             // Création d'une connexion Oracle
             OracleConnection conn = ConnexionOracle.Instance.GetConnection();
-            conn.Open();
+            //conn.Open();
+
+
+
 
             List<Etudiant> etudiants = new List<Etudiant>();
 
             try
             {
+                //conn.Open();
+
+                string connexionString = "User Id = IQ_BD_HIDA; Password = HIDA0000; Data Source = srv-iq-ora:1521/orclpdb.iut21.u-bourgogne.fr";       //TROUVER LE CONNEXION STRING ICI
+                OracleConnection con = new OracleConnection(connexionString);
+                con.Open();
+
+
                 // Création d'une commande Oracle
                 OracleCommand cmd = new OracleCommand("SELECT numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login FROM Etudiant WHERE numApogee = :numApogee", conn);
 
