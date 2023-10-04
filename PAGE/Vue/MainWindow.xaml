@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:PAGE.Vue"
         mc:Ignorable="d"
         Title="PAGE" Height="450" Width="800">
+    
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.15*"/>
@@ -24,9 +26,74 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
+        
         <Rectangle Stroke="Black" Margin="13,12,428,0" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+
         <Button Grid.Column="1" Content="Se Connecter" HorizontalAlignment="Left" Margin="100,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="28" Width="103" Click="OpenLoginPage"/>
+
         <Button Grid.Column="1" Content="Paramètres" HorizontalAlignment="Left" Margin="223,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="28" Width="103" Click="OpenParametresPage"/>
-        <Image Grid.Column="1" Margin="10,12,692,0" Source="/Vue/Ressources/logo.png" Stretch="Fill" Grid.RowSpan="2"/>
+
+        <Image Margin="13,12,687,44" Source="/Vue/Ressources/logo.png" Stretch="Fill" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+
+        
+        
+        <DataGrid Grid.Column="1" Grid.Row="3" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}" SelectionChanged="DataGrid_SelectionChanged"
+          Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+          Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
+          RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Grid.Column="1" Grid.Row="4" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}" SelectionChanged="DataGrid_SelectionChanged"
+            Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+            Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
+            RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Grid.Column="1" Grid.Row="6" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}" SelectionChanged="DataGrid_SelectionChanged"
+            Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+            Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
+            RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Grid.Column="1" Grid.Row="5" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}" SelectionChanged="DataGrid_SelectionChanged"
+            Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+            Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
+            RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Grid.Column="1" Grid.Row="8" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}" SelectionChanged="DataGrid_SelectionChanged"
+            Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+            Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
+            RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Grid.Column="1" Grid.Row="7" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}" SelectionChanged="DataGrid_SelectionChanged"
+            Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+            Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
+            RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        
+        
     </Grid>
+
 </Window>
