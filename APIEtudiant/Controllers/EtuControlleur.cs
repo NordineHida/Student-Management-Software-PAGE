@@ -26,5 +26,16 @@ namespace PAGE.Controlleurs
             if (etudiants != null) reponse = Ok(etudiants);
             return reponse;
         }
+
+        [HttpPost("AddEtu")]
+        public ActionResult AddEtu([FromBody] Etudiant? etu)
+        {
+            ActionResult reponse = BadRequest();
+
+            if (EtuManager.Instance.AddEtu(etu)) reponse = Ok();
+
+            return reponse;
+        }
+
     }
 }

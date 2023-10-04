@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using APIEtudiant.Model;
 using Oracle.ManagedDataAccess.Client;
 using PAGE.Model;
@@ -7,7 +9,7 @@ using PAGE.Stockage;
 
 namespace APIEtudiant.Stockage
 {
-    public class EtudiantDAOOracle :IEtuDAO
+    public class EtudiantDAOOracle : IEtuDAO
     {
 
         #region Singleton
@@ -40,15 +42,17 @@ namespace APIEtudiant.Stockage
         {
             //Création d'une connexion Oracle
             OracleConnection con = ConnexionOracle.Instance.GetConnection();
-            con.Open();
 
+            //Liste d'étudiant à renvoyer
             List<Etudiant> etudiants = new List<Etudiant>();
 
             try
             {
-                //conn.Open();
-
-                con.Open();
+                // Vérifiez si la connexion n'est pas déjà ouverte.
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open(); // Ouvrez la connexion si elle n'est pas déjà ouverte.
+                }
 
 
                 // Création d'une commande Oracle pour récuperer l'ensemble des éléments de tout les étudiants
@@ -131,7 +135,91 @@ namespace APIEtudiant.Stockage
             return etudiants;
 
         }
-        
 
+
+        /// <summary>
+        /// Essaye d'ajouter un nouvel etudiant et renvoi si on a réussi
+        /// </summary>
+        /// <param name="etu">etudiant qu'on veut ajouter</param>
+        /// <returns>si l'ajout est un succes</returns>
+        public bool AddEtu(Etudiant? etu)
+        {
+            bool ajoutReussi = false;
+            if (etu != null)
+            {
+                // Création d'une connexion Oracle
+                OracleConnection con = ConnexionOracle.Instance.GetConnection();
+
+                try
+                {
+                    con.Open(); // Ouvrez la connexion si elle n'est pas déjà ouverte.
+
+
+                    //On adapte l'énumeration du sexe de l'étudiant 
+                    string etuSexe;
+                    switch (etu.Sexe)
+                    {
+                        case SEXE.FEMININ:
+                            etuSexe = "F";
+                            break;
+                        case SEXE.MASCULIN:
+                            etuSexe = "M";
+                            break;
+                        default:
+                            etuSexe = "A";
+                            break;
+                    }
+
+                    //On adapte le booleen estBoursier pour avoir "OUI" pour true et "NON" pour false
+                    string estBoursier;
+                    if (etu.EstBoursier) estBoursier = "OUI";
+                    else estBoursier = "NON";
+
+                    // On créer la requête SQL
+                    /*string requete = String.Format("INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login)" +
+                        "VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', TO_DATE('{9}', 'YYYY-MM-DD'), '{10}', {11}, {12}, '{13}')",etu.NumApogee,etu.Nom,etu.Prenom,etuSexe,etu.TypeBac, etu.Mail, etu.Groupe
+                        , estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"), etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
+
+                    */
+                    string requete = "INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login) VALUES(23456755, 'Bobet', 'Alice', 'F', 'Bac STI2D', 'bobetalice@gmail.com', 'D', 'NON', 'continue', TO_DATE('2001-09-11', 'YYYY-MM-DD'), '42 Route de Valons', 065844851, 098456512, 'ab656551')";
+
+                    Console.WriteLine(requete);
+
+                    //On execute la requete
+                    OracleCommand cmd = new OracleCommand(requete, con);
+
+
+                    //On verifie que la ligne est bien inséré, si oui on passe le bool à true
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        ajoutReussi = true;
+                    }
+
+
+                    Console.WriteLine(ajoutReussi);
+
+                }
+                // Gestion des exceptions
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    try
+                    {
+                        if (con != null)
+                        {
+                            con.Close();
+                        }
+                    }
+                    catch (OracleException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            return ajoutReussi;
+        }
     }
 }

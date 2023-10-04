@@ -44,5 +44,17 @@ namespace PAGE.Model
             return EtuDAO.GetAllEtu();
         }
 
+        /// <summary>
+        /// Ajoute un Etudiant
+        /// </summary>
+        /// <param name="etu">étudiant à ajouter</param>
+        /// <returns>true si l'ajout a fonctionné</returns>
+        public bool AddEtu(Etudiant etu)
+        {
+            return EtuDAO.AddEtu(etu);
+        }
+
+
+
     }
 }

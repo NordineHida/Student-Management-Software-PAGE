@@ -17,5 +17,12 @@ namespace PAGE.Stockage
         /// </summary>
         /// <returns>Un ensemble d'étudiant</returns>
         public IEnumerable<Etudiant> GetAllEtu();
+
+        /// <summary>
+        /// Ajoute un étudiant
+        /// </summary>
+        /// <param name="etudiant">étudiant à ajouter</param>
+        /// <returns>true si l'ajout a fonctionner</returns>
+        public bool AddEtu(Etudiant etudiant);
     }
 }
