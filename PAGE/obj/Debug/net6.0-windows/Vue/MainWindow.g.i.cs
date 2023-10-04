@@ -53,7 +53,7 @@ namespace PAGE.Vue {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PAGE;V1.0.0.0;component/vue/mainwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PAGE;component/vue/mainwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Vue\MainWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
