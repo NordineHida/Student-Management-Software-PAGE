@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAGE", "PAGE.csproj", "{416B20E8-8FCB-4E0D-B591-B361D0EFC049}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSQLite", "..\TestSQLite\TestSQLite.csproj", "{E3839ADB-3A1B-4D8F-9CC2-E8F5093943B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSQLite", "..\TestSQLite\TestSQLite.csproj", "{E3839ADB-3A1B-4D8F-9CC2-E8F5093943B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

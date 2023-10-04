@@ -40,13 +40,13 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
-            "System.Data.SQLite.Core": {
+            "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[1.0.118, )"
+              "version": "[7.0.11, )"
             },
-            "sqlite-net-pcl": {
+            "Uno.UI": {
               "target": "Package",
-              "version": "[1.8.116, )"
+              "version": "[4.10.26, )"
             }
           },
           "imports": [

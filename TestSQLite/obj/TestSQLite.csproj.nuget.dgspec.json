@@ -40,13 +40,13 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
-            "System.Data.SQLite.Core": {
+            "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
-              "version": "[1.0.118, )"
+              "version": "[7.0.11, )"
             },
-            "sqlite-net-pcl": {
+            "Uno.UI": {
               "target": "Package",
-              "version": "[1.8.116, )"
+              "version": "[4.10.26, )"
             }
           },
           "imports": [
@@ -112,23 +112,19 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
+            "Microsoft.Data.Sqlite.Core": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.1.0, )"
-            },
-            "System.Data.SQLite.Core": {
-              "target": "Package",
-              "version": "[1.0.118, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.2, )"
-            },
-            "sqlite-net-pcl": {
-              "target": "Package",
-              "version": "[1.8.116, )"
             },
             "xunit": {
               "target": "Package",

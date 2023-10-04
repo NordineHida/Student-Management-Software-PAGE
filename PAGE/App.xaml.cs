@@ -17,7 +17,9 @@ namespace PAGE
     {
         public App()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            DataAccess.InitializeDatabase();
         }
     }
 }
