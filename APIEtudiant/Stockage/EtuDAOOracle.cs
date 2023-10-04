@@ -39,30 +39,31 @@ namespace APIEtudiant.Stockage
         public IEnumerable<Etudiant> GetAllEtu()
         {
             // Création d'une connexion Oracle
-            OracleConnection conn = ConnexionOracle.Instance.GetConnection();
+            //OracleConnection conn = ConnexionOracle.Instance.GetConnection();
             //conn.Open();
 
 
-
-
             List<Etudiant> etudiants = new List<Etudiant>();
+
+            string connexionString = "User Id = IQ_BD_HIDA; Password = HIDA0000; Data Source = srv-iq-ora:1521/orclpdb.iut21.u-bourgogne.fr";       //TROUVER LE CONNEXION STRING ICI
+            OracleConnection con = new OracleConnection(connexionString);
 
             try
             {
                 //conn.Open();
 
-                string connexionString = "User Id = IQ_BD_HIDA; Password = HIDA0000; Data Source = srv-iq-ora:1521/orclpdb.iut21.u-bourgogne.fr";       //TROUVER LE CONNEXION STRING ICI
-                OracleConnection con = new OracleConnection(connexionString);
                 con.Open();
 
 
                 // Création d'une commande Oracle
-                OracleCommand cmd = new OracleCommand("SELECT numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login FROM Etudiant WHERE numApogee = :numApogee", conn);
+                OracleCommand cmd = new OracleCommand("SELECT numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login FROM Etudiant", con);
 
                 OracleDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
+                   // string res = reader.
+
                     //On récupere le caractère du sexe en BDD et on le converti avec l'énumération 
                     char sexeBDD = reader.GetString(reader.GetOrdinal("sexe"))[0];
                     //Par défaut le sexe est autre
@@ -77,21 +78,36 @@ namespace APIEtudiant.Stockage
                             break;
                     }
 
+                    int numApogee = reader.GetInt32(reader.GetOrdinal("numApogee"));
+                    string nom = reader.GetString(reader.GetOrdinal("nom"));
+                    string prenom = reader.GetString(reader.GetOrdinal("prenom"));
+                    string typeBac = reader.GetString(reader.GetOrdinal("typeBac"));
+                    string mail = reader.GetString(reader.GetOrdinal("mail"));
+                    string groupe = reader.GetString(reader.GetOrdinal("groupe"));
+                    bool estBoursier = reader.GetString(reader.GetOrdinal("estBoursier")) == "OUI"; // Convertir en booléen
+                    string regimeFormation = reader.GetString(reader.GetOrdinal("regimeFormation"));
+                    DateTime dateNaissance = reader.GetDateTime(reader.GetOrdinal("dateNaissance"));
+                    string login = reader.GetString(reader.GetOrdinal("login"));
+                    int telFixe = reader.GetInt32(reader.GetOrdinal("telFixe"));
+                    int telPortable = reader.GetInt32(reader.GetOrdinal("telPortable"));
+                    string adresse = reader.GetString(reader.GetOrdinal("adresse"));
+
+                    // Création de l'objet Etudiant en utilisant les variables
                     Etudiant etudiant = new Etudiant(
-                        reader.GetInt32(reader.GetOrdinal("numApogee")),
-                        reader.GetString(reader.GetOrdinal("nom")),
-                        reader.GetString(reader.GetOrdinal("prenom")),
+                        numApogee,
+                        nom,
+                        prenom,
                         sexeEtu,
-                        reader.GetString(reader.GetOrdinal("typeBac")),
-                        reader.GetString(reader.GetOrdinal("mail")),
-                        reader.GetString(reader.GetOrdinal("groupe")),
-                        reader.GetString(reader.GetOrdinal("estBoursier")) == "OUI", // Convertir en booléen
-                        reader.GetString(reader.GetOrdinal("regimeFormation")),
-                        reader.GetDateTime(reader.GetOrdinal("dateNaissance")),
-                        reader.GetString(reader.GetOrdinal("login")),
-                        reader.GetInt32(reader.GetOrdinal("telFixe")),
-                        reader.GetInt32(reader.GetOrdinal("telPortable")),
-                        reader.GetString(reader.GetOrdinal("adresse"))
+                        typeBac,
+                        mail,
+                        groupe,
+                        estBoursier,
+                        regimeFormation,
+                        dateNaissance,
+                        login,
+                        telFixe,
+                        telPortable,
+                        adresse
                     );
 
                     etudiants.Add(etudiant);
@@ -106,9 +122,9 @@ namespace APIEtudiant.Stockage
             {
                 try
                 {
-                    if (conn != null)
+                    if (con != null)
                     {
-                        conn.Close();
+                        con.Close();
                     }
                 }
                 catch (OracleException ex)
@@ -119,5 +135,54 @@ namespace APIEtudiant.Stockage
             return etudiants;
 
         }
+        /*
+        /// <summary>
+        /// Essaye d'ajouter un nouvel etudiant et renvoi si on a réussi
+        /// </summary>
+        /// <param name="etu">etudiant qu'on veut ajouter</param>
+        /// <returns>si l'ajout est un succes</returns>
+        public bool AddUser(Etudiant? etu)
+        {
+            bool res = false;
+            if (etu != null)
+            {
+                // Création d'une connexion Oracle
+                OracleConnection conn = ConnexionOracle.Instance.GetConnection();
+
+                try
+                {
+                    conn.Open();
+
+
+
+                    // Création d'une commande Oracle
+                    OracleCommand cmd = new OracleCommand("SELECT numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login FROM Etudiant WHERE numApogee = :numApogee", conn);
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+
+                    }
+                }
+                // Gestion des exceptions
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    try
+                    {
+                        if (conn != null)
+                        {
+                            conn.Close();
+                        }
+                    }
+                    catch (OracleException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            return res;
+        }*/
     }
 }

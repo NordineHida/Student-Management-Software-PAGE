@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAGE", "PAGE.csproj", "{416B20E8-8FCB-4E0D-B591-B361D0EFC049}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIEtudiant", "..\APIEtudiant\APIEtudiant.csproj", "{05E08F5E-A53B-41E3-8421-B3683C2D12F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIEtudiant", "..\APIEtudiant\APIEtudiant.csproj", "{05E08F5E-A53B-41E3-8421-B3683C2D12F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestOracle", "..\TestOracle\TestOracle.csproj", "{BFB17607-DA8D-4625-BC52-E7DBA8A9F6EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{05E08F5E-A53B-41E3-8421-B3683C2D12F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05E08F5E-A53B-41E3-8421-B3683C2D12F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05E08F5E-A53B-41E3-8421-B3683C2D12F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFB17607-DA8D-4625-BC52-E7DBA8A9F6EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB17607-DA8D-4625-BC52-E7DBA8A9F6EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB17607-DA8D-4625-BC52-E7DBA8A9F6EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB17607-DA8D-4625-BC52-E7DBA8A9F6EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
