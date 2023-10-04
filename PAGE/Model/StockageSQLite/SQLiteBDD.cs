@@ -29,7 +29,7 @@ namespace PAGE.Model.StockageSQLite
             {
                 connection.Open();
 
-                string createTableSQL = "CREATE TABLE IF NOT EXISTS NoteConfidentiel (IdNote INT PRIMARY KEY, Titre VARCHAR(50), Description TEXT);";
+                string createTableSQL = "CREATE TABLE IF NOT EXISTS NoteConfidentiel (IdNote INT PRIMARY KEY AUTOINCREMENT, Titre VARCHAR(50), Description TEXT);";
                 using (SQLiteCommand command = new SQLiteCommand(createTableSQL, connection))
                 {
                      command.ExecuteNonQuery();
@@ -43,8 +43,8 @@ namespace PAGE.Model.StockageSQLite
         /// Insérer une note
         /// </summary>
         /// <param name="titre">titre de la note</param>
-        /// <param name="desc">description de la note</param>
-        public void InsertNote(string titre, string desc)
+        /// <param name="description">description de la note</param>
+        public void InsertNote(string titre, string description)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -54,88 +54,32 @@ namespace PAGE.Model.StockageSQLite
                 using (SQLiteCommand command = new SQLiteCommand(insertSQL, connection))
                 {
                     command.Parameters.AddWithValue("@Titre", titre);
-                    command.Parameters.AddWithValue("@Description", desc);
+                    command.Parameters.AddWithValue("@Description", description);
                     command.ExecuteNonQuery();
                 }
 
                 connection.Close();
             }
         }
-
+        
         /// <summary>
-        /// Renvoie toute les notes
+        /// Mettre à jour une note
         /// </summary>
-        /// <returns>notes des étudiants</returns>
-        public DataTable GetAllNote()
+        /// <param name="id">id de la note à changer</param>
+        /// <param name="newTitre">son nouveau titre</param>
+        /// <param name="newDescription">sa nouvelle description</param>
+        public void UpdateNote(int id, string newTitre, string newDescription)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
-                string selectSQL = "SELECT * FROM NoteConfidentiel;";
-                using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(selectSQL, connection))
-                {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    return dataTable;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Renvoie une note grâce à son Id
-        /// </summary>
-        /// <param name="idNote">id de la note</param>
-        /// <returns>note</returns>
-        public DataRow GetNoteById(int idNote)
-        {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-
-                string selectSQL = "SELECT * FROM NoteConfidentiel WHERE IdNote = @IdNote;";
-                using (SQLiteCommand command = new SQLiteCommand(selectSQL, connection))
-                {
-                    command.Parameters.AddWithValue("@IdNote", idNote);
-
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            // Créez un objet DataRow à partir des données lues.
-                            DataTable dataTable = new DataTable();
-                            dataTable.Load(reader);
-                            DataRow row = dataTable.Rows[0];
-                            return row;
-                        }
-                        else
-                        {
-                            // L'enregistrement avec l'ID spécifié n'a pas été trouvé.
-                            return null;
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Met à jour la note
-        /// </summary>
-        /// <param name="titre">titre de la note à changer</param>
-        /// <param name="nouveauTitre">nouveau titre de la note</param>
-        /// <param name="nouvelleDesc">nouvelle description de la note</param>
-        public void UpdateNote(int titre, string nouveauTitre, string nouvelleDesc)
-        {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-
-                string updateSQL = "UPDATE NoteConfidentiel SET Titre = @NouveauTitre, Description = @NouvelleDesc WHERE Titre = @Titre;";
+                string updateSQL = "UPDATE NoteConfidentiel SET Titre = @NewTitre, Description = @NewDescription WHERE IdNote = @Id;";
                 using (SQLiteCommand command = new SQLiteCommand(updateSQL, connection))
                 {
-                    command.Parameters.AddWithValue("@NouveauTitre", nouveauTitre);
-                    command.Parameters.AddWithValue("@NouvelleDesc", nouvelleDesc);
-                    command.Parameters.AddWithValue("@Titre", titre);
+                    command.Parameters.AddWithValue("@NewTitre", newTitre);
+                    command.Parameters.AddWithValue("@NewDescription", newDescription);
+                    command.Parameters.AddWithValue("@Id", id);
                     command.ExecuteNonQuery();
                 }
 
@@ -144,25 +88,26 @@ namespace PAGE.Model.StockageSQLite
         }
 
         /// <summary>
-        /// Supprime une note en fonction du titre
+        /// Supprimer une note
         /// </summary>
-        /// <param name="titre">titre de la note à supprimer</param>
-        public void DeleteNote(string titre)
+        /// <param name="id">id de la note à supprimer</param>
+        public void DeleteNote(int id)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
-                string deleteSQL = "DELETE FROM NoteConfidentiel WHERE Titre = @Titre";
+                string deleteSQL = "DELETE FROM NoteConfidentiel WHERE IdNote = @Id;";
                 using (SQLiteCommand command = new SQLiteCommand(deleteSQL, connection))
                 {
-                    command.Parameters.AddWithValue("@Titre", titre);
+                    command.Parameters.AddWithValue("@Id", id);
                     command.ExecuteNonQuery();
                 }
 
                 connection.Close();
             }
         }
+
 
 
     }
