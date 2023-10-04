@@ -32,7 +32,7 @@ namespace PAGE.Model
 
         #endregion
 
-        //Permet de changer directement tout les DAO
+        //DAO d'étudiant (Permet de changer directement tout les DAO)
         private IEtuDAO EtuDAO => EtudiantDAOOracle.Instance;
 
         /// <summary>

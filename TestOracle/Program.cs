@@ -15,5 +15,18 @@ OracleDataReader reader = cmd.ExecuteReader();
 while (reader.Read())
 {
     Console.WriteLine(reader.GetString(0));
+    Console.WriteLine("avec crochet");
+    Console.WriteLine(reader.GetString(reader.GetOrdinal("sexe"))[0]);
+
+
+    Console.WriteLine("Sans crochet");
+    Console.WriteLine(reader.GetString(reader.GetOrdinal("sexe")));
+
+    //On récupere le caractère du sexe en BDD et on le converti avec l'énumération 
+    char sexeBDD = reader.GetString(reader.GetOrdinal("sexe"))[0];
+    /*
+    int numApogee = reader.GetInt32(reader.GetOrdinal("numApogee"));
+    string nom = reader.GetString(reader.GetOrdinal("nom"));
+    string prenom = reader.GetString(reader.GetOrdinal("prenom"));*/
 }
 

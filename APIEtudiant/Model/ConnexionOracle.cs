@@ -37,17 +37,18 @@ namespace APIEtudiant.Model
         /// <summary>
         /// String de connexion a la Base de donnée des étudiants
         /// </summary>
-        private string connexionString = "User Id = IQ_BD_HIDA; Password = HIDA0000; Data Source = srviq-ora:1521/orclpdb.iut21.u-bourgogne.fr";
-        /*
+        private string connexionString = "User Id = IQ_BD_HIDA; Password = HIDA0000; Data Source = srv-iq-ora:1521/orclpdb.iut21.u-bourgogne.fr";
+        
+
         /// <summary>
         /// Renvoi une connexion oracle pour la BDD
         /// </summary>
         /// <returns></returns>
         public OracleConnection GetConnection()
-        {_
-            OracleConnection conn = new OracleConnection(connexionString);
-            return conn;
+        {
+            OracleConnection con = new OracleConnection(connexionString);
+            return con;
         }
-        */
+        
     }
 }
