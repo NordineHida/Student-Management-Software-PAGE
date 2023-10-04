@@ -20,9 +20,16 @@ namespace PAGE.Vue.Ressources
     /// </summary>
     public partial class ParametresPage : Page
     {
+        public event EventHandler ReturnToMainWindow;
+
         public ParametresPage()
         {
             InitializeComponent();
+        }
+
+        private void CloseParamWindow(object sender, RoutedEventArgs e)
+        {
+            ReturnToMainWindow?.Invoke(this, EventArgs.Empty);
         }
     }
 }

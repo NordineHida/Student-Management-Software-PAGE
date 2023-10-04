@@ -38,6 +38,6 @@
         </StackPanel>
 
         <!-- Bouton pour enregistrer les paramètres avec style -->
-        <Button Content="Valider" Width="150" Margin="10" Grid.Row="2" HorizontalAlignment="Center" Background="#007ACC" Foreground="White" FontSize="16"/>
+        <Button Content="Valider" Width="150" Margin="10" Grid.Row="2" HorizontalAlignment="Center" Background="#007ACC" Foreground="White" FontSize="16" Click="CloseParamWindow"/>
     </Grid>
 </Page>

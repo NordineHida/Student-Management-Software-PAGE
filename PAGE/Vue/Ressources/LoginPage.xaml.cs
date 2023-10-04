@@ -20,16 +20,16 @@ namespace PAGE.Vue.Ressources
     /// </summary>
     public partial class LoginPage : Page
     {
-        
+        public event EventHandler ReturnToMainWindow;
         public LoginPage()
         {
             InitializeComponent();
-            
         }
 
         private void CloseLoginWindow(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            ReturnToMainWindow?.Invoke(this, EventArgs.Empty);
         }
+
     }
 }

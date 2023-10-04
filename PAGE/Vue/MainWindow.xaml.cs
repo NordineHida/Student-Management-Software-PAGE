@@ -20,19 +20,47 @@ namespace PAGE.Vue
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private UIElement initialContent;
         public MainWindow()
         {
             InitializeComponent();
+            initialContent = (UIElement?)this.Content;
         }
 
         private void OpenLoginPage(object sender, RoutedEventArgs e)
         {
-            this.Content = new LoginPage();
+            // Créer la LoginPage
+            LoginPage loginPage = new LoginPage();
+
+            // Écouter l'événement de retour à la fenêtre principale
+            loginPage.ReturnToMainWindow += LoginPage_ReturnToMainWindow;
+
+            // Afficher la LoginPage comme contenu initial
+            this.Content = loginPage;
+
+        }
+
+        private void LoginPage_ReturnToMainWindow(object sender, EventArgs e)
+        {
+            this.Content = initialContent;
         }
 
         private void OpenParametresPage(object sender, RoutedEventArgs e)
         {
-            this.Content = new ParametresPage();
+            // Créer la LoginPage
+            ParametresPage parampage = new ParametresPage();
+
+            // Écouter l'événement de retour à la fenêtre principale
+            parampage.ReturnToMainWindow += ParamPage_ReturnToMainWindow;
+
+            // Afficher la LoginPage comme contenu initial
+            this.Content = parampage;
+        }
+
+        private void ParamPage_ReturnToMainWindow(object sender, EventArgs e)
+        {
+            this.Content = initialContent;
         }
     }
 }
