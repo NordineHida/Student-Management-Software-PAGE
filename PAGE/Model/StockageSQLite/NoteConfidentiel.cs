@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PAGE.Model.StockageSQLite
 {
-    public class StockageNoteConfidentiel
+    public class NoteConfidentiel
     {
         [PrimaryKey, AutoIncrement]
         public int IdNote { get; set; }
