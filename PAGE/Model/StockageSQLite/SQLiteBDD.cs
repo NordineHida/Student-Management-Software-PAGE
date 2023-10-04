@@ -8,6 +8,9 @@ using System.Data.SQLite;
 
 namespace PAGE.Model.StockageSQLite
 {
+    /// <summary>
+    /// Classe gérant la base de données des notes confidentielles
+    /// </summary>
     public class SQLiteBDD
     {
         private string connectionString;
