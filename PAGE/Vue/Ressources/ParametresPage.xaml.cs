@@ -31,5 +31,21 @@ namespace PAGE.Vue.Ressources
         {
             ReturnToMainWindow?.Invoke(this, EventArgs.Empty);
         }
+
+        private void BrightnessSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            // Récupérez la valeur du Slider
+            double brightnessValue = BrightnessSlider.Value;
+
+            // Utilisez la valeur pour ajuster la luminosité de l'application
+            AdjustBrightness(brightnessValue);
+        }
+
+        private void AdjustBrightness(double brightnessValue)
+        {
+            byte brightness = (byte)(255 * brightnessValue);
+            Color newColor = Color.FromRgb(brightness, brightness, brightness);
+            this.Background = new SolidColorBrush(newColor);
+        }
     }
 }
