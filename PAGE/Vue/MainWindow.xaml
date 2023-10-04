@@ -6,98 +6,82 @@
         xmlns:local="clr-namespace:PAGE.Vue"
         mc:Ignorable="d"
         Title="PAGE" Height="450" Width="800">
-
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <!-- Couleur de fond -->
+            <Setter Property="Foreground" Value="White"/>
+            <!-- Couleur du texte -->
+            <Setter Property="BorderBrush" Value="#1976D2"/>
+            <!-- Couleur de la bordure -->
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Animation de changement de couleur au clic -->
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border" 
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="#1565C0" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.15*"/>
-            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="Auto"/>
+            <!-- Colonne pour le logo -->
+            <ColumnDefinition Width="*"/>
+            <!-- Colonne pour le reste du contenu -->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*" />
-            <RowDefinition Height="1.5*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <!-- Première ligne pour le logo -->
+            <RowDefinition Height="Auto" />
+            <!-- Deuxième ligne pour les boutons -->
+            <RowDefinition Height="*" />
+            <!-- Troisième ligne pour la liste des étudiants -->
         </Grid.RowDefinitions>
 
+        <!-- Logo avec effet d'ombre -->
+        <Border BorderBrush="#E0E0E0" BorderThickness="1" Grid.Row="0" Grid.Column="0" Margin="10" Width="100" Height="100" CornerRadius="50">
+            <Image Source="/Vue/Ressources/logo.png" Stretch="UniformToFill" />
+        </Border>
 
-        <Rectangle Stroke="Black" Margin="13,12,428,0" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="10">
+            <Button Content="Se Connecter" Click="OpenLoginPage"/>
+            <Button Content="Paramètres" Click="OpenParametresPage"/>
+        </StackPanel>
 
-        <Button Grid.Column="1" Content="Se Connecter" HorizontalAlignment="Left" Margin="100,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="28" Width="103" Click="OpenLoginPage"/>
-
-        <Button Grid.Column="1" Content="Paramètres" HorizontalAlignment="Left" Margin="223,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="28" Width="103" Click="OpenParametresPage"/>
-
-        <Image Margin="13,12,687,44" Source="/Vue/Ressources/logo.png" Stretch="Fill" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
-
-        <Label Grid.Column="1" Content="Liste des étudiants :" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="184"
-       FontWeight="Bold" FontSize="18" Foreground="DarkBlue" FontFamily="Arial" />
-
-        <Rectangle HorizontalAlignment="Left" Height="266" Margin="10,44,0,0" Grid.RowSpan="8" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="111" Grid.Column="1"/>
-
-
-        <DataGrid Grid.Column="1" Grid.Row="3" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}"
-          Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
-          Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
-          RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2" Width="90">
+        <!-- Liste des étudiants -->
+        <DataGrid Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}" Margin="10"
+                  Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
+                  RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
                 <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
+                <DataGridTextColumn Header="Numéro Apogée" Binding="{Binding NumApogee}" />
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Grid.Column="1" Grid.Row="4" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}"
-            Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
-            Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
-            RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
-                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid Grid.Column="1" Grid.Row="6" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}" 
-            Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
-            Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
-            RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
-                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid Grid.Column="1" Grid.Row="5" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}"
-            Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
-            Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
-            RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
-                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid Grid.Column="1" Grid.Row="8" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}" 
-            Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
-            Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
-            RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
-                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid Grid.Column="1" Grid.Row="7" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}"
-            Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
-            Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
-            RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
-                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
-            </DataGrid.Columns>
-        </DataGrid>
-
-
-
     </Grid>
-
 </Window>

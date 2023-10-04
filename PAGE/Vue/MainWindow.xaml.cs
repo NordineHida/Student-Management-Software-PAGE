@@ -43,6 +43,7 @@ namespace PAGE.Vue
 
         private void LoginPage_ReturnToMainWindow(object sender, EventArgs e)
         {
+            
             this.Content = initialContent;
         }
 
