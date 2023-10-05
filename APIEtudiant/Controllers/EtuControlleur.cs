@@ -37,5 +37,27 @@ namespace PAGE.Controlleurs
             return reponse;
         }
 
+
+        /// <summary>
+        /// Lit le fichier excel des étudiants et les ajoute
+        /// </summary>
+        /// <param name="pathExcel">chemin du fichier excel </param>
+        /// <returns>true si l'ajout est un succes</returns>
+        [HttpPost("AddSeveralEtu")]
+        public ActionResult AddSeveralEtu([FromBody] IEnumerable<Etudiant> listeEtu)
+        {
+            ActionResult reponse = BadRequest();
+
+            //Si le chemin est vide on renvoi un message d'erreur
+            if (listeEtu == null) reponse = BadRequest("Il n'y as pas de d'étudiants");
+
+            //Sinon si l'ajout est un succes alors on renvoi Ok
+            else if (EtuManager.Instance.AddSeveralEtu(listeEtu)) reponse = Ok();
+
+            return reponse;
+        }
+
+
+
     }
 }

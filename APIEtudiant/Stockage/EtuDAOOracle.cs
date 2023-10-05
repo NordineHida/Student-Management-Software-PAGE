@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using APIEtudiant.Model;
 using Oracle.ManagedDataAccess.Client;
 using PAGE.Model;
@@ -208,6 +209,40 @@ namespace APIEtudiant.Stockage
                     {
                         Console.WriteLine(ex.Message);
                     }
+                }
+            }
+            return ajoutReussi;
+        }
+
+
+        /// <summary>
+        /// Ajoute les touts les étudiants de la liste d'étudiants
+        /// </summary>
+        /// <param name="listeEtu">Liste d'étudiant à ajouter</param>
+        /// <returns>true si l'ajout est un succes</returns>
+        public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu)
+        {
+            bool ajoutReussi = true;
+
+            //Pour tout les étudiants de la liste
+            foreach (Etudiant etu in listeEtu)
+            {
+                //on essaye de les ajouter
+                try
+                {
+                    //On ajoute et on récupere le bool de succès
+                    bool succes = EtuManager.Instance.AddEtu(etu);
+
+                    //Si le succes est faux lors d'un ajout, l'ajout total est concidéré comme un echec
+                    if (!succes)
+                    {
+                        ajoutReussi = false;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
                 }
             }
             return ajoutReussi;

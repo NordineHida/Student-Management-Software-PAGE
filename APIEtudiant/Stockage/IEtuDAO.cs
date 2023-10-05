@@ -24,5 +24,13 @@ namespace PAGE.Stockage
         /// <param name="etudiant">étudiant à ajouter</param>
         /// <returns>true si l'ajout a fonctionner</returns>
         public bool AddEtu(Etudiant etudiant);
+
+
+        /// <summary>
+        /// Ajoute les touts les étudiants de la liste d'étudiants
+        /// </summary>
+        /// <param name="listeEtu">Liste d'étudiant à ajouter</param>
+        /// <returns>true si l'ajout est un succes</returns>
+        public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu);
     }
 }

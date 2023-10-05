@@ -25,11 +25,9 @@ C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\PAGE.runtim
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\PAGE.dll
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\PAGE.pdb
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.csproj.AssemblyReference.cache
-C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\MainWindow.g.cs
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE_MarkupCompile.cache
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE_MarkupCompile.lref
-C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\MainWindow.baml
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.g.resources
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.AssemblyInfoInputs.cache
@@ -41,3 +39,13 @@ C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.pdb
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.genruntimeconfig.cache
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\ref\PAGE.dll
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\MainWindow.g.cs
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\EPPlus.Core.dll
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\System.Xml.XPath.XmlDocument.dll
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\MainWindow.baml
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.csproj.CopyComplete
