@@ -62,14 +62,14 @@ namespace TestSQLite
         [Fact]
         public void TestInsertNote()
         {
-            // Arrange
+            // Titre et description de la nouvelle note
             string titre = "Nouvelle Note";
-            string description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+            string description = "Nouvelle description";
 
-            // Act
+            // Insertion de la note
             _dbManager.InsertNote(titre, description);
 
-            // Assert
+            // Vérification 
             DataTable result = _dbManager.GetAllNotes();
             Assert.NotEmpty(result.Rows);
         }
@@ -80,15 +80,14 @@ namespace TestSQLite
         [Fact]
         public void TestUpdateNote()
         {
-            // Arrange
-            int noteId = 1; 
-            string nouveauTitre = "Nouveau Titre";
-            string nouvelleDescription = "Nouvelle Description";
+            int noteId = 1; // Modification de la note avec l'id : 1 
+            string nouveauTitre = "Nouveau Titre"; // Nouveau titre de la note
+            string nouvelleDescription = "Nouvelle Description"; // Nouvelle description de la note
 
-            // Act
+            // Mise à jour de la note
             _dbManager.UpdateNote(noteId, nouveauTitre, nouvelleDescription);
 
-            // Assert
+            // Vérification
             DataRow note = _dbManager.GetNoteById(noteId);
             Assert.NotNull(note);
             Assert.Equal(nouveauTitre, note["Titre"].ToString());
@@ -101,13 +100,12 @@ namespace TestSQLite
         [Fact]
         public void TestDeleteNoteById()
         {
-            // Arrange
-            int noteId = 1; 
+            int noteId = 1; // Suppression de la note avec l'id : 1
 
-            // Act
+            // Suppression de la note
             _dbManager.DeleteNoteById(noteId);
 
-            // Assert
+            // Vérification
             DataRow note = _dbManager.GetNoteById(noteId);
             Assert.Null(note);
         }
