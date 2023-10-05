@@ -40,9 +40,9 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
-            "Microsoft.Data.Sqlite.Core": {
+            "System.Data.SQLite.Core": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[1.0.118, )"
             },
             "Uno.UI": {
               "target": "Package",
@@ -112,13 +112,13 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
-            "Microsoft.Data.Sqlite.Core": {
-              "target": "Package",
-              "version": "[7.0.11, )"
-            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.1.0, )"
+            },
+            "System.Data.SQLite.Core": {
+              "target": "Package",
+              "version": "[1.0.118, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
