@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace PAGE.Model
 {
+    /// <summary>
+    /// Gère le DAO d'étudiant
+    /// </summary>
     public class EtuManager 
     {
         #region Singleton
