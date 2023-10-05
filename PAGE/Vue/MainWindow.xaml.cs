@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Navigation;
 
 namespace PAGE.Vue
 {
@@ -26,6 +28,32 @@ namespace PAGE.Vue
         {
             InitializeComponent();
             initialContent = (UIElement?)this.Content;
+
+            GridView gridView = new GridView();
+            maListView.View = gridView;
+
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "numApogee",
+                DisplayMemberBinding = new System.Windows.Data.Binding("numApogee")
+            });
+
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "nom",
+                DisplayMemberBinding = new System.Windows.Data.Binding("nom")
+            });
+
+            gridView.Columns.Add(new GridViewColumn
+            {
+                Header = "prenom",
+                DisplayMemberBinding = new System.Windows.Data.Binding("prenom")
+            });
+
+            maListView.Items.Add(new DataObject { numApogee = 1234, nom = "basset", prenom = "stephane" });
+            maListView.Items.Add(new DataObject { numApogee = 5678, nom = "hida", prenom = "nordine" });
+            maListView.Items.Add(new DataObject { numApogee = 9801, nom = "duszynski", prenom = "laszlo" });
+        
         }
 
         private void OpenLoginPage(object sender, RoutedEventArgs e)
@@ -64,4 +92,14 @@ namespace PAGE.Vue
             this.Content = initialContent;
         }
     }
+
+    #region pour affiche liste etudiant
+    public class DataObject
+    {
+        public int numApogee { get; set; }
+        public string nom { get; set; }
+        public string prenom { get; set; }
+    }
+
+    #endregion
 }

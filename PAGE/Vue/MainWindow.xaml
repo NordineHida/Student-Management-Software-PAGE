@@ -75,14 +75,10 @@
         </StackPanel>
 
         <!-- Liste des étudiants -->
-        <DataGrid Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding ListeEtudiants}" Margin="10"
-                  Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
-                  RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static res:Strings.Nom}" Binding="{Binding Nom}" />
-                <DataGridTextColumn Header="{x:Static res:Strings.Prenom}" Binding="{Binding Prenom}" />
-                <DataGridTextColumn Header="{x:Static res:Strings.NumeroApogee}" Binding="{Binding NumApogee}" />
-            </DataGrid.Columns>
-        </DataGrid>
+
+        <!-- Autres éléments de votre interface utilisateur peuvent être placés ici -->
+        <ListView Name="maListView" Grid.Column="1" Margin="36,24,36,23" Grid.Row="2">
+            <!-- Définissez les colonnes ici -->
+        </ListView>
     </Grid>
 </Window>
