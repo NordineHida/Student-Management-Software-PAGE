@@ -20,7 +20,7 @@ namespace PAGE
             this.InitializeComponent();
 
             // Création de la database
-            string connectionString = "noteConfidentielle.db";
+            string connectionString = "Data Source=noteConfidentielle.db";
             DatabaseManager dbManager = new DatabaseManager(connectionString);
 
             dbManager.OpenConnection(); // Ouverture de la connexion

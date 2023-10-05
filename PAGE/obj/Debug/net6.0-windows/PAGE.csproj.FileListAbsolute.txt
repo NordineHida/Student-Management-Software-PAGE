@@ -96,8 +96,6 @@ C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\PAGE.dep
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\PAGE.runtimeconfig.json
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\PAGE.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\PAGE.pdb
-C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\Microsoft.Data.Sqlite.dll
-C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\SQLitePCLRaw.core.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\System.Runtime.InteropServices.WindowsRuntime.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\Uno.Diagnostics.Eventing.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\Uno.Fonts.Fluent.dll
@@ -133,3 +131,8 @@ C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\refint\P
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.pdb
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.genruntimeconfig.cache
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\ref\PAGE.dll
+C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\System.Data.SQLite.dll
+C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\runtimes\win-x86\native\SQLite.Interop.dll

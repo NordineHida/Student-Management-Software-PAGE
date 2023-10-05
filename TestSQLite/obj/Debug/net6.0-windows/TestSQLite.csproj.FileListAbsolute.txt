@@ -16,7 +16,6 @@ C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Te
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\TestSQLite.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\TestSQLite.pdb
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Microsoft.VisualStudio.CodeCoverage.Shim.dll
-C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Microsoft.Data.Sqlite.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Microsoft.TestPlatform.CoreUtilities.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Microsoft.TestPlatform.CommunicationUtilities.dll
@@ -25,7 +24,6 @@ C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Mi
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Microsoft.VisualStudio.TestPlatform.Common.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\NuGet.Frameworks.dll
-C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\SQLitePCLRaw.core.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\System.Runtime.InteropServices.WindowsRuntime.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Uno.Diagnostics.Eventing.dll
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\Uno.Fonts.Fluent.dll
@@ -122,3 +120,8 @@ C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\obj\Debug\net6.0-windows\re
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\obj\Debug\net6.0-windows\TestSQLite.pdb
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\obj\Debug\net6.0-windows\TestSQLite.genruntimeconfig.cache
 C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\obj\Debug\net6.0-windows\ref\TestSQLite.dll
+C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\System.Data.SQLite.dll
+C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\TestSQLite\bin\Debug\net6.0-windows\runtimes\win-x86\native\SQLite.Interop.dll

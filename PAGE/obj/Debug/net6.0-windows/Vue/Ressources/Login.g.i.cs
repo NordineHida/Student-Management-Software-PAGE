@@ -69,7 +69,7 @@ namespace PAGE.Vue.Ressources {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PAGE;V1.0.0.0;component/vue/ressources/login.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PAGE;component/vue/ressources/login.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Vue\Ressources\Login.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
