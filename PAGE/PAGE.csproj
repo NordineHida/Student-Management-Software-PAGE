@@ -14,4 +14,8 @@
     <Folder Include="Vue\Ecrans\Realisations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\APIEtudiant\APIEtudiant.csproj" />
+  </ItemGroup>
+
 </Project>

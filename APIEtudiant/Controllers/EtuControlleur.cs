@@ -39,9 +39,9 @@ namespace PAGE.Controlleurs
 
 
         /// <summary>
-        /// Lit le fichier excel des étudiants et les ajoute
+        /// Ajoute les touts les étudiants de la liste d'étudiants
         /// </summary>
-        /// <param name="pathExcel">chemin du fichier excel </param>
+        /// <param name="listeEtu">Liste d'étudiant à ajouter</param>
         /// <returns>true si l'ajout est un succes</returns>
         [HttpPost("AddSeveralEtu")]
         public ActionResult AddSeveralEtu([FromBody] IEnumerable<Etudiant> listeEtu)
