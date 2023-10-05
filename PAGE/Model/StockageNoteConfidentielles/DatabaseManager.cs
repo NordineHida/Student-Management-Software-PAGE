@@ -43,10 +43,10 @@ namespace PAGE.Model.StockageNoteConfidentielles
         }
 
         /// <summary>
-        /// Exécute une requête SELECT et retourne son résultat
+        /// Exécute une requête SELECT sans paramètres et retourne son résultat
         /// </summary>
         /// <param name="query">requête sql (select)</param>
-        /// <returns></returns>
+        /// <returns>résultat de la requête</returns>
         public DataTable ExecuteQuery(string query)
         {
             DataTable dataTable = new DataTable();
@@ -56,7 +56,31 @@ namespace PAGE.Model.StockageNoteConfidentielles
         }
 
         /// <summary>
-        /// Exécute une requête INSERT, UPDATE, DELETE qui n'a pas de paramètre et retourne son résultat
+        /// Exécute une requête SELECT avec des paramètres et retourne son résultat
+        /// </summary>
+        /// <param name="query">requête sql (select)</param>
+        /// <param name="parameters">parametre de la requête</param>
+        /// <returns></returns>
+        public DataTable ExecuteQuery(string query, SQLiteParameter[] parameters)
+        {
+            using (SQLiteCommand command = new SQLiteCommand(query, _connection))
+            {
+                if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
+
+                using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Exécute une requête INSERT, UPDATE, DELETE sans paramètre et retourne son résultat
         /// </summary>
         /// <param name="query">requète sql (insert, update, delete)</param>
         public void ExecuteNonQuery(string query)
@@ -83,13 +107,35 @@ namespace PAGE.Model.StockageNoteConfidentielles
         }
 
         /// <summary>
-        /// Renvoie toutes les notes
+        /// Récupère toutes les notes
         /// </summary>
         /// <returns>notes de toute la table</returns>
         public DataTable GetAllNotes()
         {
             string query = "SELECT * FROM NoteConfidentielle";
             return ExecuteQuery(query);
+        }
+
+        /// <summary>
+        /// Récupère une note à partir de son id
+        /// </summary>
+        /// <param name="noteId">id de la note</param>
+        /// <returns>résultat de la requête</returns>
+        public DataRow GetNoteById(int noteId)
+        {
+            string query = "SELECT * FROM NoteConfidentielle WHERE NoteId = @NoteId";
+            SQLiteParameter parameter = new SQLiteParameter("@NoteId", DbType.Int32) { Value = noteId };
+
+            DataTable result = ExecuteQuery(query, new SQLiteParameter[] { parameter });
+
+            if (result.Rows.Count > 0)
+            {
+                return result.Rows[0];
+            }
+            else
+            {
+                return null; // La note n'a pas été trouvée.
+            }
         }
 
         /// <summary>
