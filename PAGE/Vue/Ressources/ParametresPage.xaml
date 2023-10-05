@@ -4,10 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PAGE.Vue.Ressources"
+      xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Background="White"
-      Title="ParametresPage">
+      Title="{x:Static res:Francais.Title}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,20 +18,20 @@
         </Grid.RowDefinitions>
 
         <!-- Titre de la page de paramètres avec style -->
-        <TextBlock Text="Paramètres" FontWeight="Bold" FontSize="24" Margin="10" Foreground="#007ACC"/>
+        <TextBlock Text="{x:Static res:Francais.TitreParam}" FontWeight="Bold" FontSize="24" Margin="10" Foreground="#007ACC"/>
 
         <!-- StackPanel pour organiser les éléments verticalement -->
         <StackPanel Grid.Row="1" Margin="10">
             <!-- Option 1: Utiliser une Slider pour une valeur numérique -->
             <StackPanel Margin="0,0,0,10">
-                <TextBlock Text="Réglage de la luminosité:" Margin="0,0,0,5" FontSize="16"/>
+                <TextBlock Text="{x:Static res:Francais.Lux}" Margin="0,0,0,5" FontSize="16"/>
                 <Slider x:Name="BrightnessSlider" Minimum="0" Maximum="1" Value="1" ValueChanged="BrightnessSlider_ValueChanged" 
                  Width="200"/>
             </StackPanel>
 
             <!-- Option 2: Utiliser une liste déroulante (ComboBox) -->
             <StackPanel Margin="0,0,0,10">
-                <TextBlock Text="Langue séléctionée:" Margin="0,0,0,5" FontSize="16"/>
+                <TextBlock Text="{x:Static res:Francais.Langue}" Margin="0,0,0,5" FontSize="16"/>
                 <ComboBox>
                     <ComboBoxItem Content="Français"/>
                     <ComboBoxItem Content="Anglais"/>
@@ -39,6 +40,6 @@
         </StackPanel>
 
         <!-- Bouton pour enregistrer les paramètres avec style -->
-        <Button Content="Valider" Width="150" Margin="10" Grid.Row="2" HorizontalAlignment="Center" Background="#007ACC" Foreground="White" FontSize="16" Click="CloseParamWindow"/>
+        <Button Content="{x:Static res:Francais.Valider}" Width="150" Margin="10" Grid.Row="2" HorizontalAlignment="Center" Background="#007ACC" Foreground="White" FontSize="16" Click="CloseParamWindow"/>
     </Grid>
 </Page>

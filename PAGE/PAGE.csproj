@@ -28,4 +28,19 @@
     <Resource Include="Vue\Ressources\logo.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Vue\Ressources\Res\Francais.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Francais.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Vue\Ressources\Res\Francais.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Francais.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
