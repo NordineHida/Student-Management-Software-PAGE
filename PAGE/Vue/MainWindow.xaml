@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PAGE.Vue"
         xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
         mc:Ignorable="d"
-        Title="{x:Static res:Francais.Title}" Height="450" Width="800">
+        Title="{x:Static res:Strings.Title}" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"/>
@@ -70,8 +70,8 @@
 
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="10">
-            <Button Content="{x:Static res:Francais.BoutonConnexion}" Click="OpenLoginPage"/>
-            <Button Content="{x:Static res:Francais.BoutonParam}" Click="OpenParametresPage"/>
+            <Button Content="{x:Static res:Strings.BoutonConnexion}" Click="OpenLoginPage"/>
+            <Button Content="{x:Static res:Strings.BoutonParam}" Click="OpenParametresPage"/>
         </StackPanel>
 
         <!-- Liste des étudiants -->
@@ -79,9 +79,9 @@
                   Background="#FFE5E5E5" BorderBrush="#FFBFBFBF" BorderThickness="1"
                   RowHeight="30" AlternatingRowBackground="#FFF5F5F5" AlternationCount="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static res:Francais.Nom}" Binding="{Binding Nom}" />
-                <DataGridTextColumn Header="{x:Static res:Francais.Prenom}" Binding="{Binding Prenom}" />
-                <DataGridTextColumn Header="{x:Static res:Francais.NumeroApogee}" Binding="{Binding NumApogee}" />
+                <DataGridTextColumn Header="{x:Static res:Strings.Nom}" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="{x:Static res:Strings.Prenom}" Binding="{Binding Prenom}" />
+                <DataGridTextColumn Header="{x:Static res:Strings.NumeroApogee}" Binding="{Binding NumApogee}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

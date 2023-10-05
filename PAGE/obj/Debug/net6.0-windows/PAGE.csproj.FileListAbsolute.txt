@@ -67,4 +67,7 @@ C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\Res
 C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\Ressources\ParametresPage.g.cs
 C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\Vue\Ressources\ParametresPage.baml
 C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.csproj.GenerateResource.cache
-C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.Vue.Ressources.Res.Francais.resources
+C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\bin\Debug\net6.0-windows\en\PAGE.resources.dll
+C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.Vue.Ressources.Res.Strings.resources
+C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\PAGE.Vue.Ressources.Res.Strings.en.resources
+C:\Users\utilisateur\Desktop\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\en\PAGE.resources.dll

@@ -9,6 +9,11 @@
       "PAGE/1.0.0": {
         "runtime": {
           "PAGE.dll": {}
+        },
+        "resources": {
+          "en/PAGE.resources.dll": {
+            "locale": "en"
+          }
         }
       }
     }

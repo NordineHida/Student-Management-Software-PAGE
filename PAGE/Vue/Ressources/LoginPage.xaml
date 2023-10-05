@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Background="white"
-      Title="{x:Static res:Francais.Title}">
+      Title="{x:Static res:Strings.Title}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <!-- TextBlock pour le titre -->
-        <TextBlock Text="{x:Static res:Francais.TitreLogin}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10" FontSize="24" FontStyle="Italic" FontWeight="Bold" Foreground="#007ACC"/>
+        <TextBlock Text="{x:Static res:Strings.TitreLogin}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10" FontSize="24" FontStyle="Italic" FontWeight="Bold" Foreground="#007ACC"/>
 
         <!-- Grid pour organiser les éléments -->
         <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -28,19 +28,19 @@
             <!-- StackPanel pour les éléments de connexion -->
             <StackPanel Margin="10">
                 <!-- Label pour Nom d'utilisateur ou E-mail -->
-                <Label Content="{x:Static res:Francais.UtilisateurLogin}" FontSize="16" Foreground="#007ACC"/>
+                <Label Content="{x:Static res:Strings.UtilisateurLogin}" FontSize="16" Foreground="#007ACC"/>
 
                 <!-- TextBox pour le nom d'utilisateur -->
                 <TextBox Name="txtUsername" Width="200" Margin="0,5,0,5" FontSize="14"/>
 
                 <!-- Label pour le mot de passe -->
-                <Label Content="{x:Static res:Francais.MDPLogin}" FontSize="16" Foreground="#007ACC"/>
+                <Label Content="{x:Static res:Strings.MDPLogin}" FontSize="16" Foreground="#007ACC"/>
 
                 <!-- PasswordBox pour le mot de passe -->
                 <PasswordBox Name="txtPassword" Width="200" Margin="0,5,0,5" FontSize="14"/>
 
                 <!-- Bouton de connexion -->
-                <Button Content="{x:Static res:Francais.BoutonConnexion}" Width="100" Margin="0,20,0,0" FontSize="16" Background="#007ACC" Foreground="White" Click="CloseLoginWindow"/>
+                <Button Content="{x:Static res:Strings.BoutonConnexion}" Width="100" Margin="0,20,0,0" FontSize="16" Background="#007ACC" Foreground="White" Click="CloseLoginWindow"/>
             </StackPanel>
         </Grid>
     </Grid>
