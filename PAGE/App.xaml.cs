@@ -1,4 +1,4 @@
-﻿using PAGE.Model.StockageSQLite;
+﻿using PAGE.Model.StockageNoteConfidentielles;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,7 +19,17 @@ namespace PAGE
         {
             this.InitializeComponent();
 
-            DataAccess.InitializeDatabase();
+            // Création de la database
+            string connectionString = "noteConfidentielle.db";
+            DatabaseManager dbManager = new DatabaseManager(connectionString);
+
+            dbManager.OpenConnection(); // Ouverture de la connexion
+
+            // Création de la table NoteConfidentielle
+            string createTableQuery = "CREATE TABLE IF NOT EXISTS NoteConfidentielle (NoteId INTEGER PRIMARY KEY AUTOINCREMENT, Titre TEXT, Description TEXT)";
+            dbManager.ExecuteNonQuery(createTableQuery);
+
+            dbManager.CloseConnection(); // Fermeture de la connexion
         }
     }
 }
