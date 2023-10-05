@@ -1,4 +1,5 @@
-﻿using PAGE.Model;
+﻿using APIEtudiant.Stockage;
+using PAGE.Model;
 using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,28 @@ namespace PAGE.APIEtudiant.Stockage
     /// </summary>
     public class APIEtuDAO : IAPIDAO
     {
+
+        #region Singleton
+        private static APIEtuDAO instance;
+
+        /// <summary>
+        /// Seul instance de DAO d'étudiant 
+        /// </summary>
+        public static APIEtuDAO Instance
+        {
+            get
+            {
+                if (instance == null) instance = new APIEtuDAO();
+                return instance;
+            }
+        }
+
+        private APIEtuDAO()
+        {
+
+        }
+        #endregion
+
         public async Task AddSeveralEtu(IEnumerable<Etudiant> listeEtu)
         {
             try

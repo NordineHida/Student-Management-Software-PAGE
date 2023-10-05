@@ -1,6 +1,7 @@
 ﻿using PAGE.Model;
 using System.Windows;
 using Microsoft.Win32; // Pour OpenFileDialog
+using PAGE.APIEtudiant.Stockage;
 
 namespace PAGE.Vue
 {
@@ -23,7 +24,7 @@ namespace PAGE.Vue
 
                 // Appelez la méthode GetEtudiants avec le chemin du fichier
                 LecteurExcel lc = new LecteurExcel();
-                lc.GetEtudiants(selectedFilePath);
+                APIEtuDAO.Instance.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
             }
         }
     }

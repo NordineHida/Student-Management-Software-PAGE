@@ -92,7 +92,7 @@ namespace PAGE.Model
                                 apogeeInt = int.Parse(apogee);
                            
                             if (telPortable != null)
-                                telPortableInt = (int)long.Parse(telPortable);
+                                telPortableInt = (int)long.Parse(telPortable);  // !!!!!!!!!!!!!!!!!!!! CHANGER INT EN LONG DANS LETUDIANT
                          
                             if (telFixe != null)
                                 telFixeInt = (int)long.Parse(telFixe);
