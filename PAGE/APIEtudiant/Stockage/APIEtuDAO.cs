@@ -38,7 +38,7 @@ namespace PAGE.APIEtudiant.Stockage
                     {
                         Console.WriteLine("L'ajout des étudiants a réussi !");
                     }
-                    else
+                    else 
                     {
                         Console.WriteLine("L'ajout des étudiants a échoué. Code de réponse : " + response.StatusCode);
                     }

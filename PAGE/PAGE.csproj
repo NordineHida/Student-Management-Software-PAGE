@@ -8,10 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="VueModel\" />
     <Folder Include="Vue\Ecrans\Elements\" />
     <Folder Include="Vue\Ecrans\Realisations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
   </ItemGroup>
 
   <ItemGroup>
