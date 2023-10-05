@@ -48,6 +48,9 @@ namespace PAGE.Model
             SEXE sexeEtu = SEXE.AUTRE;
             bool estBoursierBool = false;
 
+            //Date de base d'Excel à partir de laquel on compte le nombre de jour
+            DateTime baseDate = new DateTime(1900, 1, 1);
+
             List<Etudiant> etudiants= new List<Etudiant>();
 
             // Ouvre le document en lecture seule
@@ -89,10 +92,10 @@ namespace PAGE.Model
                                 apogeeInt = int.Parse(apogee);
                            
                             if (telPortable != null)
-                                telPortableInt = int.Parse(telPortable);
+                                telPortableInt = (int)long.Parse(telPortable);
                          
                             if (telFixe != null)
-                                telFixeInt = int.Parse(telFixe);
+                                telFixeInt = (int)long.Parse(telFixe);
 
 
                             //Conversion du string en SEXE
@@ -114,7 +117,14 @@ namespace PAGE.Model
 
                             //Conversion string en DateTime
                             if (dateNaissance!= null)
-                            dateNaissanceDT = DateTime.Parse(dateNaissance);
+                            {
+                                // Ajoutez le nombre de jours à la date de base pour obtenir la date correcte
+                                dateNaissanceDT = baseDate.AddDays(int.Parse(dateNaissance) - 2); // Soustrayez 2 jours pour corriger un décalage de 2 jours dans Excel
+                                //On reinitialise la valeur de base de la date de référence d'Excel
+                                baseDate = new DateTime(1900, 1, 1);
+                            }
+
+
 
                         }
                     }
@@ -126,6 +136,8 @@ namespace PAGE.Model
                 }
                 
             }
+            //On enlève le header
+            etudiants.RemoveAt(0);
             return etudiants;
         }
 
