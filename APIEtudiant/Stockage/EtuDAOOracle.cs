@@ -176,14 +176,9 @@ namespace APIEtudiant.Stockage
                     else estBoursier = "NON";
 
                     // On créer la requête SQL
-                    /*string requete = String.Format("INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login)" +
+                    string requete = String.Format("INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login)" +
                         "VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', TO_DATE('{9}', 'YYYY-MM-DD'), '{10}', {11}, {12}, '{13}')",etu.NumApogee,etu.Nom,etu.Prenom,etuSexe,etu.TypeBac, etu.Mail, etu.Groupe
                         , estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"), etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
-
-                    */
-                    string requete = "INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login) VALUES(23456755, 'Bobet', 'Alice', 'F', 'Bac STI2D', 'bobetalice@gmail.com', 'D', 'NON', 'continue', TO_DATE('2001-09-11', 'YYYY-MM-DD'), '42 Route de Valons', 065844851, 098456512, 'ab656551')";
-
-                    Console.WriteLine(requete);
 
                     //On execute la requete
                     OracleCommand cmd = new OracleCommand(requete, con);
@@ -194,10 +189,6 @@ namespace APIEtudiant.Stockage
                     {
                         ajoutReussi = true;
                     }
-
-
-                    Console.WriteLine(ajoutReussi);
-
                 }
                 // Gestion des exceptions
                 catch (OracleException ex)

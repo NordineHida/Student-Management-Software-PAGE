@@ -110,20 +110,20 @@ namespace PAGE.Model
         /// <summary>
         /// Constructeur de la classe Étudiant.
         /// </summary>
-        /// <param name="numApogee">Le numéro d'apogée de l'étudiant.</param>
-        /// <param name="nom">Le nom de l'étudiant.</param>
-        /// <param name="prenom">Le prénom de l'étudiant.</param>
-        /// <param name="sexe">Le sexe de l'étudiant.</param>
-        /// <param name="typeBac">Le type de baccalauréat de l'étudiant.</param>
-        /// <param name="mail">L'adresse e-mail de l'étudiant.</param>
-        /// <param name="groupe">Le groupe auquel l'étudiant est assigné.</param>
+        /// <param name="numApogee">Le numéro d'apogée de l'étudiant. (8 chiffres)</param>
+        /// <param name="nom">Le nom de l'étudiant. (100 caractères maximum)</param>
+        /// <param name="prenom">Le prénom de l'étudiant. (100 caractères maximum)</param>
+        /// <param name="sexe">Le sexe de l'étudiant. (M pour masculin, F pour féminin, A pour autre)</param>
+        /// <param name="typeBac">Le type de baccalauréat de l'étudiant. (50 caractères maximum)</param>
+        /// <param name="mail">L'adresse e-mail de l'étudiant. (150 caractères maximum)</param>
+        /// <param name="groupe">Le groupe auquel l'étudiant est assigné. (50 caractères maximum)</param>
         /// <param name="estBoursier">Indique si l'étudiant est boursier ou non.</param>
-        /// <param name="typeFormation">Le type de formation de l'étudiant.</param>
+        /// <param name="typeFormation">Le type de formation de l'étudiant. (150 caractères maximum)</param>
         /// <param name="dateNaissance">La date de naissance de l'étudiant.</param>
-        /// <param name="login">Le nom d'utilisateur de l'étudiant.</param>
-        /// <param name="telFixe">Le numéro de téléphone fixe de l'étudiant.</param>
-        /// <param name="telPortable">Le numéro de téléphone portable de l'étudiant.</param>
-        /// <param name="adresse">L'adresse de l'étudiant.</param>
+        /// <param name="login">Le nom d'utilisateur de l'étudiant. (30 caractères maximum)</param>
+        /// <param name="telFixe">Le numéro de téléphone fixe de l'étudiant. (15 chiffres max)</param>
+        /// <param name="telPortable">Le numéro de téléphone portable de l'étudiant.(15 chiffres max)</param>
+        /// <param name="adresse">L'adresse de l'étudiant. (150 caractères maximum)</param>
         public Etudiant(int numApogee, string nom, string prenom, SEXE sexe, string typeBac, string mail, string groupe, bool estBoursier, string typeFormation,
             DateTime dateNaissance, string login, int telFixe, int telPortable, string adresse)
         {
