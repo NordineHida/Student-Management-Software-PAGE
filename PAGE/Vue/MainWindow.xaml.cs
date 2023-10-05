@@ -1,27 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PAGE.Model;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Microsoft.Win32; // Pour OpenFileDialog
 
 namespace PAGE.Vue
 {
-    /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Fichiers Excel (*.xls, *.xlsx)|*.xls;*.xlsx";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Obtenez le chemin du fichier sélectionné
+                string selectedFilePath = openFileDialog.FileName;
+
+                // Appelez la méthode GetEtudiants avec le chemin du fichier
+                LecteurExcel lc = new LecteurExcel();
+                lc.GetEtudiants(selectedFilePath);
+            }
         }
     }
 }

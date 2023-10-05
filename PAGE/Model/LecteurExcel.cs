@@ -41,6 +41,13 @@ namespace PAGE.Model
             string telFixe = null;
             string login = null;
 
+            int apogeeInt=-1;
+            int telPortableInt=-1;
+            int telFixeInt = -1;
+            DateTime dateNaissanceDT = new DateTime();
+            SEXE sexeEtu = SEXE.AUTRE;
+            bool estBoursierBool = false;
+
             List<Etudiant> etudiants= new List<Etudiant>();
 
             // Ouvre le document en lecture seule
@@ -75,16 +82,22 @@ namespace PAGE.Model
                             if (cell.CellReference.Value.StartsWith("T")) mail = cellValue;
                             if (cell.CellReference.Value.StartsWith("W")) telPortable = cellValue;
                             if (cell.CellReference.Value.StartsWith("X")) telFixe = cellValue;
-                            if (cell.CellReference.Value.StartsWith("AA")) login = cellValue;
+                            if (cell.CellReference.Value.StartsWith("AA"))login = cellValue;
 
-                            // Convertit la chaîne en int
-                            int apogeeInt = int.Parse(apogee);
-                            int telPortableInt = int.Parse(telPortable);
-                            int telFixeInt = int.Parse(telFixe);
+                            // Convertit les chaîne en int                            
+                            if (apogee != null)
+                                apogeeInt = int.Parse(apogee);
+                           
+                            if (telPortable != null)
+                                telPortableInt = int.Parse(telPortable);
+                         
+                            if (telFixe != null)
+                                telFixeInt = int.Parse(telFixe);
+
 
                             //Conversion du string en SEXE
                             //Par défaut le sexe est autre
-                            SEXE sexeEtu = SEXE.AUTRE;
+                            sexeEtu = SEXE.AUTRE;
                             switch (sexe)
                             {
                                 case "F":
@@ -96,19 +109,20 @@ namespace PAGE.Model
                             }
 
                             //Conversion du string en Bool
-                            bool estBoursierBool = false;
+                            estBoursierBool = false;
                             if (estBoursier == "OUI") estBoursierBool = true;
 
                             //Conversion string en DateTime
-                            DateTime dateNaissanceDT = DateTime.Parse(dateNaissance);
+                            if (dateNaissance!= null)
+                            dateNaissanceDT = DateTime.Parse(dateNaissance);
 
-                            //On crée l'étudiant
-                            Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupe, estBoursierBool, regimeFormation, dateNaissanceDT, adresse, telPortableInt, telFixeInt, login);
-                            
-                            //On l'ajoute à la liste d'étudiant
-                            etudiants.Add(etudiant);
                         }
                     }
+                    //On crée l'étudiant
+                    Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupe, estBoursierBool, regimeFormation, dateNaissanceDT, adresse, telPortableInt, telFixeInt, login);
+
+                    //On l'ajoute à la liste d'étudiant
+                    etudiants.Add(etudiant);
                 }
                 
             }
