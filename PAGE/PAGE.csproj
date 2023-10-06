@@ -19,9 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="VueModel\" />
-    <Folder Include="Vue\Ecran\" />
   </ItemGroup>
 
   <ItemGroup>

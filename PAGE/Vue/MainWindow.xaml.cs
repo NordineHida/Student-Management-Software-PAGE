@@ -38,25 +38,28 @@ namespace PAGE.Vue
             gridView.Columns.Add(new GridViewColumn
             {
                 Header = "N°Apogee",
-                DisplayMemberBinding = new System.Windows.Data.Binding("numApogee")
+                DisplayMemberBinding = new System.Windows.Data.Binding("NumApogee")
             });
 
             gridView.Columns.Add(new GridViewColumn
             {
                 Header = "Nom",
-                DisplayMemberBinding = new System.Windows.Data.Binding("nom")
+                DisplayMemberBinding = new System.Windows.Data.Binding("Nom")
             });
 
             gridView.Columns.Add(new GridViewColumn
             {
                 Header = "Prenom",
-                DisplayMemberBinding = new System.Windows.Data.Binding("prenom")
+                DisplayMemberBinding = new System.Windows.Data.Binding("Prenom")
             });
 
             this.ChargementDiffere();
 
         }
 
+        /// <summary>
+        /// Chargement des etudiants différé via l'API
+        /// </summary>
         private async void ChargementDiffere()
         {
             //On récupere l'ensemble des étudiants via l'API
@@ -64,7 +67,7 @@ namespace PAGE.Vue
 
             foreach (Etudiant etu in etudiants)
             {
-                maListView.Items.Add(new EtudiantAffichage { AffiNumApogee = etu.NumApogee, AffiNom = etu.Nom, AffiPrenom = etu.Prenom });
+                maListView.Items.Add(etu);
             }
         }
 
@@ -125,17 +128,4 @@ namespace PAGE.Vue
             }
         }
     }
-
-    #region pour affiche liste etudiant
-    /// <summary>
-    /// Classe d'affichage des étudiants
-    /// </summary>
-    public class EtudiantAffichage
-    {
-        public int AffiNumApogee { get; set; }
-        public string AffiNom { get; set; }
-        public string AffiPrenom { get; set; }
-    }
-
-    #endregion
 }
