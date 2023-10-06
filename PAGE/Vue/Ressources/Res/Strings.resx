@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Actualiser" xml:space="preserve">
+    <value>Actualiser</value>
+  </data>
   <data name="BoutonConnexion" xml:space="preserve">
     <value>Se Connecter</value>
   </data>
   <data name="BoutonParam" xml:space="preserve">
     <value>Paramètres</value>
+  </data>
+  <data name="Importer" xml:space="preserve">
+    <value>Importer</value>
   </data>
   <data name="Langue" xml:space="preserve">
     <value>Langue séléctionée:</value>

@@ -29,7 +29,6 @@
                  Width="200"/>
             </StackPanel>
 
-            <!-- Option 2: Utiliser une liste déroulante (ComboBox) -->
             <StackPanel Margin="0,0,0,10">
                 <TextBlock Text="{x:Static res:Strings.Langue}" Margin="0,0,0,5" FontSize="16"/>
                 <ComboBox>

@@ -61,6 +61,15 @@ namespace PAGE.Vue.Ressources.Res {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Actualiser.
+        /// </summary>
+        public static string Actualiser {
+            get {
+                return ResourceManager.GetString("Actualiser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Se Connecter.
         /// </summary>
         public static string BoutonConnexion {
@@ -75,6 +84,15 @@ namespace PAGE.Vue.Ressources.Res {
         public static string BoutonParam {
             get {
                 return ResourceManager.GetString("BoutonParam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Importer.
+        /// </summary>
+        public static string Importer {
+            get {
+                return ResourceManager.GetString("Importer", resourceCulture);
             }
         }
         
