@@ -37,26 +37,35 @@ namespace PAGE.Vue
 
             gridView.Columns.Add(new GridViewColumn
             {
-                Header = "numApogee",
+                Header = "N°Apogee",
                 DisplayMemberBinding = new System.Windows.Data.Binding("numApogee")
             });
 
             gridView.Columns.Add(new GridViewColumn
             {
-                Header = "nom",
+                Header = "Nom",
                 DisplayMemberBinding = new System.Windows.Data.Binding("nom")
             });
 
             gridView.Columns.Add(new GridViewColumn
             {
-                Header = "prenom",
+                Header = "Prenom",
                 DisplayMemberBinding = new System.Windows.Data.Binding("prenom")
             });
 
-            maListView.Items.Add(new DataObject { numApogee = 1234, nom = "basset", prenom = "stephane" });
-            maListView.Items.Add(new DataObject { numApogee = 5678, nom = "hida", prenom = "nordine" });
-            maListView.Items.Add(new DataObject { numApogee = 9801, nom = "duszynski", prenom = "laszlo" });
-        
+            this.ChargementDiffere();
+
+        }
+
+        private async void ChargementDiffere()
+        {
+            //On récupere l'ensemble des étudiants via l'API
+            List<Etudiant> etudiants = (await APIEtuDAO.Instance.GetAllEtu()).ToList();
+
+            foreach (Etudiant etu in etudiants)
+            {
+                maListView.Items.Add(new EtudiantAffichage { AffiNumApogee = etu.NumApogee, AffiNom = etu.Nom, AffiPrenom = etu.Prenom });
+            }
         }
 
         private void OpenLoginPage(object sender, RoutedEventArgs e)
@@ -118,11 +127,14 @@ namespace PAGE.Vue
     }
 
     #region pour affiche liste etudiant
-    public class DataObject
+    /// <summary>
+    /// Classe d'affichage des étudiants
+    /// </summary>
+    public class EtudiantAffichage
     {
-        public int numApogee { get; set; }
-        public string nom { get; set; }
-        public string prenom { get; set; }
+        public int AffiNumApogee { get; set; }
+        public string AffiNom { get; set; }
+        public string AffiPrenom { get; set; }
     }
 
     #endregion

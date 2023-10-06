@@ -20,6 +20,12 @@ namespace PAGE.Stockage
         /// <param name="listeEtu">Liste d'étudiant à ajouter</param>
         /// <returns></returns>
         public Task AddSeveralEtu(IEnumerable<Etudiant> listeEtu);
+
+        /// <summary>
+        /// Renvoi tout les étudiants de la BDD
+        /// </summary>
+        /// <returns>Un ensemble d'étudiant</returns>
+        public Task<IEnumerable<Etudiant>> GetAllEtu();
     }
 }
 

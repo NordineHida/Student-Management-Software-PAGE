@@ -13,6 +13,10 @@ namespace PAGE.Controlleurs
     [Route("[controller]")]
     public class EtuControlleur : ControllerBase
     {
+        /// <summary>
+        /// Renvoi un IEnumerable d'étudiant avec tout les étudiants de la BDD
+        /// </summary>
+        /// <returns>IEnumerable d'étudiant</returns>
         [HttpGet("GetAllEtu")]
         public ActionResult<IEnumerable<Etudiant>> GetAllEtu()
         {
@@ -27,6 +31,12 @@ namespace PAGE.Controlleurs
             return reponse;
         }
 
+
+        /// <summary>
+        /// Ajoute un etudiant à la BDD
+        /// </summary>
+        /// <param name="etu">etudiant à ajouter</param>
+        /// <returns>si l'ajout à fonctionné</returns>
         [HttpPost("AddEtu")]
         public ActionResult AddEtu([FromBody] Etudiant? etu)
         {

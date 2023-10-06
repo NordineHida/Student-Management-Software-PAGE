@@ -69,7 +69,7 @@
         </Border>
 
         <!-- Buttons -->
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="10">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
             <Button Content="{x:Static res:Strings.BoutonConnexion}" Click="OpenLoginPage"/>
             <Button Content="{x:Static res:Strings.BoutonParam}" Click="OpenParametresPage"/>
             <Button Content="Importer" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
