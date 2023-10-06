@@ -11,7 +11,7 @@ namespace PAGE.Stockage
     /// <summary>
     /// Interface de DAO entre le client et l'API
     /// </summary>
-    public interface IAPIDAO
+    public interface IDAO
     {
 
         /// <summary>

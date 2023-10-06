@@ -38,8 +38,6 @@ namespace PAGE.Vue
 
         private void ChargerListView()
         {
-            initialContent = (UIElement?)this.Content;
-
             GridView gridView = new GridView();
             maListView.View = gridView;
 
@@ -60,6 +58,8 @@ namespace PAGE.Vue
                 Header = "Prenom",
                 DisplayMemberBinding = new System.Windows.Data.Binding("Prenom")
             });
+
+
         } 
 
         /// <summary>
@@ -68,11 +68,13 @@ namespace PAGE.Vue
         private async void ChargementDiffere()
         {
             //On récupere l'ensemble des étudiants via l'API
-            List<Etudiant> etudiants = (await APIEtuDAO.Instance.GetAllEtu()).ToList();
+            List<Etudiant> etudiants = (await EtuDAO.Instance.GetAllEtu()).ToList();
 
             foreach (Etudiant etu in etudiants)
             {
-                maListView.Items.Add(etu);
+                //Si l'étudiant est pas déjà dans la liste on l'y ajoute
+                if(!maListView.Items.Contains(etu))
+                    maListView.Items.Add(etu);
             }
         }
 
@@ -91,7 +93,6 @@ namespace PAGE.Vue
 
         private void LoginPage_ReturnToMainWindow(object sender, EventArgs e)
         {
-            
             this.Content = initialContent;
         }
 
@@ -129,10 +130,23 @@ namespace PAGE.Vue
 
                 // Appelez la méthode GetEtudiants avec le chemin du fichier
                 LecteurExcel lc = new LecteurExcel();
-                APIEtuDAO.Instance.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
+                EtuDAO.Instance.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
             }
 
+            //On actualise l'affichage
+            ChargerListView();
+            ChargementDiffere();
+        }
 
+        /// <summary>
+        /// Actualise la liste des étudiants
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ActualiserListeEtudiant(object sender, RoutedEventArgs e)
+        {
+            ChargerListView();
+            ChargementDiffere();
         }
     }
 }

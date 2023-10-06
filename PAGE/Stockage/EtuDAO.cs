@@ -13,25 +13,25 @@ namespace PAGE.APIEtudiant.Stockage
     /// <summary>
     /// Implémentation du DAO de communication avec l'API
     /// </summary>
-    public class APIEtuDAO : IAPIDAO
+    public class EtuDAO : IDAO
     {
 
         #region Singleton
-        private static APIEtuDAO instance;
+        private static EtuDAO instance;
 
         /// <summary>
         /// Seul instance de DAO d'étudiant 
         /// </summary>
-        public static APIEtuDAO Instance
+        public static EtuDAO Instance
         {
             get
             {
-                if (instance == null) instance = new APIEtuDAO();
+                if (instance == null) instance = new EtuDAO();
                 return instance;
             }
         }
 
-        private APIEtuDAO()
+        private EtuDAO()
         {
 
         }

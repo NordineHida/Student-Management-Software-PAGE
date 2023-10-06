@@ -145,9 +145,49 @@ namespace PAGE.Model
 
         #endregion
 
-        public override string ToString()
+        /// <summary>
+        /// verifie que deux etudiant sont égaux en comparant les attributs
+        /// </summary>
+        /// <param name="obj">potentiel etudiant a comparer</param>
+        /// <returns>true si les attributs sont égaux</returns>
+        public override bool Equals(object obj)
         {
-            return this.nom;
+            bool isEqual = false;
+
+
+
+            // Vérifie si l'objet passé en paramètre est null
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            //Si c'est un étudiant
+            if (obj.GetType() == GetType())
+            {            
+                // on converti l'objet passé en paramètre en un objet Etudiant
+                Etudiant other = (Etudiant)obj;
+
+                if (
+                    NumApogee == other.NumApogee &&
+                    Nom == other.Nom &&
+                    Prenom == other.Prenom &&
+                    Sexe == other.Sexe &&
+                    TypeBac == other.TypeBac &&
+                    Mail == other.Mail &&
+                    Groupe == other.Groupe &&
+                    EstBoursier == other.EstBoursier &&
+                    TypeFormation == other.TypeFormation &&
+                    DateNaissance == other.DateNaissance &&
+                    Login == other.Login &&
+                    TelFixe == other.TelFixe &&
+                    TelPortable == other.TelPortable &&
+                    Adresse == other.Adresse) isEqual = true;
+            }
+
+            return isEqual;
+
+
         }
     }
 }
