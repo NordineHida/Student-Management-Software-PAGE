@@ -28,7 +28,7 @@ namespace PAGE.Vue.Ressources
 
         private void CloseLoginWindow(object sender, RoutedEventArgs e)
         {
-            ReturnToMainWindow?.Invoke(this, EventArgs.Empty);
+            ReturnToMainWindow?.Invoke(this, e);
         }
 
     }

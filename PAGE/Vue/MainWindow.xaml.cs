@@ -30,6 +30,14 @@ namespace PAGE.Vue
         public MainWindow()
         {
             InitializeComponent();
+
+            ChargerListView();
+            ChargementDiffere();
+
+        }
+
+        private void ChargerListView()
+        {
             initialContent = (UIElement?)this.Content;
 
             GridView gridView = new GridView();
@@ -52,10 +60,7 @@ namespace PAGE.Vue
                 Header = "Prenom",
                 DisplayMemberBinding = new System.Windows.Data.Binding("Prenom")
             });
-
-            this.ChargementDiffere();
-
-        }
+        } 
 
         /// <summary>
         /// Chargement des etudiants différé via l'API
@@ -112,7 +117,7 @@ namespace PAGE.Vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ImporterEtudiants(object sender, RoutedEventArgs e)
         {
             // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -126,6 +131,8 @@ namespace PAGE.Vue
                 LecteurExcel lc = new LecteurExcel();
                 APIEtuDAO.Instance.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
             }
+
+
         }
     }
 }

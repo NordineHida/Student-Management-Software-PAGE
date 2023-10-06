@@ -72,14 +72,13 @@
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
             <Button Content="{x:Static res:Strings.BoutonConnexion}" Click="OpenLoginPage"/>
             <Button Content="{x:Static res:Strings.BoutonParam}" Click="OpenParametresPage"/>
-            <Button Content="Importer" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="Importer" Click="ImporterEtudiants" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Liste des étudiants -->
 
         <!-- Autres éléments de votre interface utilisateur peuvent être placés ici -->
         <ListView Name="maListView" Grid.Column="1" Margin="36,24,36,23" Grid.Row="2">
-            <!-- Définissez les colonnes ici -->
         </ListView>
     </Grid>
 </Window>

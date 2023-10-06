@@ -29,7 +29,7 @@ namespace PAGE.Vue.Ressources
 
         private void CloseParamWindow(object sender, RoutedEventArgs e)
         {
-            ReturnToMainWindow?.Invoke(this, EventArgs.Empty);
+            ReturnToMainWindow?.Invoke(this,e);
         }
 
         private void BrightnessSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
