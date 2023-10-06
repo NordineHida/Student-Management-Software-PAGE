@@ -70,7 +70,9 @@ namespace PAGE.Vue
         /// </summary>
         private async void ChargementDiffere()
         {
+            //On reinitialise la liste
             maListView.Items.Clear();
+
             //On récupere l'ensemble des étudiants via l'API
             List<Etudiant> etudiants = (await EtuDAO.Instance.GetAllEtu()).ToList();
 
@@ -138,8 +140,7 @@ namespace PAGE.Vue
             }
 
             //On actualise l'affichage
-            ChargerListView();
-            ChargementDiffere();
+            ActualiserEtudiant();
         }
 
         /// <summary>
@@ -147,11 +148,19 @@ namespace PAGE.Vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ActualiserListeEtudiant(object sender, RoutedEventArgs e)
+        private void BoutonActualiserListeEtudiant(object sender, RoutedEventArgs e)
         {
+            ActualiserEtudiant();
+
             //On ouvre une pop-up pour indiquer qu'on a bien actualiser
             MessageBox.Show("Vous avez bien actualisé", "Actualisation avec succès", MessageBoxButton.OK);
+        }
 
+        /// <summary>
+        /// Actualise l'affichage de la liste des étudiants
+        /// </summary>
+        private void ActualiserEtudiant()
+        {
             ChargerListView();
             ChargementDiffere();
         }

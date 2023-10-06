@@ -42,22 +42,14 @@ namespace APIEtudiant.Stockage
         public IEnumerable<Etudiant> GetAllEtu()
         {
             //Création d'une connexion Oracle
-            OracleConnection con = ConnexionOracle.Instance.GetConnection();
-
+            Connection con = new Connection();
             //Liste d'étudiant à renvoyer
             List<Etudiant> etudiants = new List<Etudiant>();
 
             try
             {
-                // Vérifiez si la connexion n'est pas déjà ouverte.
-                if (con.State != ConnectionState.Open)
-                {
-                    con.Open(); // Ouvrez la connexion si elle n'est pas déjà ouverte.
-                }
-
-
                 // Création d'une commande Oracle pour récuperer l'ensemble des éléments de tout les étudiants
-                OracleCommand cmd = new OracleCommand("SELECT numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login FROM Etudiant", con);
+                OracleCommand cmd = new OracleCommand("SELECT numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login FROM Etudiant", con.OracleConnexion);
 
                 OracleDataReader reader = cmd.ExecuteReader();
 
@@ -149,11 +141,10 @@ namespace APIEtudiant.Stockage
             if (etu != null)
             {
                 // Création d'une connexion Oracle
-                OracleConnection con = ConnexionOracle.Instance.GetConnection();
+                Connection con = new Connection();
 
                 try
                 {
-                    con.Open(); // Ouvrez la connexion si elle n'est pas déjà ouverte.
 
 
                     //On adapte l'énumeration du sexe de l'étudiant 
@@ -182,7 +173,7 @@ namespace APIEtudiant.Stockage
                         , estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"), etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
 
                     //On execute la requete
-                    OracleCommand cmd = new OracleCommand(requete, con);
+                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
 
 
                     //On verifie que la ligne est bien inséré, si oui on passe le bool à true
