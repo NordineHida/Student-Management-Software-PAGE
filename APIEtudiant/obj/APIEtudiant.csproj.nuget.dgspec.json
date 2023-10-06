@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj": {}
+    "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj": {
+    "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj",
-        "projectName": "PAGE",
-        "projectPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj",
+        "projectName": "APIEtudiant",
+        "projectPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0-windows7.0": {
-            "targetAlias": "net6.0-windows",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -37,16 +37,24 @@
         }
       },
       "frameworks": {
-        "net6.0-windows7.0": {
-          "targetAlias": "net6.0-windows",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
-            "System.Data.SQLite.Core": {
+            "EPPlus": {
               "target": "Package",
-              "version": "[1.0.118, )"
+              "version": "[6.2.10, )"
             },
-            "Uno.UI": {
+            "Oracle.ManagedDataAccess.Core": {
               "target": "Package",
-              "version": "[4.10.26, )"
+              "version": "[3.21.110, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -61,11 +69,11 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
-            },
-            "Microsoft.WindowsDesktop.App.WPF": {
-              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"

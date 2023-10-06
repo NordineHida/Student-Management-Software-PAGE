@@ -2775,19 +2775,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Yamato\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Yamato\\Desktop\\SAE\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj",
       "projectName": "PAGE",
-      "projectPath": "C:\\Users\\Yamato\\Desktop\\SAE\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj",
-      "packagesPath": "C:\\Users\\Yamato\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Yamato\\Desktop\\SAE\\SAE3-C2-NYL2S\\PAGE\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Yamato\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2841,7 +2841,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

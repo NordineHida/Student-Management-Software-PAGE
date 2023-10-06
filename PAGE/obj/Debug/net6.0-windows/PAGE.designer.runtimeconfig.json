@@ -12,11 +12,11 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\utilisateur\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\utilisateur\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\Admin\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Admin\\.nuget\\packages"
     ],
     "configProperties": {
+      "Windows.ApplicationModel.DataTransfer.DragDrop.ExternalSupport": true,
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
     }
   }
