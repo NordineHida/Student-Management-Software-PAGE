@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAGE", "PAGE.csproj", "{416
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIEtudiant", "..\APIEtudiant\APIEtudiant.csproj", "{05E08F5E-A53B-41E3-8421-B3683C2D12F1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSQLite", "..\TestSQLite\TestSQLite.csproj", "{D06EB879-047C-48A4-8261-3BD1CCF29B16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{05E08F5E-A53B-41E3-8421-B3683C2D12F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05E08F5E-A53B-41E3-8421-B3683C2D12F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05E08F5E-A53B-41E3-8421-B3683C2D12F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D06EB879-047C-48A4-8261-3BD1CCF29B16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D06EB879-047C-48A4-8261-3BD1CCF29B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D06EB879-047C-48A4-8261-3BD1CCF29B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D06EB879-047C-48A4-8261-3BD1CCF29B16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
