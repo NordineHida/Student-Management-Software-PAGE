@@ -31,6 +31,8 @@ namespace PAGE.Vue
         {
             InitializeComponent();
 
+            initialContent = (UIElement?)this.Content;
+
             ChargerListView();
             ChargementDiffere();
 
@@ -145,6 +147,9 @@ namespace PAGE.Vue
         /// <param name="e"></param>
         private void ActualiserListeEtudiant(object sender, RoutedEventArgs e)
         {
+            //On ouvre une pop-up pour indiquer qu'on a bien actualiser
+            MessageBox.Show("Vous avez bien actualisé", "Actualisation avec succès", MessageBoxButton.OK);
+
             ChargerListView();
             ChargementDiffere();
         }
