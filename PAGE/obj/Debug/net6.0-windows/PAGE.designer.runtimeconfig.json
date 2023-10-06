@@ -20,7 +20,6 @@
       "C:\\Users\\Admin\\.nuget\\packages"
     ],
     "configProperties": {
-      "Windows.ApplicationModel.DataTransfer.DragDrop.ExternalSupport": true,
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
     }
   }

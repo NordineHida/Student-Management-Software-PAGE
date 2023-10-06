@@ -92,7 +92,7 @@ namespace PAGE.Model
                                 apogeeInt = int.Parse(apogee);
                            
                             if (telPortable != null)
-                                telPortableInt = long.Parse(telPortable);  // !!!!!!!!!!!!!!!!!!!! CHANGER INT EN LONG DANS LETUDIANT
+                                telPortableInt = long.Parse(telPortable);
                          
                             if (telFixe != null)
                                 telFixeInt = long.Parse(telFixe);
@@ -129,7 +129,7 @@ namespace PAGE.Model
                         }
                     }
                     //On crée l'étudiant
-                    Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupe, estBoursierBool, regimeFormation, dateNaissanceDT, adresse, telPortableInt, telFixeInt, login);
+                    Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupe, estBoursierBool, regimeFormation, dateNaissanceDT, login, telPortableInt, telFixeInt, adresse);
 
                     //On l'ajoute à la liste d'étudiant
                     etudiants.Add(etudiant);

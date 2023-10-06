@@ -49,12 +49,6 @@ C:\Users\Admin\Documents\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\runtimes\win
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll
 C:\Users\Admin\Documents\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll
-C:\Users\Admin\Documents\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\EPPlus.dll
-C:\Users\Admin\Documents\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\EPPlus.Interfaces.dll
-C:\Users\Admin\Documents\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\EPPlus.System.Drawing.dll
-C:\Users\Admin\Documents\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
-C:\Users\Admin\Documents\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
-C:\Users\Admin\Documents\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\Nordine\Desktop\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Nordine\Desktop\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\appsettings.json
 C:\Users\Nordine\Desktop\SAE3-C2-NYL2S\APIEtudiant\bin\Debug\net6.0\APIEtudiant.exe

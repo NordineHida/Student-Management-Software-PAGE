@@ -14,6 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using Microsoft.Win32;
+using PAGE.APIEtudiant.Stockage;
+using PAGE.Model;
 
 namespace PAGE.Vue
 {
@@ -90,6 +93,27 @@ namespace PAGE.Vue
         private void ParamPage_ReturnToMainWindow(object sender, EventArgs e)
         {
             this.Content = initialContent;
+        }
+
+        /// <summary>
+        /// Quand on clique sur le bouton importer pour chercher le fichier excel avec les étudiants
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Fichiers Excel (*.xls, *.xlsx)|*.xls;*.xlsx";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Obtenez le chemin du fichier sélectionné
+                string selectedFilePath = openFileDialog.FileName;
+
+                // Appelez la méthode GetEtudiants avec le chemin du fichier
+                LecteurExcel lc = new LecteurExcel();
+                APIEtuDAO.Instance.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
+            }
         }
     }
 
