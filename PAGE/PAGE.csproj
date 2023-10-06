@@ -8,22 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Vue\Ressources\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="VueModel\" />
     <Folder Include="Vue\Ecrans\Elements\" />
     <Folder Include="Vue\Ecrans\Realisations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
-    <PackageReference Include="Uno.UI" Version="4.10.26" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Vue\Ressources\logo.png" />
+    <ProjectReference Include="..\APIEtudiant\APIEtudiant.csproj" />
   </ItemGroup>
 
 </Project>

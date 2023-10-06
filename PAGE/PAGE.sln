@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PAGE", "PAGE.csproj", "{416B20E8-8FCB-4E0D-B591-B361D0EFC049}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSQLite", "..\TestSQLite\TestSQLite.csproj", "{E3839ADB-3A1B-4D8F-9CC2-E8F5093943B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIEtudiant", "..\APIEtudiant\APIEtudiant.csproj", "{05E08F5E-A53B-41E3-8421-B3683C2D12F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{416B20E8-8FCB-4E0D-B591-B361D0EFC049}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{416B20E8-8FCB-4E0D-B591-B361D0EFC049}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{416B20E8-8FCB-4E0D-B591-B361D0EFC049}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3839ADB-3A1B-4D8F-9CC2-E8F5093943B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3839ADB-3A1B-4D8F-9CC2-E8F5093943B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3839ADB-3A1B-4D8F-9CC2-E8F5093943B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3839ADB-3A1B-4D8F-9CC2-E8F5093943B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E08F5E-A53B-41E3-8421-B3683C2D12F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E08F5E-A53B-41E3-8421-B3683C2D12F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E08F5E-A53B-41E3-8421-B3683C2D12F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05E08F5E-A53B-41E3-8421-B3683C2D12F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

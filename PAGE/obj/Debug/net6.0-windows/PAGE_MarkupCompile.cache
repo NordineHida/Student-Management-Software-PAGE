@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\obj\Debug\net6.0-windows\
 PAGE
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP;HAS_UNO;UNO_HAS_FRAMEWORKELEMENT_MEASUREOVERRIDE;UNO_HAS_NO_IDEPENDENCYOBJECT;UNO_REFERENCE_API
-C:\Users\Yamato\Desktop\SAE\SAE3-C2-NYL2S\PAGE\App.xaml
-3-12166806
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\App.xaml
+11763295392
 
-61985768144
-209571509371
-Vue\MainWindow.xaml;Vue\Ressources\Login.xaml;Vue\Ressources\LoginPage.xaml;
+61579497583
+3341556571266
+Vue\MainWindow.xaml;
 
 False
 
