@@ -13,6 +13,11 @@
         },
         "runtime": {
           "PAGE.dll": {}
+        },
+        "resources": {
+          "en/PAGE.resources.dll": {
+            "locale": "en"
+          }
         }
       },
       "DocumentFormat.OpenXml/2.20.0": {

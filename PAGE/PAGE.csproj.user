@@ -10,21 +10,29 @@
     <Compile Update="Vue\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Vue\Ressources\Login.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Vue\Ressources\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ressources\ParametresPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Vue\Ressources\Res\Strings.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Vue\Ressources\Res\Strings.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Vue\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Vue\Ressources\Login.xaml">
+    <Page Update="Vue\Ressources\LoginPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Vue\Ressources\LoginPage.xaml">
+    <Page Update="Vue\Ressources\ParametresPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -8,17 +8,48 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Vue\Ecrans\**" />
+    <EmbeddedResource Remove="Vue\Ecrans\**" />
+    <None Remove="Vue\Ecrans\**" />
+    <Page Remove="Vue\Ecrans\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Vue\Ressources\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\" />
     <Folder Include="VueModel\" />
-    <Folder Include="Vue\Ecrans\Elements\" />
-    <Folder Include="Vue\Ecrans\Realisations\" />
+    <Folder Include="Vue\Ecran\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
+    <Resource Include="Vue\Ressources\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\APIEtudiant\APIEtudiant.csproj" />
+    <Compile Update="Vue\Ressources\Res\Strings.en.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Vue\Ressources\Res\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Vue\Ressources\Res\Strings.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Vue\Ressources\Res\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
