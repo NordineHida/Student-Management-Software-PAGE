@@ -40,6 +40,7 @@ namespace PAGE.Vue
 
         private void ChargerListView()
         {
+            
             GridView gridView = new GridView();
             maListView.View = gridView;
 
@@ -69,6 +70,7 @@ namespace PAGE.Vue
         /// </summary>
         private async void ChargementDiffere()
         {
+            maListView.Items.Clear();
             //On récupere l'ensemble des étudiants via l'API
             List<Etudiant> etudiants = (await EtuDAO.Instance.GetAllEtu()).ToList();
 
