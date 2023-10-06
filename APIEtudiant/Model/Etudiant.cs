@@ -25,8 +25,8 @@ namespace PAGE.Model
         private string typeFormation;
         private DateTime dateNaissance;
         private string login;
-        private int telFixe;
-        private int telPortable;
+        private long telFixe;
+        private long telPortable;
         private string adresse;
 
         #endregion
@@ -90,12 +90,12 @@ namespace PAGE.Model
         /// <summary>
         /// Obtient ou définit le numéro de téléphone fixe.
         /// </summary>
-        public int TelFixe { get { return telFixe; } set { telFixe = value; } }
+        public long TelFixe { get { return telFixe; } set { telFixe = value; } }
 
         /// <summary>
         /// Obtient ou définit le numéro de téléphone portable.
         /// </summary>
-        public int TelPortable { get { return telPortable; } set { telPortable = value; } }
+        public long TelPortable { get { return telPortable; } set { telPortable = value; } }
 
         /// <summary>
         /// Obtient ou définit l'adresse.
@@ -125,7 +125,7 @@ namespace PAGE.Model
         /// <param name="telPortable">Le numéro de téléphone portable de l'étudiant.(15 chiffres max)</param>
         /// <param name="adresse">L'adresse de l'étudiant. (150 caractères maximum)</param>
         public Etudiant(int numApogee, string nom, string prenom, SEXE sexe, string typeBac, string mail, string groupe, bool estBoursier, string typeFormation,
-            DateTime dateNaissance, string login, int telFixe, int telPortable, string adresse)
+            DateTime dateNaissance, string login, long telFixe, long telPortable, string adresse)
         {
             this.numApogee = numApogee;
             this.nom = nom;

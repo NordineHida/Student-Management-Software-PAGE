@@ -42,8 +42,8 @@ namespace PAGE.Model
             string login = null;
 
             int apogeeInt=-1;
-            int telPortableInt=-1;
-            int telFixeInt = -1;
+            long telPortableInt=-1;
+            long telFixeInt = -1;
             DateTime dateNaissanceDT = new DateTime();
             SEXE sexeEtu = SEXE.AUTRE;
             bool estBoursierBool = false;
@@ -92,10 +92,10 @@ namespace PAGE.Model
                                 apogeeInt = int.Parse(apogee);
                            
                             if (telPortable != null)
-                                telPortableInt = (int)long.Parse(telPortable);  // !!!!!!!!!!!!!!!!!!!! CHANGER INT EN LONG DANS LETUDIANT
+                                telPortableInt = long.Parse(telPortable);  // !!!!!!!!!!!!!!!!!!!! CHANGER INT EN LONG DANS LETUDIANT
                          
                             if (telFixe != null)
-                                telFixeInt = (int)long.Parse(telFixe);
+                                telFixeInt = long.Parse(telFixe);
 
 
                             //Conversion du string en SEXE
