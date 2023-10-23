@@ -68,7 +68,7 @@ namespace PAGE.Vue
         /// <summary>
         /// Chargement des etudiants différé via l'API
         /// </summary>
-        private async void ChargementDiffere()
+        private async Task ChargementDiffere()
         {
             //On reinitialise la liste
             maListView.Items.Clear();
@@ -159,10 +159,10 @@ namespace PAGE.Vue
         /// <summary>
         /// Actualise l'affichage de la liste des étudiants
         /// </summary>
-        private void ActualiserEtudiant()
+        private async void ActualiserEtudiant()
         {
+            await ChargementDiffere(); 
             ChargerListView();
-            ChargementDiffere();
         }
     }
 }

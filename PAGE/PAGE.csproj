@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="VueModel\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
   </ItemGroup>
