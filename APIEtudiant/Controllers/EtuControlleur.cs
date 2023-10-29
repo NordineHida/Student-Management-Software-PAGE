@@ -73,8 +73,5 @@ namespace PAGE.Controlleurs
 
             return reponse;
         }
-
-
-
     }
 }

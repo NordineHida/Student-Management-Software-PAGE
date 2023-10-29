@@ -19,6 +19,7 @@ namespace APIEtudiant.Stockage
         /// <summary>
         /// Seul instance de DAO d'étudiant 
         /// </summary>
+        /// <author>Nordine</author>
         public static EtudiantDAOOracle Instance
         {
             get
@@ -39,6 +40,7 @@ namespace APIEtudiant.Stockage
         /// Renvoi tout les étudiants de la BDD Oracle
         /// </summary>
         /// <returns>la liste des étudiants de la BDD Oracle</returns>
+        /// <author>Nordine</author>
         public IEnumerable<Etudiant> GetAllEtu()
         {
             //Création d'une connexion Oracle
@@ -135,6 +137,7 @@ namespace APIEtudiant.Stockage
         /// </summary>
         /// <param name="etu">etudiant qu'on veut ajouter</param>
         /// <returns>si l'ajout est un succes</returns>
+        /// <author>Nordine</author>
         public bool AddEtu(Etudiant? etu)
         {
             bool ajoutReussi = false;
@@ -211,6 +214,7 @@ namespace APIEtudiant.Stockage
         /// </summary>
         /// <param name="listeEtu">Liste d'étudiant à ajouter</param>
         /// <returns>true si l'ajout est un succes</returns>
+        /// <author>Nordine</author>
         public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu)
         {
             bool ajoutReussi = true;

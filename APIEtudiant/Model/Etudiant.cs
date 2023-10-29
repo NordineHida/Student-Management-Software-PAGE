@@ -10,6 +10,7 @@ namespace PAGE.Model
     /// <summary>
     /// un Etudiant en BUT Informatique
     /// </summary>
+    /// <author>Nordine</author>
     public class Etudiant
     {
         #region Attributs
@@ -35,71 +36,85 @@ namespace PAGE.Model
         /// <summary>
         /// Obtient ou définit le numéro d'apogée.
         /// </summary>
+        /// <author>Nordine</author>
         public int NumApogee { get { return numApogee; } set { numApogee = value; } }
 
         /// <summary>
         /// Obtient ou définit le nom.
         /// </summary>
+        /// <author>Nordine</author>
         public string Nom { get { return nom; } set { nom = value; } }
 
         /// <summary>
         /// Obtient ou définit le prénom.
         /// </summary>
+        /// <author>Nordine</author>
         public string Prenom { get { return prenom; } set { prenom = value; } }
 
         /// <summary>
         /// Obtient ou définit le sexe.
         /// </summary>
+        /// <author>Nordine</author>
         public SEXE Sexe { get { return sexe; } set { sexe = value; } }
 
         /// <summary>
         /// Obtient ou définit le type de baccalauréat.
         /// </summary>
+        /// <author>Nordine</author>
         public string TypeBac { get { return typeBac; } set { typeBac = value; } }
 
         /// <summary>
         /// Obtient ou définit l'adresse e-mail.
         /// </summary>
+        /// <author>Nordine</author>
         public string Mail { get { return mail; } set { mail = value; } }
 
         /// <summary>
         /// Obtient ou définit le groupe.
         /// </summary>
+        /// <author>Nordine</author>
         public string Groupe { get { return groupe; } set { groupe = value; } }
 
         /// <summary>
         /// Obtient ou définit si l'étudiant est boursier.
         /// </summary>
+        /// <author>Nordine</author>
         public bool EstBoursier { get { return estBoursier; } set { estBoursier = value; } }
 
         /// <summary>
         /// Obtient ou définit le type de formation.
         /// </summary>
+        /// <author>Nordine</author>
         public string TypeFormation { get { return typeFormation; } set { typeFormation = value; } }
 
         /// <summary>
         /// Obtient ou définit la date de naissance.
         /// </summary>
+        /// <author>Nordine</author>
         public DateTime DateNaissance { get { return dateNaissance; } set { dateNaissance = value; } }
 
         /// <summary>
         /// Obtient ou définit le nom d'utilisateur.
         /// </summary>
+        /// <author>Nordine</author>
         public string Login { get { return login; } set { login = value; } }
 
         /// <summary>
         /// Obtient ou définit le numéro de téléphone fixe.
         /// </summary>
+        /// <author>Nordine</author>
         public long TelFixe { get { return telFixe; } set { telFixe = value; } }
 
         /// <summary>
         /// Obtient ou définit le numéro de téléphone portable.
         /// </summary>
+        /// <author>Nordine</author>
         public long TelPortable { get { return telPortable; } set { telPortable = value; } }
 
         /// <summary>
         /// Obtient ou définit l'adresse.
         /// </summary>
+        /// <author>Nordine</author>
         public string Adresse { get { return adresse; } set { adresse = value; } }
 
 
@@ -124,6 +139,7 @@ namespace PAGE.Model
         /// <param name="telFixe">Le numéro de téléphone fixe de l'étudiant. (15 chiffres max)</param>
         /// <param name="telPortable">Le numéro de téléphone portable de l'étudiant.(15 chiffres max)</param>
         /// <param name="adresse">L'adresse de l'étudiant. (150 caractères maximum)</param>
+        /// <author>Nordine</author>
         public Etudiant(int numApogee, string nom, string prenom, SEXE sexe, string typeBac, string mail, string groupe, bool estBoursier, string typeFormation,
             DateTime dateNaissance, string login, long telFixe, long telPortable, string adresse)
         {
@@ -143,11 +159,15 @@ namespace PAGE.Model
             this.adresse = adresse;
         }
 
-        #endregion
-
+        /// <summary>
+        /// Renvoi le nom de l'étudiant
+        /// </summary>
+        /// <returns>le nom de l'étudiant</returns>
+        /// <author>Nordine</author>
         public override string ToString()
         {
             return this.nom;
         }
+        #endregion
     }
 }
