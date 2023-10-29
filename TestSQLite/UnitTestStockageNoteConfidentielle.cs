@@ -11,6 +11,7 @@ namespace TestSQLite
     /// <summary>
     /// Classe de tests unitaires pour la gestion du stockage des notes confidentielles.
     /// </summary>
+    /// <author>Yamato</author>
     public class UnitTestStockageNoteConfidentielle
     {
         private DatabaseManager _dbManager;
@@ -19,6 +20,7 @@ namespace TestSQLite
         /// <summary>
         /// Constructeur de la classe de tests. Initialise la base de données de test.
         /// </summary>
+        /// <author>Yamato</author>
         public UnitTestStockageNoteConfidentielle()
         {
             _dbManager = new DatabaseManager(_testDbConnectionString);
@@ -29,6 +31,7 @@ namespace TestSQLite
         /// <summary>
         /// Initialise la bdd
         /// </summary>
+        /// <author>Yamato</author>
         private void InitializeTestDatabase()
         {
             // Créez la table NoteConfidentielle pour votre base de données de test (si elle n'existe pas déjà).
@@ -46,6 +49,7 @@ namespace TestSQLite
         /// <summary>
         /// Nettoie les ressources utilisées par les tests.
         /// </summary>
+        /// <author>Yamato</author>
         public void Dispose()
         {
             // Supprimez les données de test de la table NoteConfidentielle.
@@ -59,6 +63,7 @@ namespace TestSQLite
         /// <summary>
         /// Teste l'insertion d'une nouvelle note confidentielle dans la base de données.
         /// </summary>
+        /// <author>Yamato</author>
         [Fact]
         public void TestInsertNote()
         {
@@ -77,6 +82,7 @@ namespace TestSQLite
         /// <summary>
         /// Teste la mise à jour d'une note confidentielle existante dans la base de données.
         /// </summary>
+        /// <author>Yamato</author>
         [Fact]
         public void TestUpdateNote()
         {
@@ -97,6 +103,7 @@ namespace TestSQLite
         /// <summary>
         /// Teste la suppression d'une note confidentielle par son ID.
         /// </summary>
+        /// <author>Yamato</author>
         [Fact]
         public void TestDeleteNoteById()
         {
