@@ -426,3 +426,11 @@ TestSQLite/obj/project.assets.json
 TestSQLite/obj/project.nuget.cache
 TestSQLite/obj/TestSQLite.csproj.nuget.dgspec.json
 TestSQLite/obj/TestSQLite.csproj.nuget.g.props
+*.cache
+*.editorconfig
+PAGE/obj/Debug/net6.0-windows/PAGE.assets.cache
+*.lref
+TestSQLite/bin/Debug/net6.0-windows/CoverletSourceRootsMapping
+TestSQLite/obj/Debug/net6.0-windows/TestSQLite.csproj.AssemblyReference.cache
+TestSQLite/obj/Debug/net6.0-windows/TestSQLite.assets.cache
+TestSQLite/obj/Debug/net6.0-windows/TestSQLite.GeneratedMSBuildEditorConfig.editorconfig
