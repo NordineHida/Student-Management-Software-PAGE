@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\TestSQLite\\TestSQLite.csproj": {}
+    "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\TestSQLite\\TestSQLite.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj": {
+    "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj",
+        "projectUniqueName": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj",
         "projectName": "APIEtudiant",
-        "projectPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\obj\\",
+        "projectPath": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj",
+        "packagesPath": "C:\\Users\\Nordine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\APIEtudiant\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nordine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -72,21 +77,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj": {
+    "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj",
+        "projectUniqueName": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj",
         "projectName": "PAGE",
-        "projectPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\obj\\",
+        "projectPath": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj",
+        "packagesPath": "C:\\Users\\Nordine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\PAGE\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nordine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -94,14 +103,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj"
+              "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj": {
+                "projectPath": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\APIEtudiant\\APIEtudiant.csproj"
               }
             }
           }
@@ -144,21 +154,25 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\TestSQLite\\TestSQLite.csproj": {
+    "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\TestSQLite\\TestSQLite.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\TestSQLite\\TestSQLite.csproj",
+        "projectUniqueName": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\TestSQLite\\TestSQLite.csproj",
         "projectName": "TestSQLite",
-        "projectPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\TestSQLite\\TestSQLite.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\TestSQLite\\obj\\",
+        "projectPath": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\TestSQLite\\TestSQLite.csproj",
+        "packagesPath": "C:\\Users\\Nordine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\TestSQLite\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nordine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -166,14 +180,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj"
+              "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj": {
+                "projectPath": "C:\\Users\\Nordine\\Desktop\\SAE3-C2-NYL2S\\PAGE\\PAGE.csproj"
               }
             }
           }
@@ -229,7 +244,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
