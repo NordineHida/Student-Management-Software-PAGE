@@ -18,14 +18,22 @@ namespace PAGE.Vue.Ressources
     /// <summary>
     /// Logique d'interaction pour LoginPage.xaml
     /// </summary>
+    /// <author>Lucas</author>
     public partial class LoginPage : Page
     {
         public event EventHandler ReturnToMainWindow;
+
+
         public LoginPage()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Ferme la page de login
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
         private void CloseLoginWindow(object sender, RoutedEventArgs e)
         {
             ReturnToMainWindow.Invoke(this, e);

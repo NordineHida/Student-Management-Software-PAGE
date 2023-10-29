@@ -11,6 +11,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
     /// <summary>
     /// Gestion de la base de données
     /// </summary>
+    /// <author>Yamato</author>
     public class DatabaseManager
     {
         private SQLiteConnection _connection;
@@ -23,6 +24,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// <summary>
         /// Ouvre la connexion à la bdd
         /// </summary>
+        /// <author>Yamato</author>
         public void OpenConnection()
         {
             if (_connection.State != ConnectionState.Open)
@@ -34,6 +36,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// <summary>
         /// Fermeture de la bdd
         /// </summary>
+        /// <author>Yamato</author>
         public void CloseConnection()
         {
             if (_connection.State != ConnectionState.Closed)
@@ -47,6 +50,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// </summary>
         /// <param name="query">requête sql (select)</param>
         /// <returns>résultat de la requête</returns>
+        /// <author>Yamato</author>
         public DataTable ExecuteQuery(string query)
         {
             DataTable dataTable = new DataTable();
@@ -61,6 +65,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// <param name="query">requête sql (select)</param>
         /// <param name="parameters">parametre de la requête</param>
         /// <returns></returns>
+        /// <author>Yamato</author>
         public DataTable ExecuteQuery(string query, SQLiteParameter[] parameters)
         {
             using (SQLiteCommand command = new SQLiteCommand(query, _connection))
@@ -83,6 +88,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// Exécute une requête INSERT, UPDATE, DELETE sans paramètre et retourne son résultat
         /// </summary>
         /// <param name="query">requète sql (insert, update, delete)</param>
+        /// <author>Yamato</author>
         public void ExecuteNonQuery(string query)
         {
             SQLiteCommand command = new SQLiteCommand(query, _connection);
@@ -94,6 +100,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// </summary>
         /// <param name="query">requète sql (insert, update, delete)</param>
         /// <param name="parameters">paramètres de la requète</param>
+        /// <author>Yamato</author>
         public void ExecuteNonQuery(string query, SQLiteParameter[] parameters = null)
         {
             using (SQLiteCommand command = new SQLiteCommand(query, _connection))
@@ -110,6 +117,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// Récupère toutes les notes
         /// </summary>
         /// <returns>notes de toute la table</returns>
+        /// <author>Yamato</author>
         public DataTable GetAllNotes()
         {
             string query = "SELECT * FROM NoteConfidentielle";
@@ -121,6 +129,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// </summary>
         /// <param name="noteId">id de la note</param>
         /// <returns>résultat de la requête</returns>
+        /// <author>Yamato</author>
         public DataRow GetNoteById(int noteId)
         {
             string query = "SELECT * FROM NoteConfidentielle WHERE NoteId = @NoteId";
@@ -143,6 +152,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// </summary>
         /// <param name="titre">titre de la note</param>
         /// <param name="description">description de la note</param>
+        /// <author>Yamato</author>
         public void InsertNote(string titre, string description)
         {
             string query = "INSERT INTO NoteConfidentielle (Titre, Description) VALUES (@Titre, @Description)";
@@ -160,6 +170,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// <param name="noteId">id de la note à update</param>
         /// <param name="titre">nouveau titre de la note</param>
         /// <param name="description">nouvelle description de la note</param>
+        /// <author>Yamato</author>
         public void UpdateNote(int noteId, string titre, string description)
         {
             string query = "UPDATE NoteConfidentielle SET Titre = @Titre, Description = @Description WHERE NoteId = @NoteId";
@@ -176,6 +187,7 @@ namespace PAGE.Model.StockageNoteConfidentielles
         /// Supprime une note à partir de son Id.
         /// </summary>
         /// <param name="noteId">ID de la note à supprimer.</param>
+        /// <author>Yamato</author>
         public void DeleteNoteById(int noteId)
         {
             string query = "DELETE FROM NoteConfidentielle WHERE NoteId = @NoteId";

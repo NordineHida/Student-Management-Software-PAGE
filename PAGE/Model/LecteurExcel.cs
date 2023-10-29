@@ -17,6 +17,7 @@ namespace PAGE.Model
     /// <summary>
     /// Lit le fichier excel avec les étudiants et renvoi une liste d'étudiant
     /// </summary>
+    /// <author>Laszlo & Nordine</author>
     public class LecteurExcel
     {
         /// <summary>
@@ -24,6 +25,7 @@ namespace PAGE.Model
         /// </summary>
         /// <param name="pathExcel">chemin vers le fichier excel donnée</param>
         /// <returns>la liste des étudiants du fichier excel</returns>
+        /// <author>Laszlo & Nordine</author>
         public IEnumerable<Etudiant> GetEtudiants(string pathExcel)
         {
             string apogee =null;
@@ -147,6 +149,7 @@ namespace PAGE.Model
         /// <param name="cell">cellule à lire</param>
         /// <param name="workbookPart">feuille excel utilisé</param>
         /// <returns>le contenu de la cellule sous forme de string</returns>
+        /// <author>Laszlo</author>
         private string GetCellValue(Cell cell, WorkbookPart workbookPart)
         {
             if (cell == null)

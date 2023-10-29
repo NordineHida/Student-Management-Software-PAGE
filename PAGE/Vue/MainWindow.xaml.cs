@@ -23,10 +23,16 @@ namespace PAGE.Vue
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
+    /// <author>Lucas</author>
     public partial class MainWindow : Window
     {
 
         private UIElement initialContent;
+
+        /// <summary>
+        /// Initialise la fenetre principal
+        /// </summary>
+        /// <author>Nordine & Stephane</author>
         public MainWindow()
         {
             InitializeComponent();
@@ -63,11 +69,12 @@ namespace PAGE.Vue
             });
 
 
-        } 
+        }
 
         /// <summary>
         /// Chargement des etudiants différé via l'API
         /// </summary>
+        /// <author>Nordine & Stephane</author>
         private async Task ChargementDiffere()
         {
             //On reinitialise la liste
@@ -83,6 +90,7 @@ namespace PAGE.Vue
                     maListView.Items.Add(etu);
             }
         }
+
 
         private void OpenLoginPage(object sender, RoutedEventArgs e)
         {
@@ -124,6 +132,7 @@ namespace PAGE.Vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <author>Nordine & Stephane</author>
         private void ImporterEtudiants(object sender, RoutedEventArgs e)
         {
             // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
@@ -148,6 +157,7 @@ namespace PAGE.Vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <author>Nordine</author>
         private void BoutonActualiserListeEtudiant(object sender, RoutedEventArgs e)
         {
             ActualiserEtudiant();
@@ -159,6 +169,7 @@ namespace PAGE.Vue
         /// <summary>
         /// Actualise l'affichage de la liste des étudiants
         /// </summary>
+        /// <author>Nordine</author>
         private async void ActualiserEtudiant()
         {
             await ChargementDiffere(); 

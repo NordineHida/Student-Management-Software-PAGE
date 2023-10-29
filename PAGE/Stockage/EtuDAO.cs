@@ -13,6 +13,7 @@ namespace PAGE.APIEtudiant.Stockage
     /// <summary>
     /// Implémentation du DAO de communication avec l'API
     /// </summary>
+    /// <author>Nordine</author>
     public class EtuDAO : IDAO
     {
 
@@ -22,6 +23,7 @@ namespace PAGE.APIEtudiant.Stockage
         /// <summary>
         /// Seul instance de DAO d'étudiant 
         /// </summary>
+        /// <author>Nordine</author>
         public static EtuDAO Instance
         {
             get
@@ -37,6 +39,12 @@ namespace PAGE.APIEtudiant.Stockage
         }
         #endregion
 
+        /// <summary>
+        /// Ajoute plusieurs etudiants à la BDD
+        /// </summary>
+        /// <param name="listeEtu">liste d'étudiant a ajouter</param>
+        /// <returns></returns>
+        /// <author>Nordine</author>
         public async Task AddSeveralEtu(IEnumerable<Etudiant> listeEtu)
         {
             try
@@ -76,6 +84,7 @@ namespace PAGE.APIEtudiant.Stockage
         /// Renvoi tout les étudiants
         /// </summary>
         /// <returns>Un ensemble d'étudiant</returns>
+        /// <author>Nordine</author>
         public async Task<IEnumerable<Etudiant>> GetAllEtu()
         {
             //Dictionnaire d'étudiant (cle = num apogee, valeur = etudiant)

@@ -18,9 +18,11 @@ namespace PAGE.Vue.Ressources
     /// <summary>
     /// Logique d'interaction pour ParametresPage.xaml
     /// </summary>
+    /// <author>Lucas</author>
     public partial class ParametresPage : Page
     {
         public event EventHandler ReturnToMainWindow;
+
 
         public ParametresPage()
         {
@@ -32,6 +34,12 @@ namespace PAGE.Vue.Ressources
             ReturnToMainWindow.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// change la couleur de fond 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
         private void BrightnessSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             // Récupérez la valeur du Slider

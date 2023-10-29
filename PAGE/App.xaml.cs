@@ -15,6 +15,10 @@ namespace PAGE
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// Constructeur d'appli qui initialise la base de donnée
+        /// </summary>
+        /// <author>Yamato</author>
         public App()
         {
             this.InitializeComponent();
