@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace PAGE.Controlleurs
 {
+    /// <summary>
+    /// Controlleur de l'API
+    /// </summary>
+    /// <author>Nordine</author>
     [ApiController]
     [Route("[controller]")]
     public class EtuControlleur : ControllerBase
@@ -17,6 +21,7 @@ namespace PAGE.Controlleurs
         /// Renvoi un IEnumerable d'étudiant avec tout les étudiants de la BDD
         /// </summary>
         /// <returns>IEnumerable d'étudiant</returns>
+        /// <author>Nordine</author>
         [HttpGet("GetAllEtu")]
         public ActionResult<IEnumerable<Etudiant>> GetAllEtu()
         {
@@ -37,6 +42,7 @@ namespace PAGE.Controlleurs
         /// </summary>
         /// <param name="etu">etudiant à ajouter</param>
         /// <returns>si l'ajout à fonctionné</returns>
+        /// <author>Nordine</author>
         [HttpPost("AddEtu")]
         public ActionResult AddEtu([FromBody] Etudiant? etu)
         {
@@ -53,6 +59,7 @@ namespace PAGE.Controlleurs
         /// </summary>
         /// <param name="listeEtu">Liste d'étudiant à ajouter</param>
         /// <returns>true si l'ajout est un succes</returns>
+        /// <author>Nordine</author>
         [HttpPost("AddSeveralEtu")]
         public ActionResult AddSeveralEtu([FromBody] IEnumerable<Etudiant> listeEtu)
         {
