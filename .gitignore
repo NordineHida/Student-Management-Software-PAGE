@@ -397,3 +397,10 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 PAGE/.vs/PAGE/v17/.suo
+*.v2
+PAGE/.vs/PAGE/DesignTimeBuild/.dtbcache.v2
+PAGE/.vs/PAGE/v17/.suo
+*.1
+PAGE/.vs/ProjectEvaluation/page.metadata.v6.1
+*.1
+PAGE/.vs/ProjectEvaluation/page.projects.v6.1
