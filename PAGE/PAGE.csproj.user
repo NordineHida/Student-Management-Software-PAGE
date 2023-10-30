@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Vue\Ecran\FenetrePrincipal.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -26,6 +29,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Vue\Ecran\FenetrePrincipal.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
