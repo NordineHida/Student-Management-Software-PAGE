@@ -5,80 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAGE.Vue"
         xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="{x:Static res:Strings.Title}" Height="450" Width="800">
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Background" Value="#2196F3"/>
-            <!-- Couleur de fond -->
-            <Setter Property="Foreground" Value="White"/>
-            <!-- Couleur du texte -->
-            <Setter Property="BorderBrush" Value="#1976D2"/>
-            <!-- Couleur de la bordure -->
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <!-- Animation de changement de couleur au clic -->
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="border" 
-                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#1565C0" Duration="0:0:0.1"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
+        Height="500" Width="700">
+
+    <Window.Background>
+        <SolidColorBrush Color="#bfd7eb" />
+    </Window.Background>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <!-- Colonne pour le logo -->
-            <ColumnDefinition Width="*"/>
-            <!-- Colonne pour le reste du contenu -->
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <!-- Première ligne pour le logo -->
-            <RowDefinition Height="Auto" />
-            <!-- Deuxième ligne pour les boutons -->
-            <RowDefinition Height="*" />
-            <!-- Troisième ligne pour la liste des étudiants -->
-        </Grid.RowDefinitions>
-
-        <!-- Logo avec effet d'ombre -->
-        <Border BorderBrush="#E0E0E0" BorderThickness="1" Grid.Row="0" Grid.Column="0" Margin="10" Width="100" Height="100" CornerRadius="50">
-            <Image Source="/Vue/Ressources/logo.png" Stretch="UniformToFill" />
-        </Border>
-
-        <!-- Buttons -->
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
-            <Button Content="{x:Static res:Strings.BoutonConnexion}" Click="OpenLoginPage"/>
-            <Button Content="{x:Static res:Strings.BoutonParam}" Click="OpenParametresPage"/>
-            <Button Content="{x:Static res:Strings.Importer}" Click="ImporterEtudiants" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </StackPanel>
-        <Button Grid.Column="1" Content="{x:Static res:Strings.Actualiser}" HorizontalAlignment="Left" Margin="497,94,0,0" VerticalAlignment="Top" Click="BoutonActualiserListeEtudiant"/>
-
-        <!-- Liste des étudiants -->
-        <ListView Name="maListView" Grid.Column="1" Margin="36,24,36,23" Grid.Row="2">
-        </ListView>
-        
+        <TextBlock Text="{x:Static res:Strings.Bienvenue}" FontSize="72" Margin="148,161,-76,255" FontFamily="Open Sauce One" Foreground="#FF2B2B5A" />
+        <Image Source="Ressources/logoPage.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left" Height="228" Width="282" Margin="451,293,0,0" />
+        <Image Source="Ressources/logoIUT.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left" Height="169" Width="253" Margin="22,332,0,0" />
     </Grid>
 </Window>
