@@ -120,6 +120,9 @@
   <data name="Actualiser" xml:space="preserve">
     <value>Actualiser</value>
   </data>
+  <data name="Bienvenue" xml:space="preserve">
+    <value>Bienvenue !</value>
+  </data>
   <data name="BoutonConnexion" xml:space="preserve">
     <value>Se Connecter</value>
   </data>

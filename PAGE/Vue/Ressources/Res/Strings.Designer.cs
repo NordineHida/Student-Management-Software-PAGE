@@ -70,6 +70,15 @@ namespace PAGE.Vue.Ressources.Res {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Bienvenue !.
+        /// </summary>
+        public static string Bienvenue {
+            get {
+                return ResourceManager.GetString("Bienvenue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Se Connecter.
         /// </summary>
         public static string BoutonConnexion {
