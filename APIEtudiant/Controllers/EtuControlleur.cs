@@ -47,8 +47,10 @@ namespace PAGE.Controlleurs
         public ActionResult AddEtu([FromBody] Etudiant? etu)
         {
             ActionResult reponse = BadRequest();
-
-            if (EtuManager.Instance.AddEtu(etu)) reponse = Ok();
+            if (etu != null)
+            {
+                if (EtuManager.Instance.AddEtu(etu)) reponse = Ok();
+            }
 
             return reponse;
         }
