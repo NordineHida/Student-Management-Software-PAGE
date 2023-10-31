@@ -23,5 +23,19 @@ namespace PAGE.Vue.Ecran
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Clique bouton valider
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void ValiderChoixPromo(object sender, RoutedEventArgs e)
+        {
+            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
+            fenetrePrincipal.Show();
+
+            this.Close();
+        }
     }
 }

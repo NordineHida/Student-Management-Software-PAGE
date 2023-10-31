@@ -9,14 +9,17 @@
         WindowStartupLocation="CenterScreen"
         Title="ChoixPromo" Height="450" Width="800">
 
+    <!--Fond (Nordine)-->
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
     </Window.Background>
 
     <Grid>
+        <!--Grille (Nordine)-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -24,10 +27,16 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
+        <!--Texte (Nordine)-->
         <TextBlock Text="Année :" FontSize="50" FontFamily="Open Sauce One" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="#FF2B2B5A" />
         <TextBlock Text="Promotion :" FontSize="50" FontFamily="Open Sauce One" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF2B2B5A" />
 
+        <!--ComboBox (Nordine)-->
         <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120"/>
         <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120"/>
+
+        <!--Bouton (Nordine)-->
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="275,20,275,20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Valider" FontSize="24" Click="ValiderChoixPromo"/>
+
     </Grid>
 </Window>
