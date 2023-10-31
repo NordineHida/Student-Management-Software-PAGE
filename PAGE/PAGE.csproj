@@ -34,13 +34,24 @@
     <None Remove="Vue\Ressources\logo.png" />
     <None Remove="Vue\Ressources\logoIUT.png" />
     <None Remove="Vue\Ressources\logoPage.png" />
+    <None Remove="Vue\Ressources\Picto\account-arrow-right.png" />
+    <None Remove="Vue\Ressources\Picto\account-check.png" />
+    <None Remove="Vue\Ressources\Picto\account-edit.png" />
     <None Remove="Vue\Ressources\Picto\account-edit.svg" />
+    <None Remove="Vue\Ressources\Picto\account-minus.png" />
+    <None Remove="Vue\Ressources\Picto\account-multiple-plus.png" />
+    <None Remove="Vue\Ressources\Picto\account-plus.png" />
     <None Remove="Vue\Ressources\Picto\account-plus.svg" />
     <None Remove="Vue\Ressources\Picto\account-remove.svg" />
     <None Remove="Vue\Ressources\Picto\account-settings.svg" />
+    <None Remove="Vue\Ressources\Picto\account.png" />
     <None Remove="Vue\Ressources\Picto\account.svg" />
+    <None Remove="Vue\Ressources\Picto\alert-circle-outline.png" />
     <None Remove="Vue\Ressources\Picto\calendar.svg" />
+    <None Remove="Vue\Ressources\Picto\check-bold.png" />
     <None Remove="Vue\Ressources\Picto\filter-settings.svg" />
+    <None Remove="Vue\Ressources\Picto\import.png" />
+    <None Remove="Vue\Ressources\Picto\settings.png" />
     <None Remove="Vue\Ressources\Picto\settings.svg" />
   </ItemGroup>
 
@@ -87,6 +98,39 @@
     <Content Include="Vue\Ressources\Fonts\OpenSauceOne-SemiBoldItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Vue\Ressources\Picto\account-arrow-right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\account-check.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\account-edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\account-minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\account-multiple-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\account-plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\account.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\alert-circle-outline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\check-bold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\import.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -129,10 +173,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Vue\Ressources\Picto\" />
   </ItemGroup>
 
 </Project>
