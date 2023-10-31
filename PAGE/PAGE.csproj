@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Vue\Ecran\account.svg" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-Black.ttf" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-BlackItalic.ttf" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-Bold.ttf" />
@@ -33,6 +34,14 @@
     <None Remove="Vue\Ressources\logo.png" />
     <None Remove="Vue\Ressources\logoIUT.png" />
     <None Remove="Vue\Ressources\logoPage.png" />
+    <None Remove="Vue\Ressources\Picto\account-edit.svg" />
+    <None Remove="Vue\Ressources\Picto\account-plus.svg" />
+    <None Remove="Vue\Ressources\Picto\account-remove.svg" />
+    <None Remove="Vue\Ressources\Picto\account-settings.svg" />
+    <None Remove="Vue\Ressources\Picto\account.svg" />
+    <None Remove="Vue\Ressources\Picto\calendar.svg" />
+    <None Remove="Vue\Ressources\Picto\filter-settings.svg" />
+    <None Remove="Vue\Ressources\Picto\settings.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -90,10 +99,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Vue\Ressources\logoIUT.png">
+    <Resource Include="Vue\Ressources\Img\logoIUT.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Vue\Ressources\logoPage.png">
+    <Resource Include="Vue\Ressources\Img\logoPage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -120,6 +129,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Vue\Ressources\Picto\" />
   </ItemGroup>
 
 </Project>

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
+        xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
         WindowStartupLocation="CenterScreen"
         Title="ChoixPromo" Height="450" Width="800">
 
@@ -13,7 +14,20 @@
     </Window.Background>
 
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="325,159,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="325,217,0,0" VerticalAlignment="Top" Width="120"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Année :" FontSize="50" FontFamily="Open Sauce One" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="#FF2B2B5A" />
+        <TextBlock Text="Promotion :" FontSize="50" FontFamily="Open Sauce One" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF2B2B5A" />
+
+        <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120"/>
     </Grid>
 </Window>
