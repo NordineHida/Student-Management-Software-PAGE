@@ -17,7 +17,7 @@
 
     <Grid>
         <TextBlock Text="{x:Static res:Strings.Bienvenue}" FontSize="72" Margin="148,161,-76,255" FontFamily="Open Sauce One" Foreground="#FF2B2B5A" />
-        <Image Source="Ressources/logoPage.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left" Height="228" Width="282" Margin="451,293,0,0" />
-        <Image Source="Ressources/logoIUT.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left" Height="169" Width="253" Margin="22,332,0,0" />
+        <Image Source="Ressources/Img/logoPage.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left" Height="228" Width="282" Margin="451,293,0,0" />
+        <Image Source="Ressources/Img/logoIUT.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left" Height="169" Width="253" Margin="22,332,0,0" />
     </Grid>
 </Window>
