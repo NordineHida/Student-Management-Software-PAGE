@@ -35,7 +35,7 @@
         <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120"/>
         <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120"/>
 
-        <!--Bouton (Nordine)-->
+        <!--Bouton Valider (Nordine)-->
         <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="275,20,275,20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Valider" FontSize="24" Click="ValiderChoixPromo"/>
 
     </Grid>

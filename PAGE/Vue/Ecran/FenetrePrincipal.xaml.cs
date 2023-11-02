@@ -171,6 +171,19 @@ namespace PAGE.Vue.Ecran
             await ChargementDiffere();
             ChargerListView();
         }
+
+        /// <summary>
+        /// Ouvre la fenetre de choix de l'année de et promotion 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OpenPromoPage(object sender, RoutedEventArgs e)
+        {
+            ChoixPromo choixPromo = new ChoixPromo();
+            choixPromo.Show();
+
+            this.Close();
+        }
     }
 }
 

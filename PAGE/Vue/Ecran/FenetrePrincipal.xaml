@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
-         xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
+        xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="{x:Static res:Strings.Title}" Height="1000" Width="1500">
+
 
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
@@ -57,7 +58,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
 
             <Button Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage">
-                <Image Source="/Vue/Ressources/Picto/account.png" Stretch="Uniform" Margin="5"/>
+                <Image Source="/Vue/Ressources/Picto/account.png" Stretch="Uniform" Margin="7"/>
             </Button>
 
             <Button Style="{StaticResource ImageButtonStyle}" Click="OpenParametresPage">
@@ -65,12 +66,19 @@
             </Button>
 
             <Button Style="{StaticResource ImageButtonStyle}" Click="ImporterEtudiants">
-                <Image Source="/Vue/Ressources/Picto/import.png"  Stretch="Uniform" Margin="10"/>
+                <Image Source="/Vue/Ressources/Picto/import.png"  Stretch="Uniform" Margin="13"/>
             </Button>
 
             <Button Style="{StaticResource ImageButtonStyle}" Click="BoutonActualiserListeEtudiant">
                 <Image Source="/Vue/Ressources/Picto/refresh.png"  Stretch="Uniform" Margin="9"/>
             </Button>
+
+            <Button Style="{StaticResource ImageButtonStyle}" Click="OpenPromoPage">
+                <Image Source="/Vue/Ressources/Picto/calendar-account.png"  Stretch="Uniform" Margin="10"/>
+            </Button>
+            
+            
+
         </StackPanel>
 
         <!-- Liste des étudiants -->
