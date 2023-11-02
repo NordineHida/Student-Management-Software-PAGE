@@ -110,7 +110,8 @@ namespace PAGE.APIEtudiant.Stockage
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'appel de l'API (GetAllEtu): " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+                //PEUT ETRE PAR AFFICHER (DEMANDER CLIENT)
+                MessageBox.Show("Erreur lors de l'appel de l'API (GetAllEtu) DEMANDER CLIENT SI ON VEUT AFFICHER ERReur: " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return etudiants;
         }
