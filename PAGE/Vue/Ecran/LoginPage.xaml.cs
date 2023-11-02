@@ -10,34 +10,50 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PAGE.Vue.Ressources
+namespace PAGE.Vue.Ecran
 {
     /// <summary>
     /// Logique d'interaction pour LoginPage.xaml
     /// </summary>
-    /// <author>Lucas</author>
-    public partial class LoginPage : Page
+    public partial class LoginPage : Window
     {
-        public event EventHandler ReturnToMainWindow;
-
-
         public LoginPage()
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// Ferme la page de login
+        /// Ferme la page de login et affiche la fenetre principal
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <author>Lucas</author>
         private void CloseLoginWindow(object sender, RoutedEventArgs e)
         {
-            ReturnToMainWindow.Invoke(this, e);
+            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
+            fenetrePrincipal.Show();
+
+            this.Close();
+
         }
 
+        /// <summary>
+        /// Ferme la page de login et affiche la fenetre principal avec les nouvelles informations
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BoutonLogin(object sender, RoutedEventArgs e)
+        {
+            //LE LOGIN N'EST PAS ENCORE IMPLEMENTé
+            throw new NotImplementedException();
+
+
+            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
+            fenetrePrincipal.Show();
+
+            this.Close();
+        }
     }
 }

@@ -88,22 +88,17 @@ namespace PAGE.Vue.Ecran
         }
 
 
+        /// <summary>
+        /// Ouvre la fenetre de connexion 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenLoginPage(object sender, RoutedEventArgs e)
         {
-            // Créer la LoginPage
             LoginPage loginPage = new LoginPage();
+            loginPage.Show();
 
-            // Écouter l'événement de retour à la fenêtre principale
-            loginPage.ReturnToMainWindow += LoginPage_ReturnToMainWindow;
-
-            // Afficher la LoginPage comme contenu initial
-            this.Content = loginPage;
-
-        }
-
-        private void LoginPage_ReturnToMainWindow(object sender, EventArgs e)
-        {
-            this.Content = initialContent;
+            this.Close();
         }
 
         private void OpenParametresPage(object sender, RoutedEventArgs e)
