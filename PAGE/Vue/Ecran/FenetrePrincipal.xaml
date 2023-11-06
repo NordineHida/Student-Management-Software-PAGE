@@ -84,6 +84,26 @@
 
         <!-- Liste des étudiants -->
         <ListView Name="maListView" Grid.Column="1" Margin="30" Grid.Row="2" Background="#FFDFEAFF">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding NumApogee}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="NumApogee" Click="lvUsersColumnHeader_Click">NumApogee</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Nom}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Nom" Click="lvUsersColumnHeader_Click">Nom</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Prenom }">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Prenom" Click="lvUsersColumnHeader_Click">Prenom</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+
         </ListView>
 
     </Grid>

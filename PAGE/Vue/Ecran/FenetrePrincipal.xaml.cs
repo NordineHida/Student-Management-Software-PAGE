@@ -1,9 +1,11 @@
-﻿using Microsoft.Win32;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.Win32;
 using PAGE.APIEtudiant.Stockage;
 using PAGE.Model;
 using PAGE.Vue.Ressources;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 
 namespace PAGE.Vue.Ecran
 {
@@ -35,37 +38,47 @@ namespace PAGE.Vue.Ecran
 
             initialContent = (UIElement?)this.Content;
 
-            ChargerListView();
             ChargementDiffere();
 
         }
 
-        private void ChargerListView()
+        /// <summary>
+        /// trie la liste a partir de la liste cliqué
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Stéphane</author>
+        private bool isSortAscending = true;
+
+        private void lvUsersColumnHeader_Click(object sender, RoutedEventArgs e)
         {
+            GridViewColumnHeader column = (sender as GridViewColumnHeader);
+            string sortBy = column.Tag.ToString();
 
-            GridView gridView = new GridView();
-            maListView.View = gridView;
-
-            gridView.Columns.Add(new GridViewColumn
+            if (maListView.Items.SortDescriptions.Count > 0)
             {
-                Header = "N°Apogee",
-                DisplayMemberBinding = new System.Windows.Data.Binding("NumApogee")
-            });
+                maListView.Items.SortDescriptions.Clear();
+            }
 
-            gridView.Columns.Add(new GridViewColumn
+            ListSortDirection newDir;
+
+            if (isSortAscending)
             {
-                Header = "Nom",
-                DisplayMemberBinding = new System.Windows.Data.Binding("Nom")
-            });
-
-            gridView.Columns.Add(new GridViewColumn
+                newDir = ListSortDirection.Ascending;
+                isSortAscending = false;
+            }
+            else
             {
-                Header = "Prenom",
-                DisplayMemberBinding = new System.Windows.Data.Binding("Prenom")
-            });
+                newDir = ListSortDirection.Descending;
+                isSortAscending = true;
+            }
 
-
+            maListView.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
         }
+
+
+
+
 
         /// <summary>
         /// Chargement des etudiants différé via l'API
@@ -164,7 +177,6 @@ namespace PAGE.Vue.Ecran
         private async void ActualiserEtudiant()
         {
             await ChargementDiffere();
-            ChargerListView();
         }
 
         /// <summary>
@@ -176,9 +188,9 @@ namespace PAGE.Vue.Ecran
         {
             ChoixPromo choixPromo = new ChoixPromo();
             choixPromo.Show();
-
             this.Close();
         }
+
     }
 }
 
