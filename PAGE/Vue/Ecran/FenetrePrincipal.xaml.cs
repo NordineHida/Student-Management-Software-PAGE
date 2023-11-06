@@ -179,6 +179,17 @@ namespace PAGE.Vue.Ecran
 
             this.Close();
         }
+
+        private void maListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (maListView.SelectedItem != null)
+            {
+                InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires();
+                informationsSupplementaires.Show();
+            }
+        }
+
+       
     }
 }
 

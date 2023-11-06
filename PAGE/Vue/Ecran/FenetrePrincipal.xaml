@@ -7,7 +7,7 @@
         xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"
+        WindowState="Maximized" 
         Title="{x:Static res:Strings.Title}" Height="1000" Width="1500">
 
 
@@ -83,7 +83,7 @@
         </StackPanel>
 
         <!-- Liste des étudiants -->
-        <ListView Name="maListView" Grid.Column="1" Margin="30" Grid.Row="2" Background="#FFDFEAFF">
+        <ListView Name="maListView" Grid.Column="1" Margin="30" Grid.Row="2" Background="#FFDFEAFF" MouseDoubleClick="maListView_MouseDoubleClick">
         </ListView>
 
     </Grid>
