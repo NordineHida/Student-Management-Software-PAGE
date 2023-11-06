@@ -1,4 +1,5 @@
-﻿using PAGE.Model;
+﻿using APIEtudiant.Model;
+using PAGE.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,5 +37,13 @@ namespace PAGE.Stockage
         /// <returns>true si l'ajout est un succes</returns>
         /// <author>Nordine</author>
         public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu);
+
+        /// <summary>
+        /// Ajoute une note à la BDD
+        /// </summary>
+        /// <param name="note">Note à ajouter</param>
+        /// <returns>true si l'ajout est un succès</returns>
+        /// <author>Laszlo</author>
+        public bool CreateNote(Note note);
     }
 }

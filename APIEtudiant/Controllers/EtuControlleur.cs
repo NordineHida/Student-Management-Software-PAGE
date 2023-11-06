@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using APIEtudiant.Model;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PAGE.Model;
 using System;
@@ -73,6 +74,23 @@ namespace PAGE.Controlleurs
             //Sinon si l'ajout est un succes alors on renvoi Ok
             else if (EtuManager.Instance.AddSeveralEtu(listeEtu)) reponse = Ok();
 
+            return reponse;
+        }
+
+        /// <summary>
+        /// Ajoute une note à la BDD
+        /// </summary>
+        /// <param name="note">Note à ajouter</param>
+        /// <author>Laszlo</author>
+        [HttpPost("CreateNote")]
+        public ActionResult CreateNote([FromBody] Note note)
+        {
+            ActionResult reponse = BadRequest();
+
+            if (note != null) 
+            { 
+               if(EtuManager.Instance.CreateNote(note)) reponse=Ok(); 
+            } 
             return reponse;
         }
     }
