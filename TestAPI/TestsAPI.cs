@@ -8,6 +8,11 @@ namespace TestAPI
 {
     public class TestsAPI
     {
+        /// <summary>
+        /// Méthode de test pour AddEtu 
+        /// On vérifie si il est possible d'ajouter un etudiant fictif 
+        /// </summary>
+        /// <Author>Lucas PRUNER</Author>
         [Fact]
         public void TestAddEtu()
         {
@@ -48,6 +53,11 @@ namespace TestAPI
             }
         }
 
+        /// <summary>
+        /// Méthode de test pour GetAllEtu 
+        /// On vérifie si il est possible de récupérer tout les étudiants dans la liste
+        /// </summary>
+        /// <Author>Lucas PRUNER</Author>
         [Fact]
         public void TestGetAllEtu()
         {
@@ -107,6 +117,11 @@ namespace TestAPI
         }
 
 
+        /// <summary>
+        /// Méthode de test pour AddSeveralEtu 
+        /// On vérifie si il est possible d'ajouter plusieurs etudiant fictif 
+        /// </summary>
+        /// <Author>Lucas PRUNER</Author>
         [Fact]
         public void TestAddSeveralEtu()
         {
