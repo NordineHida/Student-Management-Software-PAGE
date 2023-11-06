@@ -39,7 +39,7 @@ namespace TestAPI
             );
 
             
-            var result = controller.AddEtu(etudiantToAdd);
+            ActionResult result = controller.AddEtu(etudiantToAdd);
 
             Assert.IsType<ActionResult>(result);
 
@@ -166,7 +166,7 @@ namespace TestAPI
                     )
             };
 
-            var result = controller.AddSeveralEtu(etudiantsToAdd);
+            ActionResult result = controller.AddSeveralEtu(etudiantsToAdd);
 
             Assert.IsType<ActionResult>(result);
 
