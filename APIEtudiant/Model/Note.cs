@@ -16,7 +16,7 @@
         /// Récupère ou définit l'idetifiant de la note.
         /// </summary>
         /// <author>Laszlo</author>
-        public int IdNote {  get { return idNote; } set {  idNote = value; } }
+        public int IdNote {  get { return idNote; } }
 
         /// <summary>
         /// Récupère ou définit la catégorie de la note.
@@ -62,14 +62,8 @@
             /// <param name="commentaire">Commentaire inscrit à l'intérieur de la note (255 caractères maximum)</param>
             /// <param name="apogeeEtudiant">Numéro apogée de l'étudiant dont la note parle</param>
             /// <author>Laszlo</author>
-        public Note(int idNote,string categorie, DateTime datePublication,string nature,string commentaire, int apogeeEtudiant)
+        public Note(string categorie, DateTime datePublication,string nature,string commentaire, int apogeeEtudiant)
         {
-            /*//Incrémente automatiquement l'identifiant de la note
-            this.idNote = 0;
-            while (idNotes.Contains(idNote)){ idNote += 1; }
-            idNotes.Add(idNote);*/
-
-            this.idNote = idNote;
             this.categorie = categorie;
             this.datePublication = datePublication;
             this.nature = nature;
