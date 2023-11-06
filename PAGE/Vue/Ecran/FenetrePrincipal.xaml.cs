@@ -103,14 +103,10 @@ namespace PAGE.Vue.Ecran
 
         private void OpenParametresPage(object sender, RoutedEventArgs e)
         {
-            // Créer la LoginPage
-            ParametresPage parampage = new ParametresPage();
+            Parametre parametre = new Parametre();
+            parametre.Show();
 
-            // Écouter l'événement de retour à la fenêtre principale
-            parampage.ReturnToMainWindow += ParamPage_ReturnToMainWindow;
-
-            // Afficher la LoginPage comme contenu initial
-            this.Content = parampage;
+            this.Close();
         }
 
         private void ParamPage_ReturnToMainWindow(object sender, EventArgs e)

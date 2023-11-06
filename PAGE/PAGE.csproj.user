@@ -16,10 +16,10 @@
     <Compile Update="Vue\Ecran\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Vue\MainWindow.xaml.cs">
+    <Compile Update="Vue\Ecran\Parametre.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Vue\Ecran\ParametresPage.xaml.cs">
+    <Compile Update="Vue\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -41,10 +41,10 @@
     <Page Update="Vue\Ecran\LoginPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Vue\MainWindow.xaml">
+    <Page Update="Vue\Ecran\Parametre.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Vue\Ecran\ParametresPage.xaml">
+    <Page Update="Vue\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
