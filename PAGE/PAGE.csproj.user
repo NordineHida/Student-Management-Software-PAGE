@@ -24,14 +24,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Vue\Ressources\Res\Strings.en.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Vue\Ressources\Res\Strings.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Page Update="Vue\Ecran\ChoixPromo.xaml">
       <SubType>Designer</SubType>
     </Page>
