@@ -7,6 +7,7 @@
         xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
         Title="{x:Static res:Strings.Title}" Height="1000" Width="1500">
 
 
