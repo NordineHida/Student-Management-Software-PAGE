@@ -78,8 +78,6 @@
                 <Image Source="/Vue/Ressources/Picto/calendar-account.png"  Stretch="Uniform" Margin="10"/>
             </Button>
             
-            
-
         </StackPanel>
 
         <!-- Liste des étudiants -->

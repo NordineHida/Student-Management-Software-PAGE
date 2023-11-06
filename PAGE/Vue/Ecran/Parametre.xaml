@@ -36,11 +36,17 @@
         <!-- Titre (Nordine) -->
         <TextBlock Text="{x:Static res:Strings.BoutonParam}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="#FF2B2B5A" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Open Sauce One" />
 
-        <!-- Label pour Nom d'utilisateur ou E-mail -->
+        <!--ComboBox des langues disponibles-->
+        <ComboBox Grid.Column="2" Grid.Row="1" Margin="70,40,70,40" Background="#FF2A2B5B" BorderBrush="#FF2A2B5B">
+            <ComboBoxItem>Français</ComboBoxItem>
+            <ComboBoxItem>English</ComboBoxItem>
+        </ComboBox>
+
+        <!-- Label pour la langue (nordine) -->
         <Label Content="{x:Static res:Strings.Langue}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
 
-        <!-- TextBox pour le nom d'utilisateur (Nordine) -->
-        <TextBox x:Name="LabelPathGeneration" Text="sdfsd" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontFamily="Open Sauce One Light" Height="30" FontSize="20"/>
+        <!-- TextBox pour le path de génération du word (Nordine) -->
+        <TextBox x:Name="LabelPathGeneration" Text="" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontFamily="Open Sauce One Light" Height="30" FontSize="20"/>
 
         <!-- Label l'emplacement de génération du word (Nordine) -->
         <Label Content="Emplacement génération : " FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
@@ -55,6 +61,7 @@
         <!--Bouton pour annuler (Nordine)-->
         <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Annuler" Padding="10" FontSize="40" Click="CloseWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20"/>
         <Image Source="/Vue/Ressources/Img/LogoIUT.png" Grid.ColumnSpan="2" Margin="10,-4,280,106" Grid.RowSpan="2"/>
+
 
 
     </Grid>
