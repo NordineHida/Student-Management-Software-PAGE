@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAGE.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,20 @@ namespace PAGE.Vue.Ecran
         public InformationsSupplementaires()
         {
             InitializeComponent();
+            ChargerInfosEtudiant(e);
+        }
+
+        public void ChargerInfosEtudiant()
+        {
+            txtName.Text = etudiant.Nom;
+            txtPrenom.Text = etudiant.Prenom;
+            txtNumApogee.Text = etudiant.NumApogee.ToString();
+            txtGroupe.Text = etudiant.Groupe;
+            txtMail.Text = etudiant.Mail;
+            txtSexe.Text = etudiant.Sexe.ToString();
+            txtTypebac.Text = etudiant.TypeBac;
+            txtBoursier.Text = etudiant.EstBoursier ? "Oui" : "Non";
+            txtRegime.Text = etudiant.TypeFormation;
         }
     }
 }

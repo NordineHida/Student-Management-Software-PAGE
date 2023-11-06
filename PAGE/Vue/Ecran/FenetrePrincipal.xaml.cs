@@ -185,7 +185,7 @@ namespace PAGE.Vue.Ecran
             if (maListView.SelectedItem != null)
             {
                 InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires();
-                informationsSupplementaires.Show();
+                informationsSupplementaires.Show(); 
             }
         }
 
