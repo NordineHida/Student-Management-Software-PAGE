@@ -14,7 +14,7 @@ namespace PAGE.Vue
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// Constucteur de la fenêtre 
+        /// Constucteur de la fenêtre (initialise les parametres s'ils existent
         /// </summary>
         /// <author>Nordine</author>
         public MainWindow()
@@ -22,7 +22,10 @@ namespace PAGE.Vue
             InitializeComponent();
             Loaded += MainWindow_Loaded;
 
-            Parametre.Instance.ChangerLangue(Parametre.Instance.Langue);
+            //Deserialiser les parametres s'ils existent
+            JsonSerializerParametre jsonParam = new JsonSerializerParametre();
+            jsonParam.Load();
+
 
         }
 

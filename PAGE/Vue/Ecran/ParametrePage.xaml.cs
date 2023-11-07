@@ -21,6 +21,7 @@ namespace PAGE.Vue.Ecran
             InitializeComponent();
             //Initialise le chemin de generation au bureau (DEPUIS SAUVEGARDE JSON APRES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
 
+
             //Initialise la langue  (DEPUIS SAUVEGARDE JSON APRES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
             InitialiserComboBoxSelectedItem();
 
@@ -82,8 +83,6 @@ namespace PAGE.Vue.Ecran
         /// <exception cref="NotImplementedException"></exception>
         private void ValiderParam(object sender, RoutedEventArgs e)
         {
-            //LEs N'EST PAS ENCORE IMPLEMENTé DOIT SAUVEGARDER DANS UN JSON
-
             //Si un item est choisi
             if (ComboBoxLangue.SelectedItem != null)
             {
@@ -93,6 +92,10 @@ namespace PAGE.Vue.Ecran
 
                 ChangerLangue(langueChoisieString);
             }
+
+            //on sauvegarde les paramètres
+            JsonSerializerParametre jsonSave = new JsonSerializerParametre();
+            jsonSave.Save();
 
             FermerFenetre();
 
@@ -126,25 +129,6 @@ namespace PAGE.Vue.Ecran
 
         }
 
-        /// <summary>
-        /// Change la langue séléctionner dans la combobox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            /*
-            //Si un item est choisi
-            if (ComboBoxLangue.SelectedItem != null)
-            {
-                //on récupere quel langue est selectionnée
-                ComboBoxItem langueChoisie = (ComboBoxItem)ComboBoxLangue.SelectedItem;
-                string langueChoisieString = langueChoisie.Content.ToString();
-
-                ChangerLangue(langueChoisieString);
-            }*/
-        }
 
         /// <summary>
         /// Change le dictionnaire de ressources utilisé pour changer la langue

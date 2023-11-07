@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace PAGE.Model
 {
+    [DataContract]
     /// <summary>
     /// Logique de paramètre
     /// </summary>
@@ -31,27 +33,13 @@ namespace PAGE.Model
             }
         }
 
-        private Parametre()
-        {
-            //si un fichier json existe je le prend, sinon param par defaut
-            //ICI REMPALCER PAR JSON
-            if (false == true )
-            {
-
-            }
-            //Sinon parametre par defaut (langue :Français; path = bureau)
-            else
-            {
-                this.Langue = LANGUE.FRANCAIS;
-                this.pathGenerationWord = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            }
-
-        }
+        private Parametre(){}
 
         #endregion
 
         private string pathGenerationWord;
 
+        [DataMember]
         /// <summary>
         /// Path de génération du word
         /// </summary>
@@ -60,6 +48,7 @@ namespace PAGE.Model
 
         private LANGUE langue;
 
+        [DataMember]
         /// <summary>
         /// Langue des paramètres
         /// </summary>
