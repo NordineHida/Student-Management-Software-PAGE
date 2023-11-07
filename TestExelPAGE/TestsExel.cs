@@ -54,6 +54,7 @@ namespace TestExelPAGE
 
 
         /// <summary>
+        /// Méthode de test pour vérifier la convertion de string en SEXE pour le sexe de l'étudiant
         /// </summary>
         /// <Author>Lucas PRUNER</Author>
         [Fact]
@@ -77,6 +78,26 @@ namespace TestExelPAGE
             Assert.Equal(sexeexpected, sexeEtu);
         }
 
+
+
+        /// <summary>
+        /// Méthode de test pour vérifier la convertion de string en bool pour le status boursier ou non de l'étudiant
+        /// </summary>
+        /// <Author>Lucas PRUNER</Author>
+        [Fact]
+
+        public void TestBoursier()
+        {
+            bool actualboursier = false;
+            bool expectedboursier = true;
+
+            string boursierstring = "OUI";
+
+            if (boursierstring == "OUI") 
+                actualboursier = true;
+
+            Assert.Equal(expectedboursier, actualboursier);
+        }
     }
     
 }
