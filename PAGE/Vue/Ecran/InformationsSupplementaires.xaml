@@ -32,20 +32,20 @@
         <Image Source="/Vue/Ressources/Img/photo.png" HorizontalAlignment="Left" Height="256" Margin="12,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="238"/>
 
         <!-- Nom et Prenom de l'étudiant -->
-        <TextBlock x:Name="txtName" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="273,37,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="82"/>
-        <TextBlock x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="416,37,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="82"/>
+        <TextBlock x:Name="txtName" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="273,37,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="181"/>
+        <TextBlock x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="494,37,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="220"/>
 
         <!-- Numéro Apogee -->
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="273,93,0,0" Grid.Row="1" TextWrapping="Wrap" Text="NumApogee : " VerticalAlignment="Top" Width="123"/>
-        <TextBlock x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="402,93,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="82"/>
+        <TextBlock x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="412,93,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="202"/>
 
         <!-- Groupe -->
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="273,147,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Groupe :  " VerticalAlignment="Top" Width="82"/>
-        <TextBlock x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="372,147,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="82"/>
+        <TextBlock x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="372,147,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="500"/>
 
         <!-- Adresse mail -->
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="273,199,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Adresse mail :  " VerticalAlignment="Top" Width="123"/>
-        <TextBlock x:Name="txtMail" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="406,199,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="82"/>
+        <TextBlock x:Name="txtMail" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="406,199,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="562"/>
 
         <!-- Sexe -->
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="41,300,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Sexe :  " VerticalAlignment="Top" Width="123"/>
@@ -61,7 +61,7 @@
         
         <!-- Régime de formation -->
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="41,426,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Régime : " VerticalAlignment="Top" Width="123"/>
-        <TextBlock x:Name="txtRegime" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="174,427,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
+        <TextBlock x:Name="txtRegime" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="174,427,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="190"/>
         
 
     </Grid>

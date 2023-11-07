@@ -20,13 +20,25 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class InformationsSupplementaires : Window
     {
-        public InformationsSupplementaires()
+        private Etudiant etudiant;
+
+        /// <summary>
+        /// Constructeur qui prend l'étudiant selectionné avec le double clique
+        /// </summary>
+        /// <param name="EtudiantActuel">etudiant actuel</param>
+        /// <author>Yamato</author>
+        public InformationsSupplementaires(Etudiant EtudiantActuel)
         {
             InitializeComponent();
-            ChargerInfosEtudiant(e);
+            etudiant = EtudiantActuel;
+            ChargerInfosImpEtudiant();
         }
 
-        public void ChargerInfosEtudiant()
+        /// <summary>
+        /// Charge les informations importantes de l'étudiant
+        /// </summary>
+        /// <author>Yamato</author>
+        public void ChargerInfosImpEtudiant()
         {
             txtName.Text = etudiant.Nom;
             txtPrenom.Text = etudiant.Prenom;

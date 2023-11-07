@@ -180,16 +180,30 @@ namespace PAGE.Vue.Ecran
             this.Close();
         }
 
+        /// <summary>
+        /// Ouvre la fenêtre Informations Supplémentaires lors d'un double clique sur un étudiant de la liste
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Yamato</author>
         private void maListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (maListView.SelectedItem != null)
             {
-                InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires();
-                informationsSupplementaires.Show(); 
+                // Obtenez l'étudiant sélectionné dans la ListView
+                Etudiant etudiantSelectionne = maListView.SelectedItem as Etudiant;
+
+                if (etudiantSelectionne != null)
+                {
+                    // Créez une instance de la fenêtre InformationsSupplementaires en passant l'étudiant sélectionné en paramètre
+                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne);
+                    informationsSupplementaires.Show();
+                }
             }
         }
 
-       
+
+
     }
 }
 
