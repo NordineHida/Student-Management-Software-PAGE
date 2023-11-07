@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PAGE.Model
+namespace APIEtudiant.Model
 {
     /// <summary>
     /// un Etudiant en BUT Informatique
