@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using PAGE.APIEtudiant.Stockage;
 using PAGE.Model;
 using PAGE.Vue.Ressources;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,6 +82,53 @@ namespace PAGE.Vue.Ecran
 
             // Ajouter une nouvelle description de tri à la liste 
             maListView.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
+
+        
+            maListView.ItemsSource = maListView.Items;
+            FilterBy.ItemsSource = typeof(Etudiant).GetProperties().Select((o) => o.Name);
+
+        }
+
+        Predicate<object> GetFilter()
+        {
+            switch (FilterBy.SelectedItem as string)
+            {
+                case "Nom":
+                    return NameFilter;
+                case "Prenom":
+                    return FirstNameFilter;
+            }
+            return NameFilter;
+
+        }
+
+        private bool NameFilter(object obj)
+        {
+            var Filterobj = obj as Etudiant;
+            return Filterobj.Nom.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
+        }
+        private bool FirstNameFilter(object obj)
+        {
+            var Filterobj = obj as Etudiant;
+            return Filterobj.Prenom.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            maListView.Items.Filter = GetFilter();
+
+        }
+
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(FilterTextBox.Text == null)
+            {
+                maListView.Items.Filter = null;
+            }
+            else
+            {
+                maListView.Items.Filter = GetFilter();
+            }
         }
 
 
@@ -195,6 +243,7 @@ namespace PAGE.Vue.Ecran
             this.Close();
         }
 
+        
     }
 }
 
