@@ -110,7 +110,10 @@
         <!-- search bar des étudiants (stephane) -->
         <Border Padding="0 5" Margin="105,111,1030,28" Grid.Column="1">
             <Grid>
-                <ComboBox Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" SelectedIndex="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180" Margin="0,-27,0,0"/>
+                <ComboBox x:Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180" Margin="0,-27,0,0">
+                    <ComboBoxItem>Nom</ComboBoxItem>
+                    <ComboBoxItem>Prenom</ComboBoxItem>
+                </ComboBox>
                 <TextBox  x:Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180"/>
             </Grid>
         </Border>

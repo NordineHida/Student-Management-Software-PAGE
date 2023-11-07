@@ -51,6 +51,14 @@ namespace PAGE.Vue.Ecran
         /// <author>Stéphane</author>
         private bool isSortAscending = true;
 
+
+        #region trie 
+        /// <summary>
+        /// code pour trié par ordre croisant et décroisant + recherche détudiant.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// /// <author>Stephane</author>
         private void Trie_Click(object sender, RoutedEventArgs e)
         {
             GridViewColumnHeader column = (sender as GridViewColumnHeader);
@@ -71,66 +79,88 @@ namespace PAGE.Vue.Ecran
             // Inverse ensuite la valeur de 'isSortAscending'.
             if (isSortAscending)
             {
-                newDir = ListSortDirection.Ascending;
+                newDir = ListSortDirection.Ascending; //trie croisant 
                 isSortAscending = false;
             }
             else
             {
-                newDir = ListSortDirection.Descending;
+                newDir = ListSortDirection.Descending; //trie décroisant
                 isSortAscending = true;
             }
 
             // Ajouter une nouvelle description de tri à la liste 
             maListView.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
 
-        
-            maListView.ItemsSource = maListView.Items;
-            FilterBy.ItemsSource = typeof(Etudiant).GetProperties().Select((o) => o.Name);
+            //lie maListeView a ListView
+            maListView.ItemsSource = maListView.Items; 
+
 
         }
 
-        Predicate<object> GetFilter()
+        private Predicate<object> GetFilter()
         {
-            switch (FilterBy.SelectedItem as string)
+
+            Predicate<object> resultat = null;
+
+            switch (FilterBy.SelectedIndex)
             {
-                case "Nom":
-                    return NameFilter;
-                case "Prenom":
-                    return FirstNameFilter;
+                case 0: // "Nom"
+                    resultat = NameFilter;
+                    break;
+                case 1: // "Prenom"
+                    resultat = FirstNameFilter;
+                    break;
+                default: // trie de base par nom
+                    resultat = NameFilter;
+                    break;
             }
-            return NameFilter;
+
+            return resultat;
 
         }
-
-        private bool NameFilter(object obj)
+        // La fonction utilise les nom pour filtrer les Etudiant.
+        private bool NameFilter(object obj) 
         {
             var Filterobj = obj as Etudiant;
             return Filterobj.Nom.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
         }
+
+
+        // La fonction utilise les prenom pour filtrer les Etudiant.
         private bool FirstNameFilter(object obj)
         {
             var Filterobj = obj as Etudiant;
             return Filterobj.Prenom.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
         }
 
+
+
+        // Et utilisé quand la sélection de l'élément change dans le contrôle de sélection FilterBy.
+        // Elle met à jour le filtre appliqué fonction du choix de l'utilisateur.
         private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Applique le filtre approprié dans maListView en fonction du choix de l'utilisateur.
             maListView.Items.Filter = GetFilter();
 
         }
 
+
+        // Et utilisé quand un événement TextChanged est déclenché par le contrôle FilterTextBox.
+        // Elle met à jour le filtre appliqué à la collection d'objets affichée dans maListView en fonction du texte entré par l'utilisateur.
         private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if(FilterTextBox.Text == null)
             {
+                // Si le texte est vide, supprimer tout filtre appliqué à la collection d'objets de maListView.
                 maListView.Items.Filter = null;
             }
             else
             {
+                // Si un texte est présent, appliquer le filtre approprié dans maListView en fonction du texte saisi par l'utilisateur.
                 maListView.Items.Filter = GetFilter();
             }
         }
-
+        #endregion
 
         /// <summary>
         /// Chargement des etudiants différé via l'API
