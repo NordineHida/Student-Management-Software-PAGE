@@ -19,12 +19,8 @@ namespace PAGE.Vue.Ecran
         public ParametrePage()
         {
             InitializeComponent();
-            //Initialise le chemin de generation au bureau (DEPUIS SAUVEGARDE JSON APRES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
 
-
-            //Initialise la langue  (DEPUIS SAUVEGARDE JSON APRES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
             InitialiserComboBoxSelectedItem();
-
 
             //Initialise le label
             LabelPathGeneration.Text = Parametre.Instance.PathGenerationWord;
@@ -109,13 +105,11 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void ChangerPathWord(object sender, RoutedEventArgs e)
         {
-            //VERIFIE AVEC INSTANCE DE PARAMETRE IICII !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            
-            //Ouvrir l'explorateur de fichier au bureau
-            string cheminBureau = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //Ouvrir l'explorateur de fichier au dernier répertoire sauvé (ou bureau par défaut)
+            string precedentChemin = Parametre.Instance.PathGenerationWord;
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.InitialDirectory = cheminBureau;
+            dialog.InitialDirectory = precedentChemin;
             DialogResult resultat = dialog.ShowDialog();
 
             //Si on valide, on récupere le nouveau path du word

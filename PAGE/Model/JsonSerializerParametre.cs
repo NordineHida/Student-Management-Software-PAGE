@@ -14,6 +14,7 @@ namespace PAGE.Model
     /// <author>Nordine</author>
     public class JsonSerializerParametre
     {
+        //Nom du fichier des paramètres
         private string file;
 
         public JsonSerializerParametre()

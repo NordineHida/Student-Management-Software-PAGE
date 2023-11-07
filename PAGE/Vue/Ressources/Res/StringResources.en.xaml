@@ -25,7 +25,7 @@
     <system:String x:Key="BtnLogin">Log in</system:String>
 
     <!--Bienvenue (nordine)-->
-    <system:String x:Key="TitreBienvenue">Welcome</system:String>
+    <system:String x:Key="TitreBienvenue">Welcome !</system:String>
     
 
 </ResourceDictionary>

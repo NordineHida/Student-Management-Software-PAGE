@@ -25,7 +25,7 @@
     <system:String x:Key="BtnLogin">Se Connecter</system:String>
 
     <!--Bienvenue (nordine)-->
-    <system:String x:Key="TitreBienvenue">Bienvenue</system:String>
+    <system:String x:Key="TitreBienvenue">Bienvenue !</system:String>
 
 
 

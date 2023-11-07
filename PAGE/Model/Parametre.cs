@@ -73,8 +73,10 @@ namespace PAGE.Model
         /// <author>Nordine</author>
         public void ChangerLangue(LANGUE langue)
         {
+            
             ResourceDictionary dictionnaire = new ResourceDictionary();
 
+            //Affecte la bonne ressource selon la langue (par défaut français)
             switch (langue)
             {
                 case LANGUE.ANGLAIS:
@@ -88,6 +90,7 @@ namespace PAGE.Model
                     break;
             }
 
+            //Change la ressource utilisé par l'application
             App.Current.Resources.MergedDictionaries.Add(dictionnaire);
 
         }
