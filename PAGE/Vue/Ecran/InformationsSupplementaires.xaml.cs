@@ -50,5 +50,57 @@ namespace PAGE.Vue.Ecran
             txtBoursier.Text = etudiant.EstBoursier ? "Oui" : "Non";
             txtRegime.Text = etudiant.TypeFormation;
         }
+
+        /// <summary>
+        /// Charge les informations complémentaires de l'étudiant
+        /// </summary>
+        /// <author>Yamato</author>
+        public void ChargerInfosCompEtudiant()
+        {
+            txtDateNaissance2.Text = etudiant.DateNaissance.ToString();
+            txtAdresse2.Text = etudiant.Adresse;
+            txtTelFixe2.Text = etudiant.TelFixe.ToString();
+            txtTelPortable2.Text = etudiant.TelPortable.ToString();
+            txtLogin2.Text = etudiant.Login;
+            
+        }
+
+
+        /// <summary>
+        /// Rend visible les informations complétementaires lors du clique sur le bouton ou les rend invisibles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Yamato</author>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtDateNaissance1.Visibility == Visibility.Collapsed)
+            {
+                txtDateNaissance1.Visibility = Visibility.Visible;
+                txtDateNaissance2.Visibility = Visibility.Visible;
+                txtAdresse1.Visibility = Visibility.Visible;
+                txtAdresse2.Visibility = Visibility.Visible;
+                txtTelFixe1.Visibility = Visibility.Visible;
+                txtTelFixe2.Visibility = Visibility.Visible;
+                txtTelPortable1.Visibility = Visibility.Visible;
+                txtTelPortable2.Visibility = Visibility.Visible;
+                txtLogin1.Visibility = Visibility.Visible;
+                txtLogin2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtDateNaissance1.Visibility = Visibility.Collapsed;
+                txtDateNaissance2.Visibility = Visibility.Collapsed;
+                txtAdresse1.Visibility = Visibility.Collapsed;
+                txtAdresse2.Visibility = Visibility.Collapsed;
+                txtTelFixe1.Visibility = Visibility.Collapsed;
+                txtTelFixe2.Visibility = Visibility.Collapsed;
+                txtTelPortable1.Visibility = Visibility.Collapsed;
+                txtTelPortable2.Visibility = Visibility.Collapsed;
+                txtLogin1.Visibility = Visibility.Collapsed;
+                txtLogin2.Visibility = Visibility.Collapsed;
+            }
+        }
+
     }
 }
