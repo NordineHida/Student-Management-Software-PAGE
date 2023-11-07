@@ -29,6 +29,14 @@ namespace PAGE.Stockage
         /// <returns>Un ensemble d'étudiant</returns>
         /// <author>Nordine</author>
         public Task<IEnumerable<Etudiant>> GetAllEtu();
+
+        /// <summary>
+        /// Ajoute une note à la BDD
+        /// </summary>
+        /// <param name="note">Note à ajouter</param>
+        /// <returns>true si l'ajout est un succès</returns>
+        /// <author>Laszlo</author>
+        public Task CreateNote(Note note);
     }
 }
 
