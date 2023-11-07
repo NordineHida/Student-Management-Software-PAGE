@@ -1,8 +1,7 @@
+using APIEtudiant.Controllers;
 using APIEtudiant.Model;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using PAGE.Controlleurs;
-using PAGE.Model;
 
 namespace TestAPI
 {
