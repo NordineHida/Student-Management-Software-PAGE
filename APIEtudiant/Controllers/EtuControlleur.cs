@@ -76,22 +76,5 @@ namespace PAGE.Controlleurs
 
             return reponse;
         }
-
-        /// <summary>
-        /// Ajoute une note à la BDD
-        /// </summary>
-        /// <param name="note">Note à ajouter</param>
-        /// <author>Laszlo</author>
-        [HttpPost("CreateNote")]
-        public ActionResult CreateNote([FromBody] Note note)
-        {
-            ActionResult reponse = BadRequest();
-
-            if (note != null) 
-            { 
-               if(EtuManager.Instance.CreateNote(note)) reponse=Ok(); 
-            } 
-            return reponse;
-        }
     }
 }

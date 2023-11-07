@@ -73,16 +73,5 @@ namespace PAGE.Model
             return EtuDAO.AddSeveralEtu(listeEtu);
         }
 
-        /// <summary>
-        /// Ajoute une note à la BDD
-        /// </summary>
-        /// <param name="note">Note à ajouter</param>
-        /// <returns>true si l'ajout est un succès</returns>
-        /// <author>Laszlo</author>
-        public bool CreateNote(Note note)
-        {
-            return EtuDAO.CreateNote(note);
-        }
-
     }
 }
