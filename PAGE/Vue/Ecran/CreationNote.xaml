@@ -7,10 +7,13 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="CreationNote" Height="450" Width="800">
-
+        <!--auteur : Laszlo-->
+    
+    <!-- Change la couleur de fond de la page-->
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
     </Window.Background>
+    
     <Grid Margin="5,0,-5,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -27,12 +30,14 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Titre de la page -->
         <Label Grid.Column="1" Content="Création de Note" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29" Foreground="#2B2B5A"/>
 
+        <!-- Combobox gérant la confidentialité -->
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
         <Label Grid.Column="1" Content="Confidentialité : " HorizontalAlignment="Left" Margin="93,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" Background="#FF3DA79D">
+        <ComboBox x:Name="ComboBoxConfidentialite" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" Background="#FF3DA79D">
             <ComboBoxItem Content="Médical"/>
             <ComboBoxItem Content="Confidentiel"/>
             <ComboBoxItem Content="Interne"/>
@@ -41,8 +46,9 @@
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
 
+        <!-- Combobox gérant la catégorie de la note -->
         <Label Grid.Column="1" Content="Catégorie : " HorizontalAlignment="Left" Margin="100,4,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2">
+        <ComboBox x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2">
             <ComboBoxItem Content="Absentéisme"/>
             <ComboBoxItem Content="Personnel"/>
             <ComboBoxItem Content="Médical"/>
@@ -50,16 +56,18 @@
             <ComboBoxItem Content="Orientation"/>
         </ComboBox>
 
+        <!-- TextBox de la Nature de la note -->
         <Rectangle Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="133,10,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" RadiusX="10" RadiusY="10" Grid.ColumnSpan="2"/>
         <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="507,10,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="26" RadiusX="10" RadiusY="10"/>
         <Label Grid.Column="1" Content="Nature : " HorizontalAlignment="Left" Margin="24,15,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="97,10,13,0" TextWrapping="Wrap" Text="Précisez la nature de votre échange ici." VerticalAlignment="Top" Height="37" BorderBrush="#FF3DA79D" BorderThickness="2" />
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="97,10,13,0" TextWrapping="Wrap" Text="{Binding Nature}" VerticalAlignment="Top" Height="37" BorderBrush="#FF3DA79D" BorderThickness="2" />
 
+        <!-- TextBox du commentaire de la note -->
+        <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Commentaire}" VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0"/>
+        <Rectangle Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="133,57,0,0"  Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" Grid.ColumnSpan="2" Grid.RowSpan="2" RadiusX="10" RadiusY="10"/>
+        <Label Grid.Column="1" Content="Commentaire  : " HorizontalAlignment="Left" Margin="10,62,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2"/>
 
-
-        <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="Rédigez votre commentaire ici." VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0"/>
-        <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="0,63,0,0"  Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" Grid.ColumnSpan="2" Grid.RowSpan="2" RadiusX="10" RadiusY="10"/>
-        <Label Grid.Column="1" Content="Commentaire  : " HorizontalAlignment="Left" Margin="10,68,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2"/>
+        <!-- Boutons créer et annuler -->
         <Button Grid.Column="1" Content="Créer" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0"/>
         <Button Grid.Column="1" Content="Annuler" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0"/>
 
