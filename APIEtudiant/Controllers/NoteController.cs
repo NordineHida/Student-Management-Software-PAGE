@@ -1,6 +1,5 @@
 ﻿using APIEtudiant.Model;
 using Microsoft.AspNetCore.Mvc;
-using PAGE.Model;
 
 namespace APIEtudiant.Controllers
 {

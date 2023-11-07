@@ -1,6 +1,4 @@
 ﻿using APIEtudiant.Stockage;
-using PAGE.Model;
-using PAGE.Stockage;
 
 namespace APIEtudiant.Model
 {
