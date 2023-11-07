@@ -61,6 +61,7 @@ namespace PAGE.Model
             { 
                 this.langue = value;
                 ChangerLangue(value);
+                //this.notifier
             }
         }
 
@@ -71,7 +72,7 @@ namespace PAGE.Model
         /// </summary>
         /// <param name="langue">nouvelle langue de l'app</param>
         /// <author>Nordine</author>
-        public void ChangerLangue(LANGUE langue)
+        private void ChangerLangue(LANGUE langue)
         {
             
             ResourceDictionary dictionnaire = new ResourceDictionary();

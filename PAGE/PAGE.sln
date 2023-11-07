@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSQLite", "..\TestSQLite
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAPI", "..\TestAPI\TestAPI.csproj", "{FDDE4411-1D86-4C20-B5D9-F05F7D6D1E8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestExelPAGE", "..\TestExelPAGE\TestExelPAGE.csproj", "{EF638358-53EB-47DE-9DAA-7B632AAE0E73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPAGE", "..\TestExelPAGE\TestPAGE.csproj", "{EF638358-53EB-47DE-9DAA-7B632AAE0E73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

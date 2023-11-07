@@ -1,7 +1,7 @@
 using PAGE.Model;
 
 
-namespace TestExelPAGE
+namespace TestPAGE
 {
     public class TestsExel
     {
