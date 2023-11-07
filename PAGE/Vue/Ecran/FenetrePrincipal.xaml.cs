@@ -50,18 +50,24 @@ namespace PAGE.Vue.Ecran
         /// <author>Stéphane</author>
         private bool isSortAscending = true;
 
-        private void lvUsersColumnHeader_Click(object sender, RoutedEventArgs e)
+        private void Trie_Click(object sender, RoutedEventArgs e)
         {
             GridViewColumnHeader column = (sender as GridViewColumnHeader);
+
             string sortBy = column.Tag.ToString();
 
+            // Vérifie s'il existe des descriptions de tri pour les éléments de la liste.
             if (maListView.Items.SortDescriptions.Count > 0)
             {
+                // Efface les descriptions de tri existantes.
                 maListView.Items.SortDescriptions.Clear();
             }
 
             ListSortDirection newDir;
 
+            // Détermine la direction de tri en fonction de la valeur de 'isSortAscending'.
+            // Si 'isSortAscending' est vrai, le tri est défini sur croissant, sinon sur décroissant.
+            // Inverse ensuite la valeur de 'isSortAscending'.
             if (isSortAscending)
             {
                 newDir = ListSortDirection.Ascending;
@@ -73,11 +79,9 @@ namespace PAGE.Vue.Ecran
                 isSortAscending = true;
             }
 
+            // Ajouter une nouvelle description de tri à la liste 
             maListView.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
         }
-
-
-
 
 
         /// <summary>

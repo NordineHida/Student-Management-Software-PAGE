@@ -82,23 +82,23 @@
 
         </StackPanel>
 
-        <!-- Liste des étudiants -->
+        <!-- Liste des étudiants (stephane) --> 
         <ListView Name="maListView" Grid.Column="1" Margin="30" Grid.Row="2" Background="#FFDFEAFF">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="120" DisplayMemberBinding="{Binding NumApogee}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="NumApogee" Click="lvUsersColumnHeader_Click">NumApogee</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="NumApogee" Click="Trie_Click">NumApogee</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding Nom}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Nom" Click="lvUsersColumnHeader_Click">Nom</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="Nom" Click="Trie_Click">Nom</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding Prenom }">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Prenom" Click="lvUsersColumnHeader_Click">Prenom</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="Prenom" Click="Trie_Click">Prenom</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>
