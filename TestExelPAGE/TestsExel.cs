@@ -51,6 +51,32 @@ namespace TestExelPAGE
 
             Assert.Equal(expectedfixeLong, actualfixeLong);
         }
+
+
+        /// <summary>
+        /// </summary>
+        /// <Author>Lucas PRUNER</Author>
+        [Fact]
+
+        public void TestSexe()
+        {
+            SEXE sexeEtu = SEXE.AUTRE;
+
+            string sexe = "F";
+
+            switch (sexe)
+            {
+                case "F":
+                    sexeEtu = SEXE.FEMININ;
+                    break;
+                case "M":
+                    sexeEtu = SEXE.MASCULIN;
+                    break;
+            }
+            SEXE sexeexpected = SEXE.FEMININ;
+            Assert.Equal(sexeexpected, sexeEtu);
+        }
+
     }
     
 }
