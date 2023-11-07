@@ -21,7 +21,7 @@ namespace TestAPI
 
             EtuControlleur controller = new EtuControlleur();
 
-            var etudiantToAdd = new Etudiant(
+            Etudiant etudiantToAdd = new Etudiant(
                 1,
                 "Doe",
                 "John",
@@ -45,7 +45,7 @@ namespace TestAPI
 
             if (result is OkResult)
             {
-                
+                Assert.True(true, "L'ajout est un succès.");
             }
             else
             {
