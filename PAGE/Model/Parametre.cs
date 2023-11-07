@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAGE.Model.PatternObserveur;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,7 +14,7 @@ namespace PAGE.Model
     /// Logique de paramètre
     /// </summary>
     /// <author>Nordine</author>
-    public class Parametre
+    public class Parametre : Observable
     {
 
         #region Singleton
@@ -33,7 +34,7 @@ namespace PAGE.Model
             }
         }
 
-        private Parametre(){}
+        private Parametre() : base() {}
 
         #endregion
 
@@ -60,39 +61,8 @@ namespace PAGE.Model
             set 
             { 
                 this.langue = value;
-                ChangerLangue(value);
+                this.Notifier(value.ToString());
             }
-        }
-
-
-
-        /// <summary>
-        /// Change le dictionnaire de ressources utilisé pour changer la langue
-        /// </summary>
-        /// <param name="langue">nouvelle langue de l'app</param>
-        /// <author>Nordine</author>
-        public void ChangerLangue(LANGUE langue)
-        {
-            
-            ResourceDictionary dictionnaire = new ResourceDictionary();
-
-            //Affecte la bonne ressource selon la langue (par défaut français)
-            switch (langue)
-            {
-                case LANGUE.ANGLAIS:
-                    dictionnaire.Source = new Uri("Vue\\Ressources\\Res\\StringResources.en.xaml", UriKind.Relative);
-                    break;
-                case LANGUE.FRANCAIS:
-                    dictionnaire.Source = new Uri("Vue\\Ressources\\Res\\StringResources.fr.xaml", UriKind.Relative);
-                    break;
-                default:
-                    dictionnaire.Source = new Uri("Vue\\Ressources\\Res\\StringResources.fr.xaml", UriKind.Relative);
-                    break;
-            }
-
-            //Change la ressource utilisé par l'application
-            App.Current.Resources.MergedDictionaries.Add(dictionnaire);
-
         }
     }
 }

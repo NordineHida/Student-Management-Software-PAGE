@@ -14,13 +14,14 @@ namespace PAGE.Vue
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// Constucteur de la fenêtre (initialise les parametres s'ils existent
+        /// Constucteur de la fenêtre (initialise les parametres s'ils existent)
         /// </summary>
         /// <author>Nordine</author>
         public MainWindow()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
+
 
             //Deserialiser les parametres s'ils existent
             JsonSerializerParametre jsonParam = new JsonSerializerParametre();
