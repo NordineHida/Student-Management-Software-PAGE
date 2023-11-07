@@ -1,13 +1,11 @@
-﻿using APIEtudiant.Model;
-using APIEtudiant.Stockage;
-using PAGE.Stockage;
+﻿using APIEtudiant.Stockage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PAGE.Model
+namespace APIEtudiant.Model
 {
     /// <summary>
     /// Gère le DAO d'étudiant
@@ -72,6 +70,8 @@ namespace PAGE.Model
         {
             return EtuDAO.AddSeveralEtu(listeEtu);
         }
+
+
 
     }
 }

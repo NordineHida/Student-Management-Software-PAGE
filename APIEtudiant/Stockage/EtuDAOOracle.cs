@@ -5,8 +5,6 @@ using System.Drawing;
 using System.IO;
 using APIEtudiant.Model;
 using Oracle.ManagedDataAccess.Client;
-using PAGE.Model;
-using PAGE.Stockage;
 
 namespace APIEtudiant.Stockage
 {
