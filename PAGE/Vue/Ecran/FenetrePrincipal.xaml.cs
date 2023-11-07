@@ -53,12 +53,13 @@ namespace PAGE.Vue.Ecran
 
 
         #region trie 
+
         /// <summary>
-        /// code pour trié par ordre croisant et décroisant + recherche détudiant.
+        /// code pour trié par ordre croisant et décroisant quand on clic sur une colone.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// /// <author>Stephane</author>
+        /// <author>Stephane</author>
         private void Trie_Click(object sender, RoutedEventArgs e)
         {
             GridViewColumnHeader column = (sender as GridViewColumnHeader);
@@ -71,8 +72,9 @@ namespace PAGE.Vue.Ecran
                 // Efface les descriptions de tri existantes.
                 maListView.Items.SortDescriptions.Clear();
             }
-
+            
             ListSortDirection newDir;
+
 
             // Détermine la direction de tri en fonction de la valeur de 'isSortAscending'.
             // Si 'isSortAscending' est vrai, le tri est défini sur croissant, sinon sur décroissant.
@@ -91,12 +93,13 @@ namespace PAGE.Vue.Ecran
             // Ajouter une nouvelle description de tri à la liste 
             maListView.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
 
-            //lie maListeView a ListView
-            maListView.ItemsSource = maListView.Items; 
-
-
         }
 
+        /// <summary>
+        /// renvoi le filtre selctionner dans le combobox
+        /// </summary>
+        /// <returns>le filtre adapter</returns>
+        /// <author>Stephane</author>
         private Predicate<object> GetFilter()
         {
 
@@ -118,7 +121,12 @@ namespace PAGE.Vue.Ecran
             return resultat;
 
         }
-        // La fonction utilise les nom pour filtrer les Etudiant.
+        /// <summary>
+        /// La fonction utilise les nom pour filtrer les Etudiant.
+        /// </summary>
+        /// <param name="obj"></param>
+        ///<returns>renvoie le filtre par nom</returns>
+        /// <returns></returns>
         private bool NameFilter(object obj) 
         {
             var Filterobj = obj as Etudiant;
@@ -126,7 +134,12 @@ namespace PAGE.Vue.Ecran
         }
 
 
-        // La fonction utilise les prenom pour filtrer les Etudiant.
+        /// <summary>
+        /// La fonction utilise les prenom pour filtrer les Etudiant.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>renvoie le filtre par prénom</returns>
+        /// <author>Stephane</author>
         private bool FirstNameFilter(object obj)
         {
             var Filterobj = obj as Etudiant;
@@ -134,9 +147,13 @@ namespace PAGE.Vue.Ecran
         }
 
 
-
-        // Et utilisé quand la sélection de l'élément change dans le contrôle de sélection FilterBy.
-        // Elle met à jour le filtre appliqué fonction du choix de l'utilisateur.
+        /// <summary>
+        /// Et utilisé quand la sélection de l'élément change dans le contrôle de sélection FilterBy.
+        /// Elle met à jour le filtre appliqué fonction du choix de l'utilisateur.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Stephane</author>
         private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Applique le filtre approprié dans maListView en fonction du choix de l'utilisateur.
@@ -144,9 +161,13 @@ namespace PAGE.Vue.Ecran
 
         }
 
-
-        // Et utilisé quand un événement TextChanged est déclenché par le contrôle FilterTextBox.
-        // Elle met à jour le filtre appliqué à la collection d'objets affichée dans maListView en fonction du texte entré par l'utilisateur.
+        /// <summary>
+        /// Et utilisé quand un événement TextChanged est déclenché par le contrôle FilterTextBox.
+        /// Elle met à jour le filtre appliqué à la collection d'objets affichée dans maListView en fonction du texte entré par l'utilisateur.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Stephane</author>
         private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if(FilterTextBox.Text == null)
