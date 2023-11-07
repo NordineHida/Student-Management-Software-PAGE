@@ -1,4 +1,4 @@
-﻿namespace APIEtudiant.Model
+﻿namespace PAGE.Model
 {
     /// <summary>
     /// Les sexes possibles d'un étudiant
