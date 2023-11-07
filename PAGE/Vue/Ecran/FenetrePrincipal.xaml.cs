@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using PAGE.APIEtudiant.Stockage;
 using PAGE.Model;
-using PAGE.Vue.Ressources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,7 +102,7 @@ namespace PAGE.Vue.Ecran
 
         private void OpenParametresPage(object sender, RoutedEventArgs e)
         {
-            Parametre parametre = new Parametre();
+            ParametrePage parametre = new ParametrePage();
             parametre.Show();
 
             this.Close();

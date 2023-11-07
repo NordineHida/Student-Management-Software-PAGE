@@ -1,11 +1,11 @@
 ﻿namespace PAGE.Model
 {
     /// <summary>
-    /// Les sexes possibles d'un étudiant
+    /// Les langue possibles de l'application
     /// </summary>
     /// <author>Nordine</author>
-    public enum SEXE
+    public enum LANGUE
     {
-        MASCULIN, FEMININ, AUTRE
+        ANGLAIS, FRANCAIS
     }
 }

@@ -16,7 +16,7 @@
     <Compile Update="Vue\Ecran\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Vue\Ecran\Parametre.xaml.cs">
+    <Compile Update="Vue\Ecran\ParametrePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\MainWindow.xaml.cs">
@@ -33,7 +33,7 @@
     <Page Update="Vue\Ecran\LoginPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Vue\Ecran\Parametre.xaml">
+    <Page Update="Vue\Ecran\ParametrePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\MainWindow.xaml">

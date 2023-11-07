@@ -1,4 +1,5 @@
-﻿using PAGE.Vue.Ecran;
+﻿using PAGE.Model;
+using PAGE.Vue.Ecran;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,6 +21,9 @@ namespace PAGE.Vue
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
+
+            Parametre.Instance.ChangerLangue(Parametre.Instance.Langue);
+
         }
 
         /// <summary>

@@ -3,30 +3,29 @@
                     xmlns:system="clr-namespace:System;assembly=netstandard">
 
     <!--General (nordine)-->
-    <system:String x:Key="BtnValider">Valider</system:String>
-    <system:String x:Key="BtnAnnuler">Annuler</system:String>
+    <system:String x:Key="BtnValider">Submit</system:String>
+    <system:String x:Key="BtnAnnuler">Cancel</system:String>
 
     <!--Parametre (nordine)-->
-    <system:String x:Key="TitreParam">Paramètres</system:String>
-    <system:String x:Key="LabelLangueSelect">Langue séléctionnée :</system:String>
-    <system:String x:Key="LabelPathGeneration">Emplacement génération :</system:String>
-    <system:String x:Key="BtnParcourir">Parcourir...</system:String>
+    <system:String x:Key="TitreParam">Settings</system:String>
+    <system:String x:Key="LabelLangueSelect">Language selected:</system:String>
+    <system:String x:Key="LabelPathGeneration">Path :</system:String>
+    <system:String x:Key="BtnParcourir">Browse...</system:String>
 
     <!--ChoixPromotion (nordine)-->
-    <system:String x:Key="TitreFenetreChoixPromo">Choisissez votre promotion</system:String>
-    <system:String x:Key="LabelAnnee">Année :</system:String>
+    <system:String x:Key="TitreFenetreChoixPromo">Choose your promotion</system:String>
+    <system:String x:Key="LabelAnnee">Year :</system:String>
     <system:String x:Key="LabelPromotion">Promotion :</system:String>
 
     <!--Connexion (nordine)-->
-    <system:String x:Key="TitreFenetreConnexion">Connexion</system:String>
-    <system:String x:Key="TitreConnexion">Entrez vos informations de connexion</system:String>
-    <system:String x:Key="LabelLogin">Nom d'utilisateur ou e-mail :</system:String>
-    <system:String x:Key="LabelPassword">Mot de passse</system:String>
-    <system:String x:Key="BtnLogin">Se Connecter</system:String>
+    <system:String x:Key="TitreFenetreConnexion">Connection</system:String>
+    <system:String x:Key="TitreConnexion">Type your login informations</system:String>
+    <system:String x:Key="LabelLogin">Login or mail :</system:String>
+    <system:String x:Key="LabelPassword">Password</system:String>
+    <system:String x:Key="BtnLogin">Log in</system:String>
 
     <!--Bienvenue (nordine)-->
-    <system:String x:Key="TitreBienvenue">Bienvenue</system:String>
+    <system:String x:Key="TitreBienvenue">Welcome</system:String>
     
-    <!-- TRADUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUIRE-->
 
 </ResourceDictionary>

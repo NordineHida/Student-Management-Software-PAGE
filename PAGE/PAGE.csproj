@@ -36,9 +36,6 @@
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-SemiBold.ttf" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-SemiBoldItalic.ttf" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOneBlack.ttf" />
-    <None Remove="Vue\Ressources\logo.png" />
-    <None Remove="Vue\Ressources\logoIUT.png" />
-    <None Remove="Vue\Ressources\logoPage.png" />
     <None Remove="Vue\Ressources\Picto\account-arrow-right.png" />
     <None Remove="Vue\Ressources\Picto\account-check.png" />
     <None Remove="Vue\Ressources\Picto\account-edit.png" />

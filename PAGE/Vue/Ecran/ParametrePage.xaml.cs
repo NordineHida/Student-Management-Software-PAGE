@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAGE.Model;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -8,50 +9,39 @@ namespace PAGE.Vue.Ecran
     /// <summary>
     /// Logique d'interaction pour Parametre.xaml
     /// </summary>
-    public partial class Parametre : Window
+    public partial class ParametrePage : Window
     {
-        private string pathGenerationWord;
-
-        private string langueCode;
-
-        /// <summary>
-        /// Chemin de génération du word final
-        /// </summary>
-        /// <author>Nordine</author>
-        public string PathGenerationWord { get=> pathGenerationWord;}
 
         /// <summary>
         /// Constructeur de paramètre (initialise le path du word au bureau)
         /// </summary>
         /// <author>Nordine</author>
-        public Parametre()
+        public ParametrePage()
         {
             InitializeComponent();
             //Initialise le chemin de generation au bureau (DEPUIS SAUVEGARDE JSON APRES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
-            this.pathGenerationWord = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             //Initialise la langue  (DEPUIS SAUVEGARDE JSON APRES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
-            this.langueCode = "fr";
             InitialiserComboBoxSelectedItem();
 
 
             //Initialise le label
-            LabelPathGeneration.Text = pathGenerationWord;
+            LabelPathGeneration.Text = Parametre.Instance.PathGenerationWord;
         }
 
         /// <summary>
-        /// Initialise la ComboBox en fonction de la langueCode
+        /// Initialise la ComboBox en fonction de la langue des paramètres
         /// </summary>
         /// <param name="codeLangue">code de la langue des paramètres</param>
         /// <author>Nordine</author>
         private void InitialiserComboBoxSelectedItem()
         {
-            switch (this.langueCode)
+            switch (Parametre.Instance.Langue)
             {
-                case "en":
+                case LANGUE.ANGLAIS:
                     ComboBoxLangue.SelectedIndex = 1; // English
                     break;
-                case "fr":
+                case LANGUE.FRANCAIS:
                     ComboBoxLangue.SelectedIndex = 0; // Français
                     break;
                 default:
@@ -68,11 +58,20 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
+            FermerFenetre();
+
+        }
+
+        /// <summary>
+        /// Ferme la fenetre actuelle et ouvre la fenetre principal
+        /// </summary>
+        /// <author>Nordine</author>
+        private void FermerFenetre()
+        {
             FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
             fenetrePrincipal.Show();
 
             this.Close();
-
         }
 
         /// <summary>
@@ -84,9 +83,20 @@ namespace PAGE.Vue.Ecran
         private void ValiderParam(object sender, RoutedEventArgs e)
         {
             //LEs N'EST PAS ENCORE IMPLEMENTé DOIT SAUVEGARDER DANS UN JSON
-            throw new NotImplementedException();
-        }
 
+            //Si un item est choisi
+            if (ComboBoxLangue.SelectedItem != null)
+            {
+                //on récupere quel langue est selectionnée
+                ComboBoxItem langueChoisie = (ComboBoxItem)ComboBoxLangue.SelectedItem;
+                string langueChoisieString = langueChoisie.Content.ToString();
+
+                ChangerLangue(langueChoisieString);
+            }
+
+            FermerFenetre();
+
+        }
 
         /// <summary>
         /// Change le chemin de génération du word (par défaut va sur le bureau)
@@ -96,6 +106,9 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void ChangerPathWord(object sender, RoutedEventArgs e)
         {
+            //VERIFIE AVEC INSTANCE DE PARAMETRE IICII !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            
             //Ouvrir l'explorateur de fichier au bureau
             string cheminBureau = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             FolderBrowserDialog dialog = new FolderBrowserDialog();
@@ -105,11 +118,11 @@ namespace PAGE.Vue.Ecran
             //Si on valide, on récupere le nouveau path du word
             if (resultat == System.Windows.Forms.DialogResult.OK )
             {
-                pathGenerationWord= dialog.SelectedPath;
+                Parametre.Instance.PathGenerationWord = dialog.SelectedPath;
             }
 
             //On actualise le texte du label
-            LabelPathGeneration.Text = pathGenerationWord;
+            LabelPathGeneration.Text = Parametre.Instance.PathGenerationWord;
 
         }
 
@@ -121,28 +134,16 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            /*
             //Si un item est choisi
             if (ComboBoxLangue.SelectedItem != null)
             {
                 //on récupere quel langue est selectionnée
                 ComboBoxItem langueChoisie = (ComboBoxItem)ComboBoxLangue.SelectedItem;
-                string? langueChoisieString = langueChoisie.Content.ToString();
+                string langueChoisieString = langueChoisie.Content.ToString();
 
-                //Switch des langues possibles avec français par défaut
-                switch (langueChoisieString)
-                {
-                    case "English":
-                        ChangerLangue("en");
-                        break;
-                    case "Français":
-                        ChangerLangue("fr");
-                        break;
-                    default:
-                        ChangerLangue("fr");
-                        break;
-                }
-
-            }
+                ChangerLangue(langueChoisieString);
+            }*/
         }
 
         /// <summary>
@@ -152,23 +153,18 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void ChangerLangue(string langueCode)
         {
-            ResourceDictionary dictionnaire = new ResourceDictionary();
-
             switch(langueCode)
             {
-                case "en":
-                    dictionnaire.Source = new Uri("Vue\\Ressources\\Res\\StringResources.en.xaml", UriKind.Relative);
+                case "English":
+                    Parametre.Instance.Langue = LANGUE.ANGLAIS;
                     break;
-                case "fr":
-                    dictionnaire.Source = new Uri("Vue\\Ressources\\Res\\StringResources.fr.xaml", UriKind.Relative);
+                case "Français":
+                    Parametre.Instance.Langue = LANGUE.FRANCAIS;
                     break;
                 default:
-                    dictionnaire.Source = new Uri("Vue\\Ressources\\Res\\StringResources.fr.xaml", UriKind.Relative);
+                    Parametre.Instance.Langue = LANGUE.FRANCAIS;
                     break;
             }
-
-            this.Resources.MergedDictionaries.Add(dictionnaire);
-
         }
 
     }
