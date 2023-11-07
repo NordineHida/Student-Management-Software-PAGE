@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using PAGE.Model;
+using APIEtudiant.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PAGE.Controlleurs
+namespace APIEtudiant.Controllers
 {
     /// <summary>
     /// Controlleur de l'API

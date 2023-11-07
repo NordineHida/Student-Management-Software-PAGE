@@ -1,11 +1,11 @@
-﻿using PAGE.Model;
+﻿using APIEtudiant.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PAGE.Stockage
+namespace APIEtudiant.Stockage
 {
     /// <summary>
     /// Interface de DAO des étudiants
