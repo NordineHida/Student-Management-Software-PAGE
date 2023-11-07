@@ -3,7 +3,6 @@
     public class Note
     {
         #region attributs
-        private int idNote;
         private string categorie;
         private DateTime datePublication;
         private string nature;
@@ -12,12 +11,6 @@
         #endregion
 
         #region Propriétés
-        /// <summary>
-        /// Récupère ou définit l'idetifiant de la note.
-        /// </summary>
-        /// <author>Laszlo</author>
-        public int IdNote {  get { return idNote; } }
-
         /// <summary>
         /// Récupère ou définit la catégorie de la note.
         /// </summary>
