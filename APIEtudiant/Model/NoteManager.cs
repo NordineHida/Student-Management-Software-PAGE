@@ -11,7 +11,7 @@ namespace APIEtudiant.Model
         private static NoteManager instance;
 
         /// <summary>
-        /// Renvoie la seule instance d'EtuManager
+        /// Renvoie la seule instance de NoteManager
         /// </summary>
         /// <author>Laszlo</author>
         public static NoteManager Instance
@@ -29,7 +29,7 @@ namespace APIEtudiant.Model
 
         #endregion
 
-        //DAO d'étudiant (Permet de changer directement tout les DAO)
+        //DAO d'étudiant 
         private IEtuDAO EtuDAO => EtudiantDAOOracle.Instance;
 
         /// <summary>

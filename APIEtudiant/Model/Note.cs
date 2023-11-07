@@ -1,5 +1,8 @@
 ﻿namespace APIEtudiant.Model
 {
+    /// <summary>
+    /// les notes écrites par les différents acteurs de l'application à propos des étudiants
+    /// </summary>
     public class Note
     {
         #region attributs

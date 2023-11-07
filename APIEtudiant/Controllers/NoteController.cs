@@ -7,7 +7,7 @@ namespace APIEtudiant.Controllers
     /// <summary>
     /// Controlleur de l'API pour les notes
     /// </summary>
-    /// <author>Nordine</author>
+    /// <author>Laszlo</author>
     [ApiController]
     [Route("[controller]")]
     public class NoteController : ControllerBase

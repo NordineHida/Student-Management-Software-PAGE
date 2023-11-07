@@ -10,6 +10,9 @@
     <Compile Update="Vue\Ecran\ChoixPromo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\CreationNote.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\FenetrePrincipal.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -33,6 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Vue\Ecran\ChoixPromo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\CreationNote.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\FenetrePrincipal.xaml">
