@@ -13,7 +13,7 @@ namespace APIEtudiant.Model
         private string nature;
         private string commentaire;
         private int apogeeEtudiant;
-        private Blob pieceJointe;
+        private byte[] pieceJointe;
         #endregion
 
         #region Propriétés
@@ -51,7 +51,7 @@ namespace APIEtudiant.Model
         /// Récupère ou définit une pièce jointe de la note
         /// </summary>
         /// <author>Yamato</author>
-        public Blob PieceJointe { get { return pieceJointe; } set { pieceJointe = value; } }
+        public byte[] PieceJointe { get { return pieceJointe; } set { pieceJointe = value; } }
 
         #endregion
 
@@ -68,7 +68,7 @@ namespace APIEtudiant.Model
         /// <param name="apogeeEtudiant">Numéro apogée de l'étudiant dont la note parle</param>
         /// <param name="pieceJointe">Pièce jointe de la note</param>
         /// <author>Laszlo et Yamato</author>
-        public Note(string categorie, DateTime datePublication, string nature, string commentaire, int apogeeEtudiant, Blob pieceJointe)
+        public Note(string categorie, DateTime datePublication, string nature, string commentaire, int apogeeEtudiant, byte[] pieceJointe)
         {
             this.categorie = categorie;
             this.datePublication = datePublication;
@@ -85,7 +85,7 @@ namespace APIEtudiant.Model
         /// <author>Laszlo</author>
         public override string ToString()
         {
-            return String.Format("Catégorie : {0}, Date : {1}, Nature : {2}, Commentaire : {3}, Pièce Jointe : {5} ", this.commentaire, this.datePublication.ToString(), this.nature, this.commentaire, this.pieceJointe.ToString());
+            return String.Format("Catégorie : {0}, Date : {1}, Nature : {2}, Commentaire : {3}", this.commentaire, this.datePublication.ToString(), this.nature, this.commentaire);
         }
         #endregion 
     }

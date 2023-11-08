@@ -17,6 +17,7 @@ namespace PAGE.Model
         private string nature;
         private string commentaire;
         private int apogeeEtudiant;
+        private byte[] pieceJointe;
         #endregion
 
         #region Propriétés
@@ -49,6 +50,12 @@ namespace PAGE.Model
         /// </summary>
         /// <author>Laszlo</author>
         public int ApogeeEtudiant { get { return apogeeEtudiant; } set { apogeeEtudiant = value; } }
+
+        /// <summary>
+        /// Récupère ou définite la pièce jointe dans la note
+        /// </summary>
+        /// <author>Yamato</author>
+        public byte[] PieceJointe { get { return pieceJointe; } set { pieceJointe = value; } }
 
         #endregion
 

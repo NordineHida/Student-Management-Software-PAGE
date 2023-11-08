@@ -3,7 +3,9 @@ using PAGE.APIEtudiant.Stockage;
 using PAGE.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -82,6 +84,9 @@ namespace PAGE.Vue.Ecran
             {
                 // Obtenez le chemin du fichier sélectionné
                 string selectedFilePath = openFileDialog.FileName;
+
+                byte[] pieceJointe = File.ReadAllBytes(selectedFilePath);
+                note.PieceJointe = pieceJointe;
 
                 // Obtenez le contenu actuel du TextBox
                 string currentContent = PieceJointeTextBlock.Text;
