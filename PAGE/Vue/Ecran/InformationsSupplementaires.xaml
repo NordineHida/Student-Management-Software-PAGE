@@ -126,6 +126,16 @@
             </WrapPanel>
 
         </StackPanel>
+
+        <!-- Liste des étudiants (stephane) -->
+        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="9" >
+            <ListView.View>
+                <GridView>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 
 </Window>
