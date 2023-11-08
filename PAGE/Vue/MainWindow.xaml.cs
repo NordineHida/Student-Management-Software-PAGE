@@ -1,4 +1,5 @@
-﻿using PAGE.Vue.Ecran;
+﻿using PAGE.Model;
+using PAGE.Vue.Ecran;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,13 +14,20 @@ namespace PAGE.Vue
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// Constucteur de la fenêtre 
+        /// Constucteur de la fenêtre (initialise les parametres s'ils existent)
         /// </summary>
         /// <author>Nordine</author>
         public MainWindow()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
+
+
+            //Deserialiser les parametres s'ils existent
+            JsonSerializerParametre jsonParam = new JsonSerializerParametre();
+            jsonParam.Load();
+
+
         }
 
         /// <summary>

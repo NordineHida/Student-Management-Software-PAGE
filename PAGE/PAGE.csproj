@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,9 +36,6 @@
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-SemiBold.ttf" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-SemiBoldItalic.ttf" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOneBlack.ttf" />
-    <None Remove="Vue\Ressources\logo.png" />
-    <None Remove="Vue\Ressources\logoIUT.png" />
-    <None Remove="Vue\Ressources\logoPage.png" />
     <None Remove="Vue\Ressources\Picto\account-arrow-right.png" />
     <None Remove="Vue\Ressources\Picto\account-check.png" />
     <None Remove="Vue\Ressources\Picto\account-edit.png" />
@@ -165,30 +163,6 @@
     <Content Include="Vue\Ressources\Img\logoPage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Vue\Ressources\Res\Strings.en.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Strings.en.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Vue\Ressources\Res\Strings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Vue\Ressources\Res\Strings.en.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Vue\Ressources\Res\Strings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

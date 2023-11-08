@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Height="650" Width="1200"
-        Title="{x:Static res:Strings.Title}">
+        Title="{DynamicResource TitreFenetreConnexion}">
 
     <!--Fond (Nordine)-->
     <Window.Background>
@@ -33,27 +32,28 @@
         </Grid.ColumnDefinitions>
 
         <!-- Titre (Nordine) -->
-        <TextBlock Text="{x:Static res:Strings.TitreLogin}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="#FF2B2B5A" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Open Sauce One" Height="30" Width="458"/>
+        <TextBlock Text="{DynamicResource TitreConnexion}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="#FF2B2B5A" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Open Sauce One" />
 
         <!-- Label pour Nom d'utilisateur ou E-mail -->
-        <Label Content="{x:Static res:Strings.UtilisateurLogin}" FontSize="16" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One" Height="30" Width="226"/>
+        <Label Content="{DynamicResource LabelAnnee}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
 
         <!-- TextBox pour le nom d'utilisateur (Lucas & Nordine) -->
-        <TextBox x:Name="txtUsername"  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontFamily="Open Sauce One Light" Height="20"/>
+        <TextBox x:Name="txtUsername"  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontFamily="Open Sauce One Light" Height="40"/>
 
         <!-- Label pour le mot de passe (Lucas & Nordine) -->
-        <Label Content="{x:Static res:Strings.MDPLogin}" FontSize="16" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One" Height="29" Width="120"/>
+        <Label Content="{DynamicResource LabelPassword}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
 
         <!-- PasswordBox pour le mot de passe (Lucas & Nordine) -->
-        <PasswordBox x:Name="txtPassword" FontSize="14" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Height="21"/>
+        <PasswordBox x:Name="txtPassword" FontSize="14" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Height="40"/>
 
         <!--Bouton de Connexion (Nordine)-->
-        <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{x:Static res:Strings.BoutonConnexion}"  FontSize="20" Click="BoutonLogin" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20"/>
+        <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnLogin}"  FontSize="40" Click="BoutonLogin" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20"/>
 
         <!--Bouton pour annuler (Nordine)-->
-        <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Annuler" Padding="10" FontSize="24" Click="CloseLoginWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20"/>
+        <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="40" Click="CloseLoginWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20"/>
         <Image Source="/Vue/Ressources/Img/LogoIUT.png" Grid.ColumnSpan="2" Margin="10,-4,280,106" Grid.RowSpan="2"/>
 
 
     </Grid>
 </Window>
+

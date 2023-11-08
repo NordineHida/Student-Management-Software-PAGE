@@ -1,0 +1,66 @@
+﻿<Window x:Class="PAGE.Vue.Ecran.ParametrePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Height="650" Width="1200"
+        Title="{DynamicResource TitreParam}">
+
+    <!--Fond (Nordine)-->
+    <Window.Background>
+        <SolidColorBrush Color="#bfd7eb" />
+    </Window.Background>
+
+    <Grid>
+        <!--Grille (Nordine)-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Titre (Nordine) -->
+        <TextBlock Text="{DynamicResource TitreParam}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"  FontWeight="Bold" Foreground="#FF2B2B5A" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Open Sauce One" />
+
+        <!--ComboBox des langues disponibles-->
+        <ComboBox x:Name="ComboBoxLangue" Grid.Column="2" Grid.Row="1" Margin="70,40,70,40" Background="#FF2A2B5B" BorderBrush="#FF2A2B5B" FontSize="18" FontFamily="Open Sauce One">
+            <ComboBoxItem FontSize="18" FontFamily="Open Sauce One" Foreground="#FF2A2B5B" >Français</ComboBoxItem>
+            <ComboBoxItem FontSize="18" FontFamily="Open Sauce One" Foreground="#FF2A2B5B">English</ComboBoxItem>
+        </ComboBox>
+
+        <!-- Label pour la langue (nordine) -->
+        <Label Content="{DynamicResource LabelLangueSelect}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
+
+        <!-- TextBox pour le path de génération du word (Nordine) -->
+        <TextBox x:Name="LabelPathGeneration" Text="" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontFamily="Open Sauce One Light" Height="30" FontSize="20"/>
+
+        <!-- Label l'emplacement de génération du word (Nordine) -->
+        <Label Content="{DynamicResource LabelPathGeneration}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One" />
+
+        <!-- PasswordBox pour le mot de passe (Nordine) -->
+        <Button Content="{DynamicResource BtnParcourir}" Click="ChangerPathWord" Grid.Column="2" Grid.Row="2"  Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One"  FontSize="25"  Margin="0,106,0,0" HorizontalAlignment="Center" Width="186" Height="36" VerticalAlignment="Top" Grid.RowSpan="2"/>
+
+
+        <!--Bouton de Connexion (Nordine)-->
+        <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}"  FontSize="40" Click="ValiderParam" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20"/>
+
+        <!--Bouton pour annuler (Nordine)-->
+        <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="40" Click="CloseWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20"/>
+        <Image Source="/Vue/Ressources/Img/LogoIUT.png" Grid.ColumnSpan="2" Margin="10,-4,280,106" Grid.RowSpan="2"/>
+
+
+
+    </Grid>
+</Window>

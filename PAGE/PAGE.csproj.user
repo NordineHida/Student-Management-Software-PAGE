@@ -19,20 +19,12 @@
     <Compile Update="Vue\Ecran\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\ParametrePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Vue\Ecran\ParametresPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Vue\Ressources\Res\Strings.en.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Vue\Ressources\Res\Strings.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Vue\Ecran\ChoixPromo.xaml">
@@ -47,10 +39,16 @@
     <Page Update="Vue\Ecran\LoginPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Vue\Ecran\ParametrePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Vue\Ecran\ParametresPage.xaml">
+    <Page Update="Vue\Ressources\Res\StringResources.en.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ressources\Res\StringResources.fr.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

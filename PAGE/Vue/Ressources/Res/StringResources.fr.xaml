@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:system="clr-namespace:System;assembly=netstandard">
+
+    <!--General (nordine)-->
+    <system:String x:Key="BtnValider">Valider</system:String>
+    <system:String x:Key="BtnAnnuler">Annuler</system:String>
+
+    <!--Parametre (nordine)-->
+    <system:String x:Key="TitreParam">Paramètres</system:String>
+    <system:String x:Key="LabelLangueSelect">Langue séléctionnée :</system:String>
+    <system:String x:Key="LabelPathGeneration">Emplacement génération :</system:String>
+    <system:String x:Key="BtnParcourir">Parcourir...</system:String>
+
+    <!--ChoixPromotion (nordine)-->
+    <system:String x:Key="TitreFenetreChoixPromo">Choisissez votre promotion</system:String>
+    <system:String x:Key="LabelAnnee">Année :</system:String>
+    <system:String x:Key="LabelPromotion">Promotion :</system:String>
+
+    <!--Connexion (nordine)-->
+    <system:String x:Key="TitreFenetreConnexion">Connexion</system:String>
+    <system:String x:Key="TitreConnexion">Entrez vos informations de connexion</system:String>
+    <system:String x:Key="LabelLogin">Nom d'utilisateur ou e-mail :</system:String>
+    <system:String x:Key="LabelPassword">Mot de passse</system:String>
+    <system:String x:Key="BtnLogin">Se Connecter</system:String>
+
+    <!--Bienvenue (nordine)-->
+    <system:String x:Key="TitreBienvenue">Bienvenue !</system:String>
+
+
+
+</ResourceDictionary>

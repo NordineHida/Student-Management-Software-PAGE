@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
-        xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
         WindowStartupLocation="CenterScreen"
-        Title="ChoixPromo" Height="450" Width="800">
+
+        Title="{DynamicResource TitreFenetreChoixPromo}" Height="450" Width="800">
 
     <!--Fond (Nordine)-->
     <Window.Background>
@@ -28,15 +27,15 @@
         </Grid.ColumnDefinitions>
 
         <!--Texte (Nordine)-->
-        <TextBlock Text="Année :" FontSize="50" FontFamily="Open Sauce One" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="#FF2B2B5A" />
-        <TextBlock Text="Promotion :" FontSize="50" FontFamily="Open Sauce One" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF2B2B5A" />
+        <TextBlock Text="{DynamicResource LabelAnnee}" FontSize="50" FontFamily="Open Sauce One" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="#FF2B2B5A" />
+        <TextBlock Text="{DynamicResource LabelPromotion}" FontSize="50" FontFamily="Open Sauce One" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF2B2B5A" />
 
         <!--ComboBox (Nordine)-->
         <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120"/>
         <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120"/>
 
         <!--Bouton Valider (Nordine)-->
-        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="275,20,275,20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Valider" FontSize="24" Click="ValiderChoixPromo"/>
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="275,20,275,20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}" FontSize="24" Click="ValiderChoixPromo"/>
 
     </Grid>
 </Window>
