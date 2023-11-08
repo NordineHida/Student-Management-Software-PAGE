@@ -136,54 +136,74 @@ namespace APIEtudiant.Stockage
         /// <param name="etu">etudiant qu'on veut ajouter</param>
         /// <returns>si l'ajout est un succes</returns>
         /// <author>Nordine</author>
-        public bool AddEtu(Etudiant? etu)
+        public bool AddEtu(Etudiant etu)
         {
             bool ajoutReussi = false;
+
             if (etu != null)
             {
+                // L'étudiant n'existe pas, nous l'insérons
+                string etuSexe;
+                switch (etu.Sexe)
+                {
+                    case SEXE.FEMININ:
+                        etuSexe = "F";
+                        break;
+                    case SEXE.MASCULIN:
+                        etuSexe = "M";
+                        break;
+                    default:
+                        etuSexe = "A";
+                        break;
+                }
+
+                string estBoursier = etu.EstBoursier ? "OUI" : "NON";
+
                 // Création d'une connexion Oracle
                 Connection con = new Connection();
 
                 try
                 {
+                    // On vérifie si un étudiant avec le même numéro d'apogée existe déjà
+                    string checkIfExistsQuery = $"SELECT COUNT(*) FROM Etudiant WHERE numApogee = {etu.NumApogee}";
+                    OracleCommand checkIfExistsCmd = new OracleCommand(checkIfExistsQuery, con.OracleConnexion);
+                    int existingCount = Convert.ToInt32(checkIfExistsCmd.ExecuteScalar());
 
-
-                    //On adapte l'énumeration du sexe de l'étudiant 
-                    string etuSexe;
-                    switch (etu.Sexe)
+                    if (existingCount > 0)
                     {
-                        case SEXE.FEMININ:
-                            etuSexe = "F";
-                            break;
-                        case SEXE.MASCULIN:
-                            etuSexe = "M";
-                            break;
-                        default:
-                            etuSexe = "A";
-                            break;
+                        // L'étudiant existe déjà, nous devons effectuer une mise à jour
+                        string updateQuery = string.Format(@"UPDATE Etudiant
+                                                   SET nom = '{0}', prenom = '{1}', sexe = '{2}', typeBac = '{3}', mail = '{4}', groupe = '{5}', estBoursier = '{6}', regimeFormation = '{7}', dateNaissance = TO_DATE('{8}', 'YYYY-MM-DD'), adresse = '{9}', telPortable = {10}, telFixe = {11}, login = '{12}'
+                                                   WHERE numApogee = {13}",
+                                                          etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, etu.Groupe,
+                                                          estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
+                                                          etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login, etu.NumApogee);
+
+                        OracleCommand updateCmd = new OracleCommand(updateQuery, con.OracleConnexion);
+
+                        if (updateCmd.ExecuteNonQuery() == 1)
+                        {
+                            ajoutReussi = true;
+                        }
                     }
-
-                    //On adapte le booleen estBoursier pour avoir "OUI" pour true et "NON" pour false
-                    string estBoursier;
-                    if (etu.EstBoursier) estBoursier = "OUI";
-                    else estBoursier = "NON";
-
-                    // On créer la requête SQL
-                    string requete = String.Format("INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login)" +
-                        "VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', TO_DATE('{9}', 'YYYY-MM-DD'), '{10}', {11}, {12}, '{13}')",etu.NumApogee,etu.Nom,etu.Prenom,etuSexe,etu.TypeBac, etu.Mail, etu.Groupe
-                        , estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"), etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
-
-                    //On execute la requete
-                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
-
-
-                    //On verifie que la ligne est bien inséré, si oui on passe le bool à true
-                    if (cmd.ExecuteNonQuery() == 1)
+                    else
                     {
-                        ajoutReussi = true;
+
+
+                        string insertQuery = string.Format(@"INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login)
+                                                   VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', TO_DATE('{9}', 'YYYY-MM-DD'), '{10}', {11}, {12}, '{13}')",
+                                                          etu.NumApogee, etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, etu.Groupe,
+                                                          estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
+                                                          etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
+
+                        OracleCommand insertCmd = new OracleCommand(insertQuery, con.OracleConnexion);
+
+                        if (insertCmd.ExecuteNonQuery() == 1)
+                        {
+                            ajoutReussi = true;
+                        }
                     }
                 }
-                // Gestion des exceptions
                 catch (OracleException ex)
                 {
                     Console.WriteLine(ex.Message);
@@ -203,8 +223,10 @@ namespace APIEtudiant.Stockage
                     }
                 }
             }
+
             return ajoutReussi;
         }
+
 
 
         /// <summary>
