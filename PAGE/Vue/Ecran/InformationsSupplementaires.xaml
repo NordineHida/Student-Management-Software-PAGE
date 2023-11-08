@@ -1,0 +1,131 @@
+﻿<Window x:Class="PAGE.Vue.Ecran.InformationsSupplementaires"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PAGE.Vue.Ecran"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="InformationsSupplementaires" Height="1000" Width="1500">
+
+    <Window.Background>
+        <SolidColorBrush Color="#bfd7eb" />
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <!-- Première ligne pour le logo -->
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+            <!-- Troisième ligne pour la liste des étudiants -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="6*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0"  Width="250" Height="Auto" Grid.ColumnSpan="3" />
+
+        <Rectangle Stretch="UniformToFill" Fill="White" Stroke="Black" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="59" />
+
+        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="260" Margin="0,40,0,0" Grid.RowSpan="25"  />
+
+        <!-- Informations Importantes -->
+
+        <!-- Nom et Prenom (Nordine & Yamato) -->
+        <TextBlock Text="Nom : " HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="1" />
+        <TextBlock x:Name="txtName" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="3" />
+
+        <TextBlock Text="Prénom : " HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="1" />
+        <TextBlock x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="3" />
+
+        <TextBlock Text="NumApogee : " HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="1" />
+        <TextBlock x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="3" />
+
+        <TextBlock Text="Groupe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="1" />
+        <TextBlock x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="3" />
+
+        <TextBlock Text="Adresse mail : " HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="1" />
+        <TextBlock x:Name="txtMail" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="3" />
+
+        <!-- Sexe (Nordine & Yamato)-->
+        <TextBlock Text="Sexe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="1" />
+        <TextBlock x:Name="txtSexe" HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="3" />
+
+        <!-- Type de bac obtenu (Nordine & Yamato) -->
+        <TextBlock Text="Bac obtenu : " HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="1" />
+        <TextBlock x:Name="txtTypebac" HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="3" />
+
+        <!-- Statut (Boursier ou non)  (Nordine & Yamato)-->
+        <TextBlock Text="Boursier : " HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="1" />
+        <TextBlock x:Name="txtBoursier" HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="3" />
+
+        <!-- Régime de formation (Nordine & Yamato)-->
+        <TextBlock Text="Régime : " HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
+        <TextBlock x:Name="txtRegime" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="3" />
+
+        <!-- Informations Complémentaires (Nordine & Yamato) -->
+
+        <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato)-->
+        <Button Content="Afficher les informations complémentaires" Click="InfosComp_Click" Margin="20,0,20,0" Grid.Row="18" />
+
+        
+        <StackPanel x:Name="contInfosComp" Visibility="Collapsed" Orientation="Vertical" Grid.RowSpan="2" Grid.Row="19"  Grid.Column="1"  Grid.ColumnSpan="2">
+
+            <!-- Date de naissance -->
+            <WrapPanel>
+                <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="Date de naissance : " Margin="0,20,0,0" />
+                <TextBlock x:Name="txtDateNaissance2" FontSize="20" Margin="30,20,0,0"/>
+            </WrapPanel>
+
+
+                <!-- Adresse de résidence -->
+            <WrapPanel>
+                <TextBlock x:Name="txtAdresse1" FontSize="20" Text="Adresse de résidence : " Margin="0,20,0,0"/>
+                <TextBlock x:Name="txtAdresse2" FontSize="20" Margin="30,20,0,0"  />
+            </WrapPanel>
+
+            <!-- Téléphone fixe -->
+            <WrapPanel>
+                <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="Téléphone fixe : " Margin="0,20,0,0" />
+                <TextBlock x:Name="txtTelFixe2" FontSize="20"  Margin="30,20,0,0"/>
+            </WrapPanel>
+
+            <!-- Téléphone portable -->
+            <WrapPanel>
+                <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="Téléphone portable : " Margin="0,20,0,0"/>
+                <TextBlock x:Name="txtTelPortable2" FontSize="20"  Margin="30,20,0,0" />
+            </WrapPanel>
+
+            <!-- Login réseau -->
+            <WrapPanel>
+                <TextBlock x:Name="txtLogin1" FontSize="20" Text="Login réseau : " Margin="0,20,0,0" />
+                <TextBlock x:Name="txtLogin2" FontSize="20" Margin="30,20,0,0"  />
+            </WrapPanel>
+            
+        </StackPanel>
+    </Grid>
+
+</Window>
