@@ -4,17 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
+        xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Title="Page" 
-        Height="1000" Width="1500">
+        Title="{x:Static res:Strings.Title}" Height="1000" Width="1500">
+
 
 
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
     </Window.Background>
-    
+
     <Window.Resources>
         <!--Style des boutons aves picto-->
         <Style x:Key="ImageButtonStyle" TargetType="Button">
@@ -53,7 +54,7 @@
 
         <!-- Logo avec effet d'ombre -->
         <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0" Grid.Column="0" Margin="10" Width="150" Height="150" />
-        
+
 
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
@@ -73,28 +74,52 @@
             <Button Style="{StaticResource ImageButtonStyle}" Click="BoutonActualiserListeEtudiant">
                 <Image Source="/Vue/Ressources/Picto/refresh.png"  Stretch="Uniform" Margin="9"/>
             </Button>
-            
 
             <Button Style="{StaticResource ImageButtonStyle}" Click="OpenPromoPage">
                 <Image Source="/Vue/Ressources/Picto/calendar-account.png"  Stretch="Uniform" Margin="10"/>
             </Button>
-            
+
+
+
         </StackPanel>
 
-        <!-- Liste des étudiants -->
+        <!-- Liste des étudiants (stephane) -->
         <ListView Name="maListView" Grid.Column="1" Margin="30" Grid.Row="2" Background="#FFDFEAFF">
-            <ListView.Resources>
-                <ContextMenu x:Key="ItemContextMenu">
-                    <MenuItem Header="Créer une note" Click="OpenCreationNote"/>
-                </ContextMenu>
-            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding NumApogee}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="NumApogee" Click="Trie_Click">NumApogee</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Nom}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Nom" Click="Trie_Click">Nom</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Prenom }">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Prenom" Click="Trie_Click">Prenom</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
 
-            <ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}" >
-                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}" />
-                </Style>
-            </ListView.ItemContainerStyle>
         </ListView>
-         
+
+        <!-- search bar des étudiants (stephane) -->
+        <Border Padding="0 5" Margin="105,111,1030,28" Grid.Column="1">
+            <Grid>
+                <ComboBox x:Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180" Margin="0,-27,0,0">
+                    <ComboBoxItem>Nom</ComboBoxItem>
+                    <ComboBoxItem>Prenom</ComboBoxItem>
+                </ComboBox>
+                <TextBox  x:Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180"/>
+            </Grid>
+        </Border>
+
+
+
+
     </Grid>
 </Window>
