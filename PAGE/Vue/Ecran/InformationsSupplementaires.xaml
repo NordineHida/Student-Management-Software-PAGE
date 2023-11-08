@@ -50,25 +50,25 @@
 
         <Rectangle Stretch="UniformToFill" Fill="White" Stroke="Black" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="59" />
 
-        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="260" Margin="0,40,0,0" Grid.RowSpan="25"  />
+        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Height="300" Width="260" Margin="0,14,0,0" Grid.RowSpan="11"  />
 
         <!-- Informations Importantes -->
 
         <!-- Nom et Prenom (Nordine & Yamato) -->
         <TextBlock Text="Nom : " HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtName" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="3" />
+        <TextBox IsReadOnly="True" x:Name="txtName" HorizontalAlignment="Left" FontSize="15" Grid.Row="1" Grid.Column="3" />
 
         <TextBlock Text="Prénom : " HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="3" />
+        <TextBox IsReadOnly="True" x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="15" Grid.Row="3" Grid.Column="3" />
 
         <TextBlock Text="NumApogee : " HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="3" />
+        <TextBox IsReadOnly="True" x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="15" Grid.Row="5" Grid.Column="3" />
 
         <TextBlock Text="Groupe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="3" />
+        <TextBox IsReadOnly="True" x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="15" Grid.Row="7" Grid.Column="3" />
 
         <TextBlock Text="Adresse mail : " HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtMail" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="3" />
+        <TextBox IsReadOnly="True" x:Name="txtMail" HorizontalAlignment="Left" FontSize="15" Grid.Row="9" Grid.Column="3" />
 
         <!-- Sexe (Nordine & Yamato)-->
         <TextBlock Text="Sexe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="1" />
@@ -81,7 +81,7 @@
 
         <!-- Type de bac obtenu (Nordine & Yamato) -->
         <TextBlock Text="Bac obtenu : " HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtTypebac" HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="3" />
+        <TextBox IsReadOnly="True" x:Name="txtTypebac" HorizontalAlignment="Left" FontSize="15" Grid.Row="13" Grid.Column="3" />
 
         <!-- Statut (Boursier ou non)  (Nordine & Yamato)-->
         <TextBlock Text="Boursier : " HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="1" />
@@ -92,7 +92,7 @@
 
         <!-- Régime de formation (Nordine & Yamato)-->
         <TextBlock Text="Régime : " HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtRegime" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="3" />
+        <TextBox IsReadOnly="True" x:Name="txtRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" />
 
         <!-- Informations Complémentaires (Nordine & Yamato) -->
 
@@ -117,25 +117,25 @@
             <!-- Adresse de résidence -->
             <WrapPanel>
                 <TextBlock x:Name="txtAdresse1" FontSize="20" Text="Adresse de résidence : " Margin="0,20,0,0"/>
-                <TextBox IsReadOnly="True" x:Name="txtAdresse2" FontSize="20" Margin="30,20,0,0"  />
+                <TextBox IsReadOnly="True" x:Name="txtAdresse2" FontSize="15" Margin="30,20,0,0" MaxLength="50" />
             </WrapPanel>
 
             <!-- Téléphone fixe -->
             <WrapPanel>
                 <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="Téléphone fixe : " Margin="0,20,0,0" />
-                <TextBox IsReadOnly="True" x:Name="txtTelFixe2" FontSize="20"  Margin="30,20,0,0"/>
+                <TextBox IsReadOnly="True" x:Name="txtTelFixe2" FontSize="15"  Margin="30,20,0,0"/>
             </WrapPanel>
 
             <!-- Téléphone portable -->
             <WrapPanel>
                 <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="Téléphone portable : " Margin="0,20,0,0"/>
-                <TextBox IsReadOnly="True" x:Name="txtTelPortable2" FontSize="20"  Margin="30,20,0,0" />
+                <TextBox IsReadOnly="True" x:Name="txtTelPortable2" FontSize="15"  Margin="30,20,0,0" />
             </WrapPanel>
 
             <!-- Login réseau -->
             <WrapPanel>
                 <TextBlock x:Name="txtLogin1" FontSize="20" Text="Login réseau : " Margin="0,20,0,0" />
-                <TextBox IsReadOnly="True" x:Name="txtLogin2" FontSize="20" Margin="30,20,0,0"  />
+                <TextBox IsReadOnly="True" x:Name="txtLogin2" FontSize="15" Margin="30,20,0,0"  />
             </WrapPanel>
 
         </StackPanel>
