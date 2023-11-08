@@ -1,4 +1,6 @@
-﻿namespace APIEtudiant.Model
+﻿using System.Reflection.Metadata;
+
+namespace APIEtudiant.Model
 {
     /// <summary>
     /// les notes écrites par les différents acteurs de l'application à propos des étudiants
@@ -11,6 +13,7 @@
         private string nature;
         private string commentaire;
         private int apogeeEtudiant;
+        private Blob pieceJointe;
         #endregion
 
         #region Propriétés
@@ -18,53 +21,61 @@
         /// Récupère ou définit la catégorie de la note.
         /// </summary>
         /// <author>Laszlo</author>
-        public string Categorie { get {  return categorie; } set {  categorie = value; } }
+        public string Categorie { get { return categorie; } set { categorie = value; } }
 
         /// <summary>
         /// Récupère ou définit la date de publication de la note.
         /// </summary>
         /// <author>Laszlo</author>
-        public DateTime DatePublication { get {  return datePublication; } set {  datePublication = value; } }
-        
+        public DateTime DatePublication { get { return datePublication; } set { datePublication = value; } }
+
         /// <summary>
         /// Récupère ou définit la nature de la note.
         /// </summary>
         /// <author>Laszlo</author>
-        public string Nature { get {  return nature; } set {  nature = value; } }
+        public string Nature { get { return nature; } set { nature = value; } }
 
         /// <summary>
         /// Récupère ou définit le commentaire inscrit dans la note.
         /// </summary>
         /// <author>Laszlo</author>
-        public string Commentaire { get {  return commentaire; } set {  commentaire = value; } }
+        public string Commentaire { get { return commentaire; } set { commentaire = value; } }
 
         /// <summary>
         /// Récupère ou définit le numéro apogée de l'étudiant dont la note parle.
         /// </summary>
         /// <author>Laszlo</author>
-        public int ApogeeEtudiant { get {  return apogeeEtudiant; } set {  apogeeEtudiant = value; } }
+        public int ApogeeEtudiant { get { return apogeeEtudiant; } set { apogeeEtudiant = value; } }
+
+        /// <summary>
+        /// Récupère ou définit une pièce jointe de la note
+        /// </summary>
+        /// <author>Yamato</author>
+        public Blob PieceJointe { get { return pieceJointe; } set { pieceJointe = value; } }
 
         #endregion
 
         #region Méthodes 
 
-            /// <summary>
-            /// Constructeur de Notes
-            /// </summary>
-            /// <param name="idNote">L'identifiant de la note (10 caractères max)</param>
-            /// <param name="categorie">catégorie de la note (50 caractères maximum)</param>
-            /// <param name="datePublication">date de publication de la note</param>
-            /// <param name="nature">Nature de la note (50 caractères maximum)</param>
-            /// <param name="commentaire">Commentaire inscrit à l'intérieur de la note (255 caractères maximum)</param>
-            /// <param name="apogeeEtudiant">Numéro apogée de l'étudiant dont la note parle</param>
-            /// <author>Laszlo</author>
-        public Note(string categorie, DateTime datePublication,string nature,string commentaire, int apogeeEtudiant)
+        /// <summary>
+        /// Constructeur de Notes
+        /// </summary>
+        /// <param name="idNote">L'identifiant de la note (10 caractères max)</param>
+        /// <param name="categorie">catégorie de la note (50 caractères maximum)</param>
+        /// <param name="datePublication">date de publication de la note</param>
+        /// <param name="nature">Nature de la note (50 caractères maximum)</param>
+        /// <param name="commentaire">Commentaire inscrit à l'intérieur de la note (255 caractères maximum)</param>
+        /// <param name="apogeeEtudiant">Numéro apogée de l'étudiant dont la note parle</param>
+        /// <param name="pieceJointe">Pièce jointe de la note</param>
+        /// <author>Laszlo et Yamato</author>
+        public Note(string categorie, DateTime datePublication, string nature, string commentaire, int apogeeEtudiant, Blob pieceJointe)
         {
             this.categorie = categorie;
             this.datePublication = datePublication;
             this.nature = nature;
             this.commentaire = commentaire;
-            this.apogeeEtudiant= apogeeEtudiant;
+            this.apogeeEtudiant = apogeeEtudiant;
+            this.pieceJointe = pieceJointe;
         }
 
         /// <summary>
@@ -74,7 +85,7 @@
         /// <author>Laszlo</author>
         public override string ToString()
         {
-            return String.Format("Catégorie : {0}, Date : {1}, Nature : {2}, Commentaire : {3} ", this.commentaire, this.datePublication.ToString(), this.nature, this.commentaire);
+            return String.Format("Catégorie : {0}, Date : {1}, Nature : {2}, Commentaire : {3}, Pièce Jointe : {5} ", this.commentaire, this.datePublication.ToString(), this.nature, this.commentaire, this.pieceJointe.ToString());
         }
         #endregion 
     }
