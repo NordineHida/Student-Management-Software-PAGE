@@ -135,6 +135,12 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <!-- LCombox et checkbox (stephane) -->
+        <CheckBox x:Name="ConfidentielCheckBox" Content="Confidentiel" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="30" Width="120" Grid.Column="2" Margin="0,14,0,0" Grid.RowSpan="2" Checked="ConfidentielCheckBox_Checked" Unchecked="ConfidentielCheckBox_Unchecked" />
+        <ComboBox x:Name="ComboboxConfidentiel" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="30" Width="150" Grid.Column="2" Margin="0,14,0,0" Grid.RowSpan="2" Visibility="Hidden" />
+        <CheckBox x:Name="CategorieCheckBox" Content="Catégorie" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="30" Width="120" Grid.Column="2" Margin="714,13,0,0" Grid.RowSpan="2" Checked="CategorieCheckBox_Checked" Unchecked="CategorieCheckBox_Unchecked" />
+        <ComboBox x:Name="CategorieConfidentiel" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="30" Width="150" Grid.Column="2" Margin="714,13,0,0" Grid.RowSpan="2" Visibility="Hidden" />
+
 
     </Grid>
 

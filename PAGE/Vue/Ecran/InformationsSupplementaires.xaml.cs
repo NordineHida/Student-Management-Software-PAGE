@@ -86,5 +86,52 @@ namespace PAGE.Vue.Ecran
             }
         }
 
+        #region affichage trie note
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Stéphane</author>
+
+        private void ConfidentielCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            // Vérifie si la case à cocher est cochée
+            if (ConfidentielCheckBox.IsChecked == true)
+            {
+                // Affiche la ComboBox si la case à cocher est cochée
+                ComboboxConfidentiel.Visibility = Visibility.Visible;
+            }
+        }
+        // Vérifie si la case à cocher est cochée
+        private void ConfidentielCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (ConfidentielCheckBox.IsChecked == false)
+            {
+                // cache la ComboBox si la case à cocher n'est pas cochée
+                ComboboxConfidentiel.Visibility = Visibility.Hidden;
+            }
+        }
+        // Vérifie si la case à cocher est cochée
+        private void CategorieCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (CategorieCheckBox.IsChecked == true)
+            {
+                // Affiche la ComboBox si la case à cocher est cochée
+                CategorieConfidentiel.Visibility = Visibility.Visible;
+            }
+        }
+        // Vérifie si la case à cocher est cochée
+        private void CategorieCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (CategorieCheckBox.IsChecked == false)
+            {
+                // cache la ComboBox si la case à cocher n'est pas cochée
+
+                CategorieConfidentiel.Visibility = Visibility.Hidden;
+            }
+        }
+        #endregion
+
     }
 }
