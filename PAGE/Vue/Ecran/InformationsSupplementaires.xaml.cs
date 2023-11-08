@@ -143,6 +143,7 @@ namespace PAGE.Vue.Ecran
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
             {
                 tx.IsReadOnly = false;
+                tx.BorderThickness = new Thickness(1) ;
             }
 
             // Active les boutons radio pour le sexe
@@ -163,6 +164,7 @@ namespace PAGE.Vue.Ecran
                 foreach (TextBox tx in wp.Children.OfType<TextBox>())
                 {
                     tx.IsReadOnly = false;
+                    tx.BorderThickness = new Thickness(1);
                 }
             }
             // Active l'édition de la date de naissance
@@ -182,6 +184,7 @@ namespace PAGE.Vue.Ecran
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
             {
                 tx.IsReadOnly = true;
+                tx.BorderThickness = new Thickness(0);
             }
 
             // Désactive les boutons radio pour le sexe
@@ -202,6 +205,7 @@ namespace PAGE.Vue.Ecran
                 foreach (TextBox tx in wp.Children.OfType<TextBox>())
                 {
                     tx.IsReadOnly = true;
+                    tx.BorderThickness = new Thickness(0);
                 }
             }
 
