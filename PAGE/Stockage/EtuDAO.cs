@@ -156,5 +156,41 @@ namespace PAGE.APIEtudiant.Stockage
                 MessageBox.Show("Erreur lors de l'appel de l'API : " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        /// <summary>
+        /// Renvoie les notes d'un etudiant
+        /// </summary>
+        /// <returns>Un ensemble den notes</returns>
+        /// <author>Laszlo</author>
+        public async Task<IEnumerable<Note>> GetAllNotesByApogee()
+        {
+            //Dictionnaire d'étudiant (cle = num apogee, valeur = etudiant)
+            List<Note> notes = new List<Note>();
+
+            try
+            {
+                // Créez une instance de HttpClient
+                using (HttpClient client = new HttpClient())
+                {
+                    // Spécifiez l'URL de l'API
+                    string apiUrl = "https://localhost:7038/EtuControlleur/GetAllNotesByApogee";
+
+                    // Effectuez la requête GET
+                    HttpResponseMessage reponse = await client.GetAsync(apiUrl);
+
+                    //On récupere le json contenant la liste d'étudiant
+                    string reponseString = await reponse.Content.ReadAsStringAsync();
+
+                    //On la deserialise et on lit en IEnumerable qu'on convertit en List<Etudiant>
+                    notes = JsonSerializer.Deserialize<List<Note>>(reponseString);
+                }
+            }
+            catch (Exception ex)
+            {
+                //PEUT ETRE PAR AFFICHER (DEMANDER CLIENT)
+                MessageBox.Show("Erreur lors de l'appel de l'API (GetAllEtu) DEMANDER CLIENT SI ON VEUT AFFICHER ERReur: " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return notes;
+        }
     }
 }

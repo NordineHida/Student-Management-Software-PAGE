@@ -37,6 +37,14 @@ namespace PAGE.Stockage
         /// <returns>true si l'ajout est un succès</returns>
         /// <author>Laszlo</author>
         public Task CreateNote(Note note);
+
+        /// <summary>
+        /// Renvoi toutes les notes d'un étudiant
+        /// </summary>
+        /// <returns>Un ensemble de notest</returns>
+        /// <author>Laszlo</author>
+        public Task<IEnumerable<Note>> GetAllNotesByApogee();
+
     }
 }
 

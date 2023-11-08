@@ -45,5 +45,20 @@ namespace APIEtudiant.Stockage
         /// <author>Laszlo</author>
         public bool CreateNote(Note note);
 
+        /// <summary>
+        /// Supprime une note de la BDD
+        /// </summary>
+        /// <param name="note">Note à supprimer</param>
+        /// <returns>true si la suppression est un succès</returns>
+        /// <author>Laszlo</author>
+        public bool DeleteNote(Note note);
+
+        /// <summary>
+        /// Renvoie toutes les notes d'un étudiant 
+        /// </summary>
+        /// <returns>la liste de notes/returns>
+        /// <author>Laszlo</author>
+        public IEnumerable<Note> GetAllNotesByApogee(int apogeeEtudiant);
+
     }
 }
