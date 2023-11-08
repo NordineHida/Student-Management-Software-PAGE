@@ -1,4 +1,5 @@
-﻿using PAGE.Model;
+﻿using DocumentFormat.OpenXml;
+using PAGE.Model;
 using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
@@ -114,6 +115,46 @@ namespace PAGE.APIEtudiant.Stockage
                 MessageBox.Show("Erreur lors de l'appel de l'API (GetAllEtu) DEMANDER CLIENT SI ON VEUT AFFICHER ERReur: " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return etudiants;
+        }
+
+        /// <summary>
+        /// Crée une note et l'ajoute à la BDD
+        /// </summary>
+        /// <param name="note">note crée</param>
+        /// <returns>la tache qu'est d'ajouter la note à la BDD</returns>
+        public async Task CreateNote(Note note)
+        {
+            try
+            {
+                // Créez une instance de HttpClient
+                using (HttpClient client = new HttpClient())
+                {
+                    // Spécifiez l'URL de l'API
+                    string apiUrl = "https://localhost:7038/Note/CreateNote";
+
+                    // Convertissez la note en JSON
+                    string noteSerialise = JsonSerializer.Serialize(note);
+
+                    // Créez le contenu de la requête POST
+                    HttpContent content = new StringContent(noteSerialise, Encoding.UTF8, "application/json");
+
+                    // Effectuez la requête POST
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("L'ajout est un succès", "Succès de l'importation", MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("L'ajout de la note a échoué. Code de réponse : " + response.StatusCode, "Erreur d'import", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de l'appel de l'API : " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

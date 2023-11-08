@@ -240,5 +240,59 @@ namespace APIEtudiant.Stockage
             }
             return ajoutReussi;
         }
+
+        /// <summary>
+        /// Ajoute une note à la BDD
+        /// </summary>
+        /// <param name="note">Note à ajouter</param>
+        /// <returns>true si l'ajout est un succès</returns>
+        /// <author>Laszlo</author>
+        public bool CreateNote(Note? note)
+        {
+            bool ajoutReussi = false;
+            if (note != null)
+            {
+                // Création d'une connexion Oracle
+                Connection con = new Connection();
+
+                try
+                {
+                    // On crée la requête SQL
+                    string requete = String.Format("INSERT INTO Note(idNote,categorie,datePublication,nature,commentaire,apogeeEtudiant)" +
+                        "VALUES(0, '{0}', TO_DATE('{1}', 'YYYY-MM-DD'), '{2}', '{3}', '{4}')", note.Categorie, note.DatePublication.Date.ToString("yyyy-MM-dd"), note.Nature, note.Commentaire, note.ApogeeEtudiant);
+                        
+
+                    //On execute la requete
+                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
+
+
+                    //On verifie que la ligne est bien inséré, si oui on passe le bool à true
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        ajoutReussi = true;
+                    }
+                }
+                // Gestion des exceptions
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    try
+                    {
+                        if (con != null)
+                        {
+                            con.Close();
+                        }
+                    }
+                    catch (OracleException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            return ajoutReussi;
+        }
     }
 }
