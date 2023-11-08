@@ -35,6 +35,7 @@
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-SemiBold.ttf" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-SemiBoldItalic.ttf" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOneBlack.ttf" />
+    <None Remove="Vue\Ressources\Img\photo.png" />
     <None Remove="Vue\Ressources\logo.png" />
     <None Remove="Vue\Ressources\logoIUT.png" />
     <None Remove="Vue\Ressources\logoPage.png" />
@@ -165,6 +166,10 @@
     <Content Include="Vue\Ressources\Img\logoPage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Vue\Ressources\Img\photo.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -23,68 +23,139 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <!-- Première ligne pour le logo -->
-            <RowDefinition Height="*" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.30*"/>
+            <RowDefinition Height="*"/>
             <!-- Troisième ligne pour la liste des étudiants -->
         </Grid.RowDefinitions>
-        <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0" Grid.Column="0" Margin="10" Width="150" Height="150" />
+        
+        <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0" Margin="10" Width="150" Height="150" />
 
-        <Rectangle HorizontalAlignment="Center" Height="819" Margin="0,165,0,0" Fill="White" Stroke="Black" VerticalAlignment="Top" Width="1500" Grid.RowSpan="2"/>
-        <Image Source="/Vue/Ressources/Img/photo.png" HorizontalAlignment="Left" Height="256" Margin="12,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="238"/>
+        <Rectangle Stretch="UniformToFill" Fill="White" Stroke="Black" Grid.Row ="1" Grid.RowSpan="4"/>
 
-        <!-- Nom et Prenom de l'étudiant -->
+        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row ="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="260" Margin="0,40,0,0"/>
+
+        <!-- Informations Importantes -->
+
+        <!-- Nom et Prenom-->
+        
+        <TextBlock x:Name="txtName" HorizontalAlignment="Left" FontSize="20" />
+        <TextBlock x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="20" />
+
+            <!-- Numéro Apogee -->
+        <TextBlock Text="NumApogee : " HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Margin="300,0,0,0" Height="30"/>
+        <TextBlock x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Margin="433,108,0,109" Height="30" Width="150"/>
+
+
+
+        <!-- Groupe -->
+        <TextBlock Text="Groupe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Margin="300,70,0,0" Height="30"/>
+            <TextBlock x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="20" />
+
+            <!-- Adresse mail -->
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Adresse mail : " HorizontalAlignment="Left" FontSize="20" />
+                <TextBlock x:Name="txtMail" HorizontalAlignment="Left" FontSize="20" />
+            </WrapPanel>
+
+            <!-- Sexe -->
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Sexe : " HorizontalAlignment="Left" FontSize="20" />
+                <TextBlock x:Name="txtSexe" HorizontalAlignment="Left" FontSize="20" />
+            </WrapPanel>
+
+            <!-- Type de bac obtenu -->
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Bac obtenu : " HorizontalAlignment="Left" FontSize="20" />
+                <TextBlock x:Name="txtTypebac" HorizontalAlignment="Left" FontSize="20" />
+            </WrapPanel>
+
+            <!-- Statut (Boursier ou non) -->
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Boursier : " HorizontalAlignment="Left" FontSize="20" />
+                <TextBlock x:Name="txtBoursier" HorizontalAlignment="Left" FontSize="20" />
+            </WrapPanel>
+
+            
+            
+            <!-- Régime de formation -->
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,10"> 
+            <TextBlock Text="Régime : " HorizontalAlignment="Left" FontSize="20" />
+            <TextBlock x:Name="txtRegime" HorizontalAlignment="Left" FontSize="20" />
+            </WrapPanel>
+        
+
+        
+        <!-- Nom et Prenom de l'étudiant --><!--
         <TextBlock x:Name="txtName" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="273,37,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="181"/>
         <TextBlock x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="494,37,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="220"/>
 
-        <!-- Numéro Apogee -->
+        --><!-- Numéro Apogee --><!--
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="273,93,0,0" Grid.Row="1" TextWrapping="Wrap" Text="NumApogee : " VerticalAlignment="Top" Width="123"/>
         <TextBlock x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="412,93,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="202"/>
 
-        <!-- Groupe -->
+        --><!-- Groupe --><!--
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="273,147,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Groupe :  " VerticalAlignment="Top" Width="82"/>
         <TextBlock x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="372,147,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="500"/>
 
-        <!-- Adresse mail -->
+        --><!-- Adresse mail --><!--
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="273,199,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Adresse mail :  " VerticalAlignment="Top" Width="123"/>
         <TextBlock x:Name="txtMail" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="406,199,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="562"/>
 
-        <!-- Sexe -->
+        --><!-- Sexe --><!--
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="41,300,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Sexe :  " VerticalAlignment="Top" Width="123"/>
         <TextBlock x:Name="txtSexe" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="164,301,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
 
-        <!-- Type de bac obtenu -->
+        --><!-- Type de bac obtenu --><!--
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="41,343,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Bac obtenu : " VerticalAlignment="Top" Width="123"/>
         <TextBlock x:Name="txtTypebac" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="174,342,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="123"/>
 
-        <!-- Statut (Boursier ou non) -->
+        --><!-- Statut (Boursier ou non) --><!--
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="41,385,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Boursier : " VerticalAlignment="Top" Width="123"/>
         <TextBlock x:Name="txtBoursier" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="169,384,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
 
-        <!-- Régime de formation -->
+        --><!-- Régime de formation --><!--
         <TextBlock HorizontalAlignment="Left" FontSize="20" Height="42" Margin="41,426,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Régime : " VerticalAlignment="Top" Width="123"/>
-        <TextBlock x:Name="txtRegime" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="174,427,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="190"/>
+        <TextBlock x:Name="txtRegime" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="174,427,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="190"/>-->
 
-        <!-- Date de naissance -->
-        <TextBlock  x:Name="txtDateNaissance1" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="40,584,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Date de naissance :  " VerticalAlignment="Top" Width="185"/>
-        <TextBlock Visibility="Collapsed" x:Name="txtDateNaissance2" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="236,584,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="141"/>
 
-        <!-- Adresse de résidence -->
-        <TextBlock Visibility="Collapsed" x:Name="txtAdresse1" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="40,627,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Adresse de résidence : " VerticalAlignment="Top" Width="210"/>
-        <TextBlock Visibility="Collapsed" x:Name="txtAdresse2" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="250,626,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="414"/>
+        <!-- Informations Complémentaires -->              
 
-        <!-- Téléphone fixe -->
-        <TextBlock Visibility="Collapsed" x:Name="txtTelFixe1" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="40,669,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Téléphone fixe : " VerticalAlignment="Top" Width="155"/>
-        <TextBlock Visibility="Collapsed" x:Name="txtTelFixe2" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="207,669,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
-
-        <!-- Téléphone portable -->
-        <TextBlock Visibility="Collapsed" x:Name="txtTelPortable1" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="40,710,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Téléphone portable : " VerticalAlignment="Top" Width="185"/>
-        <TextBlock Visibility="Collapsed" x:Name="txtTelPortable2" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="240,711,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="190"/>
-
-        <!-- Login réseau -->
-        <TextBlock Visibility="Collapsed" x:Name="txtLogin1" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="40,752,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Login réseau : " VerticalAlignment="Top" Width="124"/>
-        <TextBlock Visibility="Collapsed" x:Name="txtLogin2" HorizontalAlignment="Left" FontSize="20" Height="42" Margin="182,751,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="190"/>
-        
         <!-- Bouton pour afficher les informations complémentaires-->
-        <Button Content="Afficher les informations complémentaires" Click="Button_Click" HorizontalAlignment="Left" Height="36" Margin="41,514,0,0" Grid.Row="1" VerticalAlignment="Top" Width="228"/>
+        <Button Content="Afficher les informations complémentaires" Click="InfosComp_Click" HorizontalAlignment="Left" Height="36" Margin="41,514,0,0" Grid.Row="1" VerticalAlignment="Top" Width="228"/>
+
+        <StackPanel x:Name="contInfosComp" Visibility="Collapsed" Orientation="Vertical" Margin="316,308,-235,313" Grid.Row="1">
+            <!-- Date de naissance -->
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="Date de naissance : " />
+                <TextBlock x:Name="txtDateNaissance2" FontSize="20" />
+            </WrapPanel>
+
+            <!-- Adresse de résidence -->
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock x:Name="txtAdresse1" FontSize="20" Text="Adresse de résidence : " />
+                <TextBlock x:Name="txtAdresse2" FontSize="20" />
+            </WrapPanel>
+
+            <!-- Téléphone fixe -->
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="Téléphone fixe : " />
+                <TextBlock x:Name="txtTelFixe2" FontSize="20" />
+            </WrapPanel>
+
+            <!-- Téléphone portable -->
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="Téléphone portable : " />
+                <TextBlock x:Name="txtTelPortable2" FontSize="20" />
+            </WrapPanel>
+
+            <!-- Login réseau -->
+            <WrapPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock x:Name="txtLogin1" FontSize="20" Text="Login réseau : " />
+                <TextBlock x:Name="txtLogin2" FontSize="20" />
+            </WrapPanel>
+        </StackPanel>
 
 
     </Grid>

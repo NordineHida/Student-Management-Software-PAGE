@@ -72,33 +72,17 @@ namespace PAGE.Vue.Ecran
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <author>Yamato</author>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void InfosComp_Click(object sender, RoutedEventArgs e)
         {
-            if (txtDateNaissance1.Visibility == Visibility.Collapsed)
+            if (contInfosComp.Visibility == Visibility.Collapsed)
             {
-                txtDateNaissance1.Visibility = Visibility.Visible;
-                txtDateNaissance2.Visibility = Visibility.Visible;
-                txtAdresse1.Visibility = Visibility.Visible;
-                txtAdresse2.Visibility = Visibility.Visible;
-                txtTelFixe1.Visibility = Visibility.Visible;
-                txtTelFixe2.Visibility = Visibility.Visible;
-                txtTelPortable1.Visibility = Visibility.Visible;
-                txtTelPortable2.Visibility = Visibility.Visible;
-                txtLogin1.Visibility = Visibility.Visible;
-                txtLogin2.Visibility = Visibility.Visible;
+                contInfosComp.Visibility = Visibility.Visible;
+                
             }
             else
             {
-                txtDateNaissance1.Visibility = Visibility.Collapsed;
-                txtDateNaissance2.Visibility = Visibility.Collapsed;
-                txtAdresse1.Visibility = Visibility.Collapsed;
-                txtAdresse2.Visibility = Visibility.Collapsed;
-                txtTelFixe1.Visibility = Visibility.Collapsed;
-                txtTelFixe2.Visibility = Visibility.Collapsed;
-                txtTelPortable1.Visibility = Visibility.Collapsed;
-                txtTelPortable2.Visibility = Visibility.Collapsed;
-                txtLogin1.Visibility = Visibility.Collapsed;
-                txtLogin2.Visibility = Visibility.Collapsed;
+                contInfosComp.Visibility = Visibility.Collapsed;
+                
             }
         }
 
