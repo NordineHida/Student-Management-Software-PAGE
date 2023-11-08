@@ -322,6 +322,18 @@ namespace PAGE.Vue.Ecran
                 }
             }
         }
+
+        /// <summary>
+        /// Ouvre la fenêtre pour créer un étudiant
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void BoutonCreerEtudiant(object sender, RoutedEventArgs e)
+        {
+            FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant();
+            fenetreCreerEtudiant.Show();
+        }
     }
 }
 
