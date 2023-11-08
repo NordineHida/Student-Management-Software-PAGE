@@ -91,6 +91,11 @@
         <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato)-->
         <Button Content="Afficher les informations complémentaires" Click="InfosComp_Click" Margin="20,0,20,0" Grid.Row="18" />
 
+        <!-- Bouton "Modifier" (lucas) -->
+        <Button Content="Modifier les informations" Click="Modifier_Click" Margin="20,0,20,29" Grid.Row="16" Grid.RowSpan="2" />
+
+        <!-- Bouton "Valider" pour sauvegarder les modifications (Lucas) -->
+        <Button Content="Valider" x:Name="BoutonValider" Click="Valider_Click" Margin="20,0,20,0" Grid.Row="18" Visibility="Collapsed" />
 
         <StackPanel x:Name="contInfosComp" Visibility="Collapsed" Orientation="Vertical" Grid.RowSpan="2" Grid.Row="19"  Grid.Column="1"  Grid.ColumnSpan="2">
 
