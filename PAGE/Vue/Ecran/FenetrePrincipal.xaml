@@ -58,6 +58,7 @@
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
 
+            
             <Button Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage">
                 <Image Source="/Vue/Ressources/Picto/account.png" Stretch="Uniform" Margin="7"/>
             </Button>
@@ -74,11 +75,13 @@
                 <Image Source="/Vue/Ressources/Picto/refresh.png"  Stretch="Uniform" Margin="9"/>
             </Button>
 
+            <Button Style="{StaticResource ImageButtonStyle}" Click="BoutonCreerEtudiant">
+                <Image Source="/Vue/Ressources/Picto/account-plus.png"  Stretch="Uniform" Margin="9"/>
+            </Button>
+
             <Button Style="{StaticResource ImageButtonStyle}" Click="OpenPromoPage">
                 <Image Source="/Vue/Ressources/Picto/calendar-account.png"  Stretch="Uniform" Margin="10"/>
             </Button>
-
-
 
         </StackPanel>
 
