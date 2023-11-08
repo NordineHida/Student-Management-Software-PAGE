@@ -86,5 +86,23 @@ namespace PAGE.Vue.Ecran
             }
         }
 
+        private void Modifier_Click(object sender, RoutedEventArgs e)
+        {
+            BoutonValider.Visibility = Visibility.Visible;
+            foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
+            {
+                tx.IsReadOnly = false;
+            }
+        }
+
+        private void Valider_Click(object sender, RoutedEventArgs e)
+        {
+            BoutonValider.Visibility = Visibility.Collapsed;
+            foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
+            {
+                tx.IsReadOnly = true;
+            }
+
+        }
     }
 }
