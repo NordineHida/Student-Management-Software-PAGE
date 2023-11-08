@@ -1,23 +1,13 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using PAGE.APIEtudiant.Stockage;
 using PAGE.Model;
-using PAGE.Vue.Ressources;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 
 namespace PAGE.Vue.Ecran
@@ -51,6 +41,27 @@ namespace PAGE.Vue.Ecran
         /// <author>Stéphane</author>
         private bool isSortAscending = true;
 
+
+        /// <summary>
+        /// Ouvre la page de Création de note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void OpenCreationNote(object sender, RoutedEventArgs e)
+        {
+            if (maListView.SelectedItem != null)
+            {
+                // Obtenez l'étudiant sélectionné dans la ListView
+                Etudiant etudiantSelectionne = maListView.SelectedItem as Etudiant;
+                if (etudiantSelectionne != null)
+                {
+                    Note note = new Note("", DateTime.Now, "", "", etudiantSelectionne.NumApogee);
+                    CreationNote creationNote = new CreationNote(note);
+                    creationNote.Show();
+                }
+            }
+        }
 
         #region trie 
 
@@ -219,14 +230,10 @@ namespace PAGE.Vue.Ecran
 
         private void OpenParametresPage(object sender, RoutedEventArgs e)
         {
-            // Créer la LoginPage
-            ParametresPage parampage = new ParametresPage();
-
-            // Écouter l'événement de retour à la fenêtre principale
-            parampage.ReturnToMainWindow += ParamPage_ReturnToMainWindow;
-
-            // Afficher la LoginPage comme contenu initial
-            this.Content = parampage;
+            ParametrePage parametre = new ParametrePage();
+            parametre.Show();
+ 
+            this.Close();
         }
 
         private void ParamPage_ReturnToMainWindow(object sender, EventArgs e)

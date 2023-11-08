@@ -4,12 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
-        xmlns:res="clr-namespace:PAGE.Vue.Ressources.Res"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Title="{x:Static res:Strings.Title}" Height="1000" Width="1500">
-
+        Title="Page" 
+        Height="1000" Width="1500">
 
 
     <Window.Background>
@@ -104,6 +103,18 @@
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
+            
+            <ListView.Resources>
+                <ContextMenu x:Key="ItemContextMenu">
+                    <MenuItem Header="Créer une note" Click="OpenCreationNote"/>
+                </ContextMenu>
+            </ListView.Resources>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" >
+                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}" />
+                </Style>
+            </ListView.ItemContainerStyle>
 
         </ListView>
 
