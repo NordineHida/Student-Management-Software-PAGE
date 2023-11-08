@@ -91,7 +91,7 @@
         <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato)-->
         <Button Content="Afficher les informations complémentaires" Click="InfosComp_Click" Margin="20,0,20,0" Grid.Row="18" />
 
-        
+
         <StackPanel x:Name="contInfosComp" Visibility="Collapsed" Orientation="Vertical" Grid.RowSpan="2" Grid.Row="19"  Grid.Column="1"  Grid.ColumnSpan="2">
 
             <!-- Date de naissance -->
@@ -101,7 +101,7 @@
             </WrapPanel>
 
 
-                <!-- Adresse de résidence -->
+            <!-- Adresse de résidence -->
             <WrapPanel>
                 <TextBlock x:Name="txtAdresse1" FontSize="20" Text="Adresse de résidence : " Margin="0,20,0,0"/>
                 <TextBlock x:Name="txtAdresse2" FontSize="20" Margin="30,20,0,0"  />
@@ -124,8 +124,15 @@
                 <TextBlock x:Name="txtLogin1" FontSize="20" Text="Login réseau : " Margin="0,20,0,0" />
                 <TextBlock x:Name="txtLogin2" FontSize="20" Margin="30,20,0,0"  />
             </WrapPanel>
-            
         </StackPanel>
+        <!-- Liste des étudiants (stephane) -->
+        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="9" >
+            <ListView.View>
+                <GridView>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 
 </Window>
