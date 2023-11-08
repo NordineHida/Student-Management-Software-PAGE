@@ -110,7 +110,6 @@
             <ListView.Resources>
                 <ContextMenu x:Key="ItemContextMenu">
                     <MenuItem Header="Créer une note" Click="OpenCreationNote"/>
-                    <MenuItem Header="Afficher une note" Click="OpenAffichageNote"/>
                 </ContextMenu>
             </ListView.Resources>
 

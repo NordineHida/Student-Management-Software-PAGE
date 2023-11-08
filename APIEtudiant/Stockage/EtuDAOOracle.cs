@@ -363,7 +363,7 @@ namespace APIEtudiant.Stockage
 
             try
             {
-                string requete = String.Format("SELECT categorie,datePublication,nature,commentaire,apogeeEtudiant FROM Note WHERE apogeeEtudiant='{0}", apogeeEtudiant);
+                string requete = String.Format("SELECT categorie,datePublication,nature,commentaire,apogeeEtudiant FROM Note WHERE apogeeEtudiant={0}", apogeeEtudiant);
                 // Création d'une commande Oracle pour récuperer l'ensemble des éléments de tout les étudiants
                 OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
 

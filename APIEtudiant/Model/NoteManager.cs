@@ -59,7 +59,7 @@ namespace APIEtudiant.Model
         /// <author>Laszlo</author>
         public IEnumerable<Note> GetAllNotesByApogee(int apogeeEtudiant)
         {
-            return GetAllNotesByApogee(apogeeEtudiant);
+            return EtuDAO.GetAllNotesByApogee(apogeeEtudiant);
         }
     }
 }

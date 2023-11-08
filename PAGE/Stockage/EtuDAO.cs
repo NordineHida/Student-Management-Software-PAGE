@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml;
+using Microsoft.AspNetCore.Http;
 using PAGE.Model;
 using PAGE.Stockage;
 using System;
@@ -161,8 +162,8 @@ namespace PAGE.APIEtudiant.Stockage
         /// Renvoie les notes d'un etudiant
         /// </summary>
         /// <returns>Un ensemble den notes</returns>
-        /// <author>Laszlo</author>
-        public async Task<IEnumerable<Note>> GetAllNotesByApogee()
+        /// <author>Laszlo & Nordine</author>
+        public async Task<IEnumerable<Note>> GetAllNotesByApogee(int apogeeEtudiant)
         {
             //Dictionnaire d'étudiant (cle = num apogee, valeur = etudiant)
             List<Note> notes = new List<Note>();
@@ -173,7 +174,7 @@ namespace PAGE.APIEtudiant.Stockage
                 using (HttpClient client = new HttpClient())
                 {
                     // Spécifiez l'URL de l'API
-                    string apiUrl = "https://localhost:7038/EtuControlleur/GetAllNotesByApogee";
+                    string apiUrl = $"https://localhost:7038/Note/GetAllNotesByApogee?apogeeEtudiant={apogeeEtudiant}";
 
                     // Effectuez la requête GET
                     HttpResponseMessage reponse = await client.GetAsync(apiUrl);
@@ -188,7 +189,7 @@ namespace PAGE.APIEtudiant.Stockage
             catch (Exception ex)
             {
                 //PEUT ETRE PAR AFFICHER (DEMANDER CLIENT)
-                MessageBox.Show("Erreur lors de l'appel de l'API (GetAllEtu) DEMANDER CLIENT SI ON VEUT AFFICHER ERReur: " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Erreur lors de l'appel de l'API (GetAllNotesByApogee) DEMANDER CLIENT SI ON VEUT AFFICHER ERReur: " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return notes;
         }

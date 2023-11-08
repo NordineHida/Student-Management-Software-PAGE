@@ -43,7 +43,7 @@ namespace PAGE.Stockage
         /// </summary>
         /// <returns>Un ensemble de notest</returns>
         /// <author>Laszlo</author>
-        public Task<IEnumerable<Note>> GetAllNotesByApogee();
+        public Task<IEnumerable<Note>> GetAllNotesByApogee(int apogeeEtudiant);
 
     }
 }

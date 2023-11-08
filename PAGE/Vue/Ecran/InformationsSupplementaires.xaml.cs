@@ -1,4 +1,5 @@
-﻿using PAGE.Model;
+﻿using PAGE.APIEtudiant.Stockage;
+using PAGE.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace PAGE.Vue.Ecran
             InitializeComponent();
             etudiant = EtudiantActuel;
             ChargerInfosImpEtudiant();
+            ChargementDiffereNotes();
         }
 
         /// <summary>
@@ -86,5 +88,24 @@ namespace PAGE.Vue.Ecran
             }
         }
 
+        /// <summary>
+        /// Chargement des notes différé via l'API
+        /// </summary>
+        /// <author>Laszlo</author>
+        private async Task ChargementDiffereNotes()
+        {
+            //On reinitialise la liste
+            maListViewNote.Items.Clear();
+
+            //On récupere l'ensemble des étudiants via l'API
+            List<Note> notes = (await EtuDAO.Instance.GetAllNotesByApogee(etudiant.NumApogee)).ToList();
+
+            foreach (Note note in notes)
+            {
+                //Si l'étudiant est pas déjà dans la liste on l'y ajoute
+                if (!maListViewNote.Items.Contains(note))
+                    maListViewNote.Items.Add(note);
+            }
+        }
     }
 }
