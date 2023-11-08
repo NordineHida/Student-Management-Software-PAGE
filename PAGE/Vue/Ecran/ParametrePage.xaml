@@ -35,9 +35,9 @@
         <TextBlock Text="{DynamicResource TitreParam}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"  FontWeight="Bold" Foreground="#FF2B2B5A" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Open Sauce One" />
 
         <!--ComboBox des langues disponibles-->
-        <ComboBox x:Name="ComboBoxLangue" Grid.Column="2" Grid.Row="1" Margin="70,40,70,40" Background="#FF2A2B5B" BorderBrush="#FF2A2B5B">
-            <ComboBoxItem Foreground="#FF2A2B5B" >Français</ComboBoxItem>
-            <ComboBoxItem Foreground="#FF2A2B5B">English</ComboBoxItem>
+        <ComboBox x:Name="ComboBoxLangue" Grid.Column="2" Grid.Row="1" Margin="70,40,70,40" Background="#FF2A2B5B" BorderBrush="#FF2A2B5B" FontSize="18" FontFamily="Open Sauce One">
+            <ComboBoxItem FontSize="18" FontFamily="Open Sauce One" Foreground="#FF2A2B5B" >Français</ComboBoxItem>
+            <ComboBoxItem FontSize="18" FontFamily="Open Sauce One" Foreground="#FF2A2B5B">English</ComboBoxItem>
         </ComboBox>
 
         <!-- Label pour la langue (nordine) -->
