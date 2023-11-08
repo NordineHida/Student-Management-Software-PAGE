@@ -72,7 +72,12 @@
 
         <!-- Sexe (Nordine & Yamato)-->
         <TextBlock Text="Sexe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtSexe"  HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="3" />
+        <WrapPanel Grid.Row="11" Grid.Column="3" x:Name="RadioSexe">
+            <RadioButton GroupName="sexeRadio" x:Name="radioHomme" Margin="20,0,0,0" IsEnabled="False" >Homme</RadioButton>
+            <RadioButton GroupName="sexeRadio" x:Name="radioFemme" Margin="20,0,0,0" IsEnabled="False" >Femme</RadioButton>
+            <RadioButton GroupName="sexeRadio" x:Name="radioAutre" Margin="20,0,0,0" IsEnabled="False" >Autre</RadioButton>
+        </WrapPanel>
+
 
         <!-- Type de bac obtenu (Nordine & Yamato) -->
         <TextBlock Text="Bac obtenu : " HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="1" />
@@ -80,7 +85,10 @@
 
         <!-- Statut (Boursier ou non)  (Nordine & Yamato)-->
         <TextBlock Text="Boursier : " HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtBoursier" HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="3" />
+        <WrapPanel Grid.Row="15" Grid.Column="3" x:Name="RadioBoursier">
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierTrue" Margin="20,0,0,0" IsEnabled="False" >Oui</RadioButton>
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierFalse" Margin="20,0,0,0" IsEnabled="False" >Non</RadioButton>
+        </WrapPanel>
 
         <!-- Régime de formation (Nordine & Yamato)-->
         <TextBlock Text="Régime : " HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
@@ -102,7 +110,7 @@
             <!-- Date de naissance -->
             <WrapPanel>
                 <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="Date de naissance : " Margin="0,20,0,0" />
-                <TextBox IsReadOnly="True" x:Name="txtDateNaissance2" FontSize="20" Margin="30,20,0,0"/>
+                <DatePicker FontSize="20" IsEnabled="False" x:Name="txtDateNaissance2" SelectedDateFormat="Short" Margin="30,20,0,0"></DatePicker>
             </WrapPanel>
 
 

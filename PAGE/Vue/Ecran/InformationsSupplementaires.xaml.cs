@@ -45,9 +45,31 @@ namespace PAGE.Vue.Ecran
             txtNumApogee.Text = etudiant.NumApogee.ToString();
             txtGroupe.Text = etudiant.Groupe;
             txtMail.Text = etudiant.Mail;
-            txtSexe.Text = etudiant.Sexe.ToString();
+
+            //Radio boutton sexe
+            switch (etudiant.Sexe)
+            {
+                case SEXE.FEMININ:
+                    radioFemme.IsChecked = true;
+                    break;
+                case SEXE.MASCULIN:
+                    radioFemme.IsChecked = true;
+                    break;
+                case SEXE.AUTRE:
+                    radioFemme.IsChecked = true;
+                    break;
+            }
+
+
             txtTypebac.Text = etudiant.TypeBac;
-            txtBoursier.Text = etudiant.EstBoursier ? "Oui" : "Non";
+
+            //boursier
+            if (etudiant.EstBoursier)
+                radioBoursierTrue.IsChecked = true;
+            else
+                radioBoursierFalse.IsChecked= true;
+
+
             txtRegime.Text = etudiant.TypeFormation;
         }
 
@@ -57,7 +79,8 @@ namespace PAGE.Vue.Ecran
         /// <author>Yamato</author>
         public void ChargerInfosCompEtudiant()
         {
-            txtDateNaissance2.Text = etudiant.DateNaissance.ToString();
+            txtDateNaissance2.SelectedDate = etudiant.DateNaissance;
+
             txtAdresse2.Text = etudiant.Adresse;
             txtTelFixe2.Text = etudiant.TelFixe.ToString();
             txtTelPortable2.Text = etudiant.TelPortable.ToString();
@@ -88,14 +111,45 @@ namespace PAGE.Vue.Ecran
 
         private void Modifier_Click(object sender, RoutedEventArgs e)
         {
+            ActiverInput();
+        }
+
+        private void Valider_Click(object sender, RoutedEventArgs e)
+        {
+            DesactiverInput();
+        }
+
+        private void ActiverInput()
+        {
             BoutonValider.Visibility = Visibility.Visible;
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
             {
                 tx.IsReadOnly = false;
             }
+
+            foreach (RadioButton rb in RadioSexe.Children.OfType<RadioButton>())
+            {
+                rb.IsEnabled = true;
+            }
+
+            foreach (RadioButton rb in RadioBoursier.Children.OfType<RadioButton>())
+            {
+                rb.IsEnabled = true;
+            }
+
+
+            foreach (WrapPanel wp in contInfosComp.Children.OfType<WrapPanel>())
+            {
+                foreach (TextBox tx in wp.Children.OfType<TextBox>())
+                {
+                    tx.IsReadOnly = false;
+                }
+            }
+
+            txtDateNaissance2.IsEnabled = true;
         }
 
-        private void Valider_Click(object sender, RoutedEventArgs e)
+        private void DesactiverInput()
         {
             BoutonValider.Visibility = Visibility.Collapsed;
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
@@ -103,6 +157,25 @@ namespace PAGE.Vue.Ecran
                 tx.IsReadOnly = true;
             }
 
+            foreach (RadioButton rb in RadioSexe.Children.OfType<RadioButton>())
+            {
+                rb.IsEnabled = false;
+            }
+
+            foreach (RadioButton rb in RadioBoursier.Children.OfType<RadioButton>())
+            {
+                rb.IsEnabled = false;
+            }
+
+            foreach (WrapPanel wp in contInfosComp.Children.OfType<WrapPanel>())
+            {
+                foreach (TextBox tx in wp.Children.OfType<TextBox>())
+                {
+                    tx.IsReadOnly = true;
+                }
+            }
+
+            txtDateNaissance2.IsEnabled = false;
         }
     }
 }
