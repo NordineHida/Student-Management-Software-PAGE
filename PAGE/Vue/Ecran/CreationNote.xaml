@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="CreationNote" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="CreationNote" Height="450" Width="820">
         <!--auteur : Laszlo-->
     
     <!-- Change la couleur de fond de la page-->
