@@ -83,7 +83,7 @@
         </StackPanel>
 
         <!-- Liste des étudiants (stephane) -->
-        <ListView Name="maListView" Grid.Column="1" Margin="30" Grid.Row="2" Background="#FFDFEAFF">
+        <ListView Name="maListView" Grid.Column="1" Margin="30" Grid.Row="2" Background="#FFDFEAFF" MouseDoubleClick="maListView_MouseDoubleClick" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="120" DisplayMemberBinding="{Binding NumApogee}">
