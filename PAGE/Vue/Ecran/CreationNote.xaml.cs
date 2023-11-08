@@ -1,4 +1,5 @@
-﻿using PAGE.APIEtudiant.Stockage;
+﻿using Microsoft.Win32;
+using PAGE.APIEtudiant.Stockage;
 using PAGE.Model;
 using System;
 using System.Collections.Generic;
@@ -66,5 +67,31 @@ namespace PAGE.Vue.Ecran
         {
             this.Close();
         }
+
+        /// <summary>
+        /// Ajoute une pièce jointe lors du clique sur le bouton ajouter une pièce jointe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Yamato</author>
+        private void ClickAjouterPJ(object sender, RoutedEventArgs e)
+        {
+            // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Obtenez le chemin du fichier sélectionné
+                string selectedFilePath = openFileDialog.FileName;
+
+                // Obtenez le contenu actuel du TextBox
+                string currentContent = PieceJointeTextBlock.Text;
+
+                // Ajoutez le chemin du fichier avec un saut de ligne
+                PieceJointeTextBlock.Text = currentContent + selectedFilePath + Environment.NewLine;
+            }
+        }
+
+
+
     }
 }
