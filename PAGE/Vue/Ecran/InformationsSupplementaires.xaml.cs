@@ -76,8 +76,8 @@ namespace PAGE.Vue.Ecran
         {
             if (contInfosComp.Visibility == Visibility.Collapsed)
             {
+                ChargerInfosCompEtudiant();
                 contInfosComp.Visibility = Visibility.Visible;
-                
             }
             else
             {
