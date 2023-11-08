@@ -37,7 +37,7 @@ namespace PAGE.Vue.Ecran
         /// <summary>
         /// Charge les informations importantes de l'étudiant
         /// </summary>
-        /// <author>Yamato</author>
+        /// <author>Yamato / Lucas / Nordine</author>
         public void ChargerInfosImpEtudiant()
         {
             txtName.Text = etudiant.Nom;
@@ -76,7 +76,7 @@ namespace PAGE.Vue.Ecran
         /// <summary>
         /// Charge les informations complémentaires de l'étudiant
         /// </summary>
-        /// <author>Yamato</author>
+        /// <author>Yamato / Lucas / Nordine</author>
         public void ChargerInfosCompEtudiant()
         {
             txtDateNaissance2.SelectedDate = etudiant.DateNaissance;
@@ -108,36 +108,56 @@ namespace PAGE.Vue.Ecran
                 
             }
         }
-
+        /// <summary>
+        /// / Active le mode d'édition, permettant à l'utilisateur de modifier les informations.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas / Nordine</author>
         private void Modifier_Click(object sender, RoutedEventArgs e)
         {
             ActiverInput();
         }
 
+        /// <summary>
+        /// Désactive le mode d'édition, empêchant l'utilisateur de modifier les informations.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas / Nordine</author>
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
             DesactiverInput();
         }
 
+        /// <summary>
+        /// Les TextBox deviennent éditables, les boutons radio sont activés, et les TextBox dans les WrapPanels peuvent être édités.
+        /// La date de naissance est également éditable.
+        /// </summary>
+        /// <author>Lucas / Nordine</author>
         private void ActiverInput()
         {
             BoutonValider.Visibility = Visibility.Visible;
+
+            // Rend les TextBox éditables
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
             {
                 tx.IsReadOnly = false;
             }
 
+            // Active les boutons radio pour le sexe
             foreach (RadioButton rb in RadioSexe.Children.OfType<RadioButton>())
             {
                 rb.IsEnabled = true;
             }
 
+            // Active les boutons radio pour le statut boursier
             foreach (RadioButton rb in RadioBoursier.Children.OfType<RadioButton>())
             {
                 rb.IsEnabled = true;
             }
 
-
+            // Rend éditables les TextBox dans les WrapPanels
             foreach (WrapPanel wp in contInfosComp.Children.OfType<WrapPanel>())
             {
                 foreach (TextBox tx in wp.Children.OfType<TextBox>())
@@ -145,28 +165,38 @@ namespace PAGE.Vue.Ecran
                     tx.IsReadOnly = false;
                 }
             }
-
+            // Active l'édition de la date de naissance
             txtDateNaissance2.IsEnabled = true;
         }
 
+        /// <summary>
+        /// Les TextBox sont rendus en lecture seule, les boutons radio sont désactivés, et les TextBox dans les WrapPanels ne sont plus éditables.
+        /// La date de naissance est également en lecture seule.
+        /// </summary>
+        /// <author>Lucas / Nordine</author>
         private void DesactiverInput()
         {
             BoutonValider.Visibility = Visibility.Collapsed;
+
+            // Rend les TextBox en lecture seule
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
             {
                 tx.IsReadOnly = true;
             }
 
+            // Désactive les boutons radio pour le sexe
             foreach (RadioButton rb in RadioSexe.Children.OfType<RadioButton>())
             {
                 rb.IsEnabled = false;
             }
 
+            // Désactive les boutons radio pour le statut boursier
             foreach (RadioButton rb in RadioBoursier.Children.OfType<RadioButton>())
             {
                 rb.IsEnabled = false;
             }
 
+            // Rend les TextBox dans les WrapPanels en lecture seule
             foreach (WrapPanel wp in contInfosComp.Children.OfType<WrapPanel>())
             {
                 foreach (TextBox tx in wp.Children.OfType<TextBox>())
@@ -175,6 +205,7 @@ namespace PAGE.Vue.Ecran
                 }
             }
 
+            // Rend la date de naissance en lecture seule
             txtDateNaissance2.IsEnabled = false;
         }
     }
