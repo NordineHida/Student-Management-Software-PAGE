@@ -36,96 +36,105 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
             <!-- Troisième ligne pour la liste des étudiants -->
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
 
         <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0"  Width="250" Height="Auto" Grid.ColumnSpan="3" />
 
         <Rectangle Stretch="UniformToFill" Fill="White" Stroke="Black" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="59" />
 
-        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="260" Margin="0,40,0,0" Grid.RowSpan="25"  />
+        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="1"  VerticalAlignment="Top" Height="300" Width="260" Margin="0,40,0,0" Grid.RowSpan="25"  />
 
         <!-- Informations Importantes -->
 
-        <!-- Nom et Prenom (Nordine & Yamato) -->
-        <TextBlock Text="Nom : " HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtName" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="3" />
+        <!-- Nom et Prenom (Nordine  ) -->
+        <TextBlock Text="Nom : *"  FontSize="20" Grid.Row="1" Grid.Column="1" />
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtName"  FontSize="20" Grid.Row="1" Grid.Column="3" />
 
-        <TextBlock Text="Prénom : " HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="3" />
+        <TextBlock Text="Prénom : *"  FontSize="20" Grid.Row="3" Grid.Column="1" />
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtPrenom"  FontSize="20" Grid.Row="3" Grid.Column="3" />
 
-        <TextBlock Text="NumApogee : " HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="3" />
+        <TextBlock Text="NumApogee : *"  FontSize="20" Grid.Row="5" Grid.Column="1" />
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtNumApogee"  FontSize="20" Grid.Row="5" Grid.Column="3" />
 
-        <TextBlock Text="Groupe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="3" />
+        <TextBlock Text="Groupe : *"  FontSize="20" Grid.Row="7" Grid.Column="1" />
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtGroupe"  FontSize="20" Grid.Row="7" Grid.Column="3" />
 
-        <TextBlock Text="Adresse mail : " HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtMail" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="3" />
+        <TextBlock Text="Adresse mail : *"  FontSize="20" Grid.Row="9" Grid.Column="1" />
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtMail"  FontSize="20" Grid.Row="9" Grid.Column="3" />
 
-        <!-- Sexe (Nordine & Yamato)-->
-        <TextBlock Text="Sexe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtSexe"  HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="3" />
+        <!-- Sexe (Nordine  )-->
+        <TextBlock Text="Sexe : "  FontSize="20" Grid.Row="11" Grid.Column="1" />
+        <WrapPanel Grid.Row="11" Grid.Column="3" x:Name="RadioSexe">
+            <RadioButton GroupName="sexeRadio" x:Name="radioHomme" Margin="20,0,0,0" Checked="radioHomme_Checked" >Homme</RadioButton>
+            <RadioButton GroupName="sexeRadio" x:Name="radioFemme" Margin="20,0,0,0" Checked="radioFemme_Checked" >Femme</RadioButton>
+            <RadioButton GroupName="sexeRadio" x:Name="radioAutre" Margin="20,0,0,0" Checked="radioAutre_Checked" IsChecked="True" >Autre</RadioButton>
+        </WrapPanel>
 
-        <!-- Type de bac obtenu (Nordine & Yamato) -->
-        <TextBlock Text="Bac obtenu : " HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtTypebac" HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="3" />
+        <!-- Type de bac obtenu (Nordine  ) -->
+        <TextBlock Text="Bac obtenu : *"  FontSize="20" Grid.Row="13" Grid.Column="1" />
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtTypebac"  FontSize="20" Grid.Row="13" Grid.Column="3" />
 
-        <!-- Statut (Boursier ou non)  (Nordine & Yamato)-->
-        <TextBlock Text="Boursier : " HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtBoursier" HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="3" />
+        <!-- Statut (Boursier ou non)  (Nordine  )-->
+        <TextBlock Text="Boursier : *"  FontSize="20" Grid.Row="15" Grid.Column="1" />
+        <WrapPanel Grid.Row="15" Grid.Column="3" x:Name="RadioBoursier">
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierTrue"  Margin="20,0,0,0" Checked="radioBoursierTrue_Checked" >Oui</RadioButton>
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierFalse" Margin="20,0,0,0" Checked="radioBoursierFalse_Checked" IsChecked="True">Non</RadioButton>
+        </WrapPanel>
 
-        <!-- Régime de formation (Nordine & Yamato)-->
-        <TextBlock Text="Régime : " HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtRegime" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="3" />
+        <!-- Régime de formation (Nordine  )-->
+        <TextBlock Text="Régime : *"  FontSize="20" Grid.Row="17" Grid.Column="1" />
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtRegime"  FontSize="20" Grid.Row="17" Grid.Column="3" />
 
-        <!-- Informations Complémentaires (Nordine & Yamato) -->
+        <!-- Informations Complémentaires (Nordine) -->
 
-        <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato)-->
-        <Button Content="Afficher les informations complémentaires" Click="InfosComp_Click" Margin="20,0,20,0" Grid.Row="18" />
+        <!-- Bouton pour afficher les informations complémentaires (Nordine)-->
+        <Button Foreground="White" Background="#FF3DA79D" FontFamily="Open Sauce One Bold" FontSize="20" Content="Créer un étudiant" Click="CreerEtudiant" Margin="20,0,20,0" Grid.Row="18" Grid.RowSpan="2" />
 
-
-        <StackPanel x:Name="contInfosComp" Visibility="Collapsed" Orientation="Vertical" Grid.RowSpan="2" Grid.Row="19"  Grid.Column="1"  Grid.ColumnSpan="2">
-
-            <!-- Date de naissance -->
-            <WrapPanel>
-                <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="Date de naissance : " Margin="0,20,0,0" />
-                <TextBox IsReadOnly="True" x:Name="txtDateNaissance2" FontSize="20" Margin="30,20,0,0"/>
-            </WrapPanel>
+        <!--Indication de champs obligatoire-->
+        <Label Content="* = Champ obligatoire" Foreground="Red" FontFamily="Open Sauce One Italic" FontSize="18"  Grid.Row="16" Grid.RowSpan="2" />
 
 
-            <!-- Adresse de résidence -->
-            <WrapPanel>
-                <TextBlock x:Name="txtAdresse1" FontSize="20" Text="Adresse de résidence : " Margin="0,20,0,0"/>
-                <TextBox IsReadOnly="True" x:Name="txtAdresse2" FontSize="20" Margin="30,20,0,0"  />
-            </WrapPanel>
 
-            <!-- Téléphone fixe -->
-            <WrapPanel>
-                <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="Téléphone fixe : " Margin="0,20,0,0" />
-                <TextBox IsReadOnly="True" x:Name="txtTelFixe2" FontSize="20"  Margin="30,20,0,0"/>
-            </WrapPanel>
+        <!-- Date de naissance -->
+        <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="Date de naissance : "  Grid.Row="19" Grid.Column="1"  />
+        <DatePicker HorizontalAlignment="Left" FontSize="20" x:Name="txtDateNaissance2" Width="350" SelectedDateFormat="Short" Margin="0,0,80,20" Grid.Row="19" Grid.RowSpan="2" Grid.Column="3"/>
 
-            <!-- Téléphone portable -->
-            <WrapPanel>
-                <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="Téléphone portable : " Margin="0,20,0,0"/>
-                <TextBox IsReadOnly="True" x:Name="txtTelPortable2" FontSize="20"  Margin="30,20,0,0" />
-            </WrapPanel>
+        <!-- Adresse de résidence -->
+        <TextBlock x:Name="txtAdresse1" FontSize="20" Text="Adresse de résidence : "   Grid.Row="21" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtAdresse2" FontSize="20"   Grid.Row="21" Grid.Column="3" />
+          
 
-            <!-- Login réseau -->
-            <WrapPanel>
-                <TextBlock x:Name="txtLogin1" FontSize="20" Text="Login réseau : " Margin="0,20,0,0" />
-                <TextBox IsReadOnly="True" x:Name="txtLogin2" FontSize="20" Margin="30,20,0,0"  />
-            </WrapPanel>
+        <!-- Téléphone fixe -->
+        <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="Téléphone fixe : "   Grid.Row="23" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtTelFixe2" FontSize="20" Text=""   Grid.Row="23" Grid.Column="3"/>
+            
 
-        </StackPanel>
+        <!-- Téléphone portable -->
+        <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="Téléphone portable : "   Grid.Row="25" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtTelPortable2" FontSize="20" Text=""    Grid.Row="25" Grid.Column="3" />
+            
+
+        <!-- Login réseau -->
+        <TextBlock x:Name="txtLogin1" FontSize="20" Text="Login réseau : "  Grid.Row="27" Grid.Column="1" />
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtLogin2" FontSize="20" Text=""  Grid.Row="27" Grid.Column="3" />
+        
     </Grid>
 
 </Window>

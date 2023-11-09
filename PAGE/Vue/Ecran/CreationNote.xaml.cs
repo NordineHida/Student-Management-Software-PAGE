@@ -1,4 +1,4 @@
-﻿using PAGE.APIEtudiant.Stockage;
+﻿using PAGE.Stockage;
 using PAGE.Model;
 using System;
 using System.Collections.Generic;
