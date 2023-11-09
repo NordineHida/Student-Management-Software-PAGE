@@ -68,17 +68,13 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("L'ajout est un succès", "Succès de l'importation", MessageBoxButton.OK);
-                    }
-                    else 
-                    {
-                        MessageBox.Show("L'ajout des étudiants a échoué. Code de réponse : " + response.StatusCode, "Erreur d'import", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'appel de l'API : " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+                
             }
         }
 
@@ -109,17 +105,13 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("L'ajout est un succès", "Succès de l'importation", MessageBoxButton.OK);
-                    }
-                    else
-                    {
-                        MessageBox.Show("L'ajout des étudiants a échoué. Code de réponse : " + response.StatusCode, "Erreur d'import", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'appel de l'API : " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+                
             }
         }
 
@@ -134,28 +126,20 @@ namespace PAGE.Stockage
             //Dictionnaire d'étudiant (cle = num apogee, valeur = etudiant)
             List<Etudiant> etudiants = new List<Etudiant>();
 
-            try
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
             {
-                // Créez une instance de HttpClient
-                using (HttpClient client = new HttpClient())
-                {
-                    // Spécifiez l'URL de l'API
-                    string apiUrl = "https://localhost:7038/EtuControlleur/GetAllEtu";
+                // Spécifiez l'URL de l'API
+                string apiUrl = "https://localhost:7038/EtuControlleur/GetAllEtu";
 
-                    // Effectuez la requête GET
-                    HttpResponseMessage reponse = await client.GetAsync(apiUrl);
+                // Effectuez la requête GET
+                HttpResponseMessage reponse = await client.GetAsync(apiUrl);
 
-                    //On récupere le json contenant la liste d'étudiant
-                    string reponseString = await reponse.Content.ReadAsStringAsync();
+                //On récupere le json contenant la liste d'étudiant
+                string reponseString = await reponse.Content.ReadAsStringAsync();
 
-                    //On la deserialise et on lit en IEnumerable qu'on convertit en List<Etudiant>
-                    etudiants = JsonSerializer.Deserialize<List<Etudiant>>(reponseString);
-                }
-            }
-            catch (Exception ex)
-            {
-                //PEUT ETRE PAR AFFICHER (DEMANDER CLIENT)
-                MessageBox.Show("Erreur lors de l'appel de l'API (GetAllEtu) DEMANDER CLIENT SI ON VEUT AFFICHER ERReur: " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+                //On la deserialise et on lit en IEnumerable qu'on convertit en List<Etudiant>
+                etudiants = JsonSerializer.Deserialize<List<Etudiant>>(reponseString);
             }
             return etudiants;
         }
@@ -165,38 +149,29 @@ namespace PAGE.Stockage
         /// </summary>
         /// <param name="note">note crée</param>
         /// <returns>la tache qu'est d'ajouter la note à la BDD</returns>
+        /// <author>Laszlo</author>
         public async Task CreateNote(Note note)
         {
-            try
+
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
             {
-                // Créez une instance de HttpClient
-                using (HttpClient client = new HttpClient())
+                // Spécifiez l'URL de l'API
+                string apiUrl = "https://localhost:7038/Note/CreateNote";
+
+                // Convertissez la note en JSON
+                string noteSerialise = JsonSerializer.Serialize(note);
+
+                // Créez le contenu de la requête POST
+                HttpContent content = new StringContent(noteSerialise, Encoding.UTF8, "application/json");
+
+                // Effectuez la requête POST
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    // Spécifiez l'URL de l'API
-                    string apiUrl = "https://localhost:7038/Note/CreateNote";
-
-                    // Convertissez la note en JSON
-                    string noteSerialise = JsonSerializer.Serialize(note);
-
-                    // Créez le contenu de la requête POST
-                    HttpContent content = new StringContent(noteSerialise, Encoding.UTF8, "application/json");
-
-                    // Effectuez la requête POST
-                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        MessageBox.Show("L'ajout est un succès", "Succès de l'importation", MessageBoxButton.OK);
-                    }
-                    else
-                    {
-                        MessageBox.Show("L'ajout de la note a échoué. Code de réponse : " + response.StatusCode, "Erreur de création de note", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de l'appel de l'API : " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -210,29 +185,22 @@ namespace PAGE.Stockage
             //Dictionnaire d'étudiant (cle = num apogee, valeur = etudiant)
             List<Note> notes = new List<Note>();
 
-            try
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
             {
-                // Créez une instance de HttpClient
-                using (HttpClient client = new HttpClient())
-                {
-                    // Spécifiez l'URL de l'API
-                    string apiUrl = $"https://localhost:7038/Note/GetAllNotesByApogee?apogeeEtudiant={apogeeEtudiant}";
+                // Spécifiez l'URL de l'API
+                string apiUrl = $"https://localhost:7038/Note/GetAllNotesByApogee?apogeeEtudiant={apogeeEtudiant}";
 
-                    // Effectuez la requête GET
-                    HttpResponseMessage reponse = await client.GetAsync(apiUrl);
+                // Effectuez la requête GET
+                HttpResponseMessage reponse = await client.GetAsync(apiUrl);
 
-                    //On récupere le json contenant la liste d'étudiant
-                    string reponseString = await reponse.Content.ReadAsStringAsync();
+                //On récupere le json contenant la liste d'étudiant
+                string reponseString = await reponse.Content.ReadAsStringAsync();
 
-                    //On la deserialise et on lit en IEnumerable qu'on convertit en List<Etudiant>
-                    notes = JsonSerializer.Deserialize<List<Note>>(reponseString);
-                }
+                //On la deserialise et on lit en IEnumerable qu'on convertit en List<Etudiant>
+                notes = JsonSerializer.Deserialize<List<Note>>(reponseString);
             }
-            catch (Exception ex)
-            {
-                //PEUT ETRE PAR AFFICHER (DEMANDER CLIENT)
-                MessageBox.Show("Erreur lors de l'appel de l'API (GetAllNotesByApogee) DEMANDER CLIENT SI ON VEUT AFFICHER ERReur: " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+
             return notes;
         }
 
@@ -241,39 +209,30 @@ namespace PAGE.Stockage
         /// </summary>
         /// <param name="note">note crée</param>
         /// <returns>la tache qu'est d'ajouter la note à la BDD</returns>
+        /// <author>Laszlo</author>
         public async Task DeleteNote(Note note)
         {
-            try
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
             {
-                // Créez une instance de HttpClient
-                using (HttpClient client = new HttpClient())
+                // Spécifiez l'URL de l'API
+                string apiUrl = "https://localhost:7038/Note/DeleteNote";
+
+                // Convertissez la note en JSON
+                string noteSerialise = JsonSerializer.Serialize(note);
+
+                // Créez le contenu de la requête POST
+                HttpContent content = new StringContent(noteSerialise, Encoding.UTF8, "application/json");
+
+                // Effectuez la requête POST
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    // Spécifiez l'URL de l'API
-                    string apiUrl = "https://localhost:7038/Note/DeleteNote";
-
-                    // Convertissez la note en JSON
-                    string noteSerialise = JsonSerializer.Serialize(note);
-
-                    // Créez le contenu de la requête POST
-                    HttpContent content = new StringContent(noteSerialise, Encoding.UTF8, "application/json");
-
-                    // Effectuez la requête POST
-                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        MessageBox.Show("La suppression est un succès", "Succès de la suppression", MessageBoxButton.OK);
-                    }
-                    else
-                    {
-                        MessageBox.Show("La suppression de la note a échoué. Code de réponse : " + response.StatusCode, "Erreur de suppression de note", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    MessageBox.Show("La suppression est un succès", "Succès de la suppression", MessageBoxButton.OK);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de l'appel de l'API : " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+
         }
     }
 }
