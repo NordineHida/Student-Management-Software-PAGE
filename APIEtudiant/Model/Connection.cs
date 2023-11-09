@@ -1,5 +1,6 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 
+
 namespace APIEtudiant.Model
 {
     /// <summary>

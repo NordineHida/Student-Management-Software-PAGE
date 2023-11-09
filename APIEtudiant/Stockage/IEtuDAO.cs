@@ -45,5 +45,7 @@ namespace APIEtudiant.Stockage
         /// <author>Laszlo</author>
         public bool CreateNote(Note note);
 
+        public bool CreatePj(PieceJointe pj);
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APIEtudiant.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,9 @@ namespace PAGE.Model
         private string nature;
         private string commentaire;
         private int apogeeEtudiant;
-        private byte[] pieceJointe;
+        private int? idPieceJointe;
+        private List<PieceJointe> pieceJointes = new List<PieceJointe>();
+
         #endregion
 
         #region Propriétés
@@ -51,11 +54,10 @@ namespace PAGE.Model
         /// <author>Laszlo</author>
         public int ApogeeEtudiant { get { return apogeeEtudiant; } set { apogeeEtudiant = value; } }
 
-        /// <summary>
-        /// Récupère ou définite la pièce jointe dans la note
-        /// </summary>
-        /// <author>Yamato</author>
-        public byte[] PieceJointe { get { return pieceJointe; } set { pieceJointe = value; } }
+        public int? IdPieceJointe { get { return idPieceJointe; } set { idPieceJointe = value; } }
+
+        public List<PieceJointe> PieceJointes { get { return pieceJointes; } set { pieceJointes = value; } }
+
 
         #endregion
 
@@ -70,15 +72,16 @@ namespace PAGE.Model
         /// <param name="nature">Nature de la note (50 caractères maximum)</param>
         /// <param name="commentaire">Commentaire inscrit à l'intérieur de la note (255 caractères maximum)</param>
         /// <param name="apogeeEtudiant">Numéro apogée de l'étudiant dont la note parle</param>
-        /// <author>Laszlo et Yamato</author>
-        public Note(string categorie, DateTime datePublication, string nature, string commentaire, int apogeeEtudiant, byte[] pieceJointe)
+        /// <author>Laszlo</author>
+        public Note(string categorie, DateTime datePublication, string nature, string commentaire, int apogeeEtudiant, int? idPieceJointe = null)
         {
             this.categorie = categorie;
             this.datePublication = datePublication;
             this.nature = nature;
             this.commentaire = commentaire;
             this.apogeeEtudiant = apogeeEtudiant;
-            this.pieceJointe = pieceJointe;
+            IdPieceJointe = idPieceJointe;
+            PieceJointes = new List<PieceJointe>();
         }
 
         /// <summary>

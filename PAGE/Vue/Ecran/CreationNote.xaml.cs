@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using DocumentFormat.OpenXml.Vml;
+using Microsoft.Win32;
 using PAGE.APIEtudiant.Stockage;
 using PAGE.Model;
 using System;
@@ -84,10 +85,11 @@ namespace PAGE.Vue.Ecran
             {
                 // Obtenez le chemin du fichier sélectionné
                 string selectedFilePath = openFileDialog.FileName;
+                string fileName = System.IO.Path.GetFileName(selectedFilePath);
+                int idNote = 1;
 
-                byte[] pieceJointe = File.ReadAllBytes(selectedFilePath);
-                note.PieceJointe = pieceJointe;
-
+                PieceJointe pieceJointe = new PieceJointe(fileName, selectedFilePath, idNote);
+                EtuDAO.Instance.CreatePj(pieceJointe);
                 // Obtenez le contenu actuel du TextBox
                 string currentContent = PieceJointeTextBlock.Text;
 
@@ -96,6 +98,7 @@ namespace PAGE.Vue.Ecran
             }
         }
 
+        
 
 
     }

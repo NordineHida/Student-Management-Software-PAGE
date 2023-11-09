@@ -37,6 +37,8 @@ namespace PAGE.Stockage
         /// <returns>true si l'ajout est un succès</returns>
         /// <author>Laszlo</author>
         public Task CreateNote(Note note);
+
+        public Task CreatePj(PieceJointe pj);
     }
 }
 

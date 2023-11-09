@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using APIEtudiant.Model;
 using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess;
 
 namespace APIEtudiant.Stockage
 {
@@ -258,9 +259,55 @@ namespace APIEtudiant.Stockage
                 try
                 {
                     // On crée la requête SQL
-                    string requete = String.Format("INSERT INTO Note(idNote,categorie,datePublication,nature,commentaire,apogeeEtudiant, pieceJointe)" +
-                        "VALUES(0, '{0}', TO_DATE('{1}', 'YYYY-MM-DD'), '{2}', '{3}', '{4}', '{5}')", note.Categorie, note.DatePublication.Date.ToString("yyyy-MM-dd"), note.Nature, note.Commentaire, note.ApogeeEtudiant, note.PieceJointe);
-                        
+                    string requete = String.Format("INSERT INTO NotePj(idNote,categorie,datePublication,nature,commentaire,apogeeEtudiant)" +
+                        "VALUES(78786, '{0}', TO_DATE('{1}', 'YYYY-MM-DD'), '{2}', '{3}', '{4}')", note.Categorie, note.DatePublication.Date.ToString("yyyy-MM-dd"), note.Nature, note.Commentaire, note.ApogeeEtudiant);
+
+                    //On execute la requete
+                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
+
+
+                    //On verifie que la ligne est bien inséré, si oui on passe le bool à true
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        ajoutReussi = true;
+                    }
+                }
+                // Gestion des exceptions
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    try
+                    {
+                        if (con != null)
+                        {
+                            con.Close();
+                        }
+                    }
+                    catch (OracleException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            return ajoutReussi;
+        }
+
+        public bool CreatePj(PieceJointe? pj)
+        {
+            bool ajoutReussi = false;
+            if (pj != null)
+            {
+                // Création d'une connexion Oracle
+                Connection con = new Connection();
+
+                try
+                {
+                    // On crée la requête SQL
+                    string requete = String.Format("INSERT INTO PieceJointe(idPieceJointe,fileName,filePath,idNotePj)" +
+                        "VALUES(0, '{0}', '{1}', '{2}')", pj.FileName, pj.FilePath, pj.IdNote);
 
                     //On execute la requete
                     OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
