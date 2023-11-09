@@ -83,6 +83,48 @@ namespace PAGE.Stockage
         }
 
         /// <summary>
+        /// Ajoute un étudiant à la BDD
+        /// </summary>
+        /// <param name="etudiant">Etudiant à ajouté</param>
+        /// <returns></returns>
+        /// <author>Nordine</author>
+        public async Task AddEtudiant(Etudiant etudiant)
+        {
+            try
+            {
+                // Créez une instance de HttpClient
+                using (HttpClient client = new HttpClient())
+                {
+                    // Spécifiez l'URL de l'API
+                    string apiUrl = "https://localhost:7038/EtuControlleur/AddEtu";
+
+                    // Convertissez l'étudiants en JSON
+                    string etudiantSerialise = JsonSerializer.Serialize(etudiant);
+
+                    // Créez le contenu de la requête POST
+                    HttpContent content = new StringContent(etudiantSerialise, Encoding.UTF8, "application/json");
+
+                    // Effectuez la requête POST
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("L'ajout est un succès", "Succès de l'importation", MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("L'ajout des étudiants a échoué. Code de réponse : " + response.StatusCode, "Erreur d'import", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de l'appel de l'API : " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+        /// <summary>
         /// Renvoi tout les étudiants
         /// </summary>
         /// <returns>Un ensemble d'étudiant</returns>
