@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Forms;
 using PAGE.Model;
 using PAGE.Stockage;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace PAGE.Vue.Ecran
 {
@@ -14,7 +16,10 @@ namespace PAGE.Vue.Ecran
         private SEXE sexeSelectionne;
         private bool estBoursier;
 
-        // VERIFIE SI DES ELEMENTS OBLIGATOIRE SONT BIEN RENTRER !!!!!!!!!!!!!!!!!!!!!!!!! LES MARQUES AVEC UNE PETITE ETOILE ROUGE COMME FORMULAIRE + verifier age min?
+        /// <summary>
+        /// Constructeur (initialiser le sexe à AUTRE  et le bool boursier a false
+        /// </summary>
+        /// <author>Nordine</author>
         public FenetreCreerEtudiant()
         {
             InitializeComponent();
@@ -24,22 +29,122 @@ namespace PAGE.Vue.Ecran
         }
 
 
+        /// <summary>
+        /// Quand on clique sur créer un étudiant, vérifie si la saisis est cohérente, si oui créer l'é
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreerEtudiant(object sender, RoutedEventArgs e)
         {
-            //FAIRE DES VERIFICATION DE SAISI ICI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SURMENT DANS UNE AUTRE METHODE  private bool IsSaisiCorrect
-            //si la date de naissance à bien été saisi
-            if (txtDateNaissance2.SelectedDate.HasValue)
+            if (IsSaisiCorrect())
             {
+                long telFixe = 0;
+                long telPortable = 0;
+                long.TryParse(txtTelFixe2.Text, out telFixe);
+                long.TryParse(txtTelPortable2.Text, out telPortable);
+
                 //on créer l'étudiant a partir des infos saisis dans la fenêtre
                 Etudiant etudiant = new Etudiant(
-                    int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, txtGroupe.Text, estBoursier,
-                    txtRegime.Text, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
-                    long.Parse(txtTelFixe2.Text), long.Parse(txtTelPortable2.Text), txtAdresse2.Text);
+                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, txtGroupe.Text, estBoursier,
+                txtRegime.Text, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
+                telFixe, telPortable, txtAdresse2.Text);
 
                 //on ajoute l'étudiant à la bdd
                 EtuDAO.Instance.AddEtudiant(etudiant);
 
             }
+        }
+
+
+        /// <summary>
+        /// Verifie toutes les conditions nécessaires de la saisis de l'utilisateur pour une création d'étudiant sans erreur
+        /// </summary>
+        /// <returns>Si la saisi de l'utilisateur rempli toutes les conditions pour être valide</returns>
+        /// <author>Nordine</author>
+        private bool IsSaisiCorrect()
+        {
+            bool saisiCorrect = true;
+
+            if ((!string.IsNullOrWhiteSpace(txtNumApogee.Text)) && !System.Text.RegularExpressions.Regex.IsMatch(txtNumApogee.Text, "^[0-9]{1,8}$"))
+            {
+                MessageBox.Show("Le numéro d'apogée doit contenir uniquement des chiffres (maximum 8 chiffres).", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtNumApogee.Text))
+            {
+                MessageBox.Show("Veuillez saisir un numéro apogée.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Le champ Nom ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtPrenom.Text))
+            {
+                MessageBox.Show("Le champ Prénom ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtTypebac.Text))
+            {
+                MessageBox.Show("Le champ Type de Bac ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtMail.Text) || !txtMail.Text.Contains("@"))
+            {
+                MessageBox.Show("Le champ E-mail est vide ou invalide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtGroupe.Text))
+            {
+                MessageBox.Show("Le champ Groupe ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtRegime.Text))
+            {
+                MessageBox.Show("Le champ Régime ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (txtDateNaissance2.SelectedDate.HasValue)
+            {
+                DateTime dateNaissance = txtDateNaissance2.SelectedDate.Value;
+                DateTime dateActuelle = DateTime.Now;
+                int age = dateActuelle.Year - dateNaissance.Year;
+
+                if (age < 15)
+                {
+                    MessageBox.Show("L'âge de l'étudiant doit être d'au moins 15 ans.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    saisiCorrect = false;
+                }
+            }
+
+            else if (!txtDateNaissance2.SelectedDate.HasValue)
+            {
+                MessageBox.Show("Veuillez saisir une date de naissance", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if ((txtTelFixe2.Text== null) && !int.TryParse(txtTelFixe2.Text, out _))
+            {
+                MessageBox.Show("Le numéro de téléphone fixe ne peut contenir que des chelse iffres.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if ((txtTelPortable2.Text == null) && !int.TryParse(txtTelPortable2.Text, out _))
+            {
+                MessageBox.Show("Le numéro de téléphone portable ne peut contenir que des chelse iffres.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            return saisiCorrect;
         }
 
 
