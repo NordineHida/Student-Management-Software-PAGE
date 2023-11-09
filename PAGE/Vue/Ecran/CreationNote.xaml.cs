@@ -50,12 +50,25 @@ namespace PAGE.Vue.Ecran
                 string categorieChoisieString = categorieChoisie.ToString();
                 string[] motsCatChoisie = categorieChoisieString.Split(": ");
                 note.Categorie=motsCatChoisie[1];
-                //on crée la note
-                EtuDAO.Instance.CreateNote(note);
-                this.Close();
             }
             //Si on n'a pas choisi de catégorie, un message s'affiche
-            else { MessageBox.Show("Veuillez choisir une catégorie"); }
+            else { MessageBox.Show("Veuillez choisir une nature"); }
+
+            if (ComboBoxNature.SelectedItem != null)
+            {
+                //récupère la catègorie de la combobox et met la propriété "Catégorie" de la note à sa valeur
+                ComboBoxItem natureChoisie = (ComboBoxItem)ComboBoxNature.SelectedItem;
+                string NatureChoisieString = natureChoisie.ToString();
+                string[] motsNatChoisie = NatureChoisieString.Split(": ");
+                note.Nature = motsNatChoisie[1];
+            }
+            //Si on n'a pas choisi de nature, un message s'affiche
+            else { MessageBox.Show("Veuillez choisir une nature"); }
+
+            //on crée la note
+            EtuDAO.Instance.CreateNote(note);
+            this.Close();
+
         }
 
         /// <summary>

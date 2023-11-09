@@ -8,13 +8,13 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Title="CreationNote" Height="450" Width="820">
-        <!--auteur : Laszlo-->
-    
+    <!--auteur : Laszlo-->
+
     <!-- Change la couleur de fond de la page-->
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
     </Window.Background>
-    
+
     <Grid Margin="5,0,-5,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -55,13 +55,20 @@
             <ComboBoxItem Content="Médical"/>
             <ComboBoxItem Content="Résultats"/>
             <ComboBoxItem Content="Orientation"/>
+            <ComboBoxItem Content="Autre"/>
         </ComboBox>
 
         <!-- TextBox de la Nature de la note -->
-        <Rectangle Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="133,10,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" RadiusX="10" RadiusY="10" Grid.ColumnSpan="2"/>
-        <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="507,10,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="26" RadiusX="10" RadiusY="10"/>
-        <Label Grid.Column="1" Content="Nature : " HorizontalAlignment="Left" Margin="24,15,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="97,10,13,0" TextWrapping="Wrap" Text="{Binding Nature}" VerticalAlignment="Top" Height="37" BorderBrush="#FF3DA79D" BorderThickness="2" />
+        <Rectangle Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="88,4,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" RadiusX="10" RadiusY="10"/>
+        <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="423,5,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="26" RadiusX="10" RadiusY="10"/>
+        <Label Grid.Column="1" Content="Nature : " HorizontalAlignment="Left" Margin="113,9,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
+        <ComboBox x:Name="ComboBoxNature" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,4,0,0" BorderBrush="#FF3DA79D" BorderThickness="2">
+            <ComboBoxItem Content="Mail"/>
+            <ComboBoxItem Content="Rdv"/>
+            <ComboBoxItem Content="Lettre"/>
+            <ComboBoxItem Content="Appel"/>
+            <ComboBoxItem Content="Autre"/>
+        </ComboBox>
 
         <!-- TextBox du commentaire de la note -->
         <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Commentaire}" VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0"/>
