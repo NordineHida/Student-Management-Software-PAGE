@@ -106,11 +106,13 @@ namespace PAGE.Vue.Ecran
             {
                 ChargerInfosCompEtudiant();
                 contInfosComp.Visibility = Visibility.Visible;
+                BoutonInfoComp.Content = "Cacher les informations complémentaires";
             }
             else
             {
                 contInfosComp.Visibility = Visibility.Collapsed;
-                
+                BoutonInfoComp.Content = "Afficher les informations complémentaires";
+
             }
         }
         /// <summary>
@@ -174,6 +176,7 @@ namespace PAGE.Vue.Ecran
             }
             // Active l'édition de la date de naissance
             txtDateNaissance2.IsEnabled = true;
+
         }
 
         /// <summary>
@@ -216,6 +219,7 @@ namespace PAGE.Vue.Ecran
 
             // Rend la date de naissance en lecture seule
             txtDateNaissance2.IsEnabled = false;
+
         }
 
         #region affichage trie note
