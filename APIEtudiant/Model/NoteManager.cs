@@ -40,5 +40,26 @@ namespace APIEtudiant.Model
         {
             return EtuDAO.CreateNote(note);
         }
+
+        /// <summary>
+        /// Supprime une note de la BDD
+        /// </summary>
+        /// <param name="note">Note à supprimer</param>
+        /// <returns>true si la suppression est un succès</returns>
+        /// <author>Laszlo</author>
+        public bool DeleteNote(Note note)
+        {
+            return EtuDAO.DeleteNote(note);
+        }
+
+        /// <summary>
+        /// Renvoie toutes les notes d'un étudiant 
+        /// </summary>
+        /// <returns>la liste de notes/returns>
+        /// <author>Laszlo</author>
+        public IEnumerable<Note> GetAllNotesByApogee(int apogeeEtudiant)
+        {
+            return EtuDAO.GetAllNotesByApogee(apogeeEtudiant);
+        }
     }
 }

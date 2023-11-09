@@ -28,5 +28,42 @@ namespace APIEtudiant.Controllers
             }
             return reponse;
         }
+
+        /// <summary>
+        /// Supprime une note de la BDD
+        /// </summary>
+        /// <param name="note">Note à Supprimer</param>
+        /// <author>Laszlo</author>
+        [HttpPost("DeleteNote")]
+        public ActionResult DeleteNote([FromBody] Note note)
+        {
+            ActionResult reponse = BadRequest();
+            //Si la note n'est pas null
+            if (note != null)
+            {
+                //si la suppression de la note a été un succès on renvoie OK
+                if (NoteManager.Instance.DeleteNote(note)) reponse = Ok();
+            }
+            return reponse;
+        }
+
+        /// <summary>
+        /// Supprime une note de la BDD
+        /// </summary>
+        /// <param name="note">Note à Supprimer</param>
+        /// <author>Laszlo</author>
+        [HttpGet("GetAllNotesByApogee")]
+        public ActionResult<IEnumerable<Etudiant>> GetAllNotesByApogee(int apogeeEtudiant)
+        {
+            //Cas par défaut
+            ActionResult<IEnumerable<Etudiant>> reponse = BadRequest();
+
+            //On récupere les etudiants depuis le manager
+            IEnumerable<Note> notes = NoteManager.Instance.GetAllNotesByApogee(apogeeEtudiant);
+
+            //Si c'est pas null on renvoi un Ok avec les etudiants
+            if (notes != null) reponse = Ok(notes);
+            return reponse;
+        }
     }
 }

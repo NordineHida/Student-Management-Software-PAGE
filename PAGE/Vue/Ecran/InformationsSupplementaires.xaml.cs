@@ -1,4 +1,5 @@
-﻿using PAGE.Model;
+﻿using PAGE.APIEtudiant.Stockage;
+using PAGE.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace PAGE.Vue.Ecran
             InitializeComponent();
             etudiant = EtudiantActuel;
             ChargerInfosImpEtudiant();
+            ChargementDiffereNotes();
         }
 
         /// <summary>
@@ -86,52 +88,24 @@ namespace PAGE.Vue.Ecran
             }
         }
 
-        #region affichage trie note
         /// <summary>
-        /// 
+        /// Chargement des notes différé via l'API
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stéphane</author>
+        /// <author>Laszlo</author>
+        private async Task ChargementDiffereNotes()
+        {
+            //On reinitialise la liste
+            maListViewNote.Items.Clear();
 
-        private void ConfidentielCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            // Vérifie si la case à cocher est cochée
-            if (ConfidentielCheckBox.IsChecked == true)
-            {
-                // Affiche la ComboBox si la case à cocher est cochée
-                ConfidentielCombobox.Visibility = Visibility.Visible;
-            }
-        }
-        // Vérifie si la case à cocher est cochée
-        private void ConfidentielCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (ConfidentielCheckBox.IsChecked == false)
-            {
-                // cache la ComboBox si la case à cocher n'est pas cochée
-                ConfidentielCombobox.Visibility = Visibility.Hidden;
-            }
-        }
-        // Vérifie si la case à cocher est cochée
-        private void CategorieCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            if (CategorieCheckBox.IsChecked == true)
-            {
-                // Affiche la ComboBox si la case à cocher est cochée
-                CategorieCombobox.Visibility = Visibility.Visible;
-            }
-        }
-        // Vérifie si la case à cocher est cochée
-        private void CategorieCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (CategorieCheckBox.IsChecked == false)
-            {
-                // cache la ComboBox si la case à cocher n'est pas cochée
+            //On récupere l'ensemble des étudiants via l'API
+            List<Note> notes = (await EtuDAO.Instance.GetAllNotesByApogee(etudiant.NumApogee)).ToList();
 
-                CategorieCombobox.Visibility = Visibility.Hidden;
+            foreach (Note note in notes)
+            {
+                //Si l'étudiant est pas déjà dans la liste on l'y ajoute
+                if (!maListViewNote.Items.Contains(note))
+                    maListViewNote.Items.Add(note);
             }
         }
-        #endregion
-
     }
 }
