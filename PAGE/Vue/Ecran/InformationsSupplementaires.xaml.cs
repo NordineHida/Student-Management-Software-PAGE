@@ -178,6 +178,33 @@ namespace PAGE.Vue.Ecran
             maListViewNote.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
         }
 
+        /// <summary>
+        /// Et utilisé quand la sélection de l'élément change.
+        /// Elle met à jour le filtre appliqué fonction du choix de l'utilisateur.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Stephane</author>
+        private void CategorieCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Applique le filtre approprié dans maListView en fonction du choix de l'utilisateur.
+            maListViewNote.Items.Filter = GetFilter();
+
+        }
+
+        /// <summary>
+        /// Et utilisé quand la sélection de l'élément change.
+        /// Elle met à jour le filtre appliqué fonction du choix de l'utilisateur.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Stephane</author>
+        private void ConfidentielCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Applique le filtre approprié dans maListView en fonction du choix de l'utilisateur.
+            maListViewNote.Items.Filter = GetFilter();
+
+        }
 
 
 
@@ -194,20 +221,20 @@ namespace PAGE.Vue.Ecran
             switch (CategorieCombobox.SelectedIndex)
             {
                 case 0: // "pour les raisons d'absences"
-                    resultat = Absentéisme;
+                    resultat = Absenteisme;
                     break;
                 case 1: // "pour les raisons personnels"
                     resultat = Personnel;
                     break;
-                case 2: // "pour les raisons médical"
-                    resultat = Médical;
+                case 2: // "pour les raisons medical"
+                    resultat = Medical;
                     break;
-                case 3: // "pour les résultats"
-                    resultat = Résultats;
+                case 3: // "pour les resultats"
+                    resultat = Resultats;
                     break;
-                /*case 4: // "pour les orientation"
+                case 4: // "pour les orientation"
                     resultat = Orientation;
-                    break;*/
+                    break;
                 case 5: // "pour toutes les autres raisons"
                     resultat = Autre;
                     break;
@@ -222,7 +249,7 @@ namespace PAGE.Vue.Ecran
         /// <param name="obj"></param>
         ///<returns>renvoie le filtre par Absentéisme</returns>
         /// <returns></returns>
-        private bool Absentéisme(object obj)
+        private bool Absenteisme(object obj)
         {
             var Filterobj = obj as Note;
             return Filterobj.Categorie.Contains(CategorieCombobox.Text, StringComparison.OrdinalIgnoreCase);
@@ -246,7 +273,7 @@ namespace PAGE.Vue.Ecran
         /// <param name="obj"></param>
         /// <returns>renvoie le filtre par raison Médical</returns>
         /// <author>Stephane</author>
-        private bool Médical(object obj)
+        private bool Medical(object obj)
         {
             var Filterobj = obj as Note;
             return Filterobj.Categorie.Contains(CategorieCombobox.Text, StringComparison.OrdinalIgnoreCase);
@@ -257,11 +284,24 @@ namespace PAGE.Vue.Ecran
         /// <param name="obj"></param>
         /// <returns>renvoie le filtre par Résultats</returns>
         /// <author>Stephane</author>
-        private bool Résultats(object obj)
+        private bool Resultats(object obj)
         {
             var Filterobj = obj as Note;
             return Filterobj.Categorie.Contains(CategorieCombobox.Text, StringComparison.OrdinalIgnoreCase);
         }
+
+        /// <summary>
+        /// La fonction utilise la catégorie orientation pour filtrer les Notes.
+        /// </summary>
+        /// <param name="obj"></param>
+        ///<returns>renvoie le filtre par orientation</returns>
+        /// <returns></returns>
+        private bool Orientation(object obj)
+        {
+            var Filterobj = obj as Note;
+            return Filterobj.Categorie.Contains(CategorieCombobox.Text, StringComparison.OrdinalIgnoreCase);
+        }
+
         /// <summary>
         /// La fonction utilise la catégorie Autre pour filtrer les Notes.
         /// </summary>
@@ -305,5 +345,7 @@ namespace PAGE.Vue.Ecran
                     maListViewNote.Items.Add(note);
             }
         }
+
+        
     }
 }
