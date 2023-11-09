@@ -60,7 +60,7 @@
 
         <!-- TextBox de la Nature de la note -->
         <Rectangle Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="88,4,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" RadiusX="10" RadiusY="10"/>
-        <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="423,5,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="26" RadiusX="10" RadiusY="10"/>
+        <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="423,4,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="26" RadiusX="10" RadiusY="10"/>
         <Label Grid.Column="1" Content="Nature : " HorizontalAlignment="Left" Margin="113,9,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
         <ComboBox x:Name="ComboBoxNature" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,4,0,0" BorderBrush="#FF3DA79D" BorderThickness="2">
             <ComboBoxItem Content="Mail"/>

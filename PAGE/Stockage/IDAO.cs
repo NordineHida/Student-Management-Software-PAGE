@@ -39,11 +39,20 @@ namespace PAGE.Stockage
         public Task CreateNote(Note note);
 
         /// <summary>
+        /// Supprime une note de la BDD
+        /// </summary>
+        /// <param name="note">Note à supprimer</param>
+        /// <returns>true si la suppression est un succès</returns>
+        /// <author>Laszlo</author>
+        public Task DeleteNote(Note note);
+
+        /// <summary>
         /// Renvoi toutes les notes d'un étudiant
         /// </summary>
         /// <returns>Un ensemble de notest</returns>
         /// <author>Laszlo</author>
         public Task<IEnumerable<Note>> GetAllNotesByApogee(int apogeeEtudiant);
+
 
     }
 }

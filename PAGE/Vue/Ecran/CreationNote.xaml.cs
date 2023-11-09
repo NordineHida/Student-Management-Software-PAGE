@@ -52,7 +52,7 @@ namespace PAGE.Vue.Ecran
                 note.Categorie=motsCatChoisie[1];
             }
             //Si on n'a pas choisi de catégorie, un message s'affiche
-            else { MessageBox.Show("Veuillez choisir une nature"); }
+            else { MessageBox.Show("Veuillez choisir une catégorie"); }
 
             if (ComboBoxNature.SelectedItem != null)
             {
@@ -66,9 +66,12 @@ namespace PAGE.Vue.Ecran
             else { MessageBox.Show("Veuillez choisir une nature"); }
 
             //on crée la note
-            EtuDAO.Instance.CreateNote(note);
-            this.Close();
-
+            if (isCreateOk(note))
+            {
+                EtuDAO.Instance.CreateNote(note);
+                this.Close();
+            }
+            else { MessageBox.Show("Tous les champs ne sont pas corrects"); }
         }
 
         /// <summary>
@@ -78,6 +81,15 @@ namespace PAGE.Vue.Ecran
         private void ClickAnnuler(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+
+        public bool isCreateOk(Note note)
+        {
+            bool valide = true;
+            if (note == null)valide = false;
+            else if (note.Categorie == null || note.Nature == null) valide = false;
+            return valide;
         }
     }
 }
