@@ -20,7 +20,7 @@
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="29" />
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
