@@ -107,5 +107,43 @@ namespace PAGE.Vue.Ecran
                     maListViewNote.Items.Add(note);
             }
         }
+
+        /// <summary>
+        /// Supprime une note via l'API
+        /// </summary>
+        /// <author>Laszlo</author>
+        private void DeleteNote(object sender, RoutedEventArgs e)
+        {
+            if (maListViewNote.SelectedItem != null)
+            {
+                // Obtenez l'étudiant sélectionné dans la ListView
+                Note noteSelectionne = maListViewNote.SelectedItem as Note;
+                if (noteSelectionne != null)
+                {
+                   EtuDAO.Instance.DeleteNote(noteSelectionne);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Ouvre une fenêtre affichant la note lorsqu'on double clique sur la note
+        /// </summary>
+        /// <author>Laszlo</author>
+        private void maListView_MouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            if (maListViewNote.SelectedItem != null)
+            {
+                // Obtenez l'étudiant sélectionné dans la ListView
+                Note noteSelectionne = maListViewNote.SelectedItem as Note;
+
+                if (noteSelectionne != null)
+                {
+                    // Créez une instance de la fenêtre InformationsSupplementaires en passant l'étudiant sélectionné en paramètre
+                    AffichageNote affichageNote = new AffichageNote(noteSelectionne);
+                    affichageNote.Show();
+                }
+            }
+        }
+        
     }
 }

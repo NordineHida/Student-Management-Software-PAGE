@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Vue\Ecran\AffichageNote.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\ChoixPromo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -33,6 +36,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Vue\Ecran\AffichageNote.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\ChoixPromo.xaml">
       <SubType>Designer</SubType>
     </Page>
