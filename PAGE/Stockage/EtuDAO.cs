@@ -10,7 +10,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace PAGE.APIEtudiant.Stockage
+namespace PAGE.Stockage
 {
     /// <summary>
     /// Implémentation du DAO de communication avec l'API

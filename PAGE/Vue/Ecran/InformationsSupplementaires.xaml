@@ -128,27 +128,27 @@
         </StackPanel>
 
         <!-- Liste des étudiants (stephane & Laszlo) -->
-        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="9" >
+        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="9"  >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding Categorie}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Categorie">Catégorie</GridViewColumnHeader>
+                            <GridViewColumnHeader  Click="Trie_ClickNote" Tag="Categorie">Catégorie</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding DatePublication}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Date" >Date</GridViewColumnHeader>
+                            <GridViewColumnHeader Click="Trie_ClickNote" Tag="Date" >Date</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding Nature }">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Nature">Nature</GridViewColumnHeader>
+                            <GridViewColumnHeader Click="Trie_ClickNote" Tag="Nature">Nature</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="250" DisplayMemberBinding="{Binding Commentaire }">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Commentaire">Commentaire</GridViewColumnHeader>
+                            <GridViewColumnHeader Click="Trie_ClickNote" Tag="Commentaire">Commentaire</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>
