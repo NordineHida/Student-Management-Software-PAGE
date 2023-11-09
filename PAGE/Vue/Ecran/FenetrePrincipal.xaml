@@ -58,28 +58,28 @@
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
 
-            
-            <Button Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage">
+
+            <Button ToolTip="Page de connexion" Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage">
                 <Image Source="/Vue/Ressources/Picto/account.png" Stretch="Uniform" Margin="7"/>
             </Button>
 
-            <Button Style="{StaticResource ImageButtonStyle}" Click="OpenParametresPage">
+            <Button ToolTip="Paramètres" Style="{StaticResource ImageButtonStyle}" Click="OpenParametresPage">
                 <Image Source="/Vue/Ressources/Picto/settings.png" Stretch="Uniform" Margin="10" />
             </Button>
 
-            <Button Style="{StaticResource ImageButtonStyle}" Click="ImporterEtudiants">
+            <Button ToolTip="Importer des étudiants" Style="{StaticResource ImageButtonStyle}" Click="ImporterEtudiants">
                 <Image Source="/Vue/Ressources/Picto/import.png"  Stretch="Uniform" Margin="13"/>
             </Button>
 
-            <Button Style="{StaticResource ImageButtonStyle}" Click="BoutonActualiserListeEtudiant">
+            <Button ToolTip="Actualiser la liste des étudiants" Style="{StaticResource ImageButtonStyle}" Click="BoutonActualiserListeEtudiant">
                 <Image Source="/Vue/Ressources/Picto/refresh.png"  Stretch="Uniform" Margin="9"/>
             </Button>
 
-            <Button Style="{StaticResource ImageButtonStyle}" Click="BoutonCreerEtudiant">
+            <Button ToolTip="Créer un étudiant" Style="{StaticResource ImageButtonStyle}" Click="BoutonCreerEtudiant">
                 <Image Source="/Vue/Ressources/Picto/account-plus.png"  Stretch="Uniform" Margin="9"/>
             </Button>
 
-            <Button Style="{StaticResource ImageButtonStyle}" Click="OpenPromoPage">
+            <Button ToolTip="Choisir la promotion" Style="{StaticResource ImageButtonStyle}" Click="OpenPromoPage">
                 <Image Source="/Vue/Ressources/Picto/calendar-account.png"  Stretch="Uniform" Margin="10"/>
             </Button>
 
@@ -131,9 +131,7 @@
                 <TextBox  x:Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180"/>
             </Grid>
         </Border>
-
-
-
+        <Label  Grid.Column="1" Content="Trier par :" HorizontalAlignment="Left" Margin="54,88,0,0" VerticalAlignment="Top" FontFamily="Open Sauce One"/>
 
     </Grid>
 </Window>
