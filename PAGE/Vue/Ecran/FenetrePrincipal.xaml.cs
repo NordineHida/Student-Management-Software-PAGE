@@ -274,9 +274,6 @@ namespace PAGE.Vue.Ecran
         private void BoutonActualiserListeEtudiant(object sender, RoutedEventArgs e)
         {
             ActualiserEtudiant();
-
-            //On ouvre une pop-up pour indiquer qu'on a bien actualiser
-            MessageBox.Show("Vous avez bien actualisé", "Actualisation avec succès", MessageBoxButton.OK);
         }
 
         /// <summary>

@@ -1,20 +1,16 @@
-﻿using DocumentFormat.OpenXml.ExtendedProperties;
-using PAGE.Model;
+﻿using PAGE.Model;
 using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
+using RadioButton = System.Windows.Controls.RadioButton;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace PAGE.Vue.Ecran
 {
@@ -106,11 +102,13 @@ namespace PAGE.Vue.Ecran
             {
                 ChargerInfosCompEtudiant();
                 contInfosComp.Visibility = Visibility.Visible;
+                BoutonInfoComp.Content = "Cacher les informations complémentaires";
             }
             else
             {
                 contInfosComp.Visibility = Visibility.Collapsed;
-                
+                BoutonInfoComp.Content = "Afficher les informations complémentaires";
+
             }
         }
         /// <summary>
@@ -132,8 +130,132 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
+            if (IsSaisiCorrect())
+            {
+                long telFixe = 0;
+                long telPortable = 0;
+                long.TryParse(txtTelFixe2.Text, out telFixe);
+                long.TryParse(txtTelPortable2.Text, out telPortable);
+
+
+                //On récupere le radio button du sexe selectionné
+                SEXE sexeSelectionne = SEXE.AUTRE;
+                if ((bool)radioHomme.IsChecked)
+                    sexeSelectionne = SEXE.MASCULIN;
+                else if ((bool)radioFemme.IsChecked)
+                    sexeSelectionne = SEXE.FEMININ;
+
+                //on recupere le radio bouton de boursier selectionné
+                bool estBoursier = false;
+                if ((bool)radioBoursierTrue.IsChecked)
+                    estBoursier = true;
+                
+
+                //on créer l'étudiant a partir des infos saisis dans la fenêtre
+                Etudiant etudiant = new Etudiant(
+                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, txtGroupe.Text, estBoursier,
+                txtRegime.Text, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
+                telFixe, telPortable, txtAdresse2.Text);
+
+                //on modifie l'étudiant à la bdd
+                EtuDAO.Instance.AddEtudiant(etudiant);
+            }
+
+            //desaction le mode édition
             DesactiverInput();
         }
+
+        /// <summary>
+        /// Verifie toutes les conditions nécessaires de la saisis de l'utilisateur pour une création d'étudiant sans erreur
+        /// </summary>
+        /// <returns>Si la saisi de l'utilisateur rempli toutes les conditions pour être valide</returns>
+        /// <author>Nordine</author>
+        private bool IsSaisiCorrect()
+        {
+            bool saisiCorrect = true;
+
+            if ((!string.IsNullOrWhiteSpace(txtNumApogee.Text)) && !System.Text.RegularExpressions.Regex.IsMatch(txtNumApogee.Text, "^[0-9]{1,8}$"))
+            {
+                MessageBox.Show("Le numéro d'apogée doit contenir uniquement des chiffres (maximum 8 chiffres).", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtNumApogee.Text))
+            {
+                MessageBox.Show("Veuillez saisir un numéro apogée.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Le champ Nom ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtPrenom.Text))
+            {
+                MessageBox.Show("Le champ Prénom ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtTypebac.Text))
+            {
+                MessageBox.Show("Le champ Type de Bac ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtMail.Text) || !txtMail.Text.Contains("@"))
+            {
+                MessageBox.Show("Le champ E-mail est vide ou invalide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtGroupe.Text))
+            {
+                MessageBox.Show("Le champ Groupe ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (string.IsNullOrWhiteSpace(txtRegime.Text))
+            {
+                MessageBox.Show("Le champ Régime ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if (txtDateNaissance2.SelectedDate.HasValue)
+            {
+                DateTime dateNaissance = txtDateNaissance2.SelectedDate.Value;
+                DateTime dateActuelle = DateTime.Now;
+                int age = dateActuelle.Year - dateNaissance.Year;
+
+                if (age < 13)
+                {
+                    MessageBox.Show("L'âge de l'étudiant doit être d'au moins 15 ans.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    saisiCorrect = false;
+                }
+            }
+
+            else if (!txtDateNaissance2.SelectedDate.HasValue)
+            {
+                MessageBox.Show("Veuillez saisir une date de naissance", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if ((txtTelFixe2.Text == null) && !int.TryParse(txtTelFixe2.Text, out _))
+            {
+                MessageBox.Show("Le numéro de téléphone fixe ne peut contenir que des chelse iffres.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            else if ((txtTelPortable2.Text == null) && !int.TryParse(txtTelPortable2.Text, out _))
+            {
+                MessageBox.Show("Le numéro de téléphone portable ne peut contenir que des chelse iffres.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                saisiCorrect = false;
+            }
+
+            return saisiCorrect;
+        }
+
 
         /// <summary>
         /// Les TextBox deviennent éditables, les boutons radio sont activés, et les TextBox dans les WrapPanels peuvent être édités.
@@ -174,6 +296,7 @@ namespace PAGE.Vue.Ecran
             }
             // Active l'édition de la date de naissance
             txtDateNaissance2.IsEnabled = true;
+
         }
 
         /// <summary>
@@ -216,6 +339,7 @@ namespace PAGE.Vue.Ecran
 
             // Rend la date de naissance en lecture seule
             txtDateNaissance2.IsEnabled = false;
+
         }
 
         #region affichage trie note

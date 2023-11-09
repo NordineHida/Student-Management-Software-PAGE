@@ -30,7 +30,7 @@ namespace PAGE.Vue.Ecran
 
 
         /// <summary>
-        /// Quand on clique sur créer un étudiant, vérifie si la saisis est cohérente, si oui créer l'é
+        /// Quand on clique sur créer un étudiant, vérifie si la saisis est cohérente, si oui créer l'étudiant
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -51,8 +51,8 @@ namespace PAGE.Vue.Ecran
 
                 //on ajoute l'étudiant à la bdd
                 EtuDAO.Instance.AddEtudiant(etudiant);
-
             }
+
         }
 
 
@@ -119,7 +119,7 @@ namespace PAGE.Vue.Ecran
                 DateTime dateActuelle = DateTime.Now;
                 int age = dateActuelle.Year - dateNaissance.Year;
 
-                if (age < 15)
+                if (age < 13)
                 {
                     MessageBox.Show("L'âge de l'étudiant doit être d'au moins 15 ans.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     saisiCorrect = false;
