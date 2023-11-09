@@ -32,6 +32,7 @@ namespace PAGE.Vue.Ecran
         /// <summary>
         /// Affiche les infos des notes dans les bons endroits
         /// </summary>
+        /// <author>Laszlo</author>
         public void ChargerInfosNotes()
         {
             txtCategorie.Text = note.Categorie;
