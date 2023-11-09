@@ -242,6 +242,7 @@ namespace PAGE.Vue.Ecran
             {
                 // cache la ComboBox si la case à cocher n'est pas cochée
                 ConfidentielCombobox.Visibility = Visibility.Hidden;
+                maListViewNote.Items.Filter = null;
             }
         }
         // Vérifie si la case à cocher est cochée
@@ -251,6 +252,7 @@ namespace PAGE.Vue.Ecran
             {
                 // Affiche la ComboBox si la case à cocher est cochée
                 CategorieCombobox.Visibility = Visibility.Visible;
+                
             }
         }
         // Vérifie si la case à cocher est cochée
@@ -261,6 +263,7 @@ namespace PAGE.Vue.Ecran
                 // cache la ComboBox si la case à cocher n'est pas cochée
 
                 CategorieCombobox.Visibility = Visibility.Hidden;
+                maListViewNote.Items.Filter = null;
             }
         }
 
@@ -386,7 +389,7 @@ namespace PAGE.Vue.Ecran
         private bool Absenteisme(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains(CategorieCombobox.Text, StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Contains("Absentéisme", StringComparison.OrdinalIgnoreCase);
         }
 
 
@@ -399,7 +402,7 @@ namespace PAGE.Vue.Ecran
         private bool Personnel(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains(CategorieCombobox.Text, StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Contains("Personnel", StringComparison.OrdinalIgnoreCase);
         }
         /// <summary>
         /// La fonction utilise la catégorie Médical  pour filtrer les Notes.
@@ -410,7 +413,7 @@ namespace PAGE.Vue.Ecran
         private bool Medical(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains(CategorieCombobox.Text, StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Contains("Médical", StringComparison.OrdinalIgnoreCase);
         }
         /// <summary>
         /// La fonction utilise la catégorie Résultats  pour filtrer les Notes.
@@ -421,7 +424,7 @@ namespace PAGE.Vue.Ecran
         private bool Resultats(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains(CategorieCombobox.Text, StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Contains("Résultats", StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -433,7 +436,7 @@ namespace PAGE.Vue.Ecran
         private bool Orientation(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains(CategorieCombobox.Text, StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Contains("Orientation", StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -445,7 +448,7 @@ namespace PAGE.Vue.Ecran
         private bool Autre(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains(CategorieCombobox.Text, StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Contains("Autre", StringComparison.OrdinalIgnoreCase);
         }
 
 
