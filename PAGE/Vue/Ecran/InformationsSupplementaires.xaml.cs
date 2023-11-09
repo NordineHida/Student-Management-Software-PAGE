@@ -100,7 +100,7 @@ namespace PAGE.Vue.Ecran
             if (ConfidentielCheckBox.IsChecked == true)
             {
                 // Affiche la ComboBox si la case à cocher est cochée
-                ComboboxConfidentiel.Visibility = Visibility.Visible;
+                ConfidentielCombobox.Visibility = Visibility.Visible;
             }
         }
         // Vérifie si la case à cocher est cochée
@@ -109,7 +109,7 @@ namespace PAGE.Vue.Ecran
             if (ConfidentielCheckBox.IsChecked == false)
             {
                 // cache la ComboBox si la case à cocher n'est pas cochée
-                ComboboxConfidentiel.Visibility = Visibility.Hidden;
+                ConfidentielCombobox.Visibility = Visibility.Hidden;
             }
         }
         // Vérifie si la case à cocher est cochée
@@ -118,7 +118,7 @@ namespace PAGE.Vue.Ecran
             if (CategorieCheckBox.IsChecked == true)
             {
                 // Affiche la ComboBox si la case à cocher est cochée
-                CategorieConfidentiel.Visibility = Visibility.Visible;
+                CategorieCombobox.Visibility = Visibility.Visible;
             }
         }
         // Vérifie si la case à cocher est cochée
@@ -128,7 +128,7 @@ namespace PAGE.Vue.Ecran
             {
                 // cache la ComboBox si la case à cocher n'est pas cochée
 
-                CategorieConfidentiel.Visibility = Visibility.Hidden;
+                CategorieCombobox.Visibility = Visibility.Hidden;
             }
         }
         #endregion
