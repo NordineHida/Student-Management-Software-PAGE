@@ -29,6 +29,9 @@ namespace PAGE.Vue.Ecran
             ChargerInfosNotes();
         }
 
+        /// <summary>
+        /// Affiche les infos des notes dans les bons endroits
+        /// </summary>
         public void ChargerInfosNotes()
         {
             txtCategorie.Text = note.Categorie;
