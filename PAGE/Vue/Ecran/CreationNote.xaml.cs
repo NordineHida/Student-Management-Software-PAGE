@@ -83,8 +83,13 @@ namespace PAGE.Vue.Ecran
             this.Close();
         }
 
-
-        public bool isCreateOk(Note note)
+        /// <summary>
+        /// Définit si l'on peut créer la note au moment de valider
+        /// </summary>
+        /// <param name="note">note à créer</param>
+        /// <returns>true si elle est correcte, faux sinon</returns>
+        /// <author>Laszlo</author>
+        private bool isCreateOk(Note note)
         {
             bool valide = true;
             if (note == null)valide = false;
