@@ -509,6 +509,5 @@ namespace PAGE.Vue.Ecran
                 }
             }
         }
-        
     }
 }

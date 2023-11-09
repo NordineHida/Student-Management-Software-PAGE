@@ -141,7 +141,7 @@
         </StackPanel>
 
         <!-- Liste des étudiants (stephane & Laszlo) -->
-        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="9"  >
+        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="9"  MouseDoubleClick="maListView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding Categorie}">

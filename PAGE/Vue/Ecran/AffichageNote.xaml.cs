@@ -1,5 +1,5 @@
-﻿using PAGE.APIEtudiant.Stockage;
-using PAGE.Model;
+﻿using PAGE.Model;
+using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
