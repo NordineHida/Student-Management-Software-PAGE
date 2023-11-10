@@ -38,7 +38,7 @@ namespace PAGE.Stockage
         /// <author>Laszlo</author>
         public Task CreateNote(Note note);
 
-        public Task CreatePj(PieceJointe pj);
+        public Task CreatePj(PieceJointe pj, int idNote);
     }
 }
 

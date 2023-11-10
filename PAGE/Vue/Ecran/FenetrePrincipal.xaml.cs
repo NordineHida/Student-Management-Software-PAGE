@@ -56,7 +56,7 @@ namespace PAGE.Vue.Ecran
                 Etudiant etudiantSelectionne = maListView.SelectedItem as Etudiant;
                 if (etudiantSelectionne != null)
                 {
-                    Note note = new Note("", DateTime.Now, "", "", etudiantSelectionne.NumApogee, null);
+                    Note note = new Note("", DateTime.Now, "", "", etudiantSelectionne.NumApogee);
                     CreationNote creationNote = new CreationNote(note);
                     creationNote.Show();
                 }

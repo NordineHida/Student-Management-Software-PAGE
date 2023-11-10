@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Vml;
+﻿using APIEtudiant.Stockage;
+using DocumentFormat.OpenXml.Vml;
 using Microsoft.Win32;
 using PAGE.APIEtudiant.Stockage;
 using PAGE.Model;
@@ -85,10 +86,11 @@ namespace PAGE.Vue.Ecran
             {
                 // Obtenez le chemin du fichier sélectionné
                 string selectedFilePath = openFileDialog.FileName;
-                int idNote = 1;
 
-                PieceJointe pieceJointe = new PieceJointe(selectedFilePath, idNote);
-                EtuDAO.Instance.CreatePj(pieceJointe);
+                // Ajoute la pièce jointe à la note
+                PieceJointe pieceJointe = new PieceJointe(selectedFilePath, note.IdNote);
+                EtuDAO.Instance.CreatePj(pieceJointe, note.IdNote);
+
                 // Obtenez le contenu actuel du TextBox
                 string currentContent = PieceJointeTextBlock.Text;
 

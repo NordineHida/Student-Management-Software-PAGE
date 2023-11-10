@@ -1,4 +1,5 @@
 ﻿using APIEtudiant.Model;
+using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +14,18 @@ namespace PAGE.Model
     public class Note
     {
         #region attributs
+        private int idNote;
         private string categorie;
         private DateTime datePublication;
         private string nature;
         private string commentaire;
         private int apogeeEtudiant;
-        private int? idPieceJointe;
         private List<PieceJointe> pieceJointes = new List<PieceJointe>();
 
         #endregion
 
         #region Propriétés
+        public int IdNote { get { return idNote; } set { idNote = value; } }
         /// <summary>
         /// Récupère ou définit la catégorie de la note.
         /// </summary>
@@ -54,7 +56,6 @@ namespace PAGE.Model
         /// <author>Laszlo</author>
         public int ApogeeEtudiant { get { return apogeeEtudiant; } set { apogeeEtudiant = value; } }
 
-        public int? IdPieceJointe { get { return idPieceJointe; } set { idPieceJointe = value; } }
 
         public List<PieceJointe> PieceJointes { get { return pieceJointes; } set { pieceJointes = value; } }
 
@@ -64,7 +65,7 @@ namespace PAGE.Model
         #region Méthodes 
 
         /// <summary>
-        /// Constructeur de Notes
+        /// Constructeur de Notes   
         /// </summary>
         /// <param name="idNote">L'identifiant de la note (10 caractères max)</param>
         /// <param name="categorie">catégorie de la note (50 caractères maximum)</param>
@@ -73,14 +74,13 @@ namespace PAGE.Model
         /// <param name="commentaire">Commentaire inscrit à l'intérieur de la note (255 caractères maximum)</param>
         /// <param name="apogeeEtudiant">Numéro apogée de l'étudiant dont la note parle</param>
         /// <author>Laszlo</author>
-        public Note(string categorie, DateTime datePublication, string nature, string commentaire, int apogeeEtudiant, int? idPieceJointe = null)
+        public Note(string categorie, DateTime datePublication, string nature, string commentaire, int apogeeEtudiant)
         {
             this.categorie = categorie;
             this.datePublication = datePublication;
             this.nature = nature;
             this.commentaire = commentaire;
             this.apogeeEtudiant = apogeeEtudiant;
-            IdPieceJointe = idPieceJointe;
             PieceJointes = new List<PieceJointe>();
         }
 

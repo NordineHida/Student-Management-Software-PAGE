@@ -157,7 +157,7 @@ namespace PAGE.APIEtudiant.Stockage
             }
         }
 
-        public async Task CreatePj(PieceJointe pieceJointe)
+        public async Task CreatePj(PieceJointe pieceJointe, int idNote)
         {
             try
             {
