@@ -14,7 +14,6 @@ namespace APIEtudiant.Model
         private string nature;
         private string commentaire;
         private int apogeeEtudiant;
-        private List<PieceJointe> pieceJointes = new List<PieceJointe>();
         #endregion
 
         #region Propriétés
@@ -49,7 +48,6 @@ namespace APIEtudiant.Model
         /// <author>Laszlo</author>
         public int ApogeeEtudiant { get { return apogeeEtudiant; } set { apogeeEtudiant = value; } }
 
-        public List<PieceJointe> PieceJointes { get { return pieceJointes; } set { pieceJointes = value; } }
         #endregion
 
         #region Méthodes 
@@ -71,7 +69,6 @@ namespace APIEtudiant.Model
             this.nature = nature;
             this.commentaire = commentaire;
             this.apogeeEtudiant = apogeeEtudiant;
-            PieceJointes = new List<PieceJointe>();
         }
 
         /// <summary>

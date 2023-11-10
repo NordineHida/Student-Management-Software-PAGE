@@ -38,7 +38,13 @@ namespace PAGE.Stockage
         /// <author>Laszlo</author>
         public Task CreateNote(Note note);
 
-        public Task CreatePj(PieceJointe pj, int idNote);
+        /// <summary>
+        /// Ajoute une piece jointe à la bdd
+        /// </summary>
+        /// <param name="pj"></param>
+        /// <returns>true si l'ajout est un succès</returns>
+        /// <author>Yamato</author>
+        public Task CreatePieceJointe(PieceJointe pj);
     }
 }
 

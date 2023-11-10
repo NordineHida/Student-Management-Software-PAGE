@@ -28,7 +28,6 @@ namespace PAGE.Vue.Ecran
     {
         private Note note;
         private PieceJointe pieceJointe;
-        private bool pieceJointeAjoute = false;
         /// <summary>
         /// Constructeur de fenêtre CreationNote
         /// </summary>
@@ -46,7 +45,7 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// <author>Laszlo</author>
+        /// <author>Laszlo et Yamato</author>
         private void ClickCreer(object sender, RoutedEventArgs e)
         {
             //si on a choisi une catégorie
@@ -60,9 +59,10 @@ namespace PAGE.Vue.Ecran
                 //on crée la note
                 EtuDAO.Instance.CreateNote(note);
 
-                if (pieceJointeAjoute == true)
+                if (pieceJointe.FilePath != null)
                 {
-                    EtuDAO.Instance.CreatePj(pieceJointe, note.IdNote);
+                    pieceJointe.IdNote = note.IdNote;
+                    EtuDAO.Instance.CreatePj(pieceJointe);
                 }
                 this.Close();
             }
@@ -94,7 +94,7 @@ namespace PAGE.Vue.Ecran
                 // Obtenez le chemin du fichier sélectionné
                 string selectedFilePath = openFileDialog.FileName;
 
-                pieceJointeAjoute = true;
+                this.pieceJointe.FilePath = selectedFilePath;
 
                 // Obtenez le contenu actuel du TextBox
                 string currentContent = PieceJointeTextBlock.Text;

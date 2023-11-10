@@ -45,7 +45,13 @@ namespace APIEtudiant.Stockage
         /// <author>Laszlo</author>
         public bool CreateNote(Note note);
 
-        public bool CreatePj(PieceJointe pj, int idNote);
+        /// <summary>
+        /// Ajoute une piece jointe a la bdd
+        /// </summary>
+        /// <param name="pj">piece jointe</param>
+        /// <returns>renvoie true si l'ajout est un succès</returns>
+        /// <author>Yamato</author>
+        public bool CreatePieceJointe(PieceJointe pj);
 
     }
 }

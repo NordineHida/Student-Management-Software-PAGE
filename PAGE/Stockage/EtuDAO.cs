@@ -157,7 +157,7 @@ namespace PAGE.APIEtudiant.Stockage
             }
         }
 
-        public async Task CreatePj(PieceJointe pieceJointe, int idNote)
+        public async Task CreatePieceJointe(PieceJointe pj)
         {
             try
             {
@@ -165,10 +165,10 @@ namespace PAGE.APIEtudiant.Stockage
                 using (HttpClient client = new HttpClient())
                 {
                     // Spécifiez l'URL de l'API
-                    string apiUrl = "https://localhost:7038/Note/CreatePj";
+                    string apiUrl = "https://localhost:7038/Note/CreatePieceJointe";
 
                     // Convertissez la note en JSON
-                    string pjSerialise = JsonSerializer.Serialize(pieceJointe);
+                    string pjSerialise = JsonSerializer.Serialize(pj);
 
                     // Créez le contenu de la requête POST
                     HttpContent content = new StringContent(pjSerialise, Encoding.UTF8, "application/json");
