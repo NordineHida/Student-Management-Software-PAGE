@@ -85,10 +85,9 @@ namespace PAGE.Vue.Ecran
             {
                 // Obtenez le chemin du fichier sélectionné
                 string selectedFilePath = openFileDialog.FileName;
-                string fileName = System.IO.Path.GetFileName(selectedFilePath);
                 int idNote = 1;
 
-                PieceJointe pieceJointe = new PieceJointe(fileName, selectedFilePath, idNote);
+                PieceJointe pieceJointe = new PieceJointe(selectedFilePath, idNote);
                 EtuDAO.Instance.CreatePj(pieceJointe);
                 // Obtenez le contenu actuel du TextBox
                 string currentContent = PieceJointeTextBlock.Text;

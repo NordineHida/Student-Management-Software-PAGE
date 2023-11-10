@@ -259,8 +259,8 @@ namespace APIEtudiant.Stockage
                 try
                 {
                     // On crée la requête SQL
-                    string requete = String.Format("INSERT INTO NotePj(idNote,categorie,datePublication,nature,commentaire,apogeeEtudiant, idPieceJointe)" +
-                        "VALUES(78786, '{0}', TO_DATE('{1}', 'YYYY-MM-DD'), '{2}', '{3}', '{4}', {5})", note.Categorie, note.DatePublication.Date.ToString("yyyy-MM-dd"), note.Nature, note.Commentaire, note.ApogeeEtudiant, note.IdPieceJointe);
+                    string requete = String.Format("INSERT INTO NotePj(idNote,categorie,datePublication,nature,commentaire,apogeeEtudiant)" +
+                        "VALUES(78786, '{0}', TO_DATE('{1}', 'YYYY-MM-DD'), '{2}', '{3}', '{4}', {5})", note.Categorie, note.DatePublication.Date.ToString("yyyy-MM-dd"), note.Nature, note.Commentaire, note.ApogeeEtudiant);
 
                     //On execute la requete
                     OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
@@ -306,8 +306,8 @@ namespace APIEtudiant.Stockage
                 try
                 {
                     // On crée la requête SQL
-                    string requete = String.Format("INSERT INTO PieceJointe(idPieceJointe,fileName,filePath,idNotePj)" +
-                        "VALUES(0, '{0}', '{1}', '{2}')", pj.FileName, pj.FilePath, pj.IdNote);
+                    string requete = String.Format("INSERT INTO PieceJointe(idPieceJointe,filePath,idNotePj)" +
+                        "VALUES(0, '{0}', '{1}')",pj.FilePath, pj.IdNote);
 
                     //On execute la requete
                     OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);

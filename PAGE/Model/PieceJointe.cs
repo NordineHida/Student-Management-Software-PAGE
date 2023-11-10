@@ -9,19 +9,16 @@ namespace PAGE.Model
     public class PieceJointe
     {
         private int idPieceJointe;
-        private string fileName;
         private string filePath;
         private int idNote;
 
-        public int IdPieceJointe { get { return idPieceJointe; } set { value = idPieceJointe; } }
-        public string FileName { get { return fileName; } set { value = fileName; } }
-        public string FilePath { get { return filePath; } set { value = filePath; } }
-        public int IdNote { get { return idNote; } set { value = idNote; } }
+        public int IdPieceJointe { get { return idPieceJointe; } set { idPieceJointe = value; } }
+        public string FilePath { get { return filePath; } set { filePath = value; } }
+        public int IdNote { get { return idNote; } set { idNote = value; } }
 
 
-        public PieceJointe(string fileName, string filePath, int idNote)
+        public PieceJointe(string filePath, int idNote)
         {
-            this.fileName = fileName;
             this.filePath = filePath;
             this.idNote = idNote;
         }
