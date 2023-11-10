@@ -106,19 +106,7 @@
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
-            
-            <ListView.Resources>
-                <ContextMenu x:Key="ItemContextMenu">
-                    <MenuItem Header="Créer une note" Click="OpenCreationNote"/>
-                </ContextMenu>
-            </ListView.Resources>
-
-            <ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}" >
-                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}" />
-                </Style>
-            </ListView.ItemContainerStyle>
-
+           
         </ListView>
 
         <!-- search bar des étudiants (stephane) -->

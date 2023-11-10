@@ -41,28 +41,6 @@ namespace PAGE.Vue.Ecran
         /// <author>Stéphane</author>
         private bool isSortAscending = true;
 
-
-        /// <summary>
-        /// Ouvre la page de Création de note
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Laszlo</author>
-        private void OpenCreationNote(object sender, RoutedEventArgs e)
-        {
-            if (maListView.SelectedItem != null)
-            {
-                // Obtenez l'étudiant sélectionné dans la ListView
-                Etudiant etudiantSelectionne = maListView.SelectedItem as Etudiant;
-                if (etudiantSelectionne != null)
-                {
-                    Note note = new Note("", DateTime.Now, "", "", etudiantSelectionne.NumApogee);
-                    CreationNote creationNote = new CreationNote(note);
-                    creationNote.Show();
-                }
-            }
-        }
-
         #region trie 
 
         /// <summary>

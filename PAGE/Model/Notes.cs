@@ -31,17 +31,28 @@ namespace PAGE.Model
         /// <summary>
         /// Construit une liste Notes
         /// </summary>
+        /// <author>Nordine</author>
         public Notes(List<Note> listeNote)
         {
             listeNotes = listeNote;
         }
 
+        /// <summary>
+        /// Ajoute une note à la liste
+        /// </summary>
+        /// <param name="note">note à ajouter</param>
+        /// <author>Laszlo</author>
         public void AddNote(Note note)
         {
             listeNotes.Add(note);
             Notifier("note ajoutee");
         }
 
+        /// <summary>
+        /// Ajoute une note à la liste
+        /// </summary>
+        /// <param name="note">note à ajouter</param>
+        /// <author>Laszlo</author>
         public void RemoveNote(Note note)
         {
             listeNotes.Remove(note);

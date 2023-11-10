@@ -20,10 +20,10 @@ namespace PAGE.Vue.Ecran
     /// <summary>
     /// Logique d'interaction pour CreationNote.xaml
     /// </summary>
-    public partial class CreationNote : Window , IObservateur
+    public partial class CreationNote : Window
     {
         private Note note;
-        private Notes listeNote;
+        private Notes notes;
         private bool modeCreation;
 
         /// <summary>
@@ -31,12 +31,12 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="note"></param>
         /// <author>Laszlo</author>
-        public CreationNote(Note note)
+        public CreationNote(Note note, Notes notes)
         {
             InitializeComponent();
             DataContext = note;
             this.note = note;
-            listeNote.Register(this);
+            this.notes = notes;
             
 
             modeCreation = true;
@@ -98,7 +98,6 @@ namespace PAGE.Vue.Ecran
                 TextCommentaire.IsReadOnly = true;   
             }
 
-            ChargerListeNote();
 
         }
 
@@ -137,7 +136,7 @@ namespace PAGE.Vue.Ecran
             if (isCreateOk(note))
             {
                 EtuDAO.Instance.CreateNote(note);
-                listeNote.AddNote(note);
+                notes.AddNote(note);
                 this.Close();
             }
             else { MessageBox.Show("Tous les champs ne sont pas corrects"); }
@@ -181,14 +180,6 @@ namespace PAGE.Vue.Ecran
         }
 
         /// <summary>
-        /// Charge la liste de notes depuis l'API
-        /// </summary>
-        private async void ChargerListeNote()
-        {
-            this.listeNote = new Notes((System.Collections.Generic.List<Note>)await EtuDAO.Instance.GetAllNotesByApogee(note.ApogeeEtudiant));
-        }
-
-        /// <summary>
         /// Définit si l'on peut créer la note au moment de valider
         /// </summary>
         /// <param name="note">note à créer</param>
@@ -202,9 +193,5 @@ namespace PAGE.Vue.Ecran
             return valide;
         }
 
-        public void Notifier(string Message)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

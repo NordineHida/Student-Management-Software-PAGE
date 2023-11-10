@@ -25,13 +25,16 @@ namespace PAGE.Vue.Ecran
         /// Constructeur qui prend l'étudiant selectionné avec le double clique
         /// </summary>
         /// <param name="EtudiantActuel">etudiant actuel</param>
-        /// <author>Yamato</author>
+        /// <author>Yamato & Laszlo & Nordine</author>
         public InformationsSupplementaires(Etudiant EtudiantActuel)
         {
             InitializeComponent();
             etudiant = EtudiantActuel;
             ChargerInfosImpEtudiant();
+
+            //on charge les notes de l'étudiant
             ChargementDiffereNotes();
+
 
 
 
@@ -271,9 +274,6 @@ namespace PAGE.Vue.Ecran
 
 
 
-
-
-
         /// <summary>
         /// trie la liste a partir de la liste cliqué
         /// </summary>
@@ -476,6 +476,10 @@ namespace PAGE.Vue.Ecran
                 if (!maListViewNote.Items.Contains(note))
                     maListViewNote.Items.Add(note);
             }
+
+            //On enregistre cette fenetre comme observeur des notes
+            notes.Register(this);
+
         }
 
         /// <summary>
@@ -494,6 +498,7 @@ namespace PAGE.Vue.Ecran
                     ChargementDiffereNotes();
                 }
             }
+
         }
 
         /// <summary>
@@ -510,7 +515,7 @@ namespace PAGE.Vue.Ecran
                 if (noteSelectionne != null)
                 {
                     // Créez une instance de la fenêtre InformationsSupplementaires en passant l'étudiant sélectionné en paramètre
-                    CreationNote affichageNote = new CreationNote(noteSelectionne);
+                    CreationNote affichageNote = new CreationNote(noteSelectionne,this.notes);
                     affichageNote.Show();
                 }
             }
@@ -518,13 +523,21 @@ namespace PAGE.Vue.Ecran
 
         private void Creer_Click(object sender, RoutedEventArgs e)
         {
-            CreationNote creernote = new CreationNote(new Note("",DateTime.Now,"","",etudiant.NumApogee));
+            CreationNote creernote = new CreationNote(new Note("",DateTime.Now,"","",etudiant.NumApogee), this.notes);
             creernote.Show();
             ChargementDiffereNotes();
         }
 
-        public void Notifier(string Message)
+        /// <summary>
+        /// est notifié par l'observeur pour pouvoir ctualiser la liste de notes
+        /// </summary>
+        /// <param name="Message">Message de notification</param>
+        /// <author>Laszlo & Nordine</author>
+        public async void Notifier(string Message)
         {
+            // Attendre 2 secondes
+            await Task.Delay(2000);
+
             ChargementDiffereNotes();
         }
 
