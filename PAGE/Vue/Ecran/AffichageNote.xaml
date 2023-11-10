@@ -12,7 +12,7 @@
         <SolidColorBrush Color="#bfd7eb" />
     </Window.Background>
 
-    <Grid>
+    <Grid x:Name="Gridnote">
         <Grid.RowDefinitions>
             <RowDefinition Height="2.5*" />
             <!-- Première ligne pour le logo -->
@@ -41,21 +41,30 @@
 
         <!-- Informations Notes -->
 
-        <TextBlock Text="Confidentialite : " HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0"/>
-        <TextBox IsReadOnly="True" x:Name="txtConfidentialite" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="3" Margin="0,10,0,39" BorderThickness="0"/>
+        <TextBlock Text="Confidentialite : " HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="1"/>
+        <TextBox IsReadOnly="True" x:Name="txtConfidentialite" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="2"  BorderThickness="0" Margin="0,2,0,35"/>
 
-        <TextBlock Text="Catégorie : " HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtCategorie" HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="3" Margin="0,0,0,45" BorderThickness="0"/>
+        <TextBlock Text="Catégorie : " HorizontalAlignment="Left" FontSize="20" Grid.Row="3"  Grid.Column="1" />
+        <TextBox IsReadOnly="True" x:Name="txtCategorie" HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="3" BorderThickness="0" Margin="0,2,0,35"/>
 
-        <TextBlock Text="Nature : " HorizontalAlignment="Left" FontSize="20" Grid.Row="6" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtNature" HorizontalAlignment="Left" FontSize="20" Grid.Row="6" Grid.Column="2" Margin="0,0,0,45" BorderThickness="0"/>
+        <TextBlock Text="Nature : " HorizontalAlignment="Left" FontSize="20" Grid.Row="6"  Grid.Column="1" />
+        <ListBox IsEnabled="False" x:Name="txtNature" HorizontalAlignment="Left" FontSize="20" Grid.Row="6" Grid.Column="2"  BorderThickness="0" Margin="0,2,0,35">
+            <ListBoxItem Content="Mail"/>
+            <ListBoxItem Content="Rdv"/>
+            <ListBoxItem Content="Lettre"/>
+            <ListBoxItem Content="Appel"/>
+            <ListBoxItem Content="Autre"/>
+        </ListBox>
 
-        <TextBlock Text="Commentaire : " HorizontalAlignment="Left" FontSize="20" Grid.Row="8" Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtCommentaire"  HorizontalAlignment="Left" FontSize="20" Grid.Row="8" Grid.Column="3" Margin="20,0,0,25" Width="800"/>
-        
-        
+        <TextBlock Text="Commentaire : " HorizontalAlignment="Left" FontSize="20" Grid.Row="8"  Grid.Column="1" />
+        <TextBox IsReadOnly="True" x:Name="txtCommentaire"  HorizontalAlignment="Left" FontSize="20" Grid.Row="8" Grid.Column="3"  Width="800" Margin="0,2,0,35"/>
+
+
         <Button Grid.Column="2" Content="Supprimer" HorizontalAlignment="Left" Margin="150,0,0,0" Grid.Row="9"  VerticalAlignment="Center" Height="50" Width="100" Click="DeleteNote"/>
 
+        <Button x:Name="BoutonModifier" Grid.Column="2" Content="Modifier" HorizontalAlignment="Left" Margin="350,0,0,0" Grid.Row="9"  VerticalAlignment="Center" Height="50" Width="100" Click="ModifyNote"/>
+
+        <Button x:Name="BoutonValider" Grid.Column="2" Content="Valider" HorizontalAlignment="Left" Margin="550,0,0,0" Grid.Row="9"  VerticalAlignment="Center" Height="50" Width="100" Click="ValiderNote" Visibility="Collapsed"/>
 
     </Grid>
 </Window>

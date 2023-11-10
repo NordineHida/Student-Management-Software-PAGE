@@ -1,20 +1,30 @@
 ﻿using PAGE.Stockage;
 using PAGE.Model;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using PAGE.Model.PatternObserveur;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace PAGE.Vue.Ecran
 {
     /// <summary>
     /// Logique d'interaction pour CreationNote.xaml
     /// </summary>
-    public partial class CreationNote : Window 
+    public partial class CreationNote : Window
     {
-        private Notes listeNote;
-
         private Note note;
+
+        private bool modeCreation;
+
         /// <summary>
         /// Constructeur de fenêtre CreationNote
         /// </summary>
@@ -25,17 +35,66 @@ namespace PAGE.Vue.Ecran
             InitializeComponent();
             DataContext = note;
             this.note = note;
-            ChargerListeNote();
+
+            modeCreation = true;
+            if (note.Categorie != "")
+            {
+                modeCreation = false;
+
+                Titre.Content = "Note :";
+
+                BoutonCreer.Visibility = Visibility.Collapsed;
+                BoutonModifier.Visibility = Visibility.Visible;
+
+                switch (note.Categorie)
+                {
+                    case "Absentéisme":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[0];
+                        break;
+                    case "Personnel":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[1];
+                        break;
+                    case "Médical":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[2];
+                        break;
+                    case "Résultats":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[3];
+                        break;
+                    case "Orientation":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[4];
+                        break;
+                    case "Autre":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[5];
+                        break;
+                }
+
+                switch (note.Nature)
+                {
+                    case "Mail":
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[0];
+                        break;
+                    case "Rdv":
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[1];
+                        break;
+                    case "Lettre":
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[2];
+                        break;
+                    case "Appel":
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[3];
+                        break;
+                    case "Autre":
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[5];
+                        break;
+                }
 
 
-        }
 
-        /// <summary>
-        /// Charge la liste de notes depuis l'API
-        /// </summary>
-        private async void ChargerListeNote()
-        {
-            this.listeNote = new Notes((System.Collections.Generic.List<Note>)await EtuDAO.Instance.GetAllNotesByApogee(note.ApogeeEtudiant));
+                ComboBoxConfidentialite.IsEnabled = false;
+                ComboBoxCategorie.IsEnabled = false;
+                ComboBoxNature.IsEnabled = false;
+                TextCommentaire.IsReadOnly = true;
+            }
+            
         }
 
         /// <summary>
@@ -73,7 +132,6 @@ namespace PAGE.Vue.Ecran
             if (isCreateOk(note))
             {
                 EtuDAO.Instance.CreateNote(note);
-                this.listeNote.AddNote(note);
                 this.Close();
             }
             else { MessageBox.Show("Tous les champs ne sont pas corrects"); }
@@ -88,13 +146,34 @@ namespace PAGE.Vue.Ecran
             this.Close();
         }
 
-        /// <summary>
-        /// Définit si l'on peut créer la note au moment de valider
-        /// </summary>
-        /// <param name="note">note à créer</param>
-        /// <returns>true si elle est correcte, faux sinon</returns>
-        /// <author>Laszlo</author>
-        private bool isCreateOk(Note note)
+        private void ClickModify(object sender, RoutedEventArgs e)
+        {
+            BoutonValider.Visibility = Visibility.Visible;
+            BoutonModifier.Visibility = Visibility.Collapsed;
+
+            Titre.Content = "Modification de note";
+
+            ComboBoxConfidentialite.IsEnabled = true;
+            ComboBoxCategorie.IsEnabled = true;
+            ComboBoxNature.IsEnabled = true;
+            TextCommentaire.IsReadOnly = false;
+
+        }
+
+        private void ClickValider(object sender, RoutedEventArgs e)
+        {
+            BoutonValider.Visibility = Visibility.Collapsed;
+            BoutonModifier.Visibility = Visibility.Visible;
+
+            Titre.Content = "Note";
+
+            ComboBoxConfidentialite.IsEnabled = false;
+            ComboBoxCategorie.IsEnabled = false;
+            ComboBoxNature.IsEnabled = false;
+            TextCommentaire.IsReadOnly = true;
+
+        }
+        public bool isCreateOk(Note note)
         {
             bool valide = true;
             if (note == null)valide = false;
@@ -102,5 +181,6 @@ namespace PAGE.Vue.Ecran
             return valide;
         }
 
+        
     }
 }

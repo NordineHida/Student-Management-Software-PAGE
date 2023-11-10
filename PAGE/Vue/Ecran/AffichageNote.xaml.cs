@@ -36,7 +36,7 @@ namespace PAGE.Vue.Ecran
         public void ChargerInfosNotes()
         {
             txtCategorie.Text = note.Categorie;
-            txtNature.Text = note.Nature;
+            txtNature.SelectedItem = note.Nature;
             txtCommentaire.Text = note.Commentaire;
         }
 
@@ -49,6 +49,30 @@ namespace PAGE.Vue.Ecran
             EtuDAO.Instance.DeleteNote(note);
             //listeNotes.RemoveNote(noteSelectionne);
             this.Close();
+        }
+
+        private void ModifyNote(object sender, RoutedEventArgs e)
+        {
+            BoutonValider.Visibility = Visibility.Visible;
+
+            // Rend les TextBox éditables
+            foreach (TextBox tx in Gridnote.Children.OfType<TextBox>())
+            {
+                tx.IsReadOnly = false;
+                tx.BorderThickness = new Thickness(1);
+            }
+        }
+
+        private void ValiderNote(object sender, RoutedEventArgs e)
+        {
+            BoutonValider.Visibility = Visibility.Collapsed;
+
+            // Rend les TextBox en lecture seule
+            foreach (TextBox tx in Gridnote.Children.OfType<TextBox>())
+            {
+                tx.IsReadOnly = true;
+                tx.BorderThickness = new Thickness(0);
+            }
         }
     }
 }

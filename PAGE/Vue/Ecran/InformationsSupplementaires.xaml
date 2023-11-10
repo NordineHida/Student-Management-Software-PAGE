@@ -20,7 +20,7 @@
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
-            <RowDefinition Height="29" />
+            <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
@@ -50,7 +50,7 @@
 
         <Rectangle Stretch="UniformToFill" Fill="White" Stroke="Black" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="59" />
 
-        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Height="300" Width="260" Margin="0,14,0,0" Grid.RowSpan="11"  />
+        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Height="177" Width="183" Margin="0,10,0,0" Grid.RowSpan="7"  />
 
         <!-- Informations Importantes -->
 
@@ -97,13 +97,16 @@
         <!-- Informations Complémentaires (Nordine & Yamato) -->
 
         <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato)-->
-        <Button x:Name="BoutonInfoComp" FontSize="14" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Afficher les informations complémentaires" Click="InfosComp_Click" Margin="20,0,20,0" Grid.Row="16" />
+        <Button x:Name="BoutonInfoComp" FontSize="14" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Afficher les informations complémentaires" Click="InfosComp_Click" Margin="20,10,20,0" Grid.Row="15" Grid.RowSpan="2" />
 
         <!-- Bouton "Modifier" (lucas) -->
-        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Modifier les informations" Click="Modifier_Click" Margin="20,17,20,29" Grid.Row="13" Grid.RowSpan="3" />
+        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Modifier les informations" Click="Modifier_Click" Margin="20,0,20,2" Grid.Row="13" Grid.RowSpan="2" />
 
         <!-- Bouton "Valider" pour sauvegarder les modifications (Lucas) -->
-        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Valider" x:Name="BoutonValider" Click="Valider_Click" Margin="20,0,20,0" Grid.Row="18" Visibility="Collapsed" />
+        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Valider" x:Name="BoutonValider" Click="Valider_Click" Margin="20,20,20,0" Grid.Row="17" Visibility="Collapsed" Grid.RowSpan="2" />
+
+        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Créer une note" x:Name="BoutonCreernote" Click="Creer_Click"  Margin="20,14,20,15" Grid.RowSpan="3" Grid.Row="10"/>
+
 
         <StackPanel x:Name="contInfosComp" Visibility="Collapsed" Orientation="Vertical" Grid.RowSpan="2" Grid.Row="19"  Grid.Column="1"  Grid.ColumnSpan="2">
 
@@ -166,18 +169,6 @@
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
-
-            <ListView.Resources>
-                <ContextMenu x:Key="ItemContextMenu">
-                    <MenuItem Header="Supprimer la note" Click="DeleteNote"/>
-                </ContextMenu>
-            </ListView.Resources>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}" >
-                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}" />
-                </Style>
-            </ListView.ItemContainerStyle>
-
         </ListView>
         <!-- LCombox et checkbox (stephane) -->
         <CheckBox x:Name="ConfidentielCheckBox" Content="Confidentialité" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="30" Width="140" Grid.Column="2" Margin="0,14,0,0" Grid.RowSpan="2" Checked="ConfidentielCheckBox_Checked" Unchecked="ConfidentielCheckBox_Unchecked" />
