@@ -210,7 +210,11 @@ namespace PAGE.Vue.Ecran
 
             this.Close();
         }
-
+        /// <summary>
+        /// Ouvre la fenêtre des paramètres
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenParametresPage(object sender, RoutedEventArgs e)
         {
             ParametrePage parametre = new ParametrePage();
