@@ -495,7 +495,8 @@ namespace PAGE.Vue.Ecran
                 if (noteSelectionne != null)
                 {
                     EtuDAO.Instance.DeleteNote(noteSelectionne);
-                    ChargementDiffereNotes();
+                    notes.RemoveNote(noteSelectionne);
+
                 }
             }
 
