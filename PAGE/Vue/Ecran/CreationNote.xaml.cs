@@ -22,6 +22,9 @@ namespace PAGE.Vue.Ecran
     public partial class CreationNote : Window
     {
         private Note note;
+
+        private bool modeAffichage;
+
         /// <summary>
         /// Constructeur de fenêtre CreationNote
         /// </summary>
@@ -29,6 +32,10 @@ namespace PAGE.Vue.Ecran
         /// <author>Laszlo</author>
         public CreationNote(Note note)
         {
+            modeAffichage = true;
+            if (note.Categorie == "")
+                modeAffichage = false;
+
             InitializeComponent();
             DataContext = note;
             this.note = note;
