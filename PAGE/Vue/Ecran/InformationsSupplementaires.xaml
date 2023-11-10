@@ -20,7 +20,7 @@
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="29" />
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
@@ -97,7 +97,7 @@
         <!-- Informations Complémentaires (Nordine & Yamato) -->
 
         <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato)-->
-        <Button FontSize="15" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Afficher les informations complémentaires" Click="InfosComp_Click" Margin="20,0,20,0" Grid.Row="16" />
+        <Button x:Name="BoutonInfoComp" FontSize="14" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Afficher les informations complémentaires" Click="InfosComp_Click" Margin="20,0,20,0" Grid.Row="16" />
 
         <!-- Bouton "Modifier" (lucas) -->
         <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="Modifier les informations" Click="Modifier_Click" Margin="20,17,20,29" Grid.Row="13" Grid.RowSpan="3" />
