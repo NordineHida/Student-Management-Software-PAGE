@@ -40,6 +40,7 @@ namespace PAGE.Stockage
 
         }
         #endregion
+        private Notes notes;
 
         /// <summary>
         /// Ajoute plusieurs etudiants à la BDD
@@ -182,7 +183,7 @@ namespace PAGE.Stockage
         /// <author>Laszlo & Nordine</author>
         public async Task<IEnumerable<Note>> GetAllNotesByApogee(int apogeeEtudiant)
         {
-            //Dictionnaire d'étudiant (cle = num apogee, valeur = etudiant)
+            //Liste de notes 
             List<Note> notes = new List<Note>();
 
             // Créez une instance de HttpClient
@@ -194,10 +195,39 @@ namespace PAGE.Stockage
                 // Effectuez la requête GET
                 HttpResponseMessage reponse = await client.GetAsync(apiUrl);
 
-                //On récupere le json contenant la liste d'étudiant
+                //On récupere le json contenant la liste de notes
                 string reponseString = await reponse.Content.ReadAsStringAsync();
 
-                //On la deserialise et on lit en IEnumerable qu'on convertit en List<Etudiant>
+                //On la deserialise et on lit en IEnumerable qu'on convertit en List<Note>
+                notes = JsonSerializer.Deserialize<List<Note>>(reponseString);
+            }
+
+            return notes;
+        }
+
+        /// <summary>
+        /// Renvoie les notes d'un etudiant
+        /// </summary>
+        /// <returns>Un ensemble den notes</returns>
+        /// <author>Laszlo & Nordine</author>
+        public async Task<IEnumerable<Note>> GetAllNotes()
+        {
+            //Liste de notes 
+            List<Note> notes = new List<Note>();
+
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
+            {
+                // Spécifiez l'URL de l'API
+                string apiUrl = "https://localhost:7038/Note/GetAllNotes";
+
+                // Effectuez la requête GET
+                HttpResponseMessage reponse = await client.GetAsync(apiUrl);
+
+                //On récupere le json contenant la liste de notes
+                string reponseString = await reponse.Content.ReadAsStringAsync();
+
+                //On la deserialise et on lit en IEnumerable qu'on convertit en List<Note>
                 notes = JsonSerializer.Deserialize<List<Note>>(reponseString);
             }
 
@@ -226,13 +256,13 @@ namespace PAGE.Stockage
 
                 // Effectuez la requête POST
                 HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-
+                 
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("La suppression est un succès", "Succès de la suppression", MessageBoxButton.OK);
                 }
             }
-
         }
     }
 }
+                                                          

@@ -61,5 +61,15 @@ namespace APIEtudiant.Model
         {
             return EtuDAO.GetAllNotesByApogee(apogeeEtudiant);
         }
+
+        /// <summary>
+        /// Renvoie toutes les notes 
+        /// </summary>
+        /// <returns>la liste de notes/returns>
+        /// <author>Laszlo</author>
+        public IEnumerable<Note> GetAllNotes()
+        {
+            return EtuDAO.GetAllNotes();
+        }
     }
 }

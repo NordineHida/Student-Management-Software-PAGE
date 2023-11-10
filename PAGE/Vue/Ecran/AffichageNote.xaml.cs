@@ -47,6 +47,7 @@ namespace PAGE.Vue.Ecran
         private void DeleteNote(object sender, RoutedEventArgs e)
         {
             EtuDAO.Instance.DeleteNote(note);
+            //listeNotes.RemoveNote(noteSelectionne);
             this.Close();
         }
     }

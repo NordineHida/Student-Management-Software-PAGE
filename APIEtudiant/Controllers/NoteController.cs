@@ -65,5 +65,21 @@ namespace APIEtudiant.Controllers
             if (notes != null) reponse = Ok(notes);
             return reponse;
         }
+
+        [HttpGet("GetAllNotes")]
+        public ActionResult<IEnumerable<Etudiant>> GetAllNotes()
+        {
+            //Cas par défaut
+            ActionResult<IEnumerable<Etudiant>> reponse = BadRequest();
+
+            //On récupere les etudiants depuis le manager
+            IEnumerable<Note> notes = NoteManager.Instance.GetAllNotes();
+
+            //Si c'est pas null on renvoi un Ok avec les etudiants
+            if (notes != null) reponse = Ok(notes);
+            return reponse;
+        }
+
+
     }
 }

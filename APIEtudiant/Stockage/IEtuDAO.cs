@@ -60,5 +60,12 @@ namespace APIEtudiant.Stockage
         /// <author>Laszlo</author>
         public IEnumerable<Note> GetAllNotesByApogee(int apogeeEtudiant);
 
+        /// <summary>
+        /// Renvoie toutes les notes 
+        /// </summary>
+        /// <returns>la liste de notes/returns>
+        /// <author>Laszlo</author>
+        public IEnumerable<Note> GetAllNotes();
+
     }
 }

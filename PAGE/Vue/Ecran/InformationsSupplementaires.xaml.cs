@@ -1,4 +1,6 @@
-﻿using PAGE.Model;
+﻿
+using PAGE.Model;
+using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
@@ -17,10 +19,11 @@ namespace PAGE.Vue.Ecran
     /// <summary>
     /// Logique d'interaction pour InformationsSupplementaires.xaml
     /// </summary>
-    public partial class InformationsSupplementaires : Window
+    public partial class InformationsSupplementaires : Window ,IObservateur
     {
         private Etudiant etudiant;
         private List<Note> notes;
+       
 
         /// <summary>
         /// Constructeur qui prend l'étudiant selectionné avec le double clique
@@ -600,6 +603,8 @@ namespace PAGE.Vue.Ecran
             }
         }
 
+  
+
         /// <summary>
         /// Supprime une note via l'API
         /// </summary>
@@ -612,7 +617,8 @@ namespace PAGE.Vue.Ecran
                 Note noteSelectionne = maListViewNote.SelectedItem as Note;
                 if (noteSelectionne != null)
                 {
-                   EtuDAO.Instance.DeleteNote(noteSelectionne);
+                    EtuDAO.Instance.DeleteNote(noteSelectionne);
+
                 }
             }
         }
@@ -636,5 +642,11 @@ namespace PAGE.Vue.Ecran
                 }
             }
         }
+
+        public void Notifier(string Message)
+        {
+            ChargementDiffereNotes();
+        }
+                   
     }
 }

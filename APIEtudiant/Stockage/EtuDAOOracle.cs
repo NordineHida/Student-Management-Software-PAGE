@@ -594,5 +594,65 @@ namespace APIEtudiant.Stockage
             return notes;
 
         }
+
+        /// <summary>
+        /// Renvoie toutes les notes
+        /// </summary>
+        /// <returns>la liste de notes/returns>
+        /// <author>Laszlo</author>
+        public IEnumerable<Note> GetAllNotes()
+        {
+            //Création d'une connexion Oracle
+            Connection con = new Connection();
+            //Liste d'étudiant à renvoyer
+            List<Note> notes = new List<Note>();
+
+            try
+            {
+                string requete = "SELECT categorie,datePublication,nature,commentaire,apogeeEtudiant FROM Note";
+                // Création d'une commande Oracle pour récuperer l'ensemble des éléments de tout les étudiants
+                OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
+
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    //Récupération(lecture) de tous les éléments d'un étudiant en bdd
+                    string categorie = reader.GetString(reader.GetOrdinal("categorie"));
+                    DateTime datePublication = reader.GetDateTime(reader.GetOrdinal("datePublication"));
+                    string nature = reader.GetString(reader.GetOrdinal("nature"));
+                    string commentaire = reader.GetString(reader.GetOrdinal("commentaire"));
+                    int apogeeEtudiant = reader.GetInt32(reader.GetOrdinal("apogeeEtudiant"));
+
+                    // Création de l'objet Etudiant en utilisant les variables
+                    Note note = new Note(categorie, datePublication, nature, commentaire, apogeeEtudiant);
+
+                    notes.Add(note);
+                }
+            }
+            // Gestion des exceptions
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                //On ferme la connexion
+                try
+                {
+                    if (con != null)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return notes;
+
+        }
     }
 }

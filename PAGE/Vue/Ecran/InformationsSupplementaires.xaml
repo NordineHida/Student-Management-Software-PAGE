@@ -166,6 +166,18 @@
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
+
+            <ListView.Resources>
+                <ContextMenu x:Key="ItemContextMenu">
+                    <MenuItem Header="Supprimer la note" Click="DeleteNote"/>
+                </ContextMenu>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" >
+                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
         </ListView>
         <!-- LCombox et checkbox (stephane) -->
         <CheckBox x:Name="ConfidentielCheckBox" Content="Confidentialité" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="30" Width="140" Grid.Column="2" Margin="0,14,0,0" Grid.RowSpan="2" Checked="ConfidentielCheckBox_Checked" Unchecked="ConfidentielCheckBox_Unchecked" />

@@ -1,26 +1,19 @@
 ﻿using PAGE.Stockage;
 using PAGE.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using PAGE.Model.PatternObserveur;
 
 namespace PAGE.Vue.Ecran
 {
     /// <summary>
     /// Logique d'interaction pour CreationNote.xaml
     /// </summary>
-    public partial class CreationNote : Window
+    public partial class CreationNote : Window 
     {
+        private Notes listeNote;
+
         private Note note;
         /// <summary>
         /// Constructeur de fenêtre CreationNote
@@ -32,6 +25,17 @@ namespace PAGE.Vue.Ecran
             InitializeComponent();
             DataContext = note;
             this.note = note;
+            ChargerListeNote();
+
+
+        }
+
+        /// <summary>
+        /// Charge la liste de notes depuis l'API
+        /// </summary>
+        private async void ChargerListeNote()
+        {
+            this.listeNote = new Notes((System.Collections.Generic.List<Note>)await EtuDAO.Instance.GetAllNotesByApogee(note.ApogeeEtudiant));
         }
 
         /// <summary>
@@ -69,6 +73,7 @@ namespace PAGE.Vue.Ecran
             if (isCreateOk(note))
             {
                 EtuDAO.Instance.CreateNote(note);
+                this.listeNote.AddNote(note);
                 this.Close();
             }
             else { MessageBox.Show("Tous les champs ne sont pas corrects"); }
@@ -96,5 +101,6 @@ namespace PAGE.Vue.Ecran
             else if (note.Categorie == null || note.Nature == null) valide = false;
             return valide;
         }
+
     }
 }
