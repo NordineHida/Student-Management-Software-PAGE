@@ -34,10 +34,6 @@ namespace PAGE.Vue.Ecran
 
             //on charge les notes de l'étudiant
             ChargementDiffereNotes();
-
-
-
-
         }
 
         /// <summary>
@@ -522,6 +518,12 @@ namespace PAGE.Vue.Ecran
             }
         }
 
+        /// <summary>
+        /// Crée une note pour un étudiant quand on clique sur le bouton créer et on initialise les valeurs nulles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
         private void Creer_Click(object sender, RoutedEventArgs e)
         {
             CreationNote creernote = new CreationNote(new Note("",DateTime.Now,"","",etudiant.NumApogee), this.notes);

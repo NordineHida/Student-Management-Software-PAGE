@@ -30,7 +30,7 @@ namespace PAGE.Vue.Ecran
         /// Constructeur de fenêtre CreationNote
         /// </summary>
         /// <param name="note"></param>
-        /// <author>Laszlo</author>
+        /// <author>Laszlo / Lucas</author>
         public CreationNote(Note note, Notes notes)
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace PAGE.Vue.Ecran
             this.note = note;
             this.notes = notes;
             
-
+            //on utilise un bool pour savoir si on doit créer une note ou simplement l'afficher
             modeCreation = true;
             if (note.Categorie != "")
             {
@@ -48,7 +48,7 @@ namespace PAGE.Vue.Ecran
 
                 BoutonCreer.Visibility = Visibility.Collapsed;
                 BoutonModifier.Visibility = Visibility.Visible;
-
+                //les switchs permettent d'afficher la valeur actuelle dans chaque comboBox 
                 switch (note.Categorie)
                 {
                     case "Absentéisme":
@@ -150,7 +150,12 @@ namespace PAGE.Vue.Ecran
         {
             this.Close();
         }
-
+        /// <summary>
+        /// méthode permettant de gérer le clic sur le bouton modifier une note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
         private void ClickModify(object sender, RoutedEventArgs e)
         {
             BoutonValider.Visibility = Visibility.Visible;
@@ -165,6 +170,12 @@ namespace PAGE.Vue.Ecran
 
         }
 
+        /// <summary>
+        /// Bouton Valider la modification de la note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
         private void ClickValider(object sender, RoutedEventArgs e)
         {
             BoutonValider.Visibility = Visibility.Collapsed;
