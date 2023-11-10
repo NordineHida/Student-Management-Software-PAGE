@@ -41,10 +41,53 @@ namespace PAGE.Vue.Ecran
             {
                 modeCreation = false;
 
-                Titre.Content = "Modification de note";
+                Titre.Content = "Note :";
 
                 BoutonCreer.Visibility = Visibility.Collapsed;
                 BoutonModifier.Visibility = Visibility.Visible;
+
+                switch (note.Categorie)
+                {
+                    case "Absentéisme":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[0];
+                        break;
+                    case "Personnel":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[1];
+                        break;
+                    case "Médical":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[2];
+                        break;
+                    case "Résultats":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[3];
+                        break;
+                    case "Orientation":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[4];
+                        break;
+                    case "Autre":
+                        ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[5];
+                        break;
+                }
+
+                switch (note.Nature)
+                {
+                    case "Mail":
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[0];
+                        break;
+                    case "Rdv":
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[1];
+                        break;
+                    case "Lettre":
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[2];
+                        break;
+                    case "Appel":
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[3];
+                        break;
+                    case "Autre":
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[5];
+                        break;
+                }
+
+
 
                 ComboBoxConfidentialite.IsEnabled = false;
                 ComboBoxCategorie.IsEnabled = false;
@@ -108,6 +151,8 @@ namespace PAGE.Vue.Ecran
             BoutonValider.Visibility = Visibility.Visible;
             BoutonModifier.Visibility = Visibility.Collapsed;
 
+            Titre.Content = "Modification de note";
+
             ComboBoxConfidentialite.IsEnabled = true;
             ComboBoxCategorie.IsEnabled = true;
             ComboBoxNature.IsEnabled = true;
@@ -119,6 +164,8 @@ namespace PAGE.Vue.Ecran
         {
             BoutonValider.Visibility = Visibility.Collapsed;
             BoutonModifier.Visibility = Visibility.Visible;
+
+            Titre.Content = "Note";
 
             ComboBoxConfidentialite.IsEnabled = false;
             ComboBoxCategorie.IsEnabled = false;

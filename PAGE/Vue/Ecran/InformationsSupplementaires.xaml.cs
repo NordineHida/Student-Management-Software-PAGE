@@ -516,5 +516,11 @@ namespace PAGE.Vue.Ecran
                 }
             }
         }
+
+        private void Creer_Click(object sender, RoutedEventArgs e)
+        {
+            FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant();
+            fenetreCreerEtudiant.Show();
+        }
     }
 }
