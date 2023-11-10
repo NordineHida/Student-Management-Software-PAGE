@@ -5,6 +5,7 @@ L'application permet la visualisation des étudiants du l'IUT, la création de n
 
 Statut du projet :
 Sprint 1 terminé : importation d'étudiants depuis un excel implémenté. Il faut refaire l'IHM et ajouté des test unitaires
+Sprint 2 terminé : L'IHM à été miseà jour et validé. CRUD des Etudiants et des Notes implémentés. Les parametres(langue et path de génération) sont implémentés et sauvegardés.
 
 Installation et Utilisation :
 ...
