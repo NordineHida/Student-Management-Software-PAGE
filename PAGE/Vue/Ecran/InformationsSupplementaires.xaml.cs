@@ -36,6 +36,7 @@ namespace PAGE.Vue.Ecran
             etudiant = EtudiantActuel;
             this.etudiants = etudiants;
             ChargerInfosImpEtudiant();
+            ChargerInfosCompEtudiant();
 
             sexeSelectionne = etudiant.Sexe;
             estBoursier = etudiant.EstBoursier;
@@ -109,7 +110,6 @@ namespace PAGE.Vue.Ecran
         {
             if (contInfosComp.Visibility == Visibility.Collapsed)
             {
-                ChargerInfosCompEtudiant();
                 contInfosComp.Visibility = Visibility.Visible;
                 BoutonInfoComp.Content = "Cacher les informations complémentaires";
             }
