@@ -1,23 +1,12 @@
-﻿using APIEtudiant.Stockage;
-using DocumentFormat.OpenXml.Vml;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using PAGE.APIEtudiant.Stockage;
 using PAGE.Model;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PAGE.Vue.Ecran
 {
@@ -46,23 +35,33 @@ namespace PAGE.Vue.Ecran
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <author>Laszlo et Yamato</author>
-        private void ClickCreer(object sender, RoutedEventArgs e)
+        private async void ClickCreer(object sender, RoutedEventArgs e)
         {
             //si on a choisi une catégorie
             if (ComboBoxCategorie.SelectedItem != null)
-            { 
+            {
                 //récupère la catègorie de la combobox et met la propriété "Catégorie" de la note à sa valeur
-                ComboBoxItem categorieChoisie =(ComboBoxItem)ComboBoxCategorie.SelectedItem;
+                ComboBoxItem categorieChoisie = (ComboBoxItem)ComboBoxCategorie.SelectedItem;
                 string categorieChoisieString = categorieChoisie.ToString();
                 string[] motsCatChoisie = categorieChoisieString.Split(": ");
-                note.Categorie=motsCatChoisie[1];
+                note.Categorie = motsCatChoisie[1];
                 //on crée la note
                 EtuDAO.Instance.CreateNote(note);
 
-                if (pieceJointe.FilePath != null)
+                if (!string.IsNullOrEmpty(pieceJointe.FilePath))
                 {
-                    pieceJointe.IdNote = note.IdNote;
-                    EtuDAO.Instance.CreatePj(pieceJointe);
+                    // Upload the file to the API
+                    var success = await UploadFile(pieceJointe.FilePath);
+
+                    if (success)
+                    {
+                        MessageBox.Show("le fichier a pu être upload");
+                    }
+                    else
+                    {
+                        // Handle the error, display a message, or take appropriate action
+                        MessageBox.Show("Le fichier n'a pas pu être upload");
+                    }
                 }
                 this.Close();
             }
@@ -104,7 +103,32 @@ namespace PAGE.Vue.Ecran
             }
         }
 
-        
+        private async Task<bool> UploadFile(string filePath)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                using (var content = new MultipartFormDataContent())
+                using (var fileStream = new FileStream(filePath, FileMode.Open))
+                using (var fileContent = new StreamContent(fileStream))
+                {
+                    // Add the file content to the request
+                    content.Add(fileContent, "file", Path.GetFileName(filePath));
+
+                    // Send the request to the API endpoint
+                    var response = await httpClient.PostAsync("your-api-base-url/api/PieceJointe/upload", content);
+
+                    // Check if the file was uploaded successfully
+                    return response.IsSuccessStatusCode;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle exceptions as needed
+                Console.WriteLine($"Error uploading file: {ex.Message}");
+                return false;
+            }
+        }
 
 
     }

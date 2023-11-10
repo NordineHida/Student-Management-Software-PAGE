@@ -157,6 +157,12 @@ namespace PAGE.APIEtudiant.Stockage
             }
         }
 
+        /// <summary>
+        /// Crée une piece jointe et l'ajoute a la bdd
+        /// </summary>
+        /// <param name="pj">piece jointe crée</param>
+        /// <returns>la tache qu'est d'ajouter la piece jointe à la bdd</returns>
+        /// <author>Yamato</author>
         public async Task CreatePieceJointe(PieceJointe pj)
         {
             try
@@ -165,7 +171,7 @@ namespace PAGE.APIEtudiant.Stockage
                 using (HttpClient client = new HttpClient())
                 {
                     // Spécifiez l'URL de l'API
-                    string apiUrl = "https://localhost:7038/Note/CreatePieceJointe";
+                    string apiUrl = "https://localhost:7038/PieceJointe/CreatePieceJointe";
 
                     // Convertissez la note en JSON
                     string pjSerialise = JsonSerializer.Serialize(pj);

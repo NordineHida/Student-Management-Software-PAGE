@@ -3,33 +3,44 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APIEtudiant.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
+
     public class PieceJointeController : ControllerBase
     {
-        /// <summary>
-        /// Controlleur de l'API pour les piece jointes
-        /// </summary>
-        /// <author>Laszlo</author>
-        [ApiController]
-        [Route("[controller]")]
-        public class NoteController : ControllerBase
+        [HttpPost("upload")]
+        public ActionResult UploadFile([FromForm] PieceJointe pieceJointe)
         {
-            /// <summary>
-            /// Ajoute une piece jointe à la BDD
-            /// </summary>
-            /// <param name="pieceJointe">Piece jointe à ajouter</param>
-            /// <author>Yamato</author>
-            [HttpPost("CreatePieceJointe")]
-            public ActionResult CreatePieceJointe([FromBody] PieceJointe pieceJointe)
+            ActionResult reponse = BadRequest();
+            try
             {
-                ActionResult reponse = BadRequest();
-                //Si la note n'est pas null
-                if (pieceJointe != null)
+                // Validate if the file is present
+                if (pieceJointe.Fichier == null || pieceJointe.Fichier.Length == 0)
                 {
-                    //si l'ajout de la note a été un succès on renvoie OK
-                    if (PieceJointeManager.Instance.CreatePieceJointe(pieceJointe)) reponse = Ok();
+                    return BadRequest("No file uploaded.");
                 }
-                return reponse;
+
+                // Generate a unique file name or use the original file name
+                var fileName = Guid.NewGuid().ToString() + "_" + pieceJointe.Fichier.FileName;
+
+                // Specify the path to save the file
+                var filePath = Path.Combine("path/to/save/", fileName);
+
+                // Save the file to the file system
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    pieceJointe.Fichier.CopyTo(stream);
+                }
+
+                PieceJointeManager.Instance.CreatePieceJointe(pieceJointe);
+
+                reponse = Ok("File uploaded successfully");
             }
+            catch (Exception ex)
+            {
+                reponse = StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+            return reponse;
         }
     }
 }
