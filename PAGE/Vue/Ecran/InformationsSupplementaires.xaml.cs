@@ -1,18 +1,12 @@
-﻿
-using PAGE.Model;
+﻿using PAGE.Model;
 using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using PAGE.Model.PatternObserveur;
-using PAGE.Stockage;
-using System;
-using System.ComponentModel;
 using System.Windows.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 using RadioButton = System.Windows.Controls.RadioButton;
@@ -26,7 +20,7 @@ namespace PAGE.Vue.Ecran
     public partial class InformationsSupplementaires : Window, IObservateur
     {
         private Etudiant etudiant;
-
+        private Etudiants etudiants;
         private Notes notes;
         private SEXE sexeSelectionne;
         private bool estBoursier;
@@ -36,14 +30,12 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="EtudiantActuel">etudiant actuel</param>
         /// <author>Yamato & Laszlo & Nordine</author>
-        public InformationsSupplementaires(Etudiant EtudiantActuel)
+        public InformationsSupplementaires(Etudiant EtudiantActuel, Etudiants etudiants)
         {
             InitializeComponent();
             etudiant = EtudiantActuel;
-
-            //On charge les informations des étudiants
+            this.etudiants = etudiants;
             ChargerInfosImpEtudiant();
-            ChargerInfosCompEtudiant();
 
             sexeSelectionne = etudiant.Sexe;
             estBoursier = etudiant.EstBoursier;
@@ -117,6 +109,7 @@ namespace PAGE.Vue.Ecran
         {
             if (contInfosComp.Visibility == Visibility.Collapsed)
             {
+                ChargerInfosCompEtudiant();
                 contInfosComp.Visibility = Visibility.Visible;
                 BoutonInfoComp.Content = "Cacher les informations complémentaires";
             }
@@ -139,7 +132,7 @@ namespace PAGE.Vue.Ecran
         }
 
         /// <summary>
-        /// Désactive le mode d'édition, empêchant l'utilisateur de modifier les informations.
+        /// Désactive le mode d'édition, empêchant l'utilisateur de modifier les informations et mets a jour l'étudiant
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -151,6 +144,7 @@ namespace PAGE.Vue.Ecran
             Etudiant updateEtu = GetEtudiantUpdated();
             //On l'ajoute (le mets a jour puisqu'il existe)
             EtuDAO.Instance.AddEtudiant(updateEtu);
+            etudiants.UpdateEtu(etudiant);
         }
 
         /// <summary>
