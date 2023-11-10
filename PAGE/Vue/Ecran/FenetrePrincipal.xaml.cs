@@ -301,7 +301,7 @@ namespace PAGE.Vue.Ecran
                 if (etudiantSelectionne != null)
                 {
                     // Créez une instance de la fenêtre InformationsSupplementaires en passant l'étudiant sélectionné en paramètre
-                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne);
+                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne,etudiants);
                     informationsSupplementaires.Show();
                 }
             }

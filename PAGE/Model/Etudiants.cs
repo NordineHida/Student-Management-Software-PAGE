@@ -1,4 +1,5 @@
-﻿using PAGE.Model.PatternObserveur;
+﻿using APIEtudiant.Model;
+using PAGE.Model.PatternObserveur;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,15 +53,22 @@ namespace PAGE.Model
             Notifier("etudiant ajoute");
         }
 
+
+
         /// <summary>
-        /// Supprime un étudiant de la liste
+        /// Modifie un étudiant de la liste
         /// </summary>
-        /// <param name="etu">etudiant à ajouter</param>
-        /// <author>Laszlo</author>
-        public void RemoveEtu(Etudiant etu)
+        /// <param name="etu">etudiant à modifier</param>
+        /// <author>Laszlo Nordine</author>
+        public void UpdateEtu(Etudiant etu)
         {
-            listeEtu.Remove(etu);
-            Notifier("note supprime");
+            for (int i = 0; i < listeEtu.Count; i++)
+            {
+                if (listeEtu[i].NumApogee == etu.NumApogee)
+                    listeEtu[i] = etu;
+            }
+
+            Notifier("etudiant modifie");
         }
     }
 }
