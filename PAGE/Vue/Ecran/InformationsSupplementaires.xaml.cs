@@ -1,30 +1,25 @@
-﻿using DocumentFormat.OpenXml.ExtendedProperties;
+﻿
 using PAGE.Model;
+using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PAGE.Vue.Ecran
 {
     /// <summary>
     /// Logique d'interaction pour InformationsSupplementaires.xaml
     /// </summary>
-    public partial class InformationsSupplementaires : Window
+    public partial class InformationsSupplementaires : Window, IObservateur
     {
         private Etudiant etudiant;
-        private List<Note> notes;
+
+        private Notes notes;
 
         /// <summary>
         /// Constructeur qui prend l'étudiant selectionné avec le double clique
@@ -37,6 +32,9 @@ namespace PAGE.Vue.Ecran
             etudiant = EtudiantActuel;
             ChargerInfosImpEtudiant();
             ChargementDiffereNotes();
+
+
+
         }
 
         /// <summary>
@@ -470,9 +468,9 @@ namespace PAGE.Vue.Ecran
             maListViewNote.Items.Clear();
 
             //On récupere l'ensemble des étudiants via l'API
-            this.notes = (await EtuDAO.Instance.GetAllNotesByApogee(etudiant.NumApogee)).ToList();
+            this.notes = new Notes((await EtuDAO.Instance.GetAllNotesByApogee(etudiant.NumApogee)).ToList());
 
-            foreach (Note note in notes)
+            foreach (Note note in notes.ListeNotes) 
             {
                 //Si l'étudiant est pas déjà dans la liste on l'y ajoute
                 if (!maListViewNote.Items.Contains(note))
@@ -492,7 +490,8 @@ namespace PAGE.Vue.Ecran
                 Note noteSelectionne = maListViewNote.SelectedItem as Note;
                 if (noteSelectionne != null)
                 {
-                   EtuDAO.Instance.DeleteNote(noteSelectionne);
+                    EtuDAO.Instance.DeleteNote(noteSelectionne);
+                    ChargementDiffereNotes();
                 }
             }
         }
@@ -519,8 +518,15 @@ namespace PAGE.Vue.Ecran
 
         private void Creer_Click(object sender, RoutedEventArgs e)
         {
-            FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant();
-            fenetreCreerEtudiant.Show();
+            CreationNote creernote = new CreationNote(new Note("",DateTime.Now,"","",etudiant.NumApogee));
+            creernote.Show();
+            ChargementDiffereNotes();
         }
+
+        public void Notifier(string Message)
+        {
+            ChargementDiffereNotes();
+        }
+
     }
 }

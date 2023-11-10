@@ -13,16 +13,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PAGE.Model.PatternObserveur;
 
 namespace PAGE.Vue.Ecran
 {
     /// <summary>
     /// Logique d'interaction pour CreationNote.xaml
     /// </summary>
-    public partial class CreationNote : Window
+    public partial class CreationNote : Window , IObservateur
     {
         private Note note;
-
+        private Notes listeNote;
         private bool modeCreation;
 
         /// <summary>
@@ -35,6 +36,8 @@ namespace PAGE.Vue.Ecran
             InitializeComponent();
             DataContext = note;
             this.note = note;
+            listeNote.Register(this);
+            
 
             modeCreation = true;
             if (note.Categorie != "")
@@ -92,9 +95,11 @@ namespace PAGE.Vue.Ecran
                 ComboBoxConfidentialite.IsEnabled = false;
                 ComboBoxCategorie.IsEnabled = false;
                 ComboBoxNature.IsEnabled = false;
-                TextCommentaire.IsReadOnly = true;
+                TextCommentaire.IsReadOnly = true;   
             }
-            
+
+            ChargerListeNote();
+
         }
 
         /// <summary>
@@ -132,6 +137,7 @@ namespace PAGE.Vue.Ecran
             if (isCreateOk(note))
             {
                 EtuDAO.Instance.CreateNote(note);
+                listeNote.AddNote(note);
                 this.Close();
             }
             else { MessageBox.Show("Tous les champs ne sont pas corrects"); }
@@ -173,14 +179,32 @@ namespace PAGE.Vue.Ecran
             TextCommentaire.IsReadOnly = true;
 
         }
+
+        /// <summary>
+        /// Charge la liste de notes depuis l'API
+        /// </summary>
+        private async void ChargerListeNote()
+        {
+            this.listeNote = new Notes((System.Collections.Generic.List<Note>)await EtuDAO.Instance.GetAllNotesByApogee(note.ApogeeEtudiant));
+        }
+
+        /// <summary>
+        /// Définit si l'on peut créer la note au moment de valider
+        /// </summary>
+        /// <param name="note">note à créer</param>
+        /// <returns>true si elle est correcte, faux sinon</returns>
+        /// <author>Laszlo</author>
         public bool isCreateOk(Note note)
         {
             bool valide = true;
-            if (note == null)valide = false;
+            if (note == null) valide = false;
             else if (note.Categorie == null || note.Nature == null) valide = false;
             return valide;
         }
 
-        
+        public void Notifier(string Message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
