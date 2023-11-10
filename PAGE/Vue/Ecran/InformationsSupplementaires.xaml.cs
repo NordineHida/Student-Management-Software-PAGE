@@ -539,7 +539,7 @@ namespace PAGE.Vue.Ecran
         public async void Notifier(string Message)
         {
             // Attendre 2 secondes
-            await Task.Delay(2000);
+            await Task.Delay(1000);
 
             ChargementDiffereNotes();
         }

@@ -321,7 +321,7 @@ namespace PAGE.Vue.Ecran
 
         public async void Notifier(string Message)
         {
-            await Task.Delay(2000);
+            await Task.Delay(1000);
 
             ChargementDiffere();
         }

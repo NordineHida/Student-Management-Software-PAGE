@@ -204,6 +204,16 @@ namespace PAGE.Vue.Ecran
             bool valide = true;
             if (note == null) valide = false;
             else if (note.Categorie == null || note.Nature == null) valide = false;
+            else if (note.Commentaire.Contains('\''))
+            {
+                for (int i=0; i<note.Commentaire.Length; i++)
+                {
+                    if (note.Commentaire[i] == '\'')
+                    {
+                        note.Commentaire.Insert(i, "\'");
+                    }
+                }
+            } 
             return valide;
         }
 
