@@ -34,10 +34,13 @@ namespace PAGE.Vue.Ecran
         public CreationNote(Note note, Notes notes)
         {
             InitializeComponent();
+
             DataContext = note;
             this.note = note;
             this.notes = notes;
-            
+
+            MiseAJourDateLabel();
+
             //on utilise un bool pour savoir si on doit créer une note ou simplement l'afficher
             modeCreation = true;
             if (note.Categorie != "")
@@ -202,6 +205,13 @@ namespace PAGE.Vue.Ecran
             if (note == null) valide = false;
             else if (note.Categorie == null || note.Nature == null) valide = false;
             return valide;
+        }
+
+        private void MiseAJourDateLabel()
+        {
+            DateTime dateNote = this.note.DatePublication;
+
+            Date.Content = "Date : " + dateNote.ToString("dd/MM/yyyy");
         }
 
     }
