@@ -80,6 +80,8 @@
         <Button x:Name="BoutonModifier" Grid.Column="1" Content="Modifier" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickModify" Margin="310,0,0,0" Visibility="Collapsed"/>
         <Button x:Name="BoutonAnnuler" Grid.Column="1" Content="Annuler" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0"/>
         <Button x:Name="BoutonValider" Grid.Column="1" Content="Valider" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickValider" Margin="450,0,0,0" Visibility="Collapsed"/>
+        
+        <Label Grid.Column="2" x:Name="Date" HorizontalAlignment="Center" VerticalAlignment="Center" Width="117"/>
 
 
 
