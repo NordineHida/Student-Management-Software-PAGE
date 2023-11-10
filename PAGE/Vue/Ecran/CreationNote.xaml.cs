@@ -23,7 +23,7 @@ namespace PAGE.Vue.Ecran
     {
         private Note note;
 
-        private bool modeAffichage;
+        private bool modeCreation;
 
         /// <summary>
         /// Constructeur de fenêtre CreationNote
@@ -32,13 +32,26 @@ namespace PAGE.Vue.Ecran
         /// <author>Laszlo</author>
         public CreationNote(Note note)
         {
-            modeAffichage = true;
-            if (note.Categorie == "")
-                modeAffichage = false;
-
             InitializeComponent();
             DataContext = note;
             this.note = note;
+
+            modeCreation = true;
+            if (note.Categorie != "")
+            {
+                modeCreation = false;
+
+                Titre.Content = "Modification de note";
+
+                BoutonCreer.Visibility = Visibility.Collapsed;
+                BoutonModifier.Visibility = Visibility.Visible;
+
+                ComboBoxConfidentialite.IsEnabled = false;
+                ComboBoxCategorie.IsEnabled = false;
+                ComboBoxNature.IsEnabled = false;
+                TextCommentaire.IsReadOnly = true;
+            }
+            
         }
 
         /// <summary>
@@ -90,7 +103,29 @@ namespace PAGE.Vue.Ecran
             this.Close();
         }
 
+        private void ClickModify(object sender, RoutedEventArgs e)
+        {
+            BoutonValider.Visibility = Visibility.Visible;
+            BoutonModifier.Visibility = Visibility.Collapsed;
 
+            ComboBoxConfidentialite.IsEnabled = true;
+            ComboBoxCategorie.IsEnabled = true;
+            ComboBoxNature.IsEnabled = true;
+            TextCommentaire.IsReadOnly = false;
+
+        }
+
+        private void ClickValider(object sender, RoutedEventArgs e)
+        {
+            BoutonValider.Visibility = Visibility.Collapsed;
+            BoutonModifier.Visibility = Visibility.Visible;
+
+            ComboBoxConfidentialite.IsEnabled = false;
+            ComboBoxCategorie.IsEnabled = false;
+            ComboBoxNature.IsEnabled = false;
+            TextCommentaire.IsReadOnly = true;
+
+        }
         public bool isCreateOk(Note note)
         {
             bool valide = true;
@@ -98,5 +133,7 @@ namespace PAGE.Vue.Ecran
             else if (note.Categorie == null || note.Nature == null) valide = false;
             return valide;
         }
+
+        
     }
 }

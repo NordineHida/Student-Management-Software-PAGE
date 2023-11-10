@@ -32,7 +32,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Titre de la page -->
-        <Label Grid.Column="1" Content="Création de Note" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29" Foreground="#2B2B5A"/>
+        <Label x:Name="Titre" Grid.Column="1" Content="Création de Note" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29" Foreground="#2B2B5A"/>
 
         <!-- Combobox gérant la confidentialité -->
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
@@ -71,13 +71,16 @@
         </ComboBox>
 
         <!-- TextBox du commentaire de la note -->
-        <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Commentaire}" VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0"/>
+        <TextBox x:Name="TextCommentaire" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Commentaire}" VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0"/>
         <Rectangle Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="133,57,0,0"  Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" Grid.ColumnSpan="2" Grid.RowSpan="2" RadiusX="10" RadiusY="10"/>
         <Label Grid.Column="1" Content="Commentaire  : " HorizontalAlignment="Left" Margin="10,62,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2"/>
 
         <!-- Boutons créer et annuler -->
-        <Button Grid.Column="1" Content="Créer" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0"/>
-        <Button Grid.Column="1" Content="Annuler" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0"/>
+        <Button x:Name="BoutonCreer" Grid.Column="1" Content="Créer" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0"/>
+        <Button x:Name="BoutonModifier" Grid.Column="1" Content="Modifier" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickModify" Margin="310,0,0,0" Visibility="Collapsed"/>
+        <Button x:Name="BoutonAnnuler" Grid.Column="1" Content="Annuler" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0"/>
+        <Button x:Name="BoutonValider" Grid.Column="1" Content="Valider" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickValider" Margin="450,0,0,0" Visibility="Collapsed"/>
+
 
 
 
