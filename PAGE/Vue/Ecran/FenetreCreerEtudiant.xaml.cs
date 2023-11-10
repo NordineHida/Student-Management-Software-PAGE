@@ -12,7 +12,7 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class FenetreCreerEtudiant : Window
     {
-
+        private Etudiants etudiants;
         private SEXE sexeSelectionne;
         private bool estBoursier;
 
@@ -20,12 +20,13 @@ namespace PAGE.Vue.Ecran
         /// Constructeur (initialiser le sexe à AUTRE  et le bool boursier a false
         /// </summary>
         /// <author>Nordine</author>
-        public FenetreCreerEtudiant()
+        public FenetreCreerEtudiant(Etudiants etudiants)
         {
             InitializeComponent();
 
             sexeSelectionne = SEXE.AUTRE;
             estBoursier = false;
+            this.etudiants = etudiants;
         }
 
 
@@ -51,6 +52,7 @@ namespace PAGE.Vue.Ecran
 
                 //on ajoute l'étudiant à la bdd
                 EtuDAO.Instance.AddEtudiant(etudiant);
+                etudiants.AddEtu(etudiant);
             }
 
         }
