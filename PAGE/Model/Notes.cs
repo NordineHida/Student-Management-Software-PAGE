@@ -31,7 +31,7 @@ namespace PAGE.Model
         /// <summary>
         /// Construit une liste Notes
         /// </summary>
-        /// <author>Nordine</author>
+        /// <author>Laszlo</author>
         public Notes(List<Note> listeNote)
         {
             listeNotes = listeNote;
@@ -49,7 +49,7 @@ namespace PAGE.Model
         }
 
         /// <summary>
-        /// Ajoute une note à la liste
+        /// Supprime une note de la liste
         /// </summary>
         /// <param name="note">note à ajouter</param>
         /// <author>Laszlo</author>

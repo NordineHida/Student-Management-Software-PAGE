@@ -73,9 +73,9 @@
         <!-- Sexe (Nordine & Yamato)-->
         <TextBlock Text="Sexe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="1" />
         <WrapPanel Grid.Row="11" Grid.Column="3" x:Name="RadioSexe">
-            <RadioButton GroupName="sexeRadio" x:Name="radioHomme" Margin="20,0,0,0" IsEnabled="False" >Homme</RadioButton>
-            <RadioButton GroupName="sexeRadio" x:Name="radioFemme" Margin="20,0,0,0" IsEnabled="False" >Femme</RadioButton>
-            <RadioButton GroupName="sexeRadio" x:Name="radioAutre" Margin="20,0,0,0" IsEnabled="False" >Autre</RadioButton>
+            <RadioButton GroupName="sexeRadio" x:Name="radioHomme" Margin="20,0,0,0" IsEnabled="False" Checked="radioHomme_Checked" >Homme</RadioButton>
+            <RadioButton GroupName="sexeRadio" x:Name="radioFemme" Margin="20,0,0,0" IsEnabled="False" Checked="radioFemme_Checked">Femme</RadioButton>
+            <RadioButton GroupName="sexeRadio" x:Name="radioAutre" Margin="20,0,0,0" IsEnabled="False" Checked="radioAutre_Checked">Autre</RadioButton>
         </WrapPanel>
 
 
@@ -86,8 +86,8 @@
         <!-- Statut (Boursier ou non)  (Nordine & Yamato)-->
         <TextBlock Text="Boursier : " HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="1" />
         <WrapPanel Grid.Row="15" Grid.Column="3" x:Name="RadioBoursier">
-            <RadioButton GroupName="Boursier" x:Name="radioBoursierTrue" Margin="20,0,0,0" IsEnabled="False" >Oui</RadioButton>
-            <RadioButton GroupName="Boursier" x:Name="radioBoursierFalse" Margin="20,0,0,0" IsEnabled="False" >Non</RadioButton>
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierTrue" Margin="20,0,0,0" IsEnabled="False" Checked="radioBoursierTrue_Checked"  >Oui</RadioButton>
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierFalse" Margin="20,0,0,0" IsEnabled="False" Checked="radioBoursierFalse_Checked" >Non</RadioButton>
         </WrapPanel>
 
         <!-- Régime de formation (Nordine & Yamato)-->
@@ -152,7 +152,7 @@
                             <GridViewColumnHeader  Click="Trie_ClickNote" Tag="Categorie">Catégorie</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding DatePublication}">
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding DatePublication, StringFormat=d, ConverterCulture=fr}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Click="Trie_ClickNote" Tag="Date" >Date</GridViewColumnHeader>
                         </GridViewColumn.Header>

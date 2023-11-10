@@ -1,5 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using DocumentFormat.OpenXml.ExtendedProperties;
+using Microsoft.Win32;
 using PAGE.Model;
+using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,10 @@ namespace PAGE.Vue.Ecran
     /// <summary>
     /// Logique d'interaction pour FenetrePrincipal.xaml
     /// </summary>
-    public partial class FenetrePrincipal : Window
+    public partial class FenetrePrincipal : Window, IObservateur
     {
         private UIElement initialContent;
+        private Etudiants etudiants;
 
         /// <summary>
         /// Initialise la fenetre principal
@@ -181,14 +184,17 @@ namespace PAGE.Vue.Ecran
             maListView.Items.Clear();
 
             //On récupere l'ensemble des étudiants via l'API
-            List<Etudiant> etudiants = (await EtuDAO.Instance.GetAllEtu()).ToList();
+            this.etudiants = new Etudiants((List<Etudiant>)await EtuDAO.Instance.GetAllEtu());
 
-            foreach (Etudiant etu in etudiants)
+            foreach (Etudiant etu in etudiants.ListeEtu)
             {
                 //Si l'étudiant est pas déjà dans la liste on l'y ajoute
                 if (!maListView.Items.Contains(etu))
                     maListView.Items.Add(etu);
             }
+
+            //On enregistre cette fenetre comme observeur des notes
+            etudiants.Register(this);
         }
 
 
@@ -309,8 +315,15 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void BoutonCreerEtudiant(object sender, RoutedEventArgs e)
         {
-            FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant();
+            FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant(etudiants);
             fenetreCreerEtudiant.Show();
+        }
+
+        public async void Notifier(string Message)
+        {
+            await Task.Delay(2000);
+
+            ChargementDiffere();
         }
     }
 }
