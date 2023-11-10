@@ -511,7 +511,7 @@ namespace PAGE.Vue.Ecran
                 if (noteSelectionne != null)
                 {
                     // Créez une instance de la fenêtre InformationsSupplementaires en passant l'étudiant sélectionné en paramètre
-                    AffichageNote affichageNote = new AffichageNote(noteSelectionne);
+                    CreationNote affichageNote = new CreationNote(noteSelectionne);
                     affichageNote.Show();
                 }
             }

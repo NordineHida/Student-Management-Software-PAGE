@@ -48,7 +48,13 @@
         <TextBox IsReadOnly="True" x:Name="txtCategorie" HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="3" BorderThickness="0" Margin="0,2,0,35"/>
 
         <TextBlock Text="Nature : " HorizontalAlignment="Left" FontSize="20" Grid.Row="6"  Grid.Column="1" />
-        <TextBox IsReadOnly="True" x:Name="txtNature" HorizontalAlignment="Left" FontSize="20" Grid.Row="6" Grid.Column="2"  BorderThickness="0" Margin="0,2,0,35"/>
+        <ListBox IsEnabled="False" x:Name="txtNature" HorizontalAlignment="Left" FontSize="20" Grid.Row="6" Grid.Column="2"  BorderThickness="0" Margin="0,2,0,35">
+            <ListBoxItem Content="Mail"/>
+            <ListBoxItem Content="Rdv"/>
+            <ListBoxItem Content="Lettre"/>
+            <ListBoxItem Content="Appel"/>
+            <ListBoxItem Content="Autre"/>
+        </ListBox>
 
         <TextBlock Text="Commentaire : " HorizontalAlignment="Left" FontSize="20" Grid.Row="8"  Grid.Column="1" />
         <TextBox IsReadOnly="True" x:Name="txtCommentaire"  HorizontalAlignment="Left" FontSize="20" Grid.Row="8" Grid.Column="3"  Width="800" Margin="0,2,0,35"/>

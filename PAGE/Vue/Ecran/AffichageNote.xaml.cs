@@ -32,7 +32,7 @@ namespace PAGE.Vue.Ecran
         public void ChargerInfosNotes()
         {
             txtCategorie.Text = note.Categorie;
-            txtNature.Text = note.Nature;
+            txtNature.SelectedItem = note.Nature;
             txtCommentaire.Text = note.Commentaire;
         }
 
