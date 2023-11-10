@@ -40,7 +40,10 @@ namespace PAGE.Vue.Ecran
         {
             InitializeComponent();
             etudiant = EtudiantActuel;
+
+            //On charge les informations des étudiants
             ChargerInfosImpEtudiant();
+            ChargerInfosCompEtudiant();
 
             sexeSelectionne = etudiant.Sexe;
             estBoursier = etudiant.EstBoursier;
@@ -114,7 +117,6 @@ namespace PAGE.Vue.Ecran
         {
             if (contInfosComp.Visibility == Visibility.Collapsed)
             {
-                ChargerInfosCompEtudiant();
                 contInfosComp.Visibility = Visibility.Visible;
                 BoutonInfoComp.Content = "Cacher les informations complémentaires";
             }
