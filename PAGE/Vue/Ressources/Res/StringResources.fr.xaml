@@ -5,6 +5,10 @@
     <!--General (nordine)-->
     <system:String x:Key="BtnValider">Valider</system:String>
     <system:String x:Key="BtnAnnuler">Annuler</system:String>
+    <system:String x:Key="BtnModifier">Modifier</system:String>
+    <system:String x:Key="Nom">Nom</system:String>
+    <system:String x:Key="Prenom">Prenom</system:String>
+    <system:String x:Key="NumApogee">NumApogee</system:String>
 
     <!--Parametre (nordine)-->
     <system:String x:Key="TitreParam">Paramètres</system:String>
@@ -26,6 +30,21 @@
 
     <!--Bienvenue (nordine)-->
     <system:String x:Key="TitreBienvenue">Bienvenue !</system:String>
+
+    <!--CreationNote (Lucas)-->
+    
+    <!--ToolTips-->
+    <system:String x:Key="ToolTipPageConnexion">Page de connexion</system:String>
+    <system:String x:Key="ToolTipPageParamètres">Paramètres</system:String>
+    <system:String x:Key="ToolTipImportation">Importer des étudiants</system:String>
+    <system:String x:Key="ToolTipActualisation">Actualiser la liste des étudiants</system:String>
+    <system:String x:Key="ToolTipCreerEtudiant">Créer un étudiant</system:String>
+    <system:String x:Key="ToolTipChoixPromo">Choisir la promotion</system:String>
+    
+    <!--PagePrincipale-->
+    <system:String x:Key="LabelTrie">Trier par :</system:String>
+
+
 
 
 

@@ -59,27 +59,27 @@
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
 
 
-            <Button ToolTip="Page de connexion" Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage">
+            <Button ToolTip="{DynamicResource ToolTipPageConnexion}" Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage">
                 <Image Source="/Vue/Ressources/Picto/account.png" Stretch="Uniform" Margin="7"/>
             </Button>
 
-            <Button ToolTip="Paramètres" Style="{StaticResource ImageButtonStyle}" Click="OpenParametresPage">
+            <Button ToolTip="{DynamicResource ToolTipPageParamètres}" Style="{StaticResource ImageButtonStyle}" Click="OpenParametresPage">
                 <Image Source="/Vue/Ressources/Picto/settings.png" Stretch="Uniform" Margin="10" />
             </Button>
 
-            <Button ToolTip="Importer des étudiants" Style="{StaticResource ImageButtonStyle}" Click="ImporterEtudiants">
+            <Button ToolTip="{DynamicResource ToolTipImportation}" Style="{StaticResource ImageButtonStyle}" Click="ImporterEtudiants">
                 <Image Source="/Vue/Ressources/Picto/import.png"  Stretch="Uniform" Margin="13"/>
             </Button>
 
-            <Button ToolTip="Actualiser la liste des étudiants" Style="{StaticResource ImageButtonStyle}" Click="BoutonActualiserListeEtudiant">
+            <Button ToolTip="{DynamicResource ToolTipActualisation}" Style="{StaticResource ImageButtonStyle}" Click="BoutonActualiserListeEtudiant">
                 <Image Source="/Vue/Ressources/Picto/refresh.png"  Stretch="Uniform" Margin="9"/>
             </Button>
 
-            <Button ToolTip="Créer un étudiant" Style="{StaticResource ImageButtonStyle}" Click="BoutonCreerEtudiant">
+            <Button ToolTip="{DynamicResource ToolTipCreerEtudiant}" Style="{StaticResource ImageButtonStyle}" Click="BoutonCreerEtudiant">
                 <Image Source="/Vue/Ressources/Picto/account-plus.png"  Stretch="Uniform" Margin="9"/>
             </Button>
 
-            <Button ToolTip="Choisir la promotion" Style="{StaticResource ImageButtonStyle}" Click="OpenPromoPage">
+            <Button ToolTip="{DynamicResource ToolTipChoixPromo}" Style="{StaticResource ImageButtonStyle}" Click="OpenPromoPage">
                 <Image Source="/Vue/Ressources/Picto/calendar-account.png"  Stretch="Uniform" Margin="10"/>
             </Button>
 
@@ -96,12 +96,12 @@
                     </GridViewColumn>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding Nom}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Nom" Click="Trie_Click">Nom</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="Nom" Click="Trie_Click" Content="{DynamicResource Nom}"></GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding Prenom }">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Prenom" Click="Trie_Click">Prenom</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="Prenom" Click="Trie_Click" Content="{DynamicResource Prenom}"></GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>
@@ -113,13 +113,13 @@
         <Border Padding="0 5" Margin="105,111,1030,28" Grid.Column="1">
             <Grid>
                 <ComboBox x:Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180" Margin="0,-27,0,0">
-                    <ComboBoxItem>Nom</ComboBoxItem>
-                    <ComboBoxItem>Prenom</ComboBoxItem>
+                    <ComboBoxItem Content="{DynamicResource Nom}"></ComboBoxItem>
+                    <ComboBoxItem Content="{DynamicResource Prenom}"></ComboBoxItem>
                 </ComboBox>
                 <TextBox  x:Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180"/>
             </Grid>
         </Border>
-        <Label  Grid.Column="1" Content="Trier par :" HorizontalAlignment="Left" Margin="54,88,0,0" VerticalAlignment="Top" FontFamily="Open Sauce One"/>
+        <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" Margin="54,88,0,0" VerticalAlignment="Top" FontFamily="Open Sauce One"/>
 
     </Grid>
 </Window>
