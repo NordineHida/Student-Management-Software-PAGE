@@ -165,13 +165,13 @@ namespace PAGE.APIEtudiant.Stockage
                 using (HttpClient client = new HttpClient())
                 {
                     // Spécifiez l'URL de l'API
-                    string apiUrl = "https://localhost:7038/Note/CreateNote";
+                    string apiUrl = "https://localhost:7038/Note/CreatePj";
 
                     // Convertissez la note en JSON
-                    string noteSerialise = JsonSerializer.Serialize(pieceJointe);
+                    string pjSerialise = JsonSerializer.Serialize(pieceJointe);
 
                     // Créez le contenu de la requête POST
-                    HttpContent content = new StringContent(noteSerialise, Encoding.UTF8, "application/json");
+                    HttpContent content = new StringContent(pjSerialise, Encoding.UTF8, "application/json");
 
                     // Effectuez la requête POST
                     HttpResponseMessage response = await client.PostAsync(apiUrl, content);

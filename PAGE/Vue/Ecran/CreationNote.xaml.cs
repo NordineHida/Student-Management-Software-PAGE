@@ -27,6 +27,8 @@ namespace PAGE.Vue.Ecran
     public partial class CreationNote : Window
     {
         private Note note;
+        private PieceJointe pieceJointe;
+        private bool pieceJointeAjoute = false;
         /// <summary>
         /// Constructeur de fenêtre CreationNote
         /// </summary>
@@ -57,6 +59,11 @@ namespace PAGE.Vue.Ecran
                 note.Categorie=motsCatChoisie[1];
                 //on crée la note
                 EtuDAO.Instance.CreateNote(note);
+
+                if (pieceJointeAjoute == true)
+                {
+                    EtuDAO.Instance.CreatePj(pieceJointe, note.IdNote);
+                }
                 this.Close();
             }
             //Si on n'a pas choisi de catégorie, un message s'affiche
@@ -87,9 +94,7 @@ namespace PAGE.Vue.Ecran
                 // Obtenez le chemin du fichier sélectionné
                 string selectedFilePath = openFileDialog.FileName;
 
-                // Ajoute la pièce jointe à la note
-                PieceJointe pieceJointe = new PieceJointe(selectedFilePath, note.IdNote);
-                EtuDAO.Instance.CreatePj(pieceJointe, note.IdNote);
+                pieceJointeAjoute = true;
 
                 // Obtenez le contenu actuel du TextBox
                 string currentContent = PieceJointeTextBlock.Text;
