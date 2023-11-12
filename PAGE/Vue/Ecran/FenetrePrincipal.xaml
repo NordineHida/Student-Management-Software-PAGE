@@ -91,7 +91,7 @@
                 <GridView>
                     <GridViewColumn Width="120" DisplayMemberBinding="{Binding NumApogee}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="NumApogee" Click="Trie_Click">NumApogee</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="NumApogee" Click="Trie_Click" Content="{DynamicResource NumApogee}"></GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding Nom}">

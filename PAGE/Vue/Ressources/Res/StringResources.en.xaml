@@ -95,7 +95,7 @@
     <system:String x:Key="BtnAffiInfoComp">Display additional information</system:String>
 
     <system:String x:Key="LabelChpObli">* = Mandatory field</system:String>
-    <system:String x:Key="Birth">Mandatory field:</system:String>
+    <system:String x:Key="Birth">Birth date:</system:String>
     <system:String x:Key="Adresse">Residence address:</system:String>
     <system:String x:Key="TelFixe">Fixed telephone number:</system:String>
     <system:String x:Key="TelPort">Mobile phone :</system:String>
