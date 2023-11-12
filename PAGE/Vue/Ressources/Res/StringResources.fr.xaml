@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:system="clr-namespace:System;assembly=netstandard">
 
-    <!--General (nordine)-->
+    <!--General (nordine/Lucas)-->
     <system:String x:Key="BtnValider">Valider</system:String>
     <system:String x:Key="BtnAnnuler">Annuler</system:String>
     <system:String x:Key="BtnModifier">Modifier</system:String>
@@ -61,6 +61,8 @@
     <system:String x:Key="CateAppel">Appel :</system:String>
 
     <system:String x:Key="CateCommentaire">Commentaire :</system:String>
+    <system:String x:Key="CateDate">Date :</system:String>
+
 
     <!--ToolTips (Lucas) -->
     <system:String x:Key="ToolTipPageConnexion">Page de connexion</system:String>
@@ -94,7 +96,7 @@
     <system:String x:Key="BtnAffiInfoComp">Afficher les informations complémentaires</system:String>
 
     <system:String x:Key="LabelChpObli">* = Champ obligatoire</system:String>
-    <system:String x:Key="Birth">Date de naissance : *</system:String>
+    <system:String x:Key="Birth">Date de naissance : </system:String>
     <system:String x:Key="Adresse">Adresse de résidence : </system:String>
     <system:String x:Key="TelFixe">Téléphone fixe :</system:String>
     <system:String x:Key="TelPort">Téléphone portable :</system:String>
@@ -102,4 +104,23 @@
 
 
     <!--InformationsSupplementaires (Lucas)-->
+    <system:String x:Key="TitreFenetreInformationsSupplementaires">Informations Supplementaires</system:String>
+
+
+    <system:String x:Key="Nom:">Nom :</system:String>
+    <system:String x:Key="Prenom:">Prenom :</system:String>
+    <system:String x:Key="NumApogee:">NumApogee :</system:String>
+    <system:String x:Key="Mail:">Adresse mail :</system:String>
+    <system:String x:Key="Groupe:">Groupe:</system:String>
+    <system:String x:Key="Sexe:">Sexe :</system:String>
+    <system:String x:Key="Bac:">Bac obtenu :</system:String>
+    <system:String x:Key="Boursier:">Boursier :</system:String>
+    <system:String x:Key="Regime:">Régime :</system:String>
+
+    <system:String x:Key="BtnCreerNote">Créer une note</system:String>
+    <system:String x:Key="BtnModifInfos">Modifier les informations</system:String>
+    <system:String x:Key="BtnAfficherInfosComp">Afficher les informations complémentaires</system:String>
+
+    <system:String x:Key="HeaderSupprNote">Supprimer la note</system:String>
+
 </ResourceDictionary>

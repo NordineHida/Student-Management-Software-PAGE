@@ -2,9 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=netstandard">
 
-    <!--General (nordine)-->
+    <!--General (nordine/Lucas)-->
     <system:String x:Key="BtnValider">Submit</system:String>
     <system:String x:Key="BtnAnnuler">Cancel</system:String>
+    <system:String x:Key="BtnModifier">Modify</system:String>
+    <system:String x:Key="BtnCreer">Create</system:String>
+
+    <system:String x:Key="Nom">Name</system:String>
+    <system:String x:Key="Prenom">First Name</system:String>
+    <system:String x:Key="NumApogee">Peak number</system:String>
+    <system:String x:Key="Oui">Yes</system:String>
+    <system:String x:Key="Non">No</system:String>
 
     <!--Parametre (nordine)-->
     <system:String x:Key="TitreParam">Settings</system:String>
@@ -26,6 +34,92 @@
 
     <!--Bienvenue (nordine)-->
     <system:String x:Key="TitreBienvenue">Welcome !</system:String>
-    
+
+    <!--CreationNote (Lucas)-->
+    <system:String x:Key="TitreCreanote">Note creation !</system:String>
+
+    <system:String x:Key="ComboboxConf">Confidentiality :</system:String>
+    <system:String x:Key="CateMedical">Medical:</system:String>
+    <system:String x:Key="CateConf">Confidential :</system:String>
+    <system:String x:Key="CateInterne">Internal :</system:String>
+    <system:String x:Key="CatePublic">Public :</system:String>
+
+    <system:String x:Key="ComboboxCate">Category :</system:String>
+
+    <system:String x:Key="CateAbsenteisme">Absenteeism :</system:String>
+    <system:String x:Key="CatePersonnel">Personal  :</system:String>
+    <system:String x:Key="CateResultats">Results :</system:String>
+    <system:String x:Key="CateOrientation">Orientation :</system:String>
+    <system:String x:Key="CateAutre">Other :</system:String>
+
+    <system:String x:Key="TextNature">Nature :</system:String>
+
+    <system:String x:Key="CateMail">Mail :</system:String>
+    <system:String x:Key="CateRdv">Appointment :</system:String>
+    <system:String x:Key="CateLettre">Letter :</system:String>
+    <system:String x:Key="CateAppel">Call :</system:String>
+
+    <system:String x:Key="CateCommentaire">Commentary :</system:String>
+    <system:String x:Key="CateDate">Date :</system:String>
+
+
+    <!--ToolTips (Lucas) -->
+    <system:String x:Key="ToolTipPageConnexion">Login page</system:String>
+    <system:String x:Key="ToolTipPageParamètres">Parameters</system:String>
+    <system:String x:Key="ToolTipImportation">Import students</system:String>
+    <system:String x:Key="ToolTipActualisation">Refresh student list</system:String>
+    <system:String x:Key="ToolTipCreerEtudiant">Create a student</system:String>
+    <system:String x:Key="ToolTipChoixPromo">Choose the promotion</system:String>
+
+    <!--PagePrincipale (Lucas)-->
+    <system:String x:Key="LabelTrie">Sort by:</system:String>
+
+    <!--CréerEtudiant (Lucas)-->
+    <system:String x:Key="TitreFenetreCreerEtudiant">Create a student</system:String>
+
+    <system:String x:Key="Nom*">Name :*</system:String>
+    <system:String x:Key="Prenom*">First Name :*</system:String>
+    <system:String x:Key="NumApogee*">Peak number :*</system:String>
+
+    <system:String x:Key="Mail">Mail Adress:*</system:String>
+    <system:String x:Key="Groupe">Group:*</system:String>
+    <system:String x:Key="Sexe">Gender :*</system:String>
+    <system:String x:Key="CateSexeH">Male</system:String>
+    <system:String x:Key="CateSexeF">Female</system:String>
+    <system:String x:Key="CateSexeA">Other</system:String>
+    <system:String x:Key="Bac">A-levels obtained:*</system:String>
+    <system:String x:Key="Boursier">Scholar :*</system:String>
+    <system:String x:Key="Regime">Plan :*</system:String>
+
+    <system:String x:Key="BtnCreerEtudiant">Create a Student</system:String>
+    <system:String x:Key="BtnAffiInfoComp">Display additional information</system:String>
+
+    <system:String x:Key="LabelChpObli">* = Mandatory field</system:String>
+    <system:String x:Key="Birth">Mandatory field:</system:String>
+    <system:String x:Key="Adresse">Residence address:</system:String>
+    <system:String x:Key="TelFixe">Fixed telephone number:</system:String>
+    <system:String x:Key="TelPort">Mobile phone :</system:String>
+    <system:String x:Key="LoginRes">Network login :</system:String>
+
+
+    <!--InformationsSupplementaires (Lucas)-->
+    <system:String x:Key="TitreFenetreInformationsSupplementaires">Additionnal Information</system:String>
+
+
+    <system:String x:Key="Nom:">Name :</system:String>
+    <system:String x:Key="Prenom:">First Name :</system:String>
+    <system:String x:Key="NumApogee:">Peak number :</system:String>
+    <system:String x:Key="Mail:">Mail:</system:String>
+    <system:String x:Key="Groupe:">Group:</system:String>
+    <system:String x:Key="Sexe:">Gender :</system:String>
+    <system:String x:Key="Bac:">A-levels obtained :</system:String>
+    <system:String x:Key="Boursier:">Scholar :</system:String>
+    <system:String x:Key="Regime:">Plan :</system:String>
+
+    <system:String x:Key="BtnCreerNote">Create a note</system:String>
+    <system:String x:Key="BtnModifInfos">Modify information</system:String>
+    <system:String x:Key="BtnAfficherInfosComp">Display additional information</system:String>
+
+    <system:String x:Key="HeaderSupprNote">Delete note</system:String>
 
 </ResourceDictionary>
