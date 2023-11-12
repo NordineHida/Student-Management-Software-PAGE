@@ -2,9 +2,18 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:system="clr-namespace:System;assembly=netstandard">
 
-    <!--General (nordine)-->
+    <!--General (nordine/Lucas)-->
     <system:String x:Key="BtnValider">Valider</system:String>
     <system:String x:Key="BtnAnnuler">Annuler</system:String>
+    <system:String x:Key="BtnModifier">Modifier</system:String>
+    <system:String x:Key="BtnCreer">Créer</system:String>
+
+    <system:String x:Key="Nom">Nom</system:String>
+    <system:String x:Key="Prenom">Prenom</system:String>
+    <system:String x:Key="NumApogee">NumApogee</system:String>
+    <system:String x:Key="Oui">Oui</system:String>
+    <system:String x:Key="Non">Non</system:String>
+
 
     <!--Parametre (nordine)-->
     <system:String x:Key="TitreParam">Paramètres</system:String>
@@ -27,6 +36,91 @@
     <!--Bienvenue (nordine)-->
     <system:String x:Key="TitreBienvenue">Bienvenue !</system:String>
 
+    <!--CreationNote (Lucas)-->
+    <system:String x:Key="TitreCreanote">Création de Note !</system:String>
+    
+    <system:String x:Key="ComboboxConf">Confidentialité :</system:String>
+    <system:String x:Key="CateMedical">Médical :</system:String>
+    <system:String x:Key="CateConf">Confidentiel :</system:String>
+    <system:String x:Key="CateInterne">Interne :</system:String>
+    <system:String x:Key="CatePublic">Public :</system:String>
 
+    <system:String x:Key="ComboboxCate">Catégorie :</system:String>
+
+    <system:String x:Key="CateAbsenteisme">Absentéisme :</system:String>
+    <system:String x:Key="CatePersonnel">Personnel :</system:String>
+    <system:String x:Key="CateResultats">Résultats :</system:String>
+    <system:String x:Key="CateOrientation">Orientation :</system:String>
+    <system:String x:Key="CateAutre">Autre :</system:String>
+
+    <system:String x:Key="TextNature">Nature :</system:String>
+
+    <system:String x:Key="CateMail">Mail :</system:String>
+    <system:String x:Key="CateRdv">Rdv :</system:String>
+    <system:String x:Key="CateLettre">Lettre :</system:String>
+    <system:String x:Key="CateAppel">Appel :</system:String>
+
+    <system:String x:Key="CateCommentaire">Commentaire :</system:String>
+    <system:String x:Key="CateDate">Date :</system:String>
+
+
+    <!--ToolTips (Lucas) -->
+    <system:String x:Key="ToolTipPageConnexion">Page de connexion</system:String>
+    <system:String x:Key="ToolTipPageParamètres">Paramètres</system:String>
+    <system:String x:Key="ToolTipImportation">Importer des étudiants</system:String>
+    <system:String x:Key="ToolTipActualisation">Actualiser la liste des étudiants</system:String>
+    <system:String x:Key="ToolTipCreerEtudiant">Créer un étudiant</system:String>
+    <system:String x:Key="ToolTipChoixPromo">Choisir la promotion</system:String>
+    
+    <!--PagePrincipale (Lucas)-->
+    <system:String x:Key="LabelTrie">Trier par :</system:String> 
+    
+    <!--CréerEtudiant (Lucas)-->
+    <system:String x:Key="TitreFenetreCreerEtudiant">Créer un étudiant</system:String>
+
+    <system:String x:Key="Nom*">Nom :*</system:String>
+    <system:String x:Key="Prenom*">Prenom :*</system:String>
+    <system:String x:Key="NumApogee*">NumApogee :*</system:String>
+
+    <system:String x:Key="Mail">Adresse mail :*</system:String>
+    <system:String x:Key="Groupe">Groupe:*</system:String>
+    <system:String x:Key="Sexe">Sexe :*</system:String>
+    <system:String x:Key="CateSexeH">Homme</system:String>
+    <system:String x:Key="CateSexeF">Femme</system:String>
+    <system:String x:Key="CateSexeA">Autre</system:String>
+    <system:String x:Key="Bac">Bac obtenu :*</system:String>
+    <system:String x:Key="Boursier">Boursier :*</system:String>
+    <system:String x:Key="Regime">Régime :*</system:String>
+
+    <system:String x:Key="BtnCreerEtudiant">Créer un étudiant</system:String>
+    <system:String x:Key="BtnAffiInfoComp">Afficher les informations complémentaires</system:String>
+
+    <system:String x:Key="LabelChpObli">* = Champ obligatoire</system:String>
+    <system:String x:Key="Birth">Date de naissance : </system:String>
+    <system:String x:Key="Adresse">Adresse de résidence : </system:String>
+    <system:String x:Key="TelFixe">Téléphone fixe :</system:String>
+    <system:String x:Key="TelPort">Téléphone portable :</system:String>
+    <system:String x:Key="LoginRes">Login réseau :</system:String>
+
+
+    <!--InformationsSupplementaires (Lucas)-->
+    <system:String x:Key="TitreFenetreInformationsSupplementaires">Informations Supplementaires</system:String>
+
+
+    <system:String x:Key="Nom:">Nom :</system:String>
+    <system:String x:Key="Prenom:">Prenom :</system:String>
+    <system:String x:Key="NumApogee:">NumApogee :</system:String>
+    <system:String x:Key="Mail:">Adresse mail :</system:String>
+    <system:String x:Key="Groupe:">Groupe:</system:String>
+    <system:String x:Key="Sexe:">Sexe :</system:String>
+    <system:String x:Key="Bac:">Bac obtenu :</system:String>
+    <system:String x:Key="Boursier:">Boursier :</system:String>
+    <system:String x:Key="Regime:">Régime :</system:String>
+
+    <system:String x:Key="BtnCreerNote">Créer une note</system:String>
+    <system:String x:Key="BtnModifInfos">Modifier les informations</system:String>
+    <system:String x:Key="BtnAfficherInfosComp">Afficher les informations complémentaires</system:String>
+
+    <system:String x:Key="HeaderSupprNote">Supprimer la note</system:String>
 
 </ResourceDictionary>
