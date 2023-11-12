@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Title="CreationNote" Height="450" Width="820">
+        Title="{DynamicResource TitreCreanote}" Height="450" Width="820">
     <!--auteur : Laszlo-->
 
     <!-- Change la couleur de fond de la page-->

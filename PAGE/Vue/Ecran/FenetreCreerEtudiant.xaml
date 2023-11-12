@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Title="InformationsSupplementaires" Height="1000" Width="1500">
+        Title="{DynamicResource TitreFenetreCreerEtudiant}" Height="1000" Width="1500">
 
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
@@ -64,13 +64,13 @@
         <!-- Informations Importantes -->
 
         <!-- Nom et Prenom (Nordine  ) -->
-        <TextBlock Text="{DynamicResource Nom}"  FontSize="20" Grid.Row="1" Grid.Column="1" />
+        <TextBlock Text="{DynamicResource Nom*}"  FontSize="20" Grid.Row="1" Grid.Column="1" />
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtName"  FontSize="20" Grid.Row="1" Grid.Column="3" />
 
-        <TextBlock Text="{DynamicResource Prenom}"  FontSize="20" Grid.Row="3" Grid.Column="1" />
+        <TextBlock Text="{DynamicResource Prenom*}"  FontSize="20" Grid.Row="3" Grid.Column="1" />
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtPrenom"  FontSize="20" Grid.Row="3" Grid.Column="3" />
 
-        <TextBlock Text="{DynamicResource NumApogee}"  FontSize="20" Grid.Row="5" Grid.Column="1" />
+        <TextBlock Text="{DynamicResource NumApogee*}"  FontSize="20" Grid.Row="5" Grid.Column="1" />
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtNumApogee"  FontSize="20" Grid.Row="5" Grid.Column="3" />
 
         <TextBlock Text="{DynamicResource Groupe}"  FontSize="20" Grid.Row="7" Grid.Column="1" />
@@ -94,18 +94,18 @@
         <!-- Statut (Boursier ou non)  (Nordine  )-->
         <TextBlock Text="{DynamicResource Boursier}"  FontSize="20" Grid.Row="15" Grid.Column="1" />
         <WrapPanel Grid.Row="15" Grid.Column="3" x:Name="RadioBoursier">
-            <RadioButton GroupName="Boursier" x:Name="radioBoursierTrue"  Margin="20,0,0,0" Checked="radioBoursierTrue_Checked" >Oui</RadioButton>
-            <RadioButton GroupName="Boursier" x:Name="radioBoursierFalse" Margin="20,0,0,0" Checked="radioBoursierFalse_Checked" IsChecked="True">Non</RadioButton>
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierTrue"  Margin="20,0,0,0" Checked="radioBoursierTrue_Checked" Content="{DynamicResource Oui}"></RadioButton>
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierFalse" Margin="20,0,0,0" Checked="radioBoursierFalse_Checked" IsChecked="True" Content="{DynamicResource Non}"></RadioButton>
         </WrapPanel>
 
         <!-- Régime de formation (Nordine  )-->
-        <TextBlock Text="{DynamicResource Nom}"  FontSize="20" Grid.Row="17" Grid.Column="1" />
+        <TextBlock Text="{DynamicResource Regime}"  FontSize="20" Grid.Row="17" Grid.Column="1" />
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtRegime"  FontSize="20" Grid.Row="17" Grid.Column="3" />
 
         <!-- Informations Complémentaires (Nordine) -->
 
-        <!-- Bouton pour afficher les informations complémentaires (Nordine)-->
-        <Button Foreground="White" Background="#FF3DA79D" FontFamily="Open Sauce One Bold" FontSize="20" Content="{DynamicResource BtnAffiInfoComp}" Click="CreerEtudiant" Margin="20,0,20,0" Grid.Row="18" Grid.RowSpan="2" />
+        <!-- Bouton pour créer un étudiant (Nordine)-->
+        <Button Foreground="White" Background="#FF3DA79D" FontFamily="Open Sauce One Bold" FontSize="20" Content="{DynamicResource BtnCreerEtudiant}" Click="CreerEtudiant" Margin="20,0,20,0" Grid.Row="18" Grid.RowSpan="2" />
 
         <!--Indication de champs obligatoire-->
         <Label Content="{DynamicResource LabelChpObli}" Foreground="Red" FontFamily="Open Sauce One Italic" FontSize="18"  Grid.Row="16" Grid.RowSpan="2" />
