@@ -39,29 +39,29 @@
     <!--CreationNote (Lucas)-->
     <system:String x:Key="TitreCreanote">Création de Note !</system:String>
     
-    <system:String x:Key="ComboboxConf">Confidentialité :</system:String>
-    <system:String x:Key="CateMedical">Médical :</system:String>
-    <system:String x:Key="CateConf">Confidentiel :</system:String>
-    <system:String x:Key="CateInterne">Interne :</system:String>
-    <system:String x:Key="CatePublic">Public :</system:String>
+    <system:String x:Key="ComboboxConf">Confidentialité</system:String>
+    <system:String x:Key="CateMedical">Médical</system:String>
+    <system:String x:Key="CateConf">Confidentiel</system:String>
+    <system:String x:Key="CateInterne">Interne</system:String>
+    <system:String x:Key="CatePublic">Public</system:String>
 
-    <system:String x:Key="ComboboxCate">Catégorie :</system:String>
+    <system:String x:Key="ComboboxCate">Catégorie</system:String>
 
-    <system:String x:Key="CateAbsenteisme">Absentéisme :</system:String>
-    <system:String x:Key="CatePersonnel">Personnel :</system:String>
-    <system:String x:Key="CateResultats">Résultats :</system:String>
-    <system:String x:Key="CateOrientation">Orientation :</system:String>
-    <system:String x:Key="CateAutre">Autre :</system:String>
+    <system:String x:Key="CateAbsenteisme">Absentéisme</system:String>
+    <system:String x:Key="CatePersonnel">Personnel</system:String>
+    <system:String x:Key="CateResultats">Résultats</system:String>
+    <system:String x:Key="CateOrientation">Orientation</system:String>
+    <system:String x:Key="CateAutre">Autre</system:String>
 
-    <system:String x:Key="TextNature">Nature :</system:String>
+    <system:String x:Key="TextNature">Nature</system:String>
 
-    <system:String x:Key="CateMail">Mail :</system:String>
-    <system:String x:Key="CateRdv">Rdv :</system:String>
-    <system:String x:Key="CateLettre">Lettre :</system:String>
-    <system:String x:Key="CateAppel">Appel :</system:String>
+    <system:String x:Key="CateMail">Mail</system:String>
+    <system:String x:Key="CateRdv">Rdv</system:String>
+    <system:String x:Key="CateLettre">Lettre</system:String>
+    <system:String x:Key="CateAppel">Appel</system:String>
 
-    <system:String x:Key="CateCommentaire">Commentaire :</system:String>
-    <system:String x:Key="CateDate">Date :</system:String>
+    <system:String x:Key="CateCommentaire">Commentaire</system:String>
+    <system:String x:Key="CateDate">Date</system:String>
 
 
     <!--ToolTips (Lucas) -->
