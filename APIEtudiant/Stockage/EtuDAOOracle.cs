@@ -181,7 +181,6 @@ namespace APIEtudiant.Stockage
 
         }
 
-
         /// <summary>
         /// Ajoute un nouvelle étudiant (ou le modifie s'il existe déjà)
         /// </summary>
@@ -290,8 +289,6 @@ namespace APIEtudiant.Stockage
             return ajoutReussi;
         }
 
-
-
         /// <summary>
         /// Creer un étudiant sur la bdd 
         /// </summary>
@@ -391,8 +388,6 @@ namespace APIEtudiant.Stockage
             }
             return etudiantExist;
         }
-
-
 
         /// <summary>
         /// Ajoute les touts les étudiants de la liste d'étudiants

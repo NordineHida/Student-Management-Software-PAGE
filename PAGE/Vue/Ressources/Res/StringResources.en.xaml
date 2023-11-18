@@ -36,10 +36,10 @@
     <system:String x:Key="TitreBienvenue">Welcome !</system:String>
 
     <!--CreationNote (Lucas)-->
-    <system:String x:Key="TitreCreanote">Note creation !</system:String>
+    <system:String x:Key="TitreCreanote">Note</system:String>
 
     <system:String x:Key="ComboboxConf">Confidentiality</system:String>
-    <system:String x:Key="CateMedical">Medical:</system:String>
+    <system:String x:Key="CateMedical">Medical</system:String>
     <system:String x:Key="CateConf">Confidential</system:String>
     <system:String x:Key="CateInterne">Internal</system:String>
     <system:String x:Key="CatePublic">Public</system:String>

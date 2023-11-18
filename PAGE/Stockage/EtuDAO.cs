@@ -171,7 +171,7 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK);
+                    MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK,MessageBoxImage.Information);
                 }
             }
         }

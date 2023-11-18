@@ -37,7 +37,7 @@
     <system:String x:Key="TitreBienvenue">Bienvenue !</system:String>
 
     <!--CreationNote (Lucas)-->
-    <system:String x:Key="TitreCreanote">Création de Note !</system:String>
+    <system:String x:Key="TitreCreanote">Note</system:String>
     
     <system:String x:Key="ComboboxConf">Confidentialité</system:String>
     <system:String x:Key="CateMedical">Médical</system:String>
