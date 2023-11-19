@@ -143,7 +143,8 @@ namespace PAGE.Vue.Ecran
             //On récupere les nouvelles de l'étudiant
             Etudiant updateEtu = GetEtudiantUpdated();
             //On l'ajoute (le mets a jour puisqu'il existe)
-            EtuDAO.Instance.AddEtudiant(updateEtu);
+            EtuDAO dao = new EtuDAO();
+            dao.AddEtudiant(updateEtu);
             etudiants.UpdateEtu(etudiant);
         }
 
@@ -633,7 +634,8 @@ namespace PAGE.Vue.Ecran
             maListViewNote.Items.Clear();
 
             //On récupere l'ensemble des étudiants via l'API
-            this.notes = new Notes((await EtuDAO.Instance.GetAllNotesByApogee(etudiant.NumApogee)).ToList());
+            NoteDAO dao = new NoteDAO();
+            this.notes = new Notes((await dao.GetAllNotesByApogee(etudiant.NumApogee)).ToList());
 
             foreach (Note note in notes.ListeNotes) 
             {
@@ -659,7 +661,8 @@ namespace PAGE.Vue.Ecran
                 Note noteSelectionne = maListViewNote.SelectedItem as Note;
                 if (noteSelectionne != null)
                 {
-                    EtuDAO.Instance.DeleteNote(noteSelectionne);
+                    NoteDAO dao = new NoteDAO();
+                    dao.DeleteNote(noteSelectionne);
                     notes.RemoveNote(noteSelectionne);
 
                 }

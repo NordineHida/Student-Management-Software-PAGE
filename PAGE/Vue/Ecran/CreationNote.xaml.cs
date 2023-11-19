@@ -1,19 +1,8 @@
 ﻿using PAGE.Stockage;
 using PAGE.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using PAGE.Model.PatternObserveur;
 
 namespace PAGE.Vue.Ecran
 {
@@ -138,7 +127,8 @@ namespace PAGE.Vue.Ecran
             //on crée la note
             if (isCreateOk(note))
             {
-                EtuDAO.Instance.CreateNote(note);
+                NoteDAO dao = new NoteDAO();
+                dao.CreateNote(note);
                 notes.AddNote(note);
                 this.Close();
             }

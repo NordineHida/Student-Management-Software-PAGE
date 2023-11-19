@@ -184,7 +184,8 @@ namespace PAGE.Vue.Ecran
             maListView.Items.Clear();
 
             //On récupere l'ensemble des étudiants via l'API
-            this.etudiants = new Etudiants((List<Etudiant>)await EtuDAO.Instance.GetAllEtu());
+            EtuDAO dao = new EtuDAO();
+            this.etudiants = new Etudiants((List<Etudiant>)await dao.GetAllEtu());
 
             foreach (Etudiant etu in etudiants.ListeEtu)
             {
@@ -246,7 +247,8 @@ namespace PAGE.Vue.Ecran
 
                 // Appelez la méthode GetEtudiants avec le chemin du fichier
                 LecteurExcel lc = new LecteurExcel();
-                EtuDAO.Instance.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
+                EtuDAO dao = new EtuDAO();
+                dao.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
             }
 
             //On actualise l'affichage

@@ -2,6 +2,10 @@
 
 namespace APIEtudiant.Model
 {
+    /// <summary>
+    /// Manager de note
+    /// </summary>
+    /// <author>Laszlo</author>
     public class NoteManager
     {
         #region Singleton
@@ -28,7 +32,7 @@ namespace APIEtudiant.Model
         #endregion
 
         //DAO d'étudiant 
-        private IEtuDAO EtuDAO => EtudiantDAOOracle.Instance;
+        private INoteDao NoteDAO => new NoteDAOOracle();
 
         /// <summary>
         /// Ajoute une note à la BDD
@@ -38,7 +42,7 @@ namespace APIEtudiant.Model
         /// <author>Laszlo</author>
         public bool CreateNote(Note note)
         {
-            return EtuDAO.CreateNote(note);
+            return NoteDAO.CreateNote(note);
         }
 
         /// <summary>
@@ -49,7 +53,7 @@ namespace APIEtudiant.Model
         /// <author>Laszlo</author>
         public bool DeleteNote(Note note)
         {
-            return EtuDAO.DeleteNote(note);
+            return NoteDAO.DeleteNote(note);
         }
 
         /// <summary>
@@ -59,7 +63,7 @@ namespace APIEtudiant.Model
         /// <author>Laszlo</author>
         public IEnumerable<Note> GetAllNotesByApogee(int apogeeEtudiant)
         {
-            return EtuDAO.GetAllNotesByApogee(apogeeEtudiant);
+            return NoteDAO.GetAllNotesByApogee(apogeeEtudiant);
         }
 
         /// <summary>
@@ -69,7 +73,7 @@ namespace APIEtudiant.Model
         /// <author>Laszlo</author>
         public IEnumerable<Note> GetAllNotes()
         {
-            return EtuDAO.GetAllNotes();
+            return NoteDAO.GetAllNotes();
         }
     }
 }

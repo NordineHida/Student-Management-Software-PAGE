@@ -9,10 +9,10 @@ namespace PAGE.Stockage
 {
 
     /// <summary>
-    /// Interface de DAO entre le client et l'API
+    /// Interface de DAO pour les etudiant entre le client et l'API 
     /// </summary>
     /// <author>Nordine</author>
-    public interface IDAO
+    public interface IEtuDAO
     {
 
         /// <summary>
@@ -38,35 +38,7 @@ namespace PAGE.Stockage
         /// <author>Nordine</author>
         public Task AddEtudiant(Etudiant etudiant);
 
-        /// <summary>
-        /// Ajoute une note à la BDD
-        /// </summary>
-        /// <param name="note">Note à ajouter</param>
-        /// <returns>true si l'ajout est un succès</returns>
-        /// <author>Laszlo</author>
-        public Task CreateNote(Note note);
 
-        /// <summary>
-        /// Supprime une note de la BDD
-        /// </summary>
-        /// <param name="note">Note à supprimer</param>
-        /// <returns>true si la suppression est un succès</returns>
-        /// <author>Laszlo</author>
-        public Task DeleteNote(Note note);
-
-        /// <summary>
-        /// Renvoi toutes les notes d'un étudiant
-        /// </summary>
-        /// <returns>Un ensemble de notest</returns>
-        /// <author>Laszlo</author>
-        public Task<IEnumerable<Note>> GetAllNotesByApogee(int apogeeEtudiant);
-
-        /// <summary>
-        /// Renvoi toutes les notes 
-        /// </summary>
-        /// <returns>Un ensemble de notes</returns>
-        /// <author>Laszlo</author>
-        public Task<IEnumerable<Note>> GetAllNotes();
 
 
     }
