@@ -113,6 +113,16 @@ namespace PAGE.Vue.Ecran
                 contInfosComp.Visibility = Visibility.Visible;
                 BoutonInfoComp.Visibility = Visibility.Collapsed;
                 BoutonCacherInfoComp.Visibility = Visibility.Visible;
+
+                if(etudiant.TelFixe == 0)
+                {
+                    txtTelFixe2.Text = "";
+                }
+
+                if (etudiant.TelPortable == 0)
+                {
+                    txtTelPortable2.Text = "";
+                }
             }
         }
 

@@ -111,7 +111,7 @@
         <Label Content="{DynamicResource LabelChpObli}" Foreground="Red" FontFamily="Open Sauce One Italic" FontSize="18"  Grid.Row="16" Grid.RowSpan="2" />
 
         <!-- Date de naissance -->
-        <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="{DynamicResource Birth}"  Grid.Row="19" Grid.Column="1"  />
+        <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="{DynamicResource Birth*}"  Grid.Row="19" Grid.Column="1"  />
         <DatePicker HorizontalAlignment="Left" FontSize="20" x:Name="txtDateNaissance2" Width="350" SelectedDateFormat="Short" Margin="0,0,80,20" Grid.Row="19" Grid.RowSpan="2" Grid.Column="3"/>
 
         <!-- Adresse de résidence -->
