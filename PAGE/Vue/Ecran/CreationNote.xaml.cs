@@ -91,6 +91,7 @@ namespace PAGE.Vue.Ecran
             {
                 //si la note n'existe pas, on met la date du jour par defaut
                 DateCreationNote.SelectedDate = DateTime.Now;
+                note.Commentaire = "";
             }
 
         }
