@@ -1,4 +1,5 @@
 ﻿using PAGE.Model;
+using PAGE.Vue.Ecran;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -51,7 +52,8 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK);
+                        PopUp popUp = new PopUp("Importation", "Les étudiants sont ajoutés", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
                     }
                 }
             }
@@ -88,7 +90,8 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK);
+                        PopUp popUp = new PopUp("Etudiant", "L'étudiant est ajouté", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
                     }
                 }
             }
@@ -156,7 +159,8 @@ namespace PAGE.Stockage
                     //ICI VERIFIE LE STATUS CODE POUR QUE SI C PARCE QUE LE MEC EXISTE ALORS ON CREER UNE POPUP "LE NUM APOGEE EXISTE DEJA"
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK);
+                        PopUp popUp = new PopUp("Etudiant", "L'étudiant est crée", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
                     }
                    // else if (response.StatusCode == )
                 }
