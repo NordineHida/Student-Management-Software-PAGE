@@ -186,20 +186,20 @@ namespace PAGE.Vue.Ecran
             if (note.Categorie == "")
             {
                 valide = false;
-                PopUp popUp = new PopUp("Erreur de création note", "Veuillez choisir une catégorie", TYPEICON.ERREUR);
+                PopUp popUp = new PopUp("Création", "Veuillez choisir une catégorie", TYPEICON.ERREUR);
                 popUp.ShowDialog();
             }
 
             else if (note.Nature == "")
             {
                 valide = false; 
-                PopUp popUp = new PopUp("Erreur de création note", "Veuillez choisir une nature", TYPEICON.ERREUR);
+                PopUp popUp = new PopUp("Création", "Veuillez choisir une nature", TYPEICON.ERREUR);
                 popUp.ShowDialog();
             }
             else if (note.DatePublication > DateTime.Now)
             {
                 valide = false;
-                PopUp popUp = new PopUp("Erreur de création note", "Veuillez choisir une date correcte", TYPEICON.ERREUR);
+                PopUp popUp = new PopUp("Création", "Veuillez choisir une date correcte", TYPEICON.ERREUR);
                 popUp.ShowDialog();
             }
 

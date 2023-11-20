@@ -325,7 +325,10 @@ namespace PAGE.Vue.Ecran
                 fenetreCreerEtudiant.Show();
             }
             else
-                System.Windows.Forms.MessageBox.Show("Veuillez attendre la fin du chargement des étudiants", "Une erreur est survenue", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                PopUp popUp = new PopUp("Création", "Veuillez attendre la fin du chargement des étudiants", TYPEICON.INFORMATION);
+                popUp.ShowDialog();
+            }
             
         }
 

@@ -1,4 +1,5 @@
 ﻿using PAGE.Model;
+using PAGE.Vue.Ecran;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,8 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                    PopUp popUp = new PopUp("Note", "La note est crée", TYPEICON.SUCCES);
+                    popUp.ShowDialog();
                 }
             }
         }
@@ -127,7 +129,8 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("La suppression est un succès", "Succès de la suppression", MessageBoxButton.OK);
+                    PopUp popUp = new PopUp("Note", "La note est supprimée", TYPEICON.SUCCES);
+                    popUp.ShowDialog();
                 }
             }
         }
@@ -159,7 +162,8 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                    PopUp popUp = new PopUp("Note", "La note est mise à jour", TYPEICON.SUCCES);
+                    popUp.ShowDialog();
                 }
             }
         }
