@@ -39,7 +39,7 @@ namespace APIEtudiant.Controllers
 
 
         /// <summary>
-        /// Ajoute un etudiant à la BDD
+        /// Ajoute un etudiant à la BDD ou le modifie s'il existe déjà
         /// </summary>
         /// <param name="etu">etudiant à ajouter</param>
         /// <returns>si l'ajout à fonctionné</returns>
@@ -57,7 +57,7 @@ namespace APIEtudiant.Controllers
         }
 
         /// <summary>
-        /// Ajoute un etudiant à la BDD
+        /// Ajoute un etudiant à la BDD seulement s'il n'existe PAS
         /// </summary>
         /// <param name="etu">etudiant à ajouter</param>
         /// <returns>si l'ajout à fonctionné</returns>
@@ -65,8 +65,7 @@ namespace APIEtudiant.Controllers
         [HttpPost("CreateEtu")]
         public ActionResult CreateEtu([FromBody] Etudiant? etu)
         {
-            //ICI TROUVER COMMENT FAIRE UNE BADREQUEST PERSO POUR DIRE SI LE NUM APPOGEE EXIST
-            ActionResult reponse = BadRequest();
+            ActionResult reponse = BadRequest("Etudiant existe déjà");
             if (etu != null)
             {
                 if (EtuManager.Instance.CreateEtu(etu)) reponse = Ok();

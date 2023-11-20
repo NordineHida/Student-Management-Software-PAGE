@@ -90,7 +90,7 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        PopUp popUp = new PopUp("Etudiant", "L'étudiant est ajouté", TYPEICON.SUCCES);
+                        PopUp popUp = new PopUp("Ajout d'étudiant", "L'étudiant à bien été ajouté", TYPEICON.SUCCES);
                         popUp.ShowDialog();
                     }
                 }
@@ -156,13 +156,16 @@ namespace PAGE.Stockage
                     HttpResponseMessage response = await client.PostAsync(apiUrl, content);
 
 
-                    //ICI VERIFIE LE STATUS CODE POUR QUE SI C PARCE QUE LE MEC EXISTE ALORS ON CREER UNE POPUP "LE NUM APOGEE EXISTE DEJA"
                     if (response.IsSuccessStatusCode)
                     {
-                        PopUp popUp = new PopUp("Etudiant", "L'étudiant est crée", TYPEICON.SUCCES);
+                        PopUp popUp = new PopUp("Ajout d'étudiant", "L'étudiant à bien été crée", TYPEICON.SUCCES);
                         popUp.ShowDialog();
                     }
-                   // else if (response.StatusCode == )
+                    else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        PopUp popUp = new PopUp("Ajout d'étudiant", "Le numéro apogée existe déjà", TYPEICON.ERREUR);
+                        popUp.ShowDialog();
+                    }
                 }
             }
             catch (Exception ex)
