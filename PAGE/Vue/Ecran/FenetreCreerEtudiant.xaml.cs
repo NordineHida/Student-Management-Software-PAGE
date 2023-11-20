@@ -26,11 +26,14 @@ namespace PAGE.Vue.Ecran
             this.etudiants = etudiants;
             ReinitialisationChamps();
         }
-
+        /// <summary>
+        /// Cette méthode permet de réinitialiser les champs après la création d'un étudiant pour en créer un autre
+        /// </summary>
+        /// <author>Lucas</author>
         private void ReinitialisationChamps()
         {
-            sexeSelectionne = SEXE.AUTRE;
-            estBoursier = false;
+            radioAutre.IsChecked = true;
+            radioBoursierFalse.IsChecked = true;
             txtNumApogee.Text = "";
             txtName.Text = "";
             txtPrenom.Text = "";
@@ -39,6 +42,9 @@ namespace PAGE.Vue.Ecran
             txtGroupe.Text = "";
             txtRegime.Text = "";
             txtLogin2.Text = "";
+            txtAdresse2.Text = "";
+            txtTelFixe2.Text = "";
+            txtTelPortable2.Text = "";
             txtDateNaissance2.SelectedDate = DateTime.Now.AddYears(-15);
         }
 
