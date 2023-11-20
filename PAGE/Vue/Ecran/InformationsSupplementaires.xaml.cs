@@ -64,10 +64,10 @@ namespace PAGE.Vue.Ecran
                     radioFemme.IsChecked = true;
                     break;
                 case SEXE.MASCULIN:
-                    radioFemme.IsChecked = true;
+                    radioHomme.IsChecked = true;
                     break;
                 case SEXE.AUTRE:
-                    radioFemme.IsChecked = true;
+                    radioAutre.IsChecked = true;
                     break;
             }
 

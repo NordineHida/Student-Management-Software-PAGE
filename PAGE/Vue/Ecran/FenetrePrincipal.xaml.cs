@@ -10,7 +10,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace PAGE.Vue.Ecran
 {
@@ -315,8 +317,14 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void BoutonCreerEtudiant(object sender, RoutedEventArgs e)
         {
-            FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant(etudiants);
-            fenetreCreerEtudiant.Show();
+            if (etudiants != null)
+            {
+                FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant(etudiants);
+                fenetreCreerEtudiant.Show();
+            }
+            else
+                System.Windows.Forms.MessageBox.Show("Veuillez attendre la fin du chargement des étudiants", "Une erreur est survenue", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
         }
 
         public async void Notifier(string Message)
