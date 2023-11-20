@@ -53,8 +53,11 @@
     <None Remove="Vue\Ressources\Picto\calendar-account.png" />
     <None Remove="Vue\Ressources\Picto\calendar.svg" />
     <None Remove="Vue\Ressources\Picto\check-bold.png" />
+    <None Remove="Vue\Ressources\Picto\checkmark.png" />
+    <None Remove="Vue\Ressources\Picto\error.png" />
     <None Remove="Vue\Ressources\Picto\filter-settings.svg" />
     <None Remove="Vue\Ressources\Picto\import.png" />
+    <None Remove="Vue\Ressources\Picto\information.png" />
     <None Remove="Vue\Ressources\Picto\refresh.png" />
     <None Remove="Vue\Ressources\Picto\settings.png" />
     <None Remove="Vue\Ressources\Picto\settings.svg" />
@@ -140,9 +143,11 @@
     <Content Include="Vue\Ressources\Picto\check-bold.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Vue\Ressources\Picto\error.png" />
     <Content Include="Vue\Ressources\Picto\import.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Vue\Ressources\Picto\information.png" />
     <Content Include="Vue\Ressources\Picto\refresh.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -167,6 +172,10 @@
     <Content Include="Vue\Ressources\Img\logoPage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Vue\Ressources\Picto\checkmark.png" />
   </ItemGroup>
 
 </Project>

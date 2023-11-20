@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using PAGE.Model;
 using PAGE.Stockage;
+using PAGE.Vue.Ecran;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -69,7 +70,8 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("La liste d'étudiants est importée !", "Importation d'une liste d'étudiant", MessageBoxButton.OK, MessageBoxImage.Information);
+                        PopUp popUp = new PopUp("Importation", "La liste d'étudiants est importée !", "Succès");
+                        popUp.ShowDialog();
                     }
                 }
             }
@@ -106,7 +108,8 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("L'étudiant est ajouté !", "Ajout d'un étudiant", MessageBoxButton.OK, MessageBoxImage.Information);
+                        PopUp popUp = new PopUp("Ajout", "L'étudiant est ajouté !", "Succès");
+                        popUp.ShowDialog();
                     }
                 }
             }
@@ -171,7 +174,8 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("La note est crée !", "Création de note", MessageBoxButton.OK,MessageBoxImage.Information);
+                    PopUp popUp = new PopUp("Création", "La note est créée !", "Succès");
+                    popUp.ShowDialog();
                 }
             }
         }
@@ -259,7 +263,8 @@ namespace PAGE.Stockage
                  
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("La note est supprimée !", "Suppression d'une note", MessageBoxButton.OK, MessageBoxImage.Information);
+                    PopUp popUp = new PopUp("Suppression", "La note est supprimée !", "Succès");
+                    popUp.ShowDialog();
                 }
             }
         }
