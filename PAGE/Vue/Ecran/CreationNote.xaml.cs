@@ -123,7 +123,7 @@ namespace PAGE.Vue.Ecran
             }
             //Si on n'a pas choisi de nature, un message s'affiche
             else { MessageBox.Show("Veuillez choisir une nature"); }
-
+            note.DatePublication = DateCreationNote.SelectedDate.Value;
             //on crée la note
             if (isCreateOk(note))
             {
@@ -196,14 +196,15 @@ namespace PAGE.Vue.Ecran
             else if (note.Categorie == null || note.Nature == null) valide = false;
             else if (note.Commentaire.Contains('\''))
             {
-                for (int i=0; i<note.Commentaire.Length; i++)
+                for (int i = 0; i < note.Commentaire.Length; i++)
                 {
                     if (note.Commentaire[i] == '\'')
                     {
                         note.Commentaire.Insert(i, "\'");
                     }
                 }
-            } 
+            }
+            else if (note.DatePublication > DateTime.Now) return false;
             return valide;
         }
 
