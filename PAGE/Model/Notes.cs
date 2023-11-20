@@ -58,5 +58,23 @@ namespace PAGE.Model
             listeNotes.Remove(note);
             Notifier("note supprimee");
         }
+
+        /// <summary>
+        /// Met a jour la note
+        /// </summary>
+        /// <param name="updatedNote">note mise a jour</param>
+        /// <author>Nordine</author>
+        public void UpdateNote(Note updatedNote)
+        {
+            //On recupere l'index de la note pre-Update
+            int index = listeNotes.FindIndex(note => note.IdNote == updatedNote.IdNote);
+
+            if (index != -1)
+            {
+                // On remplace cette note pour la note post-Update
+                listeNotes[index] = updatedNote;
+                Notifier("note modifiee");
+            }
+        }
     }
 }

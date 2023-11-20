@@ -37,7 +37,7 @@ namespace APIEtudiant.Model
         #endregion
 
         //DAO d'étudiant (Permet de changer directement tout les DAO)
-        private IEtuDAO EtuDAO => EtudiantDAOOracle.Instance;
+        private IEtuDAO EtuDAO => new EtudiantDAOOracle();
 
         /// <summary>
         /// Renvoi tout les étudiants
