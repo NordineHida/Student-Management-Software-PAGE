@@ -5,7 +5,6 @@
         private int idPieceJointe;
         private IFormFile fichier;
         private string filePath;
-        private int idNote;
 
         /// <summary>
         /// Récupère ou définit l'id de la piece jointe
@@ -24,11 +23,6 @@
         /// </summary>
         /// <author>Yamato</author>
         public string FilePath { get { return filePath; } set { filePath = value; } }
-
-        /// <summary>
-        /// Récupère ou définit l'id de la note
-        /// </summary>
-        public int IdNote { get { return idNote; } set { idNote = value; } }
 
         /// <summary>
         /// Constructeur de PieceJointe

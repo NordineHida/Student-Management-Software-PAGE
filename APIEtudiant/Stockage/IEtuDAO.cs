@@ -48,10 +48,10 @@ namespace APIEtudiant.Stockage
         /// <summary>
         /// Ajoute une piece jointe a la bdd
         /// </summary>
-        /// <param name="pj">piece jointe</param>
+        /// <param name="pieceJointe">piece jointe</param>
         /// <returns>renvoie true si l'ajout est un succès</returns>
         /// <author>Yamato</author>
-        public bool CreatePieceJointe(PieceJointe pj);
+        public bool CreatePieceJointe(PieceJointe pieceJointe);
 
     }
 }

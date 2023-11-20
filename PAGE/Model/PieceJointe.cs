@@ -13,7 +13,6 @@ namespace PAGE.Model
         private int idPieceJointe;
         private IFormFile fichier;
         private string filePath;
-        private int idNote;
 
         /// <summary>
         /// Récupère ou définit l'id de la piece jointe
@@ -33,20 +32,16 @@ namespace PAGE.Model
         /// <author>Yamato</author>
         public string FilePath { get { return filePath; } set { filePath = value; } }
 
-        /// <summary>
-        /// Récupère ou définit l'id de la note
-        /// </summary>
-        /// <author>Yamato</author>
-        public int IdNote { get { return idNote; } set { idNote = value; } }
 
         /// <summary>
         /// Constructeur de PieceJointe
         /// </summary>
         /// <param name="fichier">fichier</param>
         /// <author>Yamato</author>
-        public PieceJointe(IFormFile fichier)
+        public PieceJointe(IFormFile fichier, string filePath)
         {
             this.fichier = fichier;
+            this.filePath = filePath;
         }
 
     }

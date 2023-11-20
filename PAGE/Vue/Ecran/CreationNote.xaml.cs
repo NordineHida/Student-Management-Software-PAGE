@@ -50,18 +50,7 @@ namespace PAGE.Vue.Ecran
 
                 if (!string.IsNullOrEmpty(pieceJointe.FilePath))
                 {
-                    // Upload the file to the API
-                    var success = await UploadFile(pieceJointe.FilePath);
-
-                    if (success)
-                    {
-                        MessageBox.Show("le fichier a pu être upload");
-                    }
-                    else
-                    {
-                        // Handle the error, display a message, or take appropriate action
-                        MessageBox.Show("Le fichier n'a pas pu être upload");
-                    }
+                    EtuDAO.Instance.CreatePieceJointe(pieceJointe);
                 }
                 this.Close();
             }
@@ -100,33 +89,6 @@ namespace PAGE.Vue.Ecran
 
                 // Ajoutez le chemin du fichier avec un saut de ligne
                 PieceJointeTextBlock.Text = currentContent + selectedFilePath + Environment.NewLine;
-            }
-        }
-
-        private async Task<bool> UploadFile(string filePath)
-        {
-            try
-            {
-                using (var httpClient = new HttpClient())
-                using (var content = new MultipartFormDataContent())
-                using (var fileStream = new FileStream(filePath, FileMode.Open))
-                using (var fileContent = new StreamContent(fileStream))
-                {
-                    // Add the file content to the request
-                    content.Add(fileContent, "file", Path.GetFileName(filePath));
-
-                    // Send the request to the API endpoint
-                    var response = await httpClient.PostAsync("your-api-base-url/api/PieceJointe/upload", content);
-
-                    // Check if the file was uploaded successfully
-                    return response.IsSuccessStatusCode;
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log or handle exceptions as needed
-                Console.WriteLine($"Error uploading file: {ex.Message}");
-                return false;
             }
         }
 

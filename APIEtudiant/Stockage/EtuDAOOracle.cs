@@ -301,10 +301,10 @@ namespace APIEtudiant.Stockage
         /// <param name="pj">piece jointe</param>
         /// <returns>renvoie true si l'ajout est un succès</returns
         /// <author>Yamato</author>
-        public bool CreatePieceJointe(PieceJointe? pj)
+        public bool CreatePieceJointe(PieceJointe? pieceJointe)
         {
             bool ajoutReussi = false;
-            if (pj != null)
+            if (pieceJointe != null)
             {
                 // Création d'une connexion Oracle
                 Connection con = new Connection();
@@ -312,8 +312,8 @@ namespace APIEtudiant.Stockage
                 try
                 {
                     // On crée la requête SQL
-                    string requete = String.Format("INSERT INTO PieceJointe(idPieceJointe,filePath,idNotePj)" +
-                        "VALUES(0, '{0}', '{1}')",pj.FilePath, pj.IdNote);
+                    string requete = String.Format("INSERT INTO PieceJointe(idPieceJointe,filePath)" +
+                        "VALUES(0, '{0}')", pieceJointe.FilePath);
 
                     //On execute la requete
                     OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);

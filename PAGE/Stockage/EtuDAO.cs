@@ -163,7 +163,7 @@ namespace PAGE.APIEtudiant.Stockage
         /// <param name="pj">piece jointe crée</param>
         /// <returns>la tache qu'est d'ajouter la piece jointe à la bdd</returns>
         /// <author>Yamato</author>
-        public async Task CreatePieceJointe(PieceJointe pj)
+        public async Task CreatePieceJointe(PieceJointe pieceJointe)
         {
             try
             {
@@ -174,10 +174,10 @@ namespace PAGE.APIEtudiant.Stockage
                     string apiUrl = "https://localhost:7038/PieceJointe/CreatePieceJointe";
 
                     // Convertissez la note en JSON
-                    string pjSerialise = JsonSerializer.Serialize(pj);
+                    string pieceJointeSerialise = JsonSerializer.Serialize(pieceJointe);
 
                     // Créez le contenu de la requête POST
-                    HttpContent content = new StringContent(pjSerialise, Encoding.UTF8, "application/json");
+                    HttpContent content = new StringContent(pieceJointeSerialise, Encoding.UTF8, "application/json");
 
                     // Effectuez la requête POST
                     HttpResponseMessage response = await client.PostAsync(apiUrl, content);
