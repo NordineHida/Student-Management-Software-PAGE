@@ -31,14 +31,20 @@ namespace PAGE.Stockage
         public Task<IEnumerable<Etudiant>> GetAllEtu();
 
         /// <summary>
-        /// Ajoute un étudian
+        /// Ajoute un étudiant ou le modifie s'il existe deja
         /// </summary>
         /// <param name="etudiant">étudiant à ajouter</param>
         /// <returns></returns>
         /// <author>Nordine</author>
         public Task AddEtudiant(Etudiant etudiant);
 
-
+        /// <summary>
+        /// Ajout un étudiant a la BDD s'il n'existe PAS
+        /// </summary>
+        /// <param name="etu">etudiant à ajouté</param>
+        /// <returns></returns>
+        /// <author>Nordine</author>
+        public Task CreateEtu(Etudiant etu);
 
 
     }

@@ -153,6 +153,7 @@ namespace PAGE.Stockage
                 // Créez le contenu de la requête POST
                 HttpContent content = new StringContent(noteSerialise, Encoding.UTF8, "application/json");
 
+
                 // Effectuez la requête POST
                 HttpResponseMessage response = await client.PostAsync(apiUrl, content);
 

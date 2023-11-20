@@ -71,6 +71,16 @@ namespace APIEtudiant.Model
             return EtuDAO.AddSeveralEtu(listeEtu);
         }
 
+        /// <summary>
+        /// Ajout un étudiant a la BDD s'il n'existe PAS et renvoi true, sinon renvoi false
+        /// </summary>
+        /// <param name="etu">etudiant à ajouté</param>
+        /// <returns>si l'ajout est un succès</returns>
+        public bool CreateEtu(Etudiant etu)
+        {
+            return EtuDAO.CreateEtu(etu);
+        }
+
 
 
     }

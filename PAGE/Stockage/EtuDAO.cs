@@ -1,7 +1,4 @@
-﻿using DocumentFormat.OpenXml;
-using Microsoft.AspNetCore.Http;
-using PAGE.Model;
-using PAGE.Stockage;
+﻿using PAGE.Model;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -130,7 +127,45 @@ namespace PAGE.Stockage
             return etudiants;
         }
 
+        /// <summary>
+        /// Ajout un étudiant a la BDD s'il n'existe PAS
+        /// </summary>
+        /// <param name="etu">etudiant à ajouté</param>
+        /// <returns></returns>
+        /// <author>Nordine</author>
+        public async Task CreateEtu(Etudiant etudiant)
+        {
+            try
+            {
+                // Créez une instance de HttpClient
+                using (HttpClient client = new HttpClient())
+                {
+                    // Spécifiez l'URL de l'API
+                    string apiUrl = "https://localhost:7038/EtuControlleur/CreateEtu";
 
+                    // Convertissez l'étudiants en JSON
+                    string etudiantSerialise = JsonSerializer.Serialize(etudiant);
+
+                    // Créez le contenu de la requête POST
+                    HttpContent content = new StringContent(etudiantSerialise, Encoding.UTF8, "application/json");
+
+                    // Effectuez la requête POST
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+
+                    //ICI VERIFIE LE STATUS CODE POUR QUE SI C PARCE QUE LE MEC EXISTE ALORS ON CREER UNE POPUP "LE NUM APOGEE EXISTE DEJA"
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK);
+                    }
+                   // else if (response.StatusCode == )
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }
                                                           

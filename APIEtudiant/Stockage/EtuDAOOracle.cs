@@ -191,6 +191,27 @@ namespace APIEtudiant.Stockage
         }
 
         /// <summary>
+        /// Ajout un étudiant a la BDD s'il n'existe PAS et renvoi true, sinon renvoi false
+        /// </summary>
+        /// <param name="etu">etudiant à ajouté</param>
+        /// <returns>si l'ajout est un succès</returns>
+        public bool CreateEtu(Etudiant etu)
+        {
+            bool ajoutReussi = false;
+
+            if (etu != null)
+            {
+                //Si l'étudiant existe pas on le créer
+                if (!IsEtudiantExist(etu))
+                {
+                    ajoutReussi = CreerEtudiant(etu);
+                }
+
+            }
+            return ajoutReussi;
+        }
+
+        /// <summary>
         /// Renvoi le string equivalent au sexe de l'étudiant
         /// </summary>
         /// <param name="etu">etudiant dont on veut le sexe</param>

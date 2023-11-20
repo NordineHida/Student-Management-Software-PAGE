@@ -52,7 +52,7 @@ namespace PAGE.Vue.Ecran
 
                 //on ajoute l'étudiant à la bdd
                 EtuDAO dao = new EtuDAO();
-                dao.AddEtudiant(etudiant);
+                dao.CreateEtu(etudiant);
                 etudiants.AddEtu(etudiant);
             }
 
