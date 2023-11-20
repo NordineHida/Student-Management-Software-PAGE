@@ -50,7 +50,7 @@
 
         <!-- Combobox gérant la catégorie de la note -->
         <Label Grid.Column="1" Content="{DynamicResource ComboboxCate}" HorizontalAlignment="Left" Margin="100,4,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2">
+        <ComboBox x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" SelectionChanged="ComboBoxCategorie_SelectionChanged">
             <ComboBoxItem Content="{DynamicResource CateAbsenteisme}"/>
             <ComboBoxItem Content="{DynamicResource CatePersonnel}"/>
             <ComboBoxItem Content="{DynamicResource CateMedical}"/>
@@ -63,7 +63,7 @@
         <Rectangle Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="88,4,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" RadiusX="10" RadiusY="10"/>
         <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="423,4,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="26" RadiusX="10" RadiusY="10"/>
         <Label Grid.Column="1" Content="{DynamicResource TextNature}" HorizontalAlignment="Left" Margin="113,9,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
-        <ComboBox x:Name="ComboBoxNature" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,4,0,0" BorderBrush="#FF3DA79D" BorderThickness="2">
+        <ComboBox x:Name="ComboBoxNature" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,4,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" SelectionChanged="ComboBoxNature_SelectionChanged">
             <ComboBoxItem Content="{DynamicResource CateMail}"/>
             <ComboBoxItem Content="{DynamicResource CateRdv}"/>
             <ComboBoxItem Content="{DynamicResource CateLettre}"/>
@@ -74,7 +74,7 @@
         <!-- Date picker de la note-->
         <Rectangle Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="87,13,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="107" RadiusX="10" RadiusY="10"/>
         <Label Grid.Column="1" Content="Date : " HorizontalAlignment="Left" Margin="118,18,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
-        <DatePicker x:Name="DateCreationNote" Grid.Column="1" HorizontalAlignment="Left" Margin="199,15,0,0" Grid.Row="4" VerticalAlignment="Top" Height="50"  Width="247" SelectedDateFormat="Short" FontSize="20" BorderBrush="Transparent"/>
+        <DatePicker x:Name="DateCreationNote" SelectedDateChanged="DateChanged" Grid.Column="1" HorizontalAlignment="Left" Margin="199,15,0,0" Grid.Row="4" VerticalAlignment="Top" Height="50"  Width="247" SelectedDateFormat="Short" FontSize="20" BorderBrush="Transparent"/>
 
 
         <!-- TextBox du commentaire de la note -->

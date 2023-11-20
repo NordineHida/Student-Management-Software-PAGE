@@ -31,8 +31,8 @@ namespace APIEtudiant.Model
 
         #endregion
 
-        //DAO d'étudiant 
-        private INoteDao NoteDAO => new NoteDAOOracle();
+        //DAO de note 
+        private INoteDAO NoteDAO => new NoteDAOOracle();
 
         /// <summary>
         /// Ajoute une note à la BDD
@@ -75,5 +75,17 @@ namespace APIEtudiant.Model
         {
             return NoteDAO.GetAllNotes();
         }
+
+        /// <summary>
+        /// Modifie une note dans la BDD
+        /// </summary>
+        /// <param name="note">Note à modifier</param>
+        /// <returns>true si la modification est un succès</returns>
+        /// <author>Nordine</author>
+        public bool UpdateNote(Note? note)
+        {
+            return NoteDAO.UpdateNote(note);
+        }
+
     }
 }

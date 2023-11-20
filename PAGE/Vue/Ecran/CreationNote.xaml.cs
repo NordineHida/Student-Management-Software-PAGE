@@ -19,7 +19,7 @@ namespace PAGE.Vue.Ecran
         /// Constructeur de fenêtre CreationNote
         /// </summary>
         /// <param name="note"></param>
-        /// <author>Laszlo / Lucas</author>
+        /// <author>Laszlo / Lucas / Nordine</author>
         public CreationNote(Note note, Notes notes)
         {
             InitializeComponent();
@@ -28,10 +28,13 @@ namespace PAGE.Vue.Ecran
             this.note = note;
             this.notes = notes;
 
+            //par defaut la date est la date actuelle
+            DateCreationNote.SelectedDate = DateTime.Now;
             MiseAJourDateLabel();
 
             //on utilise un bool pour savoir si on doit créer une note ou simplement l'afficher
             modeCreation = true;
+            //Si on est en mode affichage (la note existe)
             if (note.Categorie != "")
             {
                 modeCreation = false;
@@ -87,7 +90,10 @@ namespace PAGE.Vue.Ecran
                 ComboBoxConfidentialite.IsEnabled = false;
                 ComboBoxCategorie.IsEnabled = false;
                 ComboBoxNature.IsEnabled = false;
-                TextCommentaire.IsReadOnly = true;   
+                TextCommentaire.IsReadOnly = true;
+                DateCreationNote.IsEnabled = false;
+
+                DateCreationNote.SelectedDate = note.DatePublication;
             }
 
 
@@ -103,12 +109,12 @@ namespace PAGE.Vue.Ecran
         {
             //si on a choisi une catégorie
             if (ComboBoxCategorie.SelectedItem != null)
-            { 
+            {
                 //récupère la catègorie de la combobox et met la propriété "Catégorie" de la note à sa valeur
-                ComboBoxItem categorieChoisie =(ComboBoxItem)ComboBoxCategorie.SelectedItem;
+                ComboBoxItem categorieChoisie = (ComboBoxItem)ComboBoxCategorie.SelectedItem;
                 string categorieChoisieString = categorieChoisie.ToString();
                 string[] motsCatChoisie = categorieChoisieString.Split(": ");
-                note.Categorie=motsCatChoisie[1];
+                note.Categorie = motsCatChoisie[1];
             }
             //Si on n'a pas choisi de catégorie, un message s'affiche
             else { MessageBox.Show("Veuillez choisir une catégorie"); }
@@ -123,7 +129,13 @@ namespace PAGE.Vue.Ecran
             }
             //Si on n'a pas choisi de nature, un message s'affiche
             else { MessageBox.Show("Veuillez choisir une nature"); }
-            note.DatePublication = DateCreationNote.SelectedDate.Value;
+            
+            //on verifie si la date est plus ancienne que la date actuelle sinon on affiche une erreur
+            if (DateCreationNote.SelectedDate.Value < DateTime.Now)
+                note.DatePublication = DateCreationNote.SelectedDate.Value;
+            else { MessageBox.Show("Veuillez choisir une date correct"); }
+
+
             //on crée la note
             if (isCreateOk(note))
             {
@@ -160,6 +172,8 @@ namespace PAGE.Vue.Ecran
             ComboBoxCategorie.IsEnabled = true;
             ComboBoxNature.IsEnabled = true;
             TextCommentaire.IsReadOnly = false;
+            DateCreationNote.IsEnabled = true;
+
 
         }
 
@@ -168,8 +182,8 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// <author>Lucas</author>
-        private void ClickValider(object sender, RoutedEventArgs e)
+        /// <author>Lucas/Nordine </author>
+        private async void ClickValider(object sender, RoutedEventArgs e)
         {
             BoutonValider.Visibility = Visibility.Collapsed;
             BoutonModifier.Visibility = Visibility.Visible;
@@ -180,6 +194,14 @@ namespace PAGE.Vue.Ecran
             ComboBoxCategorie.IsEnabled = false;
             ComboBoxNature.IsEnabled = false;
             TextCommentaire.IsReadOnly = true;
+            DateCreationNote.IsEnabled = false;
+
+            //Appel le DAO pour mettre a jour la note
+            if (isCreateOk(this.note))
+            {
+                NoteDAO dao = new NoteDAO();
+                await dao.UpdateNote(note);
+            }
 
         }
 
@@ -215,5 +237,76 @@ namespace PAGE.Vue.Ecran
             Date.Content = "Date : " + dateNote.ToString("dd/MM/yyyy");
         }
 
+        /// <summary>
+        /// Quand on change la categorie de la combobox, change l'attribut note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void ComboBoxCategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (ComboBoxCategorie.SelectedIndex)
+            {
+                case 0:
+                    note.Categorie = "Absentéisme";
+                    break;
+                case 1:
+                    note.Categorie = "Personnel";
+                    break;
+                case 2:
+                    note.Categorie = "Médical";
+                    break;
+                case 3:
+                    note.Categorie = "Résultats";
+                    break;
+                case 4:
+                    note.Categorie = "Orientation";
+                    break;
+                case 5:
+                    note.Categorie = "Autre";
+                    break;
+            }
+
+        }
+
+        /// <summary>
+        /// Quand on change la Nature de la combobox, change l'attribut note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void ComboBoxNature_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (ComboBoxCategorie.SelectedIndex)
+            {
+                case 0:
+                    note.Nature = "Mail";
+                    break;
+                case 1:
+                    note.Nature = "Rdv";
+                    break;
+                case 2:
+                    note.Nature = "Lettre";
+                    break;
+                case 3:
+                    note.Nature = "Appel";
+                    break;
+                case 4:
+                    note.Nature = "Autre";
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// quand on change la date, change aussi l'attribut note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void DateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DateCreationNote.SelectedDate != null)
+                note.DatePublication = (DateTime)DateCreationNote.SelectedDate;
+        }
     }
 }

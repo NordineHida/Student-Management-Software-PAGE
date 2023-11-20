@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace PAGE.Stockage
 {
-    public class NoteDAO
+    public class NoteDAO : INoteDAO
     {
 
         /// <summary>
@@ -128,6 +128,37 @@ namespace PAGE.Stockage
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("La suppression est un succès", "Succès de la suppression", MessageBoxButton.OK);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Modifie une note à la BDD
+        /// </summary>
+        /// <param name="note">Note à modifier</param>
+        /// <returns>true si la modification est un succès</returns>
+        /// <author>Nordine</author>
+        public async Task UpdateNote(Note note)
+        {
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
+            {
+                // Spécifiez l'URL de l'API
+                string apiUrl = "https://localhost:7038/Note/UpdateNote";
+
+                // Convertissez la note en JSON
+                string noteSerialise = JsonSerializer.Serialize(note);
+
+                // Créez le contenu de la requête POST
+                HttpContent content = new StringContent(noteSerialise, Encoding.UTF8, "application/json");
+
+                // Effectuez la requête POST
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }

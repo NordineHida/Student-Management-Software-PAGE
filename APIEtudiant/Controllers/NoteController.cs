@@ -81,5 +81,25 @@ namespace APIEtudiant.Controllers
         }
 
 
+        /// <summary>
+        /// Modifie une note dans la BDD
+        /// </summary>
+        /// <param name="note">Note à modifier</param>
+        /// <author>Nordine</author>
+        [HttpPost("UpdateNote")]
+        public ActionResult UpdateNote([FromBody] Note note)
+        {
+            ActionResult reponse = BadRequest();
+            // Si la note n'est pas null
+            if (note != null)
+            {
+                // Si la modification de la note est un succès, renvoyer OK
+                if (NoteManager.Instance.UpdateNote(note)) reponse = Ok();
+            }
+            return reponse;
+        }
+
+
+
     }
 }

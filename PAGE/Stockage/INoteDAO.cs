@@ -39,5 +39,13 @@ namespace PAGE.Stockage
         /// <returns>Un ensemble de notes</returns>
         /// <author>Laszlo</author>
         public Task<IEnumerable<Note>> GetAllNotes();
+
+        /// <summary>
+        /// Modifie une note à la BDD
+        /// </summary>
+        /// <param name="note">Note à modifier</param>
+        /// <returns>true si la modification est un succès</returns>
+        /// <author>Nordine</author>
+        public Task UpdateNote(Note note);
     }
 }

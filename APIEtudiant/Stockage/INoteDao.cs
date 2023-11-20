@@ -6,7 +6,7 @@ namespace APIEtudiant.Stockage
     /// Interface de DAO pour les notes
     /// </summary>
     /// <author>Nordine</author>
-    public interface INoteDao
+    public interface INoteDAO
     {
 
         /// <summary>
@@ -38,6 +38,14 @@ namespace APIEtudiant.Stockage
         /// <returns>la liste de notes/returns>
         /// <author>Laszlo</author>
         public IEnumerable<Note> GetAllNotes();
+
+        /// <summary>
+        /// Modifie une note à la BDD
+        /// </summary>
+        /// <param name="note">Note à modifier</param>
+        /// <returns>true si la modification est un succès</returns>
+        /// <author>Nordine</author>
+        public bool UpdateNote(Note note);
 
     }
 }

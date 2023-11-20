@@ -7,7 +7,7 @@ namespace APIEtudiant.Stockage
     /// Dao des notes pour la base de donnée oracle
     /// </summary>
     /// <author>Nordine</author>
-    public class NoteDAOOracle : INoteDao
+    public class NoteDAOOracle : INoteDAO
     {
         /// <summary>
         /// Ajoute une note à la BDD
@@ -68,7 +68,7 @@ namespace APIEtudiant.Stockage
         /// </summary>
         /// <param name="note">Note à supprimer</param>
         /// <returns>true si la suppression est un succès</returns>
-        /// <author>Laszlo</author>
+        /// <author>Laszlo/Nordine</author>
         public bool DeleteNote(Note note)
         {
             bool suppressionReussie = false;
@@ -80,8 +80,7 @@ namespace APIEtudiant.Stockage
                 try
                 {
                     // On crée la requête SQL
-                    string requete = String.Format("DELETE FROM NOTE WHERE " +
-                        "categorie='{0}' AND nature='{1}' AND commentaire='{2}' AND apogeeEtudiant='{3}'", note.Categorie, note.Nature, note.Commentaire, note.ApogeeEtudiant);
+                    string requete = $"DELETE FROM NOTE WHERE idNote={note.IdNote}";
 
 
                     //On execute la requete
@@ -126,13 +125,13 @@ namespace APIEtudiant.Stockage
         {
             //Création d'une connexion Oracle
             Connection con = new Connection();
-            //Liste d'étudiant à renvoyer
+            //Liste de note à renvoyer
             List<Note> notes = new List<Note>();
 
             try
             {
-                string requete = String.Format("SELECT categorie,datePublication,nature,commentaire,apogeeEtudiant FROM Note WHERE apogeeEtudiant={0}", apogeeEtudiant);
-                // Création d'une commande Oracle pour récuperer l'ensemble des éléments de tout les étudiants
+                string requete = String.Format("SELECT idNote,categorie,datePublication,nature,commentaire,apogeeEtudiant FROM Note WHERE apogeeEtudiant={0}", apogeeEtudiant);
+                // Création d'une commande Oracle pour récuperer l'ensemble des éléments des notes
                 OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
 
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -140,14 +139,16 @@ namespace APIEtudiant.Stockage
                 while (reader.Read())
                 {
 
-                    //Récupération(lecture) de tous les éléments d'un étudiant en bdd
+                    //Récupération(lecture) de tous les éléments d'une note en bdd
+                    int idNote = reader.GetInt32(reader.GetOrdinal("idNote"));
                     string categorie = reader.GetString(reader.GetOrdinal("categorie"));
                     DateTime datePublication = reader.GetDateTime(reader.GetOrdinal("datePublication"));
                     string nature = reader.GetString(reader.GetOrdinal("nature"));
                     string commentaire = reader.GetString(reader.GetOrdinal("commentaire"));
 
-                    // Création de l'objet Etudiant en utilisant les variables
+                    // Création de l'objet Note en utilisant les variables
                     Note note = new Note(categorie, datePublication, nature, commentaire, apogeeEtudiant);
+                    note.IdNote= idNote;
 
                     notes.Add(note);
                 }
@@ -233,6 +234,62 @@ namespace APIEtudiant.Stockage
                 }
             }
             return notes;
+
+        }
+
+        /// <summary>
+        /// Modifie une note de la BDD
+        /// </summary>
+        /// <param name="note">Note à modifier</param>
+        /// <returns>true si la modification est un succès</returns>
+        /// <author>Nordine</author>
+        public bool UpdateNote(Note note)
+        {
+            bool modificationReussie = false;
+            if (note != null)
+            {
+                // Création d'une connexion Oracle
+                Connection con = new Connection();
+                try
+                {
+                    // On crée la requête SQL
+                    string requete = String.Format("UPDATE Note " +
+                                                   "SET categorie = '{0}', " +
+                                                   "datePublication = TO_DATE('{1}', 'YYYY-MM-DD'), " +
+                                                   "nature = '{2}', " +
+                                                   "commentaire = '{3}', " +
+                                                   "apogeeEtudiant = '{4}' " +
+                                                   "WHERE idNote = {5}",
+                                                   note.Categorie, note.DatePublication.Date.ToString("yyyy-MM-dd"), note.Nature, note.Commentaire, note.ApogeeEtudiant, note.IdNote);
+                    //On execute la requete
+                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
+                    //On vérifie que la ligne est bien modifiée, si oui on passe le bool à true
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        modificationReussie = true;
+                    }
+                }
+                // Gestion des exceptions
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    try
+                    {
+                        if (con != null)
+                        {
+                            con.Close();
+                        }
+                    }
+                    catch (OracleException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            return modificationReussie;
 
         }
     }
