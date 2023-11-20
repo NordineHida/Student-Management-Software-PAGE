@@ -101,23 +101,35 @@ namespace PAGE.Vue.Ecran
 
 
         /// <summary>
-        /// Rend visible les informations complétementaires lors du clique sur le bouton ou les rend invisibles
+        /// Rend visible les informations complétementaires lors du clique sur le bouton
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// <author>Yamato</author>
+        /// <author>Luvas</author>
         private void InfosComp_Click(object sender, RoutedEventArgs e)
         {
             if (contInfosComp.Visibility == Visibility.Collapsed)
             {
                 contInfosComp.Visibility = Visibility.Visible;
-                BoutonInfoComp.Content = "Cacher les informations complémentaires";
+                BoutonInfoComp.Visibility = Visibility.Collapsed;
+                BoutonCacherInfoComp.Visibility = Visibility.Visible;
             }
-            else
+        }
+
+        /// <summary>
+        /// Rend Invisible les informations complétementaires lors du clique sur le bouton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Luvas</author>
+        private void HideInfosComp_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (contInfosComp.Visibility == Visibility.Visible)
             {
                 contInfosComp.Visibility = Visibility.Collapsed;
-                BoutonInfoComp.Content = "Afficher les informations complémentaires";
-
+                BoutonInfoComp.Visibility = Visibility.Visible;
+                BoutonCacherInfoComp.Visibility = Visibility.Collapsed;
             }
         }
         /// <summary>

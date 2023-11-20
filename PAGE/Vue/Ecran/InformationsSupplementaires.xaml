@@ -96,9 +96,12 @@
 
         <!-- Informations Complémentaires (Nordine & Yamato) -->
 
-        <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato)-->
-        <Button x:Name="BoutonInfoComp" FontSize="14" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAfficherInfosComp}" Click="InfosComp_Click" Margin="20,10,20,0" Grid.Row="15" Grid.RowSpan="2" />
+        <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato & Lucas)-->
+        <Button x:Name="BoutonInfoComp" FontSize="14" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAffiInfoComp}" Click="InfosComp_Click" Margin="20,10,20,0" Grid.Row="15" Grid.RowSpan="2" />
 
+        <!-- Bouton pour cacher les informations complémentaires (Lucas)-->
+        <Button x:Name="BoutonCacherInfoComp" FontSize="14" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCacherInfoComp}" Click="HideInfosComp_Click" Margin="20,10,20,0" Grid.Row="15" Grid.RowSpan="2" Visibility="Collapsed"/>
+        
         <!-- Bouton "Modifier" (lucas) -->
         <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnModifInfos}" Click="Modifier_Click" Margin="20,0,20,2" Grid.Row="13" Grid.RowSpan="2" />
 
