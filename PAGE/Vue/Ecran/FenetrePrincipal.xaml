@@ -32,7 +32,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
     </Window.Resources>
 
     <Grid>
@@ -106,17 +105,21 @@
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
-           
+
         </ListView>
 
         <!-- search bar des étudiants (stephane) -->
         <Border Padding="0 5" Margin="105,111,1030,28" Grid.Column="1">
             <Grid>
-                <ComboBox x:Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180" Margin="0,-27,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="131*"/>
+                    <ColumnDefinition Width="65*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="FilterBy" BorderThickness="2" SelectionChanged="FilterBy_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="8,-27,0,0" Grid.ColumnSpan="2">
                     <ComboBoxItem Content="{DynamicResource Nom}"></ComboBoxItem>
                     <ComboBoxItem Content="{DynamicResource Prenom}"></ComboBoxItem>
                 </ComboBox>
-                <TextBox  x:Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180"/>
+                <TextBox  x:Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Grid.ColumnSpan="2" Margin="8,0,0,0"/>
             </Grid>
         </Border>
         <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" Margin="54,88,0,0" VerticalAlignment="Top" FontFamily="Open Sauce One"/>

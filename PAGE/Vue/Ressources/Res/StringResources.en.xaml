@@ -72,7 +72,7 @@
     <system:String x:Key="ToolTipChoixPromo">Choose the promotion</system:String>
 
     <!--PagePrincipale (Lucas)-->
-    <system:String x:Key="LabelTrie">Sort by:</system:String>
+    <system:String x:Key="LabelTrie">Sort by :</system:String>
 
     <!--CréerEtudiant (Lucas)-->
     <system:String x:Key="TitreFenetreCreerEtudiant">Create a student</system:String>
@@ -96,6 +96,7 @@
 
     <system:String x:Key="LabelChpObli">* = Mandatory field</system:String>
     <system:String x:Key="Birth">Birth date :</system:String>
+    <system:String x:Key="Birth*">Birth date :*</system:String>
     <system:String x:Key="Adresse">Residence address :</system:String>
     <system:String x:Key="TelFixe">Fixed telephone number :</system:String>
     <system:String x:Key="TelPort">Mobile phone :</system:String>
