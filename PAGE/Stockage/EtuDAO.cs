@@ -69,7 +69,7 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK);
+                        MessageBox.Show("La liste d'étudiants est importée !", "Importation d'une liste d'étudiant", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }
@@ -106,7 +106,7 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK);
+                        MessageBox.Show("L'étudiant est ajouté !", "Ajout d'un étudiant", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }
@@ -171,7 +171,7 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Succès !", "Succès", MessageBoxButton.OK,MessageBoxImage.Information);
+                    MessageBox.Show("La note est crée !", "Création de note", MessageBoxButton.OK,MessageBoxImage.Information);
                 }
             }
         }
@@ -259,7 +259,7 @@ namespace PAGE.Stockage
                  
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("La suppression est un succès", "Succès de la suppression", MessageBoxButton.OK);
+                    MessageBox.Show("La note est supprimée !", "Suppression d'une note", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }
