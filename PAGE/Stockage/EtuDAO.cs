@@ -70,7 +70,7 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        PopUp popUp = new PopUp("Importation", "La liste d'étudiants est importée !", "Succès");
+                        PopUp popUp = new PopUp("Importation", "La liste d'étudiants est importée !", TYPEICON.SUCCES);
                         popUp.ShowDialog();
                     }
                 }
@@ -108,7 +108,7 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        PopUp popUp = new PopUp("Ajout", "L'étudiant est ajouté !", "Succès");
+                        PopUp popUp = new PopUp("Ajout", "L'étudiant est ajouté !", TYPEICON.SUCCES);
                         popUp.ShowDialog();
                     }
                 }
@@ -174,7 +174,7 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    PopUp popUp = new PopUp("Création", "La note est créée !", "Succès");
+                    PopUp popUp = new PopUp("Création", "La note est créée !", TYPEICON.SUCCES);
                     popUp.ShowDialog();
                 }
             }
@@ -263,7 +263,7 @@ namespace PAGE.Stockage
                  
                 if (response.IsSuccessStatusCode)
                 {
-                    PopUp popUp = new PopUp("Suppression", "La note est supprimée !", "Succès");
+                    PopUp popUp = new PopUp("Suppression", "La note est supprimée !", TYPEICON.SUCCES);
                     popUp.ShowDialog();
                 }
             }

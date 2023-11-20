@@ -122,7 +122,11 @@ namespace PAGE.Vue.Ecran
                 note.Categorie=motsCatChoisie[1];
             }
             //Si on n'a pas choisi de catégorie, un message s'affiche
-            else { MessageBox.Show("Veuillez choisir une catégorie"); }
+            else 
+            {
+                PopUp popUp = new PopUp("Création", "Veuillez choisir une catégorie", TYPEICON.INFORMATION);
+                popUp.ShowDialog(); 
+            }
 
             if (ComboBoxNature.SelectedItem != null)
             {
@@ -133,7 +137,11 @@ namespace PAGE.Vue.Ecran
                 note.Nature = motsNatChoisie[1];
             }
             //Si on n'a pas choisi de nature, un message s'affiche
-            else { MessageBox.Show("Veuillez choisir une nature"); }
+            else 
+            {
+                PopUp popUp = new PopUp("Création", "Veuillez choisir une nature", TYPEICON.INFORMATION);
+                popUp.ShowDialog();
+            }
 
             //on crée la note
             if (isCreateOk(note))
@@ -142,7 +150,11 @@ namespace PAGE.Vue.Ecran
                 notes.AddNote(note);
                 this.Close();
             }
-            else { MessageBox.Show("Tous les champs ne sont pas corrects"); }
+            else 
+            {
+                PopUp popUp = new PopUp("Création", "Tous les champs ne sont pas corrects", TYPEICON.INFORMATION);
+                popUp.ShowDialog(); 
+            }
         }
 
         /// <summary>

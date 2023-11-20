@@ -179,68 +179,91 @@ namespace PAGE.Vue.Ecran
             bool saisiCorrect = true;
             if ((!string.IsNullOrWhiteSpace(txtNumApogee.Text)) && !System.Text.RegularExpressions.Regex.IsMatch(txtNumApogee.Text, "^[0-9]{1,8}$"))
             {
-                MessageBox.Show("Le numéro d'apogée doit contenir uniquement des chiffres (maximum 8 chiffres).", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Création", "Le numéro d'apogée doit contenir uniquement des chiffres (maximum 8 chiffres)", TYPEICON.ERREUR);
+                popUp.ShowDialog();
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtNumApogee.Text))
             {
-                MessageBox.Show("Veuillez saisir un numéro apogée.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Création", "Veuillez saisir un numéro apogée", TYPEICON.ERREUR);
+                popUp.ShowDialog();
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                MessageBox.Show("Le champ Nom ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Création", "Le champ Nom ne peut pas être vide", TYPEICON.ERREUR);
+                popUp.ShowDialog();
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtPrenom.Text))
             {
-                MessageBox.Show("Le champ Prénom ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Création", "Le champ Prénom ne peut pas être vide", TYPEICON.ERREUR);
+                popUp.ShowDialog();
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtTypebac.Text))
             {
-                MessageBox.Show("Le champ Type de Bac ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Création", "Le champ de Type de Bac ne peut pas être vide", TYPEICON.ERREUR);
+                popUp.ShowDialog();
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtMail.Text) || !txtMail.Text.Contains("@"))
             {
-                MessageBox.Show("Le champ E-mail est vide ou invalide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                saisiCorrect = false;
+                PopUp popUp = new PopUp("Création", "Le champ e-mail ne peut pas être vide", TYPEICON.ERREUR);
+                popUp.ShowDialog(); saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtGroupe.Text))
             {
-                MessageBox.Show("Le champ Groupe ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Création", "Le champ Groupe ne peut pas être vide", TYPEICON.ERREUR);
+                popUp.ShowDialog();
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtRegime.Text))
             {
-                MessageBox.Show("Le champ Régime ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Création", "Le champ Régime ne peut pas être vide", TYPEICON.ERREUR);
+                popUp.ShowDialog();
                 saisiCorrect = false;
             }
+
             else if (txtDateNaissance2.SelectedDate.HasValue)
             {
                 DateTime dateNaissance = txtDateNaissance2.SelectedDate.Value;
                 DateTime dateActuelle = DateTime.Now;
                 int age = dateActuelle.Year - dateNaissance.Year;
+
                 if (age < 13)
                 {
-                    MessageBox.Show("L'âge de l'étudiant doit être d'au moins 15 ans.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PopUp popUp = new PopUp("Création", "L'âge de l'étudiant doit être d'au moins 15 ans", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
                     saisiCorrect = false;
                 }
             }
+
             else if (!txtDateNaissance2.SelectedDate.HasValue)
             {
-                MessageBox.Show("Veuillez saisir une date de naissance", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Création", "Veuillez saisir une date de naissance", TYPEICON.ERREUR);
+                popUp.ShowDialog();
                 saisiCorrect = false;
             }
+
             else if ((txtTelFixe2.Text == null) && !int.TryParse(txtTelFixe2.Text, out _))
             {
-                MessageBox.Show("Le numéro de téléphone fixe ne peut contenir que des chelse iffres.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Création", "Le numéro de téléphone fixe ne peut contenir que des chiffres", TYPEICON.ERREUR);
+                popUp.ShowDialog();
                 saisiCorrect = false;
             }
+
             else if ((txtTelPortable2.Text == null) && !int.TryParse(txtTelPortable2.Text, out _))
             {
-                MessageBox.Show("Le numéro de téléphone portable ne peut contenir que des chelse iffres.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Création", "Le numéro de téléphone portable ne peut contenir que des chiffres", TYPEICON.ERREUR);
+                popUp.ShowDialog();
                 saisiCorrect = false;
             }
             return saisiCorrect;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAGE.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace PAGE.Vue.Ecran
     {
         private string titre;
         private string message;
-        private string typeInfo;
+        private TYPEICON typeIcon;
         private BitmapImage picto;
 
         /// <summary>
@@ -32,12 +33,12 @@ namespace PAGE.Vue.Ecran
         /// <param name="message">message du pop up</param>
         /// <param name="typeInfo">type d'info (erreur ?, succès ?, ...) pour adapter l'image</param>
         /// <author>Yamato</author>
-        public PopUp(string titre, string message, string typeInfo)
+        public PopUp(string titre, string message, TYPEICON typeIcon)
         {
             InitializeComponent();
             this.titre = titre;
             this.message = message;
-            this.typeInfo = typeInfo;
+            this.typeIcon = typeIcon;
             ChargerInfosPopUp();
         }
 
@@ -49,15 +50,15 @@ namespace PAGE.Vue.Ecran
         {
             this.Title = titre;
             txtMessage.Text = message;
-            switch (typeInfo)
+            switch (typeIcon)
             {
-                case "Erreur":
+                case TYPEICON.ERREUR:
                     picto = new BitmapImage(new Uri("pack://application:,,,/Vue/Ressources/Picto/error.png"));
                     break;
-                case "Succès":
+                case TYPEICON.SUCCES:
                     picto = new BitmapImage(new Uri("pack://application:,,,/Vue/Ressources/Picto/checkmark.png"));
                     break;
-                case "Information":
+                case TYPEICON.INFORMATION:
                     picto = new BitmapImage(new Uri("pack://application:,,,/Vue/Ressources/Picto/information.png"));
                     break;
             }
