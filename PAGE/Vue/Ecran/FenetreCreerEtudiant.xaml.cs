@@ -51,7 +51,8 @@ namespace PAGE.Vue.Ecran
                 telFixe, telPortable, txtAdresse2.Text);
 
                 //on ajoute l'étudiant à la bdd
-                EtuDAO.Instance.AddEtudiant(etudiant);
+                EtuDAO dao = new EtuDAO();
+                dao.CreateEtu(etudiant);
                 etudiants.AddEtu(etudiant);
             }
 

@@ -1,42 +1,14 @@
 ﻿using PAGE.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PAGE.Stockage
 {
-
     /// <summary>
-    /// Interface de DAO entre le client et l'API
+    /// Interface de DAO pour les notes
     /// </summary>
-    /// <author>Nordine</author>
-    public interface IDAO
+    public interface INoteDAO
     {
-
-        /// <summary>
-        /// Ajoute un ensemble d'étudiant étudiants
-        /// </summary>
-        /// <param name="listeEtu">Liste d'étudiant à ajouter</param>
-        /// <returns></returns>
-        /// <author>Nordine</author>
-        public Task AddSeveralEtu(IEnumerable<Etudiant> listeEtu);
-
-        /// <summary>
-        /// Renvoi tout les étudiants de la BDD
-        /// </summary>
-        /// <returns>Un ensemble d'étudiant</returns>
-        /// <author>Nordine</author>
-        public Task<IEnumerable<Etudiant>> GetAllEtu();
-
-        /// <summary>
-        /// Ajoute un étudian
-        /// </summary>
-        /// <param name="etudiant">étudiant à ajouter</param>
-        /// <returns></returns>
-        /// <author>Nordine</author>
-        public Task AddEtudiant(Etudiant etudiant);
 
         /// <summary>
         /// Ajoute une note à la BDD
@@ -68,7 +40,12 @@ namespace PAGE.Stockage
         /// <author>Laszlo</author>
         public Task<IEnumerable<Note>> GetAllNotes();
 
-
+        /// <summary>
+        /// Modifie une note à la BDD
+        /// </summary>
+        /// <param name="note">Note à modifier</param>
+        /// <returns>true si la modification est un succès</returns>
+        /// <author>Nordine</author>
+        public Task UpdateNote(Note note);
     }
 }
-

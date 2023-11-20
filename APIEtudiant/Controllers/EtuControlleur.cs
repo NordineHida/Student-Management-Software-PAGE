@@ -56,6 +56,25 @@ namespace APIEtudiant.Controllers
             return reponse;
         }
 
+        /// <summary>
+        /// Ajoute un etudiant à la BDD
+        /// </summary>
+        /// <param name="etu">etudiant à ajouter</param>
+        /// <returns>si l'ajout à fonctionné</returns>
+        /// <author>Nordine</author>
+        [HttpPost("CreateEtu")]
+        public ActionResult CreateEtu([FromBody] Etudiant? etu)
+        {
+            //ICI TROUVER COMMENT FAIRE UNE BADREQUEST PERSO POUR DIRE SI LE NUM APPOGEE EXIST
+            ActionResult reponse = BadRequest();
+            if (etu != null)
+            {
+                if (EtuManager.Instance.CreateEtu(etu)) reponse = Ok();
+            }
+
+            return reponse;
+        }
+
 
         /// <summary>
         /// Ajoute les touts les étudiants de la liste d'étudiants

@@ -64,10 +64,10 @@ namespace PAGE.Vue.Ecran
                     radioFemme.IsChecked = true;
                     break;
                 case SEXE.MASCULIN:
-                    radioFemme.IsChecked = true;
+                    radioHomme.IsChecked = true;
                     break;
                 case SEXE.AUTRE:
-                    radioFemme.IsChecked = true;
+                    radioAutre.IsChecked = true;
                     break;
             }
 
@@ -101,23 +101,35 @@ namespace PAGE.Vue.Ecran
 
 
         /// <summary>
-        /// Rend visible les informations complétementaires lors du clique sur le bouton ou les rend invisibles
+        /// Rend visible les informations complétementaires lors du clique sur le bouton
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// <author>Yamato</author>
+        /// <author>Luvas</author>
         private void InfosComp_Click(object sender, RoutedEventArgs e)
         {
             if (contInfosComp.Visibility == Visibility.Collapsed)
             {
                 contInfosComp.Visibility = Visibility.Visible;
-                BoutonInfoComp.Content = "Cacher les informations complémentaires";
+                BoutonInfoComp.Visibility = Visibility.Collapsed;
+                BoutonCacherInfoComp.Visibility = Visibility.Visible;
             }
-            else
+        }
+
+        /// <summary>
+        /// Rend Invisible les informations complétementaires lors du clique sur le bouton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Luvas</author>
+        private void HideInfosComp_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (contInfosComp.Visibility == Visibility.Visible)
             {
                 contInfosComp.Visibility = Visibility.Collapsed;
-                BoutonInfoComp.Content = "Afficher les informations complémentaires";
-
+                BoutonInfoComp.Visibility = Visibility.Visible;
+                BoutonCacherInfoComp.Visibility = Visibility.Collapsed;
             }
         }
         /// <summary>
@@ -143,7 +155,8 @@ namespace PAGE.Vue.Ecran
             //On récupere les nouvelles de l'étudiant
             Etudiant updateEtu = GetEtudiantUpdated();
             //On l'ajoute (le mets a jour puisqu'il existe)
-            EtuDAO.Instance.AddEtudiant(updateEtu);
+            EtuDAO dao = new EtuDAO();
+            dao.AddEtudiant(updateEtu);
             etudiants.UpdateEtu(etudiant);
         }
 
@@ -554,13 +567,13 @@ namespace PAGE.Vue.Ecran
                     resultat = Personnel;
                     break;
                 case 2: // "pour les raisons medical"
-                    resultat = Medical;
-                    break;
-                case 3: // "pour les resultats"
                     resultat = Resultats;
                     break;
-                case 4: // "pour les orientation"
+                case 3: // "pour les resultats"
                     resultat = Orientation;
+                    break;
+                case 4: // "pour les orientation"
+                    resultat = Medical;
                     break;
                 case 5: // "pour toutes les autres raisons"
                     resultat = Autre;
@@ -656,7 +669,8 @@ namespace PAGE.Vue.Ecran
             maListViewNote.Items.Clear();
 
             //On récupere l'ensemble des étudiants via l'API
-            this.notes = new Notes((await EtuDAO.Instance.GetAllNotesByApogee(etudiant.NumApogee)).ToList());
+            NoteDAO dao = new NoteDAO();
+            this.notes = new Notes((await dao.GetAllNotesByApogee(etudiant.NumApogee)).ToList());
 
             foreach (Note note in notes.ListeNotes) 
             {
@@ -682,7 +696,8 @@ namespace PAGE.Vue.Ecran
                 Note noteSelectionne = maListViewNote.SelectedItem as Note;
                 if (noteSelectionne != null)
                 {
-                    EtuDAO.Instance.DeleteNote(noteSelectionne);
+                    NoteDAO dao = new NoteDAO();
+                    dao.DeleteNote(noteSelectionne);
                     notes.RemoveNote(noteSelectionne);
 
                 }
