@@ -60,7 +60,7 @@ namespace PAGE.Vue.Ecran
                     case "Personnel":
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[1];
                         break;
-                    case "Médical":
+                    case "Medical":
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[2];
                         break;
                     case "Résultats":
@@ -113,13 +113,21 @@ namespace PAGE.Vue.Ecran
         private void ClickCreer(object sender, RoutedEventArgs e)
         {
             //si on a choisi une catégorie
-            if (ComboBoxCategorie.SelectedItem != null)
+            if (ComboBoxCategorie.SelectedIndex != -1)
             { 
+
                 //récupère la catègorie de la combobox et met la propriété "Catégorie" de la note à sa valeur
-                ComboBoxItem categorieChoisie =(ComboBoxItem)ComboBoxCategorie.SelectedItem;
-                string categorieChoisieString = categorieChoisie.ToString();
-                string[] motsCatChoisie = categorieChoisieString.Split(": ");
-                note.Categorie=motsCatChoisie[1];
+                switch (ComboBoxCategorie.SelectedIndex)
+                {
+                    case 0:
+                        note.Categorie = "";
+                        break;
+
+                    default:
+                        note.Categorie = "";
+                        break;
+                }
+                    
             }
             //Si on n'a pas choisi de catégorie, un message s'affiche
             else { MessageBox.Show("Veuillez choisir une catégorie"); }

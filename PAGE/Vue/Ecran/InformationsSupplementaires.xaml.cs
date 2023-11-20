@@ -543,13 +543,13 @@ namespace PAGE.Vue.Ecran
                     resultat = Personnel;
                     break;
                 case 2: // "pour les raisons medical"
-                    resultat = Medical;
-                    break;
-                case 3: // "pour les resultats"
                     resultat = Resultats;
                     break;
-                case 4: // "pour les orientation"
+                case 3: // "pour les resultats"
                     resultat = Orientation;
+                    break;
+                case 4: // "pour les orientation"
+                    resultat = Medical;
                     break;
                 case 5: // "pour toutes les autres raisons"
                     resultat = Autre;
