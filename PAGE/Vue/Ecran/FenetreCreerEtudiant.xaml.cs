@@ -23,10 +23,23 @@ namespace PAGE.Vue.Ecran
         public FenetreCreerEtudiant(Etudiants etudiants)
         {
             InitializeComponent();
+            this.etudiants = etudiants;
+            ReinitialisationChamps();
+        }
 
+        private void ReinitialisationChamps()
+        {
             sexeSelectionne = SEXE.AUTRE;
             estBoursier = false;
-            this.etudiants = etudiants;
+            txtNumApogee.Text = "";
+            txtName.Text = "";
+            txtPrenom.Text = "";
+            txtTypebac.Text = "";
+            txtMail.Text = "";
+            txtGroupe.Text = "";
+            txtRegime.Text = "";
+            txtLogin2.Text = "";
+            txtDateNaissance2.SelectedDate = DateTime.Now.AddYears(-15);
         }
 
 
@@ -54,6 +67,9 @@ namespace PAGE.Vue.Ecran
                 EtuDAO dao = new EtuDAO();
                 dao.AddEtudiant(etudiant);
                 etudiants.AddEtu(etudiant);
+
+                //on réinitialise la page
+                ReinitialisationChamps();
             }
 
         }
