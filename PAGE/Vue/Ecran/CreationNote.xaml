@@ -79,7 +79,7 @@
 
         <!-- TextBox du commentaire de la note -->
 
-        <TextBox x:Name="TextCommentaire" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Commentaire}" VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0"/>
+        <TextBox x:Name="TextCommentaire" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Commentaire}" VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0" TextChanged="TextCommentaire_TextChanged"/>
         <Rectangle Grid.Row="4" HorizontalAlignment="Left" Height="37" Margin="0,74,0,0"  Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" Grid.RowSpan="2" RadiusX="10" RadiusY="10" Grid.Column="1"/>
         <Label Grid.Column="1" Content="{DynamicResource CateCommentaire}" HorizontalAlignment="Left" Margin="10,78,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2"/>
 
@@ -88,9 +88,6 @@
         <Button x:Name="BoutonModifier" Grid.Column="1" Content="{DynamicResource BtnModifier}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickModify" Margin="310,0,0,0" Visibility="Collapsed"/>
         <Button x:Name="BoutonAnnuler" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0"/>
         <Button x:Name="BoutonValider" Grid.Column="1" Content="{DynamicResource BtnValider}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickValider" Margin="450,0,0,0" Visibility="Collapsed"/>
-
-        <Label Grid.Column="2" x:Name="Date" HorizontalAlignment="Center" VerticalAlignment="Center" Width="117"/>
-
 
 
     </Grid>
