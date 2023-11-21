@@ -261,33 +261,33 @@
 
             <!-- Date de naissance -->
             <WrapPanel>
-                <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="{DynamicResource Birth}" Margin="0,20,0,0" />
-                <DatePicker MinWidth="425" Grid.Column="3" FontSize="20" IsEnabled="False" x:Name="txtDateNaissance2" SelectedDateFormat="Short" Margin="30,20,0,0"></DatePicker>
+                <TextBlock x:Name="txtDateNaissance1" MinWidth="50" FontSize="20" Text="{DynamicResource Birth}" Margin="0,20,0,0" />
+                <DatePicker Grid.Column="3" FontSize="20" IsEnabled="False" x:Name="txtDateNaissance2" SelectedDateFormat="Short" Margin="30,20,0,0"></DatePicker>
             </WrapPanel>
 
 
             <!-- Adresse de résidence -->
             <WrapPanel>
                 <TextBlock x:Name="txtAdresse1" FontSize="20" Text="{DynamicResource Adresse}" Margin="0,20,0,0"/>
-                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtAdresse2" FontSize="15" Margin="30,20,0,0" MaxWidth="425" TextWrapping="NoWrap" BorderThickness="0"/>
+                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtAdresse2" FontSize="15" Margin="30,20,0,0" MaxWidth="370" TextWrapping="NoWrap" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Téléphone fixe -->
             <WrapPanel>
                 <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="{DynamicResource TelFixe}" Margin="0,20,0,0" />
-                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtTelFixe2" FontSize="15"  Margin="30,20,0,0" BorderThickness="0"/>
+                <TextBox Grid.Column="3" Width="430" IsReadOnly="True" x:Name="txtTelFixe2" FontSize="15"  Margin="30,20,0,0"  BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Téléphone portable -->
             <WrapPanel>
                 <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="{DynamicResource TelPort}" Margin="0,20,0,0"/>
-                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtTelPortable2" FontSize="15"  Margin="30,20,0,0" BorderThickness="0"/>
+                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtTelPortable2" FontSize="15"  Margin="30,20,0,0" MaxWidth="387" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Login réseau -->
             <WrapPanel>
                 <TextBlock x:Name="txtLogin1" FontSize="20" Text="{DynamicResource LoginRes}" Margin="0,20,0,0" />
-                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtLogin2" FontSize="15" Margin="30,20,0,0" BorderThickness="0" />
+                <TextBox Grid.Column="3" Width="445" IsReadOnly="True" x:Name="txtLogin2" FontSize="15" Margin="30,20,0,0" BorderThickness="0" />
             </WrapPanel>
 
         </StackPanel>
@@ -351,6 +351,7 @@
 
         <Label Grid.Column="2" FontSize="29" Content="Notes de l'étudiant : " HorizontalAlignment="Left" Margin="594,18,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#2B2B5A" RenderTransformOrigin="2.452,0.87" Height="57" Width="278" Grid.RowSpan="3"/>
 
+        <Line X1="50" Y1="10" X2="50" Y2="850" Stroke="Black" StrokeThickness="3" Margin="430,138,509,0" Grid.RowSpan="21" Grid.Column="2" Height="907" VerticalAlignment="Top"/>
     </Grid>
 
 </Window>
