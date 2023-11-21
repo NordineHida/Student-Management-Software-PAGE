@@ -18,6 +18,7 @@ namespace PAGE.Vue.Ecran
         private SEXE sexeSelectionne;
         private bool estBoursier;
         private REGIME regimeEtu = REGIME.FI;
+        private GROUPE groupeEtu = GROUPE.A1;
 
         /// <summary>
         /// Constructeur (initialiser le sexe à AUTRE  et le bool boursier a false
@@ -51,7 +52,7 @@ namespace PAGE.Vue.Ecran
         
                 //on créer l'étudiant a partir des infos saisis dans la fenêtre
                 Etudiant etudiant = new Etudiant(
-                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, txtGroupe.Text, estBoursier,
+                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, groupeEtu, estBoursier,
                 regimeEtu, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
                 telFixe, telPortable, txtAdresse2.Text);
 
@@ -109,7 +110,7 @@ namespace PAGE.Vue.Ecran
                 saisiCorrect = false;
             }
 
-            else if (string.IsNullOrWhiteSpace(txtGroupe.Text))
+            else if (comboBoxGroupe.SelectedIndex == -1)
             {
                 MessageBox.Show("Le champ Groupe ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 saisiCorrect = false;
@@ -230,6 +231,50 @@ namespace PAGE.Vue.Ecran
                     break;
                 case 2:
                     regimeEtu = REGIME.FA;
+                    break;
+            }
+
+        }
+
+        /// <summary>
+        /// Quand on change le groupe de la combobox, change la valeur du groupe de l'etudiant 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void ComboBoxGroupe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (comboBoxGroupe.SelectedIndex)
+            {
+                case 0:
+                    groupeEtu = GROUPE.A1;
+                    break;
+                case 1:
+                    groupeEtu = GROUPE.A2;
+                    break;
+                case 2:
+                    groupeEtu = GROUPE.B1;
+                    break;
+                case 3:
+                    groupeEtu = GROUPE.B2;
+                    break;
+                case 4:
+                    groupeEtu = GROUPE.C1;
+                    break;
+                case 5:
+                    groupeEtu = GROUPE.C2;
+                    break;
+                case 6:
+                    groupeEtu = GROUPE.D1;
+                    break;
+                case 7:
+                    groupeEtu = GROUPE.D2;
+                    break;
+                case 8:
+                    groupeEtu = GROUPE.E1;
+                    break;
+                case 9:
+                    groupeEtu = GROUPE.E2;
                     break;
             }
 

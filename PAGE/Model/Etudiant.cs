@@ -20,7 +20,7 @@ namespace PAGE.Model
         private SEXE sexe;
         private string typeBac;
         private string mail;
-        private string groupe;
+        private GROUPE groupe;
         private bool estBoursier;
         private REGIME typeFormation;
         private DateTime dateNaissance;
@@ -72,7 +72,7 @@ namespace PAGE.Model
         /// Obtient ou définit le groupe.
         /// </summary>
         /// <author>Nordine</author>
-        public string Groupe { get { return groupe; } set { groupe = value; } }
+        public GROUPE Groupe { get { return groupe; } set { groupe = value; } }
 
         /// <summary>
         /// Obtient ou définit si l'étudiant est boursier.
@@ -139,7 +139,7 @@ namespace PAGE.Model
         /// <param name="telPortable">Le numéro de téléphone portable de l'étudiant.(15 chiffres max)</param>
         /// <param name="adresse">L'adresse de l'étudiant. (150 caractères maximum)</param>
         /// <author>Nordine</author>
-        public Etudiant(int numApogee, string nom, string prenom, SEXE sexe, string typeBac, string mail, string groupe, bool estBoursier, REGIME typeFormation,
+        public Etudiant(int numApogee, string nom, string prenom, SEXE sexe, string typeBac, string mail, GROUPE groupe, bool estBoursier, REGIME typeFormation,
             DateTime dateNaissance, string login, long telFixe, long telPortable, string adresse)
         {
             this.numApogee = numApogee;

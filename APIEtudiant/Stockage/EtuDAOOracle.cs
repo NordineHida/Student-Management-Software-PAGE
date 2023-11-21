@@ -57,9 +57,46 @@ namespace APIEtudiant.Stockage
                     string prenom = reader.GetString(reader.GetOrdinal("prenom"));
                     string typeBac = reader.GetString(reader.GetOrdinal("typeBac"));
                     string mail = reader.GetString(reader.GetOrdinal("mail"));
+
+                    //On convertit la string du regime en valeur de l'enumération REGIME
                     string groupe = reader.GetString(reader.GetOrdinal("groupe"));
+                    groupe.Substring(groupe.Length - 2,2);
+                    GROUPE groupeEtu = GROUPE.A1;
+                    switch (groupe)
+                    {
+                        case "A2":
+                            groupeEtu = GROUPE.A2;
+                            break;
+                        case "B1":
+                            groupeEtu = GROUPE.B1;
+                            break;
+                        case "B2":
+                            groupeEtu = GROUPE.B2;
+                            break;
+                        case "C1":
+                            groupeEtu = GROUPE.C1;
+                            break;
+                        case "C2":
+                            groupeEtu = GROUPE.C2;
+                            break;
+                        case "D1":
+                            groupeEtu = GROUPE.D1;
+                            break;
+                        case "D2":
+                            groupeEtu = GROUPE.D2;
+                            break;
+                        case "E1":
+                            groupeEtu = GROUPE.E1;
+                            break;
+                        case "E2":
+                            groupeEtu = GROUPE.E2;
+                            break;
+                    }
+
+
                     bool estBoursier = reader.GetString(reader.GetOrdinal("estBoursier")) == "OUI"; // Convertir en booléen
 
+                    //On convertit la string du regime en valeur de l'enumération REGIME
                     string regimeFormation = reader.GetString(reader.GetOrdinal("regimeFormation"));
                     REGIME regimeEtu = REGIME.FI;
                     switch (regimeFormation)
@@ -136,7 +173,7 @@ namespace APIEtudiant.Stockage
                         sexeEtu,
                         typeBac,
                         mail,
-                        groupe,
+                        groupeEtu,
                         estBoursier,
                         regimeEtu,
                         dateNaissance,
@@ -251,6 +288,52 @@ namespace APIEtudiant.Stockage
             return etuRegime;
         }
 
+        /// <summary>
+        /// Renvoi le string equivalent au groupe de l'étudiant
+        /// </summary>
+        /// <param name="etu">etudiant dont on veut le regime de formation</param>
+        /// <returns>string equivalent au regime de formation de l'étudiant</returns>
+        /// <author>Laszlo</author>
+        private string getGroupeString(Etudiant etu)
+        {
+
+            string etuGroupe;
+            switch (etu.Groupe)
+            {
+                default:
+                    etuGroupe = "A1";
+                    break;
+                case GROUPE.A2:
+                    etuGroupe = "A2";
+                    break;
+                case GROUPE.B1:
+                    etuGroupe = "B1";
+                    break;
+                case GROUPE.B2:
+                    etuGroupe = "B2";
+                    break;
+                case GROUPE.C1:
+                    etuGroupe = "C1";
+                    break;
+                case GROUPE.C2:
+                    etuGroupe = "C2";
+                    break;
+                case GROUPE.D1:
+                    etuGroupe = "D1";
+                    break;
+                case GROUPE.D2:
+                    etuGroupe = "D2";
+                    break;
+                case GROUPE.E1:
+                    etuGroupe = "E1";
+                    break;
+                case GROUPE.E2:
+                    etuGroupe = "E2";
+                    break;
+            }
+            return etuGroupe;
+        }
+
 
         /// <summary>
         /// Modifie l'étudiant existant
@@ -276,7 +359,7 @@ namespace APIEtudiant.Stockage
                 string updateQuery = string.Format(@"UPDATE Etudiant
                                                    SET nom = '{0}', prenom = '{1}', sexe = '{2}', typeBac = '{3}', mail = '{4}', groupe = '{5}', estBoursier = '{6}', regimeFormation = '{7}', dateNaissance = TO_DATE('{8}', 'YYYY-MM-DD'), adresse = '{9}', telPortable = {10}, telFixe = {11}, login = '{12}'
                                                    WHERE numApogee = {13}",
-                                                  etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, etu.Groupe,
+                                                  etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, getGroupeString(etu),
                                                   estBoursier, getRegimeString(etu), etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
                                                   etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login, etu.NumApogee);
 
@@ -331,7 +414,7 @@ namespace APIEtudiant.Stockage
             {
                 string insertQuery = string.Format(@"INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login)
                                                    VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', TO_DATE('{9}', 'YYYY-MM-DD'), '{10}', {11}, {12}, '{13}')",
-                                                  etu.NumApogee, etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, etu.Groupe,
+                                                  etu.NumApogee, etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, getGroupeString(etu),
                                                   estBoursier, getRegimeString(etu), etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
                                                   etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
 

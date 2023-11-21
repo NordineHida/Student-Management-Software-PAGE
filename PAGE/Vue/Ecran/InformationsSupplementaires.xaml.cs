@@ -25,6 +25,7 @@ namespace PAGE.Vue.Ecran
         private SEXE sexeSelectionne;
         private bool estBoursier;
         private REGIME regimeEtu;
+        private GROUPE groupeEtu;
 
         /// <summary>
         /// Constructeur qui prend l'étudiant selectionné avec le double clique
@@ -55,7 +56,7 @@ namespace PAGE.Vue.Ecran
             txtName.Text = etudiant.Nom;
             txtPrenom.Text = etudiant.Prenom;
             txtNumApogee.Text = etudiant.NumApogee.ToString();
-            txtGroupe.Text = etudiant.Groupe;
+
             txtMail.Text = etudiant.Mail;
 
             //Radio boutton sexe
@@ -81,7 +82,7 @@ namespace PAGE.Vue.Ecran
             else
                 radioBoursierFalse.IsChecked= true;
 
-            //Charge l combobox de regime
+            //Charge la combobox de regime
             switch (etudiant.TypeFormation)
             {
                 case REGIME.FI:
@@ -92,6 +93,40 @@ namespace PAGE.Vue.Ecran
                     break;
                 case REGIME.FC:
                     comboBoxRegime.SelectedIndex = 0;
+                    break;
+            }
+
+            switch (etudiant.Groupe)
+            {
+                case GROUPE.A1:
+                    comboBoxGroupe.SelectedIndex = 0;
+                    break;
+                case GROUPE.A2:
+                    comboBoxGroupe.SelectedIndex = 1;
+                    break;
+                case GROUPE.B1:
+                    comboBoxGroupe.SelectedIndex = 2;
+                    break;
+                case GROUPE.B2:
+                    comboBoxGroupe.SelectedIndex = 3;
+                    break;
+                case GROUPE.C1:
+                    comboBoxGroupe.SelectedIndex = 4;
+                    break;
+                case GROUPE.C2:
+                    comboBoxGroupe.SelectedIndex = 5;
+                    break;
+                case GROUPE.D1:
+                    comboBoxGroupe.SelectedIndex = 6;
+                    break;
+                case GROUPE.D2:
+                    comboBoxGroupe.SelectedIndex = 7;
+                    break;
+                case GROUPE.E1:
+                    comboBoxGroupe.SelectedIndex = 8;
+                    break;
+                case GROUPE.E2:
+                    comboBoxGroupe.SelectedIndex = 9;
                     break;
             }
         }
@@ -189,7 +224,7 @@ namespace PAGE.Vue.Ecran
 
                 //on créer l'étudiant a partir des infos saisis dans la fenêtre
                 etudiantUpdated = new Etudiant(
-                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, txtGroupe.Text, estBoursier,
+                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, groupeEtu, estBoursier,
                 regimeEtu, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
                 telFixe, telPortable, txtAdresse2.Text);
             }
@@ -219,14 +254,57 @@ namespace PAGE.Vue.Ecran
 
         }
 
-        #region Verification modifiaction étudiant
         /// <summary>
-        /// Verifie toutes les conditions nécessaires de la saisis de l'utilisateur pour une modification d'étudiant sans erreur
+        /// Quand on change le groupe de la combobox, change la valeur du groupe de l'etudiant 
         /// </summary>
-        /// <returns>Si la saisi de l'utilisateur rempli toutes les conditions pour être valide</returns>
-        /// <author>Nordine</author>
-        private bool IsSaisiCorrect()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void ComboBoxGroupe_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            switch (comboBoxGroupe.SelectedIndex)
+            {
+                case 0:
+                    groupeEtu = GROUPE.A1;
+                    break;
+                case 1:
+                    groupeEtu = GROUPE.A2;
+                    break;
+                case 2:
+                    groupeEtu = GROUPE.B1;
+                    break;
+                case 3:
+                    groupeEtu = GROUPE.B2;
+                    break;
+                case 4:
+                    groupeEtu = GROUPE.C1;
+                    break;
+                case 5:
+                    groupeEtu = GROUPE.C2;
+                    break;
+                case 6:
+                    groupeEtu = GROUPE.D1;
+                    break;
+                case 7:
+                    groupeEtu = GROUPE.D2;
+                    break;
+                case 8:
+                    groupeEtu = GROUPE.E1;
+                    break;
+                case 9:
+                    groupeEtu = GROUPE.E2;
+                    break;
+            }
+        }
+
+            #region Verification modifiaction étudiant
+            /// <summary>
+            /// Verifie toutes les conditions nécessaires de la saisis de l'utilisateur pour une modification d'étudiant sans erreur
+            /// </summary>
+            /// <returns>Si la saisi de l'utilisateur rempli toutes les conditions pour être valide</returns>
+            /// <author>Nordine</author>
+            private bool IsSaisiCorrect()
+         {
             bool saisiCorrect = true;
             if ((!string.IsNullOrWhiteSpace(txtNumApogee.Text)) && !System.Text.RegularExpressions.Regex.IsMatch(txtNumApogee.Text, "^[0-9]{1,8}$"))
             {
@@ -258,7 +336,7 @@ namespace PAGE.Vue.Ecran
                 MessageBox.Show("Le champ E-mail est vide ou invalide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 saisiCorrect = false;
             }
-            else if (string.IsNullOrWhiteSpace(txtGroupe.Text))
+            else if (comboBoxGroupe.SelectedIndex == -1)
             {
                 MessageBox.Show("Le champ Groupe ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 saisiCorrect = false;
@@ -394,8 +472,9 @@ namespace PAGE.Vue.Ecran
             // Active l'édition de la date de naissance
             txtDateNaissance2.IsEnabled = true;
 
-            // Active l'édition de la combobox de regime
+            // Active l'édition des comboboxes de regime et groupe
             comboBoxRegime.IsEnabled = true;
+            comboBoxGroupe.IsEnabled = true;
         }
 
         /// <summary>
@@ -439,8 +518,9 @@ namespace PAGE.Vue.Ecran
             // Rend la date de naissance en lecture seule
             txtDateNaissance2.IsEnabled = false;
 
-            //rend la combobox de regime en lecture seule
+            //rend les comboboxes de regime et groupe en lecture seule
             comboBoxRegime.IsEnabled = false;
+            comboBoxGroupe.IsEnabled = false;
         }
 
         #region affichage trie note
