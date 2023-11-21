@@ -1,4 +1,5 @@
-﻿using PAGE.Model;
+﻿using DocumentFormat.OpenXml.Drawing;
+using PAGE.Model;
 using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 using MessageBox = System.Windows.Forms.MessageBox;
 using RadioButton = System.Windows.Controls.RadioButton;
 using TextBox = System.Windows.Controls.TextBox;
@@ -24,6 +26,8 @@ namespace PAGE.Vue.Ecran
         private Notes notes;
         private SEXE sexeSelectionne;
         private bool estBoursier;
+        private REGIME regimeEtu;
+        private GROUPE groupeEtu;
 
         /// <summary>
         /// Constructeur qui prend l'étudiant selectionné avec le double clique
@@ -54,7 +58,7 @@ namespace PAGE.Vue.Ecran
             txtName.Text = etudiant.Nom;
             txtPrenom.Text = etudiant.Prenom;
             txtNumApogee.Text = etudiant.NumApogee.ToString();
-            txtGroupe.Text = etudiant.Groupe;
+
             txtMail.Text = etudiant.Mail;
 
             //Radio boutton sexe
@@ -80,8 +84,53 @@ namespace PAGE.Vue.Ecran
             else
                 radioBoursierFalse.IsChecked= true;
 
+            //Charge la combobox de regime
+            switch (etudiant.TypeFormation)
+            {
+                case REGIME.FI:
+                    comboBoxRegime.SelectedIndex = 1;
+                    break;
+                case REGIME.FA:
+                    comboBoxRegime.SelectedIndex = 2;
+                    break;
+                case REGIME.FC:
+                    comboBoxRegime.SelectedIndex = 0;
+                    break;
+            }
 
-            txtRegime.Text = etudiant.TypeFormation;
+            switch (etudiant.Groupe)
+            {
+                case GROUPE.A1:
+                    comboBoxGroupe.SelectedIndex = 0;
+                    break;
+                case GROUPE.A2:
+                    comboBoxGroupe.SelectedIndex = 1;
+                    break;
+                case GROUPE.B1:
+                    comboBoxGroupe.SelectedIndex = 2;
+                    break;
+                case GROUPE.B2:
+                    comboBoxGroupe.SelectedIndex = 3;
+                    break;
+                case GROUPE.C1:
+                    comboBoxGroupe.SelectedIndex = 4;
+                    break;
+                case GROUPE.C2:
+                    comboBoxGroupe.SelectedIndex = 5;
+                    break;
+                case GROUPE.D1:
+                    comboBoxGroupe.SelectedIndex = 6;
+                    break;
+                case GROUPE.D2:
+                    comboBoxGroupe.SelectedIndex = 7;
+                    break;
+                case GROUPE.E1:
+                    comboBoxGroupe.SelectedIndex = 8;
+                    break;
+                case GROUPE.E2:
+                    comboBoxGroupe.SelectedIndex = 9;
+                    break;
+            }
         }
 
         /// <summary>
@@ -113,6 +162,16 @@ namespace PAGE.Vue.Ecran
                 contInfosComp.Visibility = Visibility.Visible;
                 BoutonInfoComp.Visibility = Visibility.Collapsed;
                 BoutonCacherInfoComp.Visibility = Visibility.Visible;
+
+                if(etudiant.TelFixe == 0)
+                {
+                    txtTelFixe2.Text = "";
+                }
+
+                if (etudiant.TelPortable == 0)
+                {
+                    txtTelPortable2.Text = "";
+                }
             }
         }
 
@@ -141,6 +200,10 @@ namespace PAGE.Vue.Ecran
         private void Modifier_Click(object sender, RoutedEventArgs e)
         {
             ActiverInput();
+            BoutonModifier.Visibility = Visibility.Collapsed;
+            BoutonValider.Visibility = Visibility.Visible;
+            BoutonCreernote.IsEnabled = false;
+            BoutonCreernote.Background = new SolidColorBrush(Colors.Gray);
         }
 
         /// <summary>
@@ -151,7 +214,13 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
+            BoutonValider.Visibility = Visibility.Collapsed;
+            BoutonModifier.Visibility = Visibility.Visible;
+            BoutonCreernote.IsEnabled = true;
+            BoutonCreernote.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3DA79D"));
+
             DesactiverInput();
+
             //On récupere les nouvelles de l'étudiant
             Etudiant updateEtu = GetEtudiantUpdated();
             //On l'ajoute (le mets a jour puisqu'il existe)
@@ -173,22 +242,91 @@ namespace PAGE.Vue.Ecran
                 long telPortable = 0;
                 long.TryParse(txtTelFixe2.Text, out telFixe);
                 long.TryParse(txtTelPortable2.Text, out telPortable);
+
+
                 //on créer l'étudiant a partir des infos saisis dans la fenêtre
                 etudiantUpdated = new Etudiant(
-                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, txtGroupe.Text, estBoursier,
-                txtRegime.Text, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
+                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, groupeEtu, estBoursier,
+                regimeEtu, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
                 telFixe, telPortable, txtAdresse2.Text);
             }
             return etudiantUpdated;
         }
-        #region Verification modifiaction étudiant
+
         /// <summary>
-        /// Verifie toutes les conditions nécessaires de la saisis de l'utilisateur pour une modification d'étudiant sans erreur
+        /// Quand on change le regime de la combobox, change la valeur du régime de l'etudiant 
         /// </summary>
-        /// <returns>Si la saisi de l'utilisateur rempli toutes les conditions pour être valide</returns>
-        /// <author>Nordine</author>
-        private bool IsSaisiCorrect()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void ComboBoxRegime_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            switch (comboBoxRegime.SelectedIndex)
+            {
+                case 0:
+                    regimeEtu = REGIME.FI;
+                    break;
+                case 1:
+                    regimeEtu = REGIME.FC;
+                    break;
+                case 2:
+                    regimeEtu = REGIME.FA;
+                    break;
+            }
+
+        }
+
+        /// <summary>
+        /// Quand on change le groupe de la combobox, change la valeur du groupe de l'etudiant 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void ComboBoxGroupe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (comboBoxGroupe.SelectedIndex)
+            {
+                case 0:
+                    groupeEtu = GROUPE.A1;
+                    break;
+                case 1:
+                    groupeEtu = GROUPE.A2;
+                    break;
+                case 2:
+                    groupeEtu = GROUPE.B1;
+                    break;
+                case 3:
+                    groupeEtu = GROUPE.B2;
+                    break;
+                case 4:
+                    groupeEtu = GROUPE.C1;
+                    break;
+                case 5:
+                    groupeEtu = GROUPE.C2;
+                    break;
+                case 6:
+                    groupeEtu = GROUPE.D1;
+                    break;
+                case 7:
+                    groupeEtu = GROUPE.D2;
+                    break;
+                case 8:
+                    groupeEtu = GROUPE.E1;
+                    break;
+                case 9:
+                    groupeEtu = GROUPE.E2;
+                    break;
+            }
+        }
+
+            #region Verification modifiaction étudiant
+            /// <summary>
+            /// Verifie toutes les conditions nécessaires de la saisis de l'utilisateur pour une modification d'étudiant sans erreur
+            /// </summary>
+            /// <returns>Si la saisi de l'utilisateur rempli toutes les conditions pour être valide</returns>
+            /// <author>Nordine</author>
+            private bool IsSaisiCorrect()
+         {
             bool saisiCorrect = true;
             if ((!string.IsNullOrWhiteSpace(txtNumApogee.Text)) && !System.Text.RegularExpressions.Regex.IsMatch(txtNumApogee.Text, "^[0-9]{1,8}$"))
             {
@@ -230,15 +368,13 @@ namespace PAGE.Vue.Ecran
                 PopUp popUp = new PopUp("Création", "Le champ e-mail ne peut pas être vide", TYPEICON.ERREUR);
                 popUp.ShowDialog(); saisiCorrect = false;
             }
-
-            else if (string.IsNullOrWhiteSpace(txtGroupe.Text))
+            else if (comboBoxGroupe.SelectedIndex == -1)
             {
                 PopUp popUp = new PopUp("Création", "Le champ Groupe ne peut pas être vide", TYPEICON.ERREUR);
                 popUp.ShowDialog();
                 saisiCorrect = false;
             }
-
-            else if (string.IsNullOrWhiteSpace(txtRegime.Text))
+            else if (comboBoxRegime.SelectedIndex == -1)
             {
                 PopUp popUp = new PopUp("Création", "Le champ Régime ne peut pas être vide", TYPEICON.ERREUR);
                 popUp.ShowDialog();
@@ -342,7 +478,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void ActiverInput()
         {
-            BoutonValider.Visibility = Visibility.Visible;
+            
 
             // Rend les TextBox éditables
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
@@ -379,6 +515,9 @@ namespace PAGE.Vue.Ecran
             // Active l'édition de la date de naissance
             txtDateNaissance2.IsEnabled = true;
 
+            // Active l'édition des comboboxes de regime et groupe
+            comboBoxRegime.IsEnabled = true;
+            comboBoxGroupe.IsEnabled = true;
         }
 
         /// <summary>
@@ -388,7 +527,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void DesactiverInput()
         {
-            BoutonValider.Visibility = Visibility.Collapsed;
+            
 
             // Rend les TextBox en lecture seule
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
@@ -422,6 +561,9 @@ namespace PAGE.Vue.Ecran
             // Rend la date de naissance en lecture seule
             txtDateNaissance2.IsEnabled = false;
 
+            //rend les comboboxes de regime et groupe en lecture seule
+            comboBoxRegime.IsEnabled = false;
+            comboBoxGroupe.IsEnabled = false;
         }
 
         #region affichage trie note
@@ -583,51 +725,54 @@ namespace PAGE.Vue.Ecran
             return resultat;
 
         }
+
         /// <summary>
         /// La fonction utilise la catégorie Absentéisme pour filtrer les Notes.
         /// </summary>
         /// <param name="obj"></param>
         ///<returns>renvoie le filtre par Absentéisme</returns>
         /// <returns></returns>
+        /// <author>Stephane/ Laszlo</author>
         private bool Absenteisme(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Absentéisme", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.ABSENTEISME);
         }
-
 
         /// <summary>
         /// La fonction utilise la catégorie Personnel  pour filtrer les Notes.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>renvoie le filtre par raison Personnel</returns>
-        /// <author>Stephane</author>
+        /// <author>Stephane/ Laszlo</author>
         private bool Personnel(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Personnel", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.PERSONNEL);
         }
+
         /// <summary>
         /// La fonction utilise la catégorie Médical  pour filtrer les Notes.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>renvoie le filtre par raison Médical</returns>
-        /// <author>Stephane</author>
+        /// <author>Stephane/ Laszlo</author>
         private bool Medical(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Médical", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.MEDICAL);
         }
+
         /// <summary>
         /// La fonction utilise la catégorie Résultats  pour filtrer les Notes.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>renvoie le filtre par Résultats</returns>
-        /// <author>Stephane</author>
+        /// <author>Stephane/ Laszlo</author>
         private bool Resultats(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Résultats", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.RESULTATS);
         }
 
         /// <summary>
@@ -636,10 +781,11 @@ namespace PAGE.Vue.Ecran
         /// <param name="obj"></param>
         ///<returns>renvoie le filtre par orientation</returns>
         /// <returns></returns>
+        /// <author>Stephane/ Laszlo</author>
         private bool Orientation(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Orientation", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.ORIENTATION);
         }
 
         /// <summary>
@@ -647,16 +793,15 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>renvoie le filtre par Autre</returns>
-        /// <author>Stephane</author>
+        /// <author>Stephane/ Laszlo</author>
         private bool Autre(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Autre", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.AUTRE);
         }
 
 
         #endregion
-
 
 
         /// <summary>
@@ -719,7 +864,7 @@ namespace PAGE.Vue.Ecran
                 if (noteSelectionne != null)
                 {
                     // Créez une instance de la fenêtre CreationNote en passant la note et notes
-                    CreationNote affichageNote = new CreationNote(noteSelectionne,this.notes);
+                    CreationNote affichageNote = new CreationNote(noteSelectionne,this.notes,true);
                     affichageNote.Show();
                 }
             }
@@ -733,9 +878,17 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas</author>
         private void Creer_Click(object sender, RoutedEventArgs e)
         {
-            CreationNote creernote = new CreationNote(new Note("",DateTime.Now,"","",etudiant.NumApogee), this.notes);
-            creernote.Show();
-            ChargementDiffereNotes();
+            if (notes != null)
+            {
+                CreationNote creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee), this.notes, false);
+                creernote.Show();
+            }
+            else
+            {
+
+                System.Windows.Forms.MessageBox.Show("Veuillez attendre la fin du chargement des notes", "Une erreur est survenue", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         /// <summary>
