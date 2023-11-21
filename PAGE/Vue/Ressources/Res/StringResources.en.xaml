@@ -10,7 +10,8 @@
 
     <system:String x:Key="Nom">Name</system:String>
     <system:String x:Key="Prenom">First Name</system:String>
-    <system:String x:Key="NumApogee">Peak number</system:String>
+    <system:String x:Key="GroupeHead">Group</system:String>
+    <system:String x:Key="NumApogee">Apogee</system:String>
     <system:String x:Key="Oui">Yes</system:String>
     <system:String x:Key="Non">No</system:String>
 
@@ -72,14 +73,14 @@
     <system:String x:Key="ToolTipChoixPromo">Choose the promotion</system:String>
 
     <!--PagePrincipale (Lucas)-->
-    <system:String x:Key="LabelTrie">Sort by:</system:String>
+    <system:String x:Key="LabelTrie">Filter by:</system:String>
 
     <!--CréerEtudiant (Lucas)-->
     <system:String x:Key="TitreFenetreCreerEtudiant">Create a student</system:String>
 
     <system:String x:Key="Nom*">Name :*</system:String>
     <system:String x:Key="Prenom*">First Name :*</system:String>
-    <system:String x:Key="NumApogee*">Peak number :*</system:String>
+    <system:String x:Key="NumApogee*">Apogee :*</system:String>
 
     <system:String x:Key="Mail">Mail Adress:*</system:String>
     <system:String x:Key="Groupe">Group:*</system:String>
@@ -108,7 +109,7 @@
 
     <system:String x:Key="Nom:">Name :</system:String>
     <system:String x:Key="Prenom:">First Name :</system:String>
-    <system:String x:Key="NumApogee:">Peak number :</system:String>
+    <system:String x:Key="NumApogee:">Apogee:</system:String>
     <system:String x:Key="Mail:">Mail:</system:String>
     <system:String x:Key="Groupe:">Group:</system:String>
     <system:String x:Key="Sexe:">Gender :</system:String>

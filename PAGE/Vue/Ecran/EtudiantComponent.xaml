@@ -12,9 +12,11 @@
             <Border x:Name="EtudiantBorder" BorderBrush="White" BorderThickness="2" Background="#3DA79D" Margin="10" CornerRadius="20">
                 <Grid>
                     <StackPanel Orientation="Horizontal">
+                        <!-- Rond du groupe (Nordine)-->
                         <Border Background="#2B2B5A" Margin="15 3"  Width="70" Height="70" CornerRadius="25" BorderThickness="2" BorderBrush="Black"  >
                             <TextBlock Text="{Binding Groupe}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="25" FontFamily="Open Sauce One Black"  />
                         </Border>
+                        <!-- Info de l'étudiant (Nordine)-->
                         <WrapPanel>
                             <TextBlock Text="{Binding NumeroApogee}" Margin="20" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="30" MinWidth="170" MaxWidth="190"/>
                             <TextBlock Text="{Binding Prenom}"  Margin="20" VerticalAlignment="Center" FontFamily="Open Sauce One ExtraBold" Foreground="White" FontSize="30" MinWidth="350" MaxWidth="352"/>
@@ -23,6 +25,7 @@
                     </StackPanel>
                 </Grid>
             </Border>
+            <!-- Hover (Nordine)-->
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter TargetName="EtudiantBorder" Property="Background" Value="#FF7FBFCF"/>
