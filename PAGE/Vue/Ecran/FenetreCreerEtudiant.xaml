@@ -15,7 +15,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="6*" />
             <!-- Première ligne pour le logo -->
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
