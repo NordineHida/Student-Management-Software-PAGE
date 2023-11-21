@@ -105,7 +105,27 @@
         <!-- Informations Complémentaires (Nordine) -->
 
         <!-- Bouton pour créer un étudiant (Nordine)-->
-        <Button Foreground="White" Background="#FF3DA79D" FontFamily="Open Sauce One Bold" FontSize="20" Content="{DynamicResource BtnCreerEtudiant}" Click="CreerEtudiant" Margin="20,0,20,0" Grid.Row="18" Grid.RowSpan="2" />
+        <Button Foreground="White" Background="#FF3DA79D" FontFamily="Open Sauce One Bold" FontSize="20" Content="{DynamicResource BtnCreerEtudiant}" Click="CreerEtudiant" Margin="20,0,20,0" Grid.Row="18" Grid.RowSpan="2">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
+                                        <Setter Property="Foreground" Value="#000000"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <!--Indication de champs obligatoire-->
         <Label Content="{DynamicResource LabelChpObli}" Foreground="Red" FontFamily="Open Sauce One Italic" FontSize="18"  Grid.Row="16" Grid.RowSpan="2" />
