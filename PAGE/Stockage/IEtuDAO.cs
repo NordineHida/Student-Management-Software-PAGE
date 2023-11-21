@@ -28,23 +28,7 @@ namespace PAGE.Stockage
         /// </summary>
         /// <returns>Un ensemble d'étudiant</returns>
         /// <author>Nordine</author>
-        public Task<IEnumerable<Etudiant>> GetAllEtu();
-
-        /// <summary>
-        /// Ajoute un étudiant ou le modifie s'il existe deja
-        /// </summary>
-        /// <param name="note">Note à ajouter</param>
-        /// <returns>true si l'ajout est un succès</returns>
-        /// <author>Laszlo</author>
-        public Task CreateNote(Note note);
-
-        /// <summary>
-        /// Ajoute une piece jointe à la bdd
-        /// </summary>
-        /// <param name="pj"></param>
-        /// <returns>true si l'ajout est un succès</returns>
-        /// <author>Yamato</author>
-        public Task CreatePieceJointe(PieceJointe pieceJointe);
+        public Task<IEnumerable<Etudiant>> GetAllEtu();        
         
         /// <param name="etudiant">étudiant à ajouter</param>
         /// <returns></returns>
