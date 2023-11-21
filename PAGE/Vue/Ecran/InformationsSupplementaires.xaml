@@ -65,7 +65,18 @@
         <TextBox Width="425" IsReadOnly="True" x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="15" Grid.Row="5" Grid.Column="3" BorderThickness="0"/>
 
         <TextBlock Text="{DynamicResource Groupe:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="1" />
-        <TextBox Width="425" IsReadOnly="True" x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="15" Grid.Row="7" Grid.Column="3" BorderThickness="0"/>
+        <ComboBox Width="425" IsReadOnly="True" IsEnabled="False" x:Name="comboBoxGroupe" HorizontalAlignment="Left" FontSize="15" Grid.Row="7" Grid.Column="3" BorderThickness="0" SelectionChanged="ComboBoxGroupe_SelectionChanged">
+            <ComboBoxItem Content="A1"/>
+            <ComboBoxItem Content="A2"/>
+            <ComboBoxItem Content="B1"/>
+            <ComboBoxItem Content="B2"/>
+            <ComboBoxItem Content="C1"/>
+            <ComboBoxItem Content="C2"/>
+            <ComboBoxItem Content="D1"/>
+            <ComboBoxItem Content="D2"/>
+            <ComboBoxItem Content="E1"/>
+            <ComboBoxItem Content="E2"/>
+        </ComboBox>
 
         <TextBlock Text="{DynamicResource Mail:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="1" />
         <TextBox Width="425" IsReadOnly="True" x:Name="txtMail" HorizontalAlignment="Left" FontSize="15" Grid.Row="9" Grid.Column="3" BorderThickness="0"/>
@@ -92,7 +103,11 @@
 
         <!-- Régime de formation (Nordine & Yamato)-->
         <TextBlock Text="{DynamicResource Regime:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
-        <TextBox Width="425" IsReadOnly="True" x:Name="txtRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" BorderThickness="0"/>
+        <ComboBox Width="425" IsReadOnly="True" IsEnabled="False" x:Name="comboBoxRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" BorderThickness="0" SelectionChanged="ComboBoxRegime_SelectionChanged">
+            <ComboBoxItem Content="FI"/>
+            <ComboBoxItem Content="FC"/>
+            <ComboBoxItem Content="FA"/>
+        </ComboBox>
 
         <!-- Informations Complémentaires (Nordine & Yamato) -->
 

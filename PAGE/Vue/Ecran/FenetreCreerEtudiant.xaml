@@ -74,10 +74,22 @@
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtNumApogee"  FontSize="20" Grid.Row="5" Grid.Column="3" />
 
         <TextBlock Text="{DynamicResource Groupe}"  FontSize="20" Grid.Row="7" Grid.Column="1" />
-        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtGroupe"  FontSize="20" Grid.Row="7" Grid.Column="3" />
+        <ComboBox HorizontalAlignment="Left"  Width="500"  x:Name="comboBoxGroupe"  FontSize="16" Grid.Row="7" Grid.Column="3" SelectionChanged="ComboBoxGroupe_SelectionChanged">
+            <ComboBoxItem Content="A1"/>
+            <ComboBoxItem Content="A2"/>
+            <ComboBoxItem Content="B1"/>
+            <ComboBoxItem Content="B2"/>
+            <ComboBoxItem Content="C1"/>
+            <ComboBoxItem Content="C2"/>
+            <ComboBoxItem Content="D1"/>
+            <ComboBoxItem Content="D2"/>
+            <ComboBoxItem Content="E1"/>
+            <ComboBoxItem Content="E2"/>
+        </ComboBox>
 
         <TextBlock Text="{DynamicResource Mail}"  FontSize="20" Grid.Row="9" Grid.Column="1" />
-        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtMail"  FontSize="20" Grid.Row="9" Grid.Column="3" />
+        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtMail"  FontSize="20" Grid.Row="9" Grid.Column="3"/>
+
 
         <!-- Sexe (Nordine  )-->
         <TextBlock Text="{DynamicResource Sexe}"  FontSize="20" Grid.Row="11" Grid.Column="1" />
@@ -100,7 +112,11 @@
 
         <!-- Régime de formation (Nordine  )-->
         <TextBlock Text="{DynamicResource Regime}"  FontSize="20" Grid.Row="17" Grid.Column="1" />
-        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtRegime"  FontSize="20" Grid.Row="17" Grid.Column="3" />
+        <ComboBox HorizontalAlignment="Left"  Width="500"  x:Name="comboBoxRegime"  FontSize="20" Grid.Row="17" Grid.Column="3" SelectionChanged="ComboBoxRegime_SelectionChanged">
+            <ComboBoxItem Content="FI"/>
+            <ComboBoxItem Content="FC"/>
+            <ComboBoxItem Content="FA"/>
+        </ComboBox>
 
         <!-- Informations Complémentaires (Nordine) -->
 
