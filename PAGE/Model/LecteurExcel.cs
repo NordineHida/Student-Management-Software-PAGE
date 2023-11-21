@@ -48,6 +48,7 @@ namespace PAGE.Model
             long telFixeInt = -1;
             DateTime dateNaissanceDT = new DateTime();
             SEXE sexeEtu = SEXE.AUTRE;
+            REGIME regimeEtu = REGIME.FI;
             bool estBoursierBool = false;
 
             //Date de base d'Excel à partir de laquel on compte le nombre de jour
@@ -113,6 +114,19 @@ namespace PAGE.Model
                                     break;
                             }
 
+                            //Conversion du string en REGIME
+                            switch (regimeFormation)
+                            {
+                                case "FI":
+                                    regimeEtu = REGIME.FI;
+                                    break;
+                                case "FC":
+                                    regimeEtu = REGIME.FC;
+                                    break;
+                                case "FA":
+                                    regimeEtu = REGIME.FA;
+                                    break;
+                            }
                             //Conversion du string en Bool
                             estBoursierBool = false;
                             if (estBoursier == "OUI") estBoursierBool = true;
@@ -131,7 +145,7 @@ namespace PAGE.Model
                         }
                     }
                     //On crée l'étudiant
-                    Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupe, estBoursierBool, regimeFormation, dateNaissanceDT, login, telPortableInt, telFixeInt, adresse);
+                    Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupe, estBoursierBool, regimeEtu, dateNaissanceDT, login, telPortableInt, telFixeInt, adresse);
 
                     //On l'ajoute à la liste d'étudiant
                     etudiants.Add(etudiant);

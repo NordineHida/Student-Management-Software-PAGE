@@ -92,7 +92,11 @@
 
         <!-- Régime de formation (Nordine & Yamato)-->
         <TextBlock Text="{DynamicResource Regime:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
-        <TextBox Width="425" IsReadOnly="True" x:Name="txtRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" BorderThickness="0"/>
+        <ComboBox Width="425" IsReadOnly="True" IsEnabled="False" x:Name="comboBoxRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" BorderThickness="0">
+        <ComboBoxItem Content="FI"/>
+        <ComboBoxItem Content="FC"/>
+        <ComboBoxItem Content="FA"/>
+        </ComboBox>
 
         <!-- Informations Complémentaires (Nordine & Yamato) -->
 

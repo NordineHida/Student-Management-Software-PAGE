@@ -59,7 +59,18 @@ namespace APIEtudiant.Stockage
                     string mail = reader.GetString(reader.GetOrdinal("mail"));
                     string groupe = reader.GetString(reader.GetOrdinal("groupe"));
                     bool estBoursier = reader.GetString(reader.GetOrdinal("estBoursier")) == "OUI"; // Convertir en booléen
+
                     string regimeFormation = reader.GetString(reader.GetOrdinal("regimeFormation"));
+                    REGIME regimeEtu = REGIME.FI;
+                    switch (regimeFormation)
+                    {
+                        case "FC":
+                            regimeEtu= REGIME.FC;
+                            break;
+                        case "FA":
+                            regimeEtu = REGIME.FA;
+                            break;
+                    }
 
                     //champs complémentaire dont on vérifier s'il existe avant de les affecters
                     DateTime dateNaissance;
@@ -127,7 +138,7 @@ namespace APIEtudiant.Stockage
                         mail,
                         groupe,
                         estBoursier,
-                        regimeFormation,
+                        regimeEtu,
                         dateNaissance,
                         login,
                         (int)telFixe,
@@ -216,6 +227,32 @@ namespace APIEtudiant.Stockage
         }
 
         /// <summary>
+        /// Renvoi le string equivalent au regime de formation de l'étudiant
+        /// </summary>
+        /// <param name="etu">etudiant dont on veut le regime de formation</param>
+        /// <returns>string equivalent au regime de formation de l'étudiant</returns>
+        /// <author>Laszlo</author>
+        private string getRegimeString(Etudiant etu)
+        {
+
+            string etuRegime;
+            switch (etu.TypeFormation)
+            {
+                case REGIME.FC:
+                    etuRegime = "FC";
+                    break;
+                case REGIME.FA:
+                    etuRegime = "FA";
+                    break;
+                default:
+                    etuRegime = "FI";
+                    break;
+            }
+            return etuRegime;
+        }
+
+
+        /// <summary>
         /// Modifie l'étudiant existant
         /// </summary>
         /// <param name="etu">etudiant à modifier</param>
@@ -240,7 +277,7 @@ namespace APIEtudiant.Stockage
                                                    SET nom = '{0}', prenom = '{1}', sexe = '{2}', typeBac = '{3}', mail = '{4}', groupe = '{5}', estBoursier = '{6}', regimeFormation = '{7}', dateNaissance = TO_DATE('{8}', 'YYYY-MM-DD'), adresse = '{9}', telPortable = {10}, telFixe = {11}, login = '{12}'
                                                    WHERE numApogee = {13}",
                                                   etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, etu.Groupe,
-                                                  estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
+                                                  estBoursier, getRegimeString(etu), etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
                                                   etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login, etu.NumApogee);
 
                 OracleCommand updateCmd = new OracleCommand(updateQuery, con.OracleConnexion);
@@ -295,7 +332,7 @@ namespace APIEtudiant.Stockage
                 string insertQuery = string.Format(@"INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login)
                                                    VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', TO_DATE('{9}', 'YYYY-MM-DD'), '{10}', {11}, {12}, '{13}')",
                                                   etu.NumApogee, etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, etu.Groupe,
-                                                  estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
+                                                  estBoursier, getRegimeString(etu), etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
                                                   etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
 
                 OracleCommand updateCmd = new OracleCommand(insertQuery, con.OracleConnexion);

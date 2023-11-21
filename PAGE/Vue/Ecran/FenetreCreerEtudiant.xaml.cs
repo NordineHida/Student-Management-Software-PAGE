@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
+
 using PAGE.Model;
 using PAGE.Stockage;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -15,6 +17,7 @@ namespace PAGE.Vue.Ecran
         private Etudiants etudiants;
         private SEXE sexeSelectionne;
         private bool estBoursier;
+        private REGIME regimeEtu = REGIME.FI;
 
         /// <summary>
         /// Constructeur (initialiser le sexe à AUTRE  et le bool boursier a false
@@ -35,6 +38,7 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <author>Nordine</author>
         private void CreerEtudiant(object sender, RoutedEventArgs e)
         {
             if (IsSaisiCorrect())
@@ -44,10 +48,11 @@ namespace PAGE.Vue.Ecran
                 long.TryParse(txtTelFixe2.Text, out telFixe);
                 long.TryParse(txtTelPortable2.Text, out telPortable);
 
+        
                 //on créer l'étudiant a partir des infos saisis dans la fenêtre
                 Etudiant etudiant = new Etudiant(
                 int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, txtGroupe.Text, estBoursier,
-                txtRegime.Text, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
+                regimeEtu, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
                 telFixe, telPortable, txtAdresse2.Text);
 
                 //on ajoute l'étudiant à la bdd
@@ -63,7 +68,7 @@ namespace PAGE.Vue.Ecran
         /// Verifie toutes les conditions nécessaires de la saisis de l'utilisateur pour une création d'étudiant sans erreur
         /// </summary>
         /// <returns>Si la saisi de l'utilisateur rempli toutes les conditions pour être valide</returns>
-        /// <author>Nordine</author>
+        /// <author>Nordine/ Laszlo</author>
         private bool IsSaisiCorrect()
         {
             bool saisiCorrect = true;
@@ -110,7 +115,7 @@ namespace PAGE.Vue.Ecran
                 saisiCorrect = false;
             }
 
-            else if (string.IsNullOrWhiteSpace(txtRegime.Text))
+            else if (comboBoxRegime.SelectedIndex == -1)
             {
                 MessageBox.Show("Le champ Régime ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 saisiCorrect = false;
@@ -206,5 +211,28 @@ namespace PAGE.Vue.Ecran
             estBoursier = true;
         }
 
+
+        /// <summary>
+        /// Quand on change le regime de la combobox, change la valeur du régime de l'etudiant 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void ComboBoxRegime_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (comboBoxRegime.SelectedIndex)
+            {
+                case 0:
+                    regimeEtu = REGIME.FI;
+                    break;
+                case 1:
+                    regimeEtu = REGIME.FC;
+                    break;
+                case 2:
+                    regimeEtu = REGIME.FA;
+                    break;
+            }
+
+        }
     }
 }

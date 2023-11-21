@@ -100,7 +100,11 @@
 
         <!-- Régime de formation (Nordine  )-->
         <TextBlock Text="{DynamicResource Regime}"  FontSize="20" Grid.Row="17" Grid.Column="1" />
-        <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtRegime"  FontSize="20" Grid.Row="17" Grid.Column="3" />
+        <ComboBox HorizontalAlignment="Left"  Width="500"  x:Name="comboBoxRegime"  FontSize="20" Grid.Row="17" Grid.Column="3">
+            <ComboBoxItem Content="FI"/>
+            <ComboBoxItem Content="FC"/>
+            <ComboBoxItem Content="FA"/>
+        </ComboBox>
 
         <!-- Informations Complémentaires (Nordine) -->
 

@@ -24,6 +24,7 @@ namespace PAGE.Vue.Ecran
         private Notes notes;
         private SEXE sexeSelectionne;
         private bool estBoursier;
+        private REGIME regimeEtu;
 
         /// <summary>
         /// Constructeur qui prend l'étudiant selectionné avec le double clique
@@ -80,8 +81,19 @@ namespace PAGE.Vue.Ecran
             else
                 radioBoursierFalse.IsChecked= true;
 
-
-            txtRegime.Text = etudiant.TypeFormation;
+            //Charge l combobox de regime
+            switch (etudiant.TypeFormation)
+            {
+                case REGIME.FI:
+                    comboBoxRegime.SelectedIndex = 1;
+                    break;
+                case REGIME.FA:
+                    comboBoxRegime.SelectedIndex = 2;
+                    break;
+                case REGIME.FC:
+                    comboBoxRegime.SelectedIndex = 0;
+                    break;
+            }
         }
 
         /// <summary>
@@ -173,14 +185,40 @@ namespace PAGE.Vue.Ecran
                 long telPortable = 0;
                 long.TryParse(txtTelFixe2.Text, out telFixe);
                 long.TryParse(txtTelPortable2.Text, out telPortable);
+
+
                 //on créer l'étudiant a partir des infos saisis dans la fenêtre
                 etudiantUpdated = new Etudiant(
                 int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, txtGroupe.Text, estBoursier,
-                txtRegime.Text, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
+                regimeEtu, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
                 telFixe, telPortable, txtAdresse2.Text);
             }
             return etudiantUpdated;
         }
+
+        /// <summary>
+        /// Quand on change le regime de la combobox, change la valeur du régime de l'etudiant 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void ComboBoxRegime_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (comboBoxRegime.SelectedIndex)
+            {
+                case 0:
+                    regimeEtu = REGIME.FI;
+                    break;
+                case 1:
+                    regimeEtu = REGIME.FC;
+                    break;
+                case 2:
+                    regimeEtu = REGIME.FA;
+                    break;
+            }
+
+        }
+
         #region Verification modifiaction étudiant
         /// <summary>
         /// Verifie toutes les conditions nécessaires de la saisis de l'utilisateur pour une modification d'étudiant sans erreur
@@ -225,7 +263,7 @@ namespace PAGE.Vue.Ecran
                 MessageBox.Show("Le champ Groupe ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 saisiCorrect = false;
             }
-            else if (string.IsNullOrWhiteSpace(txtRegime.Text))
+            else if (comboBoxRegime.SelectedIndex == -1)
             {
                 MessageBox.Show("Le champ Régime ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 saisiCorrect = false;
@@ -356,6 +394,8 @@ namespace PAGE.Vue.Ecran
             // Active l'édition de la date de naissance
             txtDateNaissance2.IsEnabled = true;
 
+            // Active l'édition de la combobox de regime
+            comboBoxRegime.IsEnabled = true;
         }
 
         /// <summary>
@@ -399,6 +439,8 @@ namespace PAGE.Vue.Ecran
             // Rend la date de naissance en lecture seule
             txtDateNaissance2.IsEnabled = false;
 
+            //rend la combobox de regime en lecture seule
+            comboBoxRegime.IsEnabled = false;
         }
 
         #region affichage trie note
