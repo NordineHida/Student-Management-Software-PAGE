@@ -25,7 +25,7 @@ namespace PAGE.Vue.Ecran
             //NOM Prenom
             this.Nom = etu.Nom.ToUpper();
             this.Prenom = char.ToUpper(etu.Prenom[0]) + etu.Prenom.Substring(1).ToLower();
-            this.Groupe = etu.Groupe;
+            this.Groupe = etu.Groupe.ToString();
 
         }
     }

@@ -186,14 +186,14 @@ namespace PAGE.Vue.Ecran
         {
             bool valide = true;
 
-            if (note.Categorie == "")
+            if (note.Categorie == null)
             {
                 valide = false;
                 PopUp popUp = new PopUp("Création", "Veuillez choisir une catégorie", TYPEICON.ERREUR);
                 popUp.ShowDialog();
             }
 
-            else if (note.Nature == "")
+            else if (note.Nature == null)
             {
                 valide = false; 
                 PopUp popUp = new PopUp("Création", "Veuillez choisir une nature", TYPEICON.ERREUR);
