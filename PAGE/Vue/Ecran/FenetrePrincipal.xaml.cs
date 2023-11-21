@@ -1,6 +1,8 @@
-﻿using Microsoft.Win32;
-using PAGE.APIEtudiant.Stockage;
+﻿using DocumentFormat.OpenXml.ExtendedProperties;
+using Microsoft.Win32;
 using PAGE.Model;
+using PAGE.Model.PatternObserveur;
+using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,16 +10,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace PAGE.Vue.Ecran
 {
     /// <summary>
     /// Logique d'interaction pour FenetrePrincipal.xaml
     /// </summary>
-    public partial class FenetrePrincipal : Window
+    public partial class FenetrePrincipal : Window, IObservateur
     {
         private UIElement initialContent;
+        private Etudiants etudiants;
 
         /// <summary>
         /// Initialise la fenetre principal
@@ -40,28 +45,6 @@ namespace PAGE.Vue.Ecran
         /// <param name="e"></param>
         /// <author>Stéphane</author>
         private bool isSortAscending = true;
-
-
-        /// <summary>
-        /// Ouvre la page de Création de note
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Laszlo</author>
-        private void OpenCreationNote(object sender, RoutedEventArgs e)
-        {
-            if (maListView.SelectedItem != null)
-            {
-                // Obtenez l'étudiant sélectionné dans la ListView
-                Etudiant etudiantSelectionne = maListView.SelectedItem as Etudiant;
-                if (etudiantSelectionne != null)
-                {
-                    Note note = new Note("", DateTime.Now, "", "", etudiantSelectionne.NumApogee);
-                    CreationNote creationNote = new CreationNote(note);
-                    creationNote.Show();
-                }
-            }
-        }
 
         #region trie 
 
@@ -103,7 +86,6 @@ namespace PAGE.Vue.Ecran
 
             // Ajouter une nouvelle description de tri à la liste 
             maListView.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
-
         }
 
         /// <summary>
@@ -204,14 +186,18 @@ namespace PAGE.Vue.Ecran
             maListView.Items.Clear();
 
             //On récupere l'ensemble des étudiants via l'API
-            List<Etudiant> etudiants = (await EtuDAO.Instance.GetAllEtu()).ToList();
+            EtuDAO dao = new EtuDAO();
+            this.etudiants = new Etudiants((List<Etudiant>)await dao.GetAllEtu());
 
-            foreach (Etudiant etu in etudiants)
+            foreach (Etudiant etu in etudiants.ListeEtu)
             {
                 //Si l'étudiant est pas déjà dans la liste on l'y ajoute
                 if (!maListView.Items.Contains(etu))
                     maListView.Items.Add(etu);
             }
+
+            //On enregistre cette fenetre comme observeur des notes
+            etudiants.Register(this);
         }
 
 
@@ -227,7 +213,11 @@ namespace PAGE.Vue.Ecran
 
             this.Close();
         }
-
+        /// <summary>
+        /// Ouvre la fenêtre des paramètres
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenParametresPage(object sender, RoutedEventArgs e)
         {
             ParametrePage parametre = new ParametrePage();
@@ -259,7 +249,8 @@ namespace PAGE.Vue.Ecran
 
                 // Appelez la méthode GetEtudiants avec le chemin du fichier
                 LecteurExcel lc = new LecteurExcel();
-                EtuDAO.Instance.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
+                EtuDAO dao = new EtuDAO();
+                dao.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
             }
 
             //On actualise l'affichage
@@ -275,9 +266,6 @@ namespace PAGE.Vue.Ecran
         private void BoutonActualiserListeEtudiant(object sender, RoutedEventArgs e)
         {
             ActualiserEtudiant();
-
-            //On ouvre une pop-up pour indiquer qu'on a bien actualiser
-            MessageBox.Show("Vous avez bien actualisé", "Actualisation avec succès", MessageBoxButton.OK);
         }
 
         /// <summary>
@@ -317,10 +305,38 @@ namespace PAGE.Vue.Ecran
                 if (etudiantSelectionne != null)
                 {
                     // Créez une instance de la fenêtre InformationsSupplementaires en passant l'étudiant sélectionné en paramètre
-                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne);
+                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne,etudiants);
                     informationsSupplementaires.Show();
                 }
             }
+        }
+
+        /// <summary>
+        /// Ouvre la fenêtre pour créer un étudiant
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void BoutonCreerEtudiant(object sender, RoutedEventArgs e)
+        {
+            if (etudiants != null)
+            {
+                FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant(etudiants);
+                fenetreCreerEtudiant.Show();
+            }
+            else
+            {
+                PopUp popUp = new PopUp("Création", "Veuillez attendre la fin du chargement des étudiants", TYPEICON.INFORMATION);
+                popUp.ShowDialog();
+            }
+            
+        }
+
+        public async void Notifier(string Message)
+        {
+            await Task.Delay(1000);
+
+            ChargementDiffere();
         }
     }
 }

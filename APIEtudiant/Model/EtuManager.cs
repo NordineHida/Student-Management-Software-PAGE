@@ -37,7 +37,7 @@ namespace APIEtudiant.Model
         #endregion
 
         //DAO d'étudiant (Permet de changer directement tout les DAO)
-        private IEtuDAO EtuDAO => EtudiantDAOOracle.Instance;
+        private IEtuDAO EtuDAO => new EtudiantDAOOracle();
 
         /// <summary>
         /// Renvoi tout les étudiants
@@ -69,6 +69,16 @@ namespace APIEtudiant.Model
         public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu)
         {
             return EtuDAO.AddSeveralEtu(listeEtu);
+        }
+
+        /// <summary>
+        /// Ajout un étudiant a la BDD s'il n'existe PAS et renvoi true, sinon renvoi false
+        /// </summary>
+        /// <param name="etu">etudiant à ajouté</param>
+        /// <returns>si l'ajout est un succès</returns>
+        public bool CreateEtu(Etudiant etu)
+        {
+            return EtuDAO.CreateEtu(etu);
         }
 
 

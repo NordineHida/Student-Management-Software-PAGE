@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -12,28 +12,10 @@ namespace APIEtudiant.Stockage
     public class EtudiantDAOOracle : IEtuDAO
     {
 
-        #region Singleton
-        private static EtudiantDAOOracle instance;
-
-        /// <summary>
-        /// Seul instance de DAO d'étudiant 
-        /// </summary>
-        /// <author>Nordine</author>
-        public static EtudiantDAOOracle Instance
-        {
-            get
-            {
-                if (instance == null) instance = new EtudiantDAOOracle();
-                return instance;
-            }
-        }
-
-        private EtudiantDAOOracle()
+        public EtudiantDAOOracle()
         {
 
         }
-        #endregion
-
 
         /// <summary>
         /// Renvoi tout les étudiants de la BDD Oracle
@@ -79,11 +61,62 @@ namespace APIEtudiant.Stockage
                     string groupe = reader.GetString(reader.GetOrdinal("groupe"));
                     bool estBoursier = reader.GetString(reader.GetOrdinal("estBoursier")) == "OUI"; // Convertir en booléen
                     string regimeFormation = reader.GetString(reader.GetOrdinal("regimeFormation"));
-                    DateTime dateNaissance = reader.GetDateTime(reader.GetOrdinal("dateNaissance"));
-                    string login = reader.GetString(reader.GetOrdinal("login"));
-                    long telFixe = reader.GetInt64(reader.GetOrdinal("telFixe"));
-                    long telPortable = reader.GetInt32(reader.GetOrdinal("telPortable"));
-                    string adresse = reader.GetString(reader.GetOrdinal("adresse"));
+
+                    //champs complémentaire dont on vérifier s'il existe avant de les affecters
+                    DateTime dateNaissance;
+                    if (!reader.IsDBNull(reader.GetOrdinal("dateNaissance")))
+                    {
+                        dateNaissance = reader.GetDateTime(reader.GetOrdinal("dateNaissance"));
+                    }
+                    else
+                    {
+                        // Gestion du cas où dateNaissance est NULL dans la base de données
+                        dateNaissance = DateTime.MinValue; // ou une autre valeur par défaut
+                    }
+
+                    string login;
+                    if (!reader.IsDBNull(reader.GetOrdinal("login")))
+                    {
+                        login = reader.GetString(reader.GetOrdinal("login"));
+                    }
+                    else
+                    {
+                        // Gestion du cas où login est NULL dans la base de données
+                        login = string.Empty; // ou une autre valeur par défaut
+                    }
+
+                    long telFixe;
+                    if (!reader.IsDBNull(reader.GetOrdinal("telFixe")))
+                    {
+                        telFixe = reader.GetInt64(reader.GetOrdinal("telFixe"));
+                    }
+                    else
+                    {
+                        // Gestion du cas où telFixe est NULL dans la base de données
+                        telFixe = 0; // ou une autre valeur par défaut
+                    }
+
+                    long telPortable;
+                    if (!reader.IsDBNull(reader.GetOrdinal("telPortable")))
+                    {
+                        telPortable = reader.GetInt32(reader.GetOrdinal("telPortable"));
+                    }
+                    else
+                    {
+                        // Gestion du cas où telPortable est NULL dans la base de données
+                        telPortable = 0; // ou une autre valeur par défaut
+                    }
+
+                    string adresse;
+                    if (!reader.IsDBNull(reader.GetOrdinal("adresse")))
+                    {
+                        adresse = reader.GetString(reader.GetOrdinal("adresse"));
+                    }
+                    else
+                    {
+                        // Gestion du cas où adresse est NULL dans la base de données
+                        adresse = string.Empty; // ou une autre valeur par défaut
+                    }
 
                     // Création de l'objet Etudiant en utilisant les variables
                     Etudiant etudiant = new Etudiant(
@@ -102,6 +135,7 @@ namespace APIEtudiant.Stockage
                         (int)telPortable,
                         adresse
                     );
+
 
                     etudiants.Add(etudiant);
                 }
@@ -130,83 +164,234 @@ namespace APIEtudiant.Stockage
 
         }
 
-
         /// <summary>
-        /// Essaye d'ajouter un nouvel etudiant et renvoi si on a réussi
+        /// Ajoute un nouvelle étudiant (ou le modifie s'il existe déjà)
         /// </summary>
         /// <param name="etu">etudiant qu'on veut ajouter</param>
         /// <returns>si l'ajout est un succes</returns>
         /// <author>Nordine</author>
-        public bool AddEtu(Etudiant? etu)
+        public bool AddEtu(Etudiant etu)
         {
             bool ajoutReussi = false;
+
             if (etu != null)
             {
-                // Création d'une connexion Oracle
-                Connection con = new Connection();
-
-                try
+                //Si l'étudiant existe
+                if (IsEtudiantExist(etu))
                 {
-
-
-                    //On adapte l'énumeration du sexe de l'étudiant 
-                    string etuSexe;
-                    switch (etu.Sexe)
-                    {
-                        case SEXE.FEMININ:
-                            etuSexe = "F";
-                            break;
-                        case SEXE.MASCULIN:
-                            etuSexe = "M";
-                            break;
-                        default:
-                            etuSexe = "A";
-                            break;
-                    }
-
-                    //On adapte le booleen estBoursier pour avoir "OUI" pour true et "NON" pour false
-                    string estBoursier;
-                    if (etu.EstBoursier) estBoursier = "OUI";
-                    else estBoursier = "NON";
-
-                    // On créer la requête SQL
-                    string requete = String.Format("INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login)" +
-                        "VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', TO_DATE('{9}', 'YYYY-MM-DD'), '{10}', {11}, {12}, '{13}')",etu.NumApogee,etu.Nom,etu.Prenom,etuSexe,etu.TypeBac, etu.Mail, etu.Groupe
-                        , estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"), etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
-
-                    //On execute la requete
-                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
-
-
-                    //On verifie que la ligne est bien inséré, si oui on passe le bool à true
-                    if (cmd.ExecuteNonQuery() == 1)
-                    {
-                        ajoutReussi = true;
-                    }
+                    //on le modifie
+                    ajoutReussi = ModifierEtudiant(etu);
                 }
-                // Gestion des exceptions
-                catch (OracleException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                finally
-                {
-                    try
-                    {
-                        if (con != null)
-                        {
-                            con.Close();
-                        }
-                    }
-                    catch (OracleException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+                //sinon on le créer
+                else
+                {   
+                    ajoutReussi = CreerEtudiant(etu);
                 }
             }
             return ajoutReussi;
         }
 
+        /// <summary>
+        /// Ajout un étudiant a la BDD s'il n'existe PAS et renvoi true, sinon renvoi false
+        /// </summary>
+        /// <param name="etu">etudiant à ajouté</param>
+        /// <returns>si l'ajout est un succès</returns>
+        public bool CreateEtu(Etudiant etu)
+        {
+            bool ajoutReussi = false;
+
+            if (etu != null)
+            {
+                //Si l'étudiant existe pas on le créer
+                if (!IsEtudiantExist(etu))
+                {
+                    ajoutReussi = CreerEtudiant(etu);
+                }
+
+            }
+            return ajoutReussi;
+        }
+
+        /// <summary>
+        /// Renvoi le string equivalent au sexe de l'étudiant
+        /// </summary>
+        /// <param name="etu">etudiant dont on veut le sexe</param>
+        /// <returns>string equivalent au sexe de l'étudiant</returns>
+        /// <author>Nordine</author>
+        private string getSexeString(Etudiant etu)
+        {
+  
+            string etuSexe;
+            switch (etu.Sexe)
+            {
+                case SEXE.FEMININ:
+                    etuSexe = "F";
+                    break;
+                case SEXE.MASCULIN:
+                    etuSexe = "M";
+                    break;
+                default:
+                    etuSexe = "A";
+                    break;
+            }
+            return etuSexe;
+        }
+
+        /// <summary>
+        /// Modifie l'étudiant existant
+        /// </summary>
+        /// <param name="etu">etudiant à modifier</param>
+        /// <returns>si la modification est un succès</returns>
+        /// <author>Nordine</author>
+        private bool ModifierEtudiant(Etudiant etu)
+        {
+            bool ajoutReussi = false;
+
+            // Création d'une connexion Oracle
+            Connection con = new Connection();
+
+
+            string etuSexe = getSexeString(etu);
+
+            string estBoursier = etu.EstBoursier ? "OUI" : "NON";
+
+            try
+            {
+                // L'étudiant existe déjà, nous devons effectuer une mise à jour
+                string updateQuery = string.Format(@"UPDATE Etudiant
+                                                   SET nom = '{0}', prenom = '{1}', sexe = '{2}', typeBac = '{3}', mail = '{4}', groupe = '{5}', estBoursier = '{6}', regimeFormation = '{7}', dateNaissance = TO_DATE('{8}', 'YYYY-MM-DD'), adresse = '{9}', telPortable = {10}, telFixe = {11}, login = '{12}'
+                                                   WHERE numApogee = {13}",
+                                                  etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, etu.Groupe,
+                                                  estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
+                                                  etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login, etu.NumApogee);
+
+                OracleCommand updateCmd = new OracleCommand(updateQuery, con.OracleConnexion);
+
+                if (updateCmd.ExecuteNonQuery() == 1)
+                {
+                    ajoutReussi = true;
+                }
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                try
+                {
+                    if (con != null)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return ajoutReussi;
+        }
+
+        /// <summary>
+        /// Creer un étudiant sur la bdd 
+        /// </summary>
+        /// <param name="etu">etudiant à creer</param>
+        /// <returns>si la creation est un succès</returns>
+        /// <author>Nordine</author>
+        private bool CreerEtudiant(Etudiant etu)
+        {
+
+            bool ajoutReussi = false;
+
+            // Création d'une connexion Oracle
+            Connection con = new Connection();
+
+
+            string etuSexe = getSexeString(etu);
+
+            string estBoursier = etu.EstBoursier ? "OUI" : "NON";
+
+            try
+            {
+                string insertQuery = string.Format(@"INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login)
+                                                   VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', TO_DATE('{9}', 'YYYY-MM-DD'), '{10}', {11}, {12}, '{13}')",
+                                                  etu.NumApogee, etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, etu.Groupe,
+                                                  estBoursier, etu.TypeFormation, etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
+                                                  etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
+
+                OracleCommand updateCmd = new OracleCommand(insertQuery, con.OracleConnexion);
+
+                if (updateCmd.ExecuteNonQuery() == 1)
+                {
+                    ajoutReussi = true;
+                }
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                try
+                {
+                    if (con != null)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return ajoutReussi;
+        }
+
+        /// <summary>
+        /// Renvoi si l'étudiant existe dans la bdd
+        /// </summary>
+        /// <param name="etu">etudiant à cherché</param>
+        /// <returns>si létudiant existe déjà dans la bdd</returns>
+        /// <author>Nordine</author>
+        private bool IsEtudiantExist(Etudiant etu)
+        {
+            bool etudiantExist = false;
+            // Création d'une connexion Oracle
+            Connection con = new Connection();
+            try
+            {
+                // On vérifie si un étudiant avec le même numéro d'apogée existe déjà
+                string checkIfExistsQuery = $"SELECT COUNT(*) FROM Etudiant WHERE numApogee = {etu.NumApogee}";
+                OracleCommand checkIfExistsCmd = new OracleCommand(checkIfExistsQuery, con.OracleConnexion);
+                int existingCount = Convert.ToInt32(checkIfExistsCmd.ExecuteScalar());
+                if (existingCount > 0)
+                {
+                    etudiantExist = true;
+                }
+
+            }                
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                try
+                {
+                    if (con != null)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+             
+                }
+            }
+            return etudiantExist;
+        }
 
         /// <summary>
         /// Ajoute les touts les étudiants de la liste d'étudiants
@@ -242,110 +427,6 @@ namespace APIEtudiant.Stockage
             return ajoutReussi;
         }
 
-        /// <summary>
-        /// Ajoute une note à la BDD
-        /// </summary>
-        /// <param name="note">Note à ajouter</param>
-        /// <returns>true si l'ajout est un succès</returns>
-        /// <author>Laszlo</author>
-        public bool CreateNote(Note? note)
-        {
-            bool ajoutReussi = false;
-            if (note != null)
-            {
-                // Création d'une connexion Oracle
-                Connection con = new Connection();
 
-                try
-                {
-                    // On crée la requête SQL
-                    string requete = String.Format("INSERT INTO NotePj(idNotePj,categorie,datePublication,nature,commentaire,apogeeEtudiant)" +
-                        "VALUES(0, '{0}', TO_DATE('{1}', 'YYYY-MM-DD'), '{2}', '{3}', '{4}')", note.Categorie, note.DatePublication.Date.ToString("yyyy-MM-dd"), note.Nature, note.Commentaire, note.ApogeeEtudiant);
-
-                    //On execute la requete
-                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
-
-
-                    //On verifie que la ligne est bien inséré, si oui on passe le bool à true
-                    if (cmd.ExecuteNonQuery() == 1)
-                    {
-                        ajoutReussi = true;
-                    }
-                }
-                // Gestion des exceptions
-                catch (OracleException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                finally
-                {
-                    try
-                    {
-                        if (con != null)
-                        {
-                            con.Close();
-                        }
-                    }
-                    catch (OracleException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-            }
-            return ajoutReussi;
-        }
-
-        /// <summary>
-        /// Ajoute une piece jointe à la bdd
-        /// </summary>
-        /// <param name="pj">piece jointe</param>
-        /// <returns>renvoie true si l'ajout est un succès</returns
-        /// <author>Yamato</author>
-        public bool CreatePieceJointe(PieceJointe? pieceJointe)
-        {
-            bool ajoutReussi = false;
-            if (pieceJointe != null)
-            {
-                // Création d'une connexion Oracle
-                Connection con = new Connection();
-
-                try
-                {
-                    // On crée la requête SQL
-                    string requete = String.Format("INSERT INTO PieceJointe(idPieceJointe,filePath)" +
-                        "VALUES(0, '{0}')", pieceJointe.FilePath);
-
-                    //On execute la requete
-                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
-
-                        
-                    //On verifie que la ligne est bien inséré, si oui on passe le bool à true
-                    if (cmd.ExecuteNonQuery() == 1)
-                    {
-                        ajoutReussi = true;
-                    }
-                }
-                // Gestion des exceptions
-                catch (OracleException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                finally
-                {
-                    try
-                    {
-                        if (con != null)
-                        {
-                            con.Close();
-                        }
-                    }
-                    catch (OracleException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-            }
-            return ajoutReussi;
-        }
     }
 }

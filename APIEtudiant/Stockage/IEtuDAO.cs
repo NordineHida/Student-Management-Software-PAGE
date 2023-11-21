@@ -1,9 +1,4 @@
 ﻿using APIEtudiant.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APIEtudiant.Stockage
 {
@@ -37,13 +32,6 @@ namespace APIEtudiant.Stockage
         /// <author>Nordine</author>
         public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu);
 
-        /// <summary>
-        /// Ajoute une note à la BDD
-        /// </summary>
-        /// <param name="note">Note à ajouter</param>
-        /// <returns>true si l'ajout est un succès</returns>
-        /// <author>Laszlo</author>
-        public bool CreateNote(Note note);
 
         /// <summary>
         /// Ajoute une piece jointe a la bdd
@@ -53,5 +41,10 @@ namespace APIEtudiant.Stockage
         /// <author>Yamato</author>
         public bool CreatePieceJointe(PieceJointe pieceJointe);
 
+        /// Ajout un étudiant a la BDD s'il n'existe PAS et renvoi true, sinon renvoi false
+        /// </summary>
+        /// <param name="etu">etudiant à ajouté</param>
+        /// <returns>si l'ajout est un succès</returns>
+        public bool CreateEtu(Etudiant etu);
     }
 }

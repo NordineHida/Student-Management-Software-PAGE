@@ -1,6 +1,5 @@
-﻿using DocumentFormat.OpenXml;
-using PAGE.Model;
-using PAGE.Stockage;
+﻿using PAGE.Model;
+using PAGE.Vue.Ecran;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -9,36 +8,22 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace PAGE.APIEtudiant.Stockage
+namespace PAGE.Stockage
 {
     /// <summary>
     /// Implémentation du DAO de communication avec l'API
     /// </summary>
     /// <author>Nordine</author>
-    public class EtuDAO : IDAO
+    public class EtuDAO : IEtuDAO
     {
-
-        #region Singleton
-        private static EtuDAO instance;
-
         /// <summary>
-        /// Seul instance de DAO d'étudiant 
+        /// constructeur de dao d'étudiant
         /// </summary>
         /// <author>Nordine</author>
-        public static EtuDAO Instance
-        {
-            get
-            {
-                if (instance == null) instance = new EtuDAO();
-                return instance;
-            }
-        }
-
-        private EtuDAO()
+        public EtuDAO()
         {
 
         }
-        #endregion
 
         /// <summary>
         /// Ajoute plusieurs etudiants à la BDD
@@ -67,19 +52,55 @@ namespace PAGE.APIEtudiant.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("L'ajout est un succès", "Succès de l'importation", MessageBoxButton.OK);
-                    }
-                    else 
-                    {
-                        MessageBox.Show("L'ajout des étudiants a échoué. Code de réponse : " + response.StatusCode, "Erreur d'import", MessageBoxButton.OK, MessageBoxImage.Error);
+                        PopUp popUp = new PopUp("Importation", "Les étudiants sont ajoutés", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'appel de l'API : " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+                
             }
         }
+
+        /// <summary>
+        /// Ajoute un étudiant à la BDD
+        /// </summary>
+        /// <param name="etudiant">Etudiant à ajouté</param>
+        /// <returns></returns>
+        /// <author>Nordine</author>
+        public async Task AddEtudiant(Etudiant etudiant)
+        {
+            try
+            {
+                // Créez une instance de HttpClient
+                using (HttpClient client = new HttpClient())
+                {
+                    // Spécifiez l'URL de l'API
+                    string apiUrl = "https://localhost:7038/EtuControlleur/AddEtu";
+
+                    // Convertissez l'étudiants en JSON
+                    string etudiantSerialise = JsonSerializer.Serialize(etudiant);
+
+                    // Créez le contenu de la requête POST
+                    HttpContent content = new StringContent(etudiantSerialise, Encoding.UTF8, "application/json");
+
+                    // Effectuez la requête POST
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        PopUp popUp = new PopUp("Ajout d'étudiant", "L'étudiant à bien été ajouté", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
 
         /// <summary>
         /// Renvoi tout les étudiants
@@ -91,38 +112,31 @@ namespace PAGE.APIEtudiant.Stockage
             //Dictionnaire d'étudiant (cle = num apogee, valeur = etudiant)
             List<Etudiant> etudiants = new List<Etudiant>();
 
-            try
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
             {
-                // Créez une instance de HttpClient
-                using (HttpClient client = new HttpClient())
-                {
-                    // Spécifiez l'URL de l'API
-                    string apiUrl = "https://localhost:7038/EtuControlleur/GetAllEtu";
+                // Spécifiez l'URL de l'API
+                string apiUrl = "https://localhost:7038/EtuControlleur/GetAllEtu";
 
-                    // Effectuez la requête GET
-                    HttpResponseMessage reponse = await client.GetAsync(apiUrl);
+                // Effectuez la requête GET
+                HttpResponseMessage reponse = await client.GetAsync(apiUrl);
 
-                    //On récupere le json contenant la liste d'étudiant
-                    string reponseString = await reponse.Content.ReadAsStringAsync();
+                //On récupere le json contenant la liste d'étudiant
+                string reponseString = await reponse.Content.ReadAsStringAsync();
 
-                    //On la deserialise et on lit en IEnumerable qu'on convertit en List<Etudiant>
-                    etudiants = JsonSerializer.Deserialize<List<Etudiant>>(reponseString);
-                }
-            }
-            catch (Exception ex)
-            {
-                //PEUT ETRE PAR AFFICHER (DEMANDER CLIENT)
-                MessageBox.Show("Erreur lors de l'appel de l'API (GetAllEtu) DEMANDER CLIENT SI ON VEUT AFFICHER ERReur: " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+                //On la deserialise et on lit en IEnumerable qu'on convertit en List<Etudiant>
+                etudiants = JsonSerializer.Deserialize<List<Etudiant>>(reponseString);
             }
             return etudiants;
         }
 
         /// <summary>
-        /// Crée une note et l'ajoute à la BDD
+        /// Ajout un étudiant a la BDD s'il n'existe PAS
         /// </summary>
-        /// <param name="note">note crée</param>
-        /// <returns>la tache qu'est d'ajouter la note à la BDD</returns>
-        public async Task CreateNote(Note note)
+        /// <param name="etu">etudiant à ajouté</param>
+        /// <returns></returns>
+        /// <author>Nordine</author>
+        public async Task CreateEtu(Etudiant etudiant)
         {
             try
             {
@@ -130,30 +144,33 @@ namespace PAGE.APIEtudiant.Stockage
                 using (HttpClient client = new HttpClient())
                 {
                     // Spécifiez l'URL de l'API
-                    string apiUrl = "https://localhost:7038/Note/CreateNote";
+                    string apiUrl = "https://localhost:7038/EtuControlleur/CreateEtu";
 
-                    // Convertissez la note en JSON
-                    string noteSerialise = JsonSerializer.Serialize(note);
+                    // Convertissez l'étudiants en JSON
+                    string etudiantSerialise = JsonSerializer.Serialize(etudiant);
 
                     // Créez le contenu de la requête POST
-                    HttpContent content = new StringContent(noteSerialise, Encoding.UTF8, "application/json");
+                    HttpContent content = new StringContent(etudiantSerialise, Encoding.UTF8, "application/json");
 
                     // Effectuez la requête POST
                     HttpResponseMessage response = await client.PostAsync(apiUrl, content);
 
+
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("L'ajout est un succès", "Succès de l'importation", MessageBoxButton.OK);
+                        PopUp popUp = new PopUp("Ajout d'étudiant", "L'étudiant à bien été crée", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
                     }
-                    else
+                    else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                     {
-                        MessageBox.Show("L'ajout de la note a échoué. Code de réponse : " + response.StatusCode, "Erreur d'import", MessageBoxButton.OK, MessageBoxImage.Error);
+                        PopUp popUp = new PopUp("Ajout d'étudiant", "Le numéro apogée existe déjà", TYPEICON.ERREUR);
+                        popUp.ShowDialog();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'appel de l'API : " + ex.Message, "Erreur avec l'API", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
         }
 
@@ -199,3 +216,4 @@ namespace PAGE.APIEtudiant.Stockage
         }
     }
 }
+                                                          

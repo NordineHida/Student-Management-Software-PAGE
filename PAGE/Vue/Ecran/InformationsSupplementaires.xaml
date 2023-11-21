@@ -7,36 +7,36 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-        Title="InformationsSupplementaires" Height="1000" Width="1500">
+        Title="{DynamicResource TitreFenetreInformationsSupplementaires}" Height="1000" Width="1500">
 
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
     </Window.Background>
 
-    <Grid>
+    <Grid x:Name="GridInfoSupp">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="145*" />
             <!-- Première ligne pour le logo -->
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="289*" />
             <!-- Troisième ligne pour la liste des étudiants -->
         </Grid.RowDefinitions>
 
@@ -50,82 +50,160 @@
 
         <Rectangle Stretch="UniformToFill" Fill="White" Stroke="Black" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="59" />
 
-        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="260" Margin="0,40,0,0" Grid.RowSpan="25"  />
+        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Height="177" Width="183" Margin="0,10,0,0" Grid.RowSpan="7"  />
 
         <!-- Informations Importantes -->
 
         <!-- Nom et Prenom (Nordine & Yamato) -->
-        <TextBlock Text="Nom : " HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="1" />
-        <TextBlock x:Name="txtName" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="3" />
+        <TextBlock Text="{DynamicResource Nom:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" x:Name="txtName" HorizontalAlignment="Left" FontSize="15" Grid.Row="1" Grid.Column="2" BorderThickness="0" Margin="0,1,0,25" Grid.RowSpan="2"/>
 
-        <TextBlock Text="Prénom : " HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="1" />
-        <TextBlock x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="3" />
+        <TextBlock Text="{DynamicResource Prenom:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="15" Grid.Row="3" Grid.Column="3" BorderThickness="0" />
 
-        <TextBlock Text="NumApogee : " HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="1" />
-        <TextBlock x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="3" />
+        <TextBlock Text="{DynamicResource NumApogee:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="15" Grid.Row="5" Grid.Column="3" BorderThickness="0"/>
 
-        <TextBlock Text="Groupe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="1" />
-        <TextBlock x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="3" />
+        <TextBlock Text="{DynamicResource Groupe:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="15" Grid.Row="7" Grid.Column="3" BorderThickness="0"/>
 
-        <TextBlock Text="Adresse mail : " HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="1" />
-        <TextBlock x:Name="txtMail" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="3" />
+        <TextBlock Text="{DynamicResource Mail:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" x:Name="txtMail" HorizontalAlignment="Left" FontSize="15" Grid.Row="9" Grid.Column="3" BorderThickness="0"/>
 
         <!-- Sexe (Nordine & Yamato)-->
-        <TextBlock Text="Sexe : " HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="1" />
-        <TextBlock x:Name="txtSexe" HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="3" />
+        <TextBlock Text="{DynamicResource Sexe:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="1" />
+        <WrapPanel Grid.Row="11" Grid.Column="3" x:Name="RadioSexe">
+            <RadioButton GroupName="sexeRadio" x:Name="radioHomme" Margin="20,0,0,0" IsEnabled="False" Checked="radioHomme_Checked" Content="{DynamicResource CateSexeH}" ></RadioButton>
+            <RadioButton GroupName="sexeRadio" x:Name="radioFemme" Margin="20,0,0,0" IsEnabled="False" Checked="radioFemme_Checked" Content="{DynamicResource CateSexeF}"></RadioButton>
+            <RadioButton GroupName="sexeRadio" x:Name="radioAutre" Margin="20,0,0,0" IsEnabled="False" Checked="radioAutre_Checked" Content="{DynamicResource CateSexeA}"></RadioButton>
+        </WrapPanel>
+
 
         <!-- Type de bac obtenu (Nordine & Yamato) -->
-        <TextBlock Text="Bac obtenu : " HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="1" />
-        <TextBlock x:Name="txtTypebac" HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="3" />
+        <TextBlock Text="{DynamicResource Bac:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" x:Name="txtTypebac" HorizontalAlignment="Left" FontSize="15" Grid.Row="13" Grid.Column="3" BorderThickness="0"/>
 
         <!-- Statut (Boursier ou non)  (Nordine & Yamato)-->
-        <TextBlock Text="Boursier : " HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="1" />
-        <TextBlock x:Name="txtBoursier" HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="3" />
+        <TextBlock Text="{DynamicResource Boursier:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="1" />
+        <WrapPanel Grid.Row="15" Grid.Column="3" x:Name="RadioBoursier">
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierTrue" Margin="20,0,0,0" IsEnabled="False" Checked="radioBoursierTrue_Checked" Content="{DynamicResource Oui}" ></RadioButton>
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierFalse" Margin="20,0,0,0" IsEnabled="False" Checked="radioBoursierFalse_Checked" Content="{DynamicResource Non}"></RadioButton>
+        </WrapPanel>
 
         <!-- Régime de formation (Nordine & Yamato)-->
-        <TextBlock Text="Régime : " HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
-        <TextBlock x:Name="txtRegime" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="3" />
+        <TextBlock Text="{DynamicResource Regime:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" x:Name="txtRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" BorderThickness="0"/>
 
         <!-- Informations Complémentaires (Nordine & Yamato) -->
 
-        <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato)-->
-        <Button Content="Afficher les informations complémentaires" Click="InfosComp_Click" Margin="20,0,20,0" Grid.Row="18" />
+        <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato & Lucas)-->
+        <Button x:Name="BoutonInfoComp" FontSize="14" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAffiInfoComp}" Click="InfosComp_Click" Margin="20,10,20,0" Grid.Row="15" Grid.RowSpan="2" />
 
+        <!-- Bouton pour cacher les informations complémentaires (Lucas)-->
+        <Button x:Name="BoutonCacherInfoComp" FontSize="14" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCacherInfoComp}" Click="HideInfosComp_Click" Margin="20,10,20,0" Grid.Row="15" Grid.RowSpan="2" Visibility="Collapsed"/>
         
+        <!-- Bouton "Modifier" (lucas) -->
+        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnModifInfos}" Click="Modifier_Click" Margin="20,0,20,2" Grid.Row="13" Grid.RowSpan="2" />
+
+        <!-- Bouton "Valider" pour sauvegarder les modifications (Lucas) -->
+        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}" x:Name="BoutonValider" Click="Valider_Click" Margin="20,20,20,0" Grid.Row="17" Visibility="Collapsed" Grid.RowSpan="2" />
+
+        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCreerNote}" x:Name="BoutonCreernote" Click="Creer_Click"  Margin="20,14,20,15" Grid.RowSpan="3" Grid.Row="10"/>
+
+
         <StackPanel x:Name="contInfosComp" Visibility="Collapsed" Orientation="Vertical" Grid.RowSpan="2" Grid.Row="19"  Grid.Column="1"  Grid.ColumnSpan="2">
 
             <!-- Date de naissance -->
             <WrapPanel>
-                <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="Date de naissance : " Margin="0,20,0,0" />
-                <TextBlock x:Name="txtDateNaissance2" FontSize="20" Margin="30,20,0,0"/>
+                <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="{DynamicResource Birth}" Margin="0,20,0,0" />
+                <DatePicker FontSize="20" IsEnabled="False" x:Name="txtDateNaissance2" SelectedDateFormat="Short" Margin="30,20,0,0"></DatePicker>
             </WrapPanel>
 
 
-                <!-- Adresse de résidence -->
+            <!-- Adresse de résidence -->
             <WrapPanel>
-                <TextBlock x:Name="txtAdresse1" FontSize="20" Text="Adresse de résidence : " Margin="0,20,0,0"/>
-                <TextBlock x:Name="txtAdresse2" FontSize="20" Margin="30,20,0,0"  />
+                <TextBlock x:Name="txtAdresse1" FontSize="20" Text="{DynamicResource Adresse}" Margin="0,20,0,0"/>
+                <TextBox Width="425" IsReadOnly="True" x:Name="txtAdresse2" FontSize="15" Margin="30,20,0,0" MaxWidth="425" TextWrapping="NoWrap" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Téléphone fixe -->
             <WrapPanel>
-                <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="Téléphone fixe : " Margin="0,20,0,0" />
-                <TextBlock x:Name="txtTelFixe2" FontSize="20"  Margin="30,20,0,0"/>
+                <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="{DynamicResource TelFixe}" Margin="0,20,0,0" />
+                <TextBox Width="425" IsReadOnly="True" x:Name="txtTelFixe2" FontSize="15"  Margin="30,20,0,0" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Téléphone portable -->
             <WrapPanel>
-                <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="Téléphone portable : " Margin="0,20,0,0"/>
-                <TextBlock x:Name="txtTelPortable2" FontSize="20"  Margin="30,20,0,0" />
+                <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="{DynamicResource TelPort}" Margin="0,20,0,0"/>
+                <TextBox Width="425" IsReadOnly="True" x:Name="txtTelPortable2" FontSize="15"  Margin="30,20,0,0" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Login réseau -->
             <WrapPanel>
-                <TextBlock x:Name="txtLogin1" FontSize="20" Text="Login réseau : " Margin="0,20,0,0" />
-                <TextBlock x:Name="txtLogin2" FontSize="20" Margin="30,20,0,0"  />
+                <TextBlock x:Name="txtLogin1" FontSize="20" Text="{DynamicResource LoginRes}" Margin="0,20,0,0" />
+                <TextBox Width="425" IsReadOnly="True" x:Name="txtLogin2" FontSize="15" Margin="30,20,0,0" BorderThickness="0" />
             </WrapPanel>
-            
+
         </StackPanel>
+
+        <!-- Liste des étudiants (stephane & Laszlo) -->
+        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="9"  MouseDoubleClick="maListView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Categorie}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader  Click="Trie_ClickNote" Tag="Categorie" Content="{DynamicResource ComboboxCate}"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding DatePublication, StringFormat=d, ConverterCulture=fr}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Click="Trie_ClickNote" Tag="Date" Content="{DynamicResource CateDate}"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Nature }">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Click="Trie_ClickNote" Tag="Nature" Content="{DynamicResource TextNature}"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="190" DisplayMemberBinding="{Binding Commentaire }">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Click="Trie_ClickNote" Tag="Commentaire" Content="{DynamicResource CateCommentaire}"></GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+
+            <ListView.Resources>
+                <ContextMenu x:Key="ItemContextMenu">
+                    <MenuItem Header="{DynamicResource HeaderSupprNote}" Click="DeleteNote"/>
+                </ContextMenu>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" >
+                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+        <!-- LCombox et checkbox (stephane) -->
+        <CheckBox x:Name="ConfidentielCheckBox" Content="{DynamicResource ComboboxConf}" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="30" Width="140" Grid.Column="2" Margin="0,14,0,0" Grid.RowSpan="2" Checked="ConfidentielCheckBox_Checked" Unchecked="ConfidentielCheckBox_Unchecked" />
+        <ComboBox x:Name="ConfidentielCombobox" SelectionChanged="ConfidentielCombobox_SelectionChanged" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="30" Width="150" Grid.Column="2" Margin="0,14,0,0" Grid.RowSpan="2" Visibility="Hidden">
+            <ComboBoxItem Content="{DynamicResource CateMedical}"/>
+            <ComboBoxItem Content="{DynamicResource CateConf}"/>
+            <ComboBoxItem Content="{DynamicResource CateInterne}"/>
+            <ComboBoxItem Content="{DynamicResource CatePublic}"/>
+        </ComboBox>
+        <CheckBox x:Name="CategorieCheckBox" Content="{DynamicResource ComboboxCate}" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="30" Width="120" Grid.Column="2" Margin="714,13,0,0" Grid.RowSpan="2" Checked="CategorieCheckBox_Checked" Unchecked="CategorieCheckBox_Unchecked" />
+        <ComboBox x:Name="CategorieCombobox" SelectionChanged="CategorieCombobox_SelectionChanged" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="30" Width="150" Grid.Column="2" Margin="714,13,0,0" Grid.RowSpan="2" Visibility="Hidden">
+            <ComboBoxItem Content="{DynamicResource CateAbsenteisme}"/>
+            <ComboBoxItem Content="{DynamicResource CatePersonnel}"/>
+            <ComboBoxItem Content="{DynamicResource CateResultats}"/>
+            <ComboBoxItem Content="{DynamicResource CateOrientation}"/>
+            <ComboBoxItem Content="{DynamicResource CateMedical}"/>
+            <ComboBoxItem Content="{DynamicResource CateAutre}"/>
+        </ComboBox>
+
+
     </Grid>
 
 </Window>

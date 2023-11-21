@@ -13,6 +13,9 @@
     <Compile Update="Vue\Ecran\CreationNote.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\FenetreCreerEtudiant.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\FenetrePrincipal.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -23,6 +26,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\ParametrePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\PopUp.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\MainWindow.xaml.cs">
@@ -36,6 +42,9 @@
     <Page Update="Vue\Ecran\CreationNote.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Vue\Ecran\FenetreCreerEtudiant.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\FenetrePrincipal.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -46,6 +55,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\ParametrePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\PopUp.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\MainWindow.xaml">

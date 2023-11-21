@@ -9,10 +9,10 @@ namespace PAGE.Stockage
 {
 
     /// <summary>
-    /// Interface de DAO entre le client et l'API
+    /// Interface de DAO pour les etudiant entre le client et l'API 
     /// </summary>
     /// <author>Nordine</author>
-    public interface IDAO
+    public interface IEtuDAO
     {
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace PAGE.Stockage
         public Task<IEnumerable<Etudiant>> GetAllEtu();
 
         /// <summary>
-        /// Ajoute une note à la BDD
+        /// Ajoute un étudiant ou le modifie s'il existe deja
         /// </summary>
         /// <param name="note">Note à ajouter</param>
         /// <returns>true si l'ajout est un succès</returns>
@@ -45,6 +45,21 @@ namespace PAGE.Stockage
         /// <returns>true si l'ajout est un succès</returns>
         /// <author>Yamato</author>
         public Task CreatePieceJointe(PieceJointe pieceJointe);
+        
+        /// <param name="etudiant">étudiant à ajouter</param>
+        /// <returns></returns>
+        /// <author>Nordine</author>
+        public Task AddEtudiant(Etudiant etudiant);
+
+        /// <summary>
+        /// Ajout un étudiant a la BDD s'il n'existe PAS
+        /// </summary>
+        /// <param name="etu">etudiant à ajouté</param>
+        /// <returns></returns>
+        /// <author>Nordine</author>
+        public Task CreateEtu(Etudiant etu);
+
+
     }
 }
 

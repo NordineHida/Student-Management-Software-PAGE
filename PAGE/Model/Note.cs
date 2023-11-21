@@ -11,10 +11,11 @@ namespace PAGE.Model
     /// <summary>
     /// les notes écrites par les différents acteurs de l'application à propos des étudiants
     /// </summary>
+    /// <author>Laszlo/nordine</author>
     public class Note
     {
         #region attributs
-        private int idNote;
+        private int idNote=0;
         private string categorie;
         private DateTime datePublication;
         private string nature;
@@ -24,7 +25,14 @@ namespace PAGE.Model
         #endregion
 
         #region Propriétés
+
+        /// <summary>
+        /// Récupère ou définit l'id de la note. (par défaut 0)
+        /// </summary>
+        /// <author>Nordine</author>
         public int IdNote { get { return idNote; } set { idNote = value; } }
+
+
         /// <summary>
         /// Récupère ou définit la catégorie de la note.
         /// </summary>
@@ -63,7 +71,6 @@ namespace PAGE.Model
         /// <summary>
         /// Constructeur de Notes   
         /// </summary>
-        /// <param name="idNote">L'identifiant de la note (10 caractères max)</param>
         /// <param name="categorie">catégorie de la note (50 caractères maximum)</param>
         /// <param name="datePublication">date de publication de la note</param>
         /// <param name="nature">Nature de la note (50 caractères maximum)</param>
@@ -79,15 +86,6 @@ namespace PAGE.Model
             this.apogeeEtudiant = apogeeEtudiant;
         }
 
-        /// <summary>
-        /// Renvoie une chaine de caractères correspondant à la note
-        /// </summary>
-        /// <returns>la catégorie, la date, la nature et le commentaire inscrits de la note</returns>
-        /// <author>Laszlo</author>
-        public override string ToString()
-        {
-            return String.Format("Catégorie : {0}, Date : {1}, Nature : {2}, Commentaire : {3} ", this.categorie, this.datePublication.ToString(), this.nature, this.commentaire);
-        }
         #endregion 
     }
 }

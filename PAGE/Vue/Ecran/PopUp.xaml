@@ -1,0 +1,39 @@
+﻿<Window x:Class="PAGE.Vue.Ecran.PopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PAGE.Vue.Ecran"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="" Height="200" Width="300"
+        ResizeMode="NoResize">
+
+    <!--Fond (Yamato)-->
+    <Window.Background>
+        <SolidColorBrush Color="#bfd7eb" />
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Image d'information de la message box -->
+        <Image x:Name="imgPicto" Height="40" Width="40" Grid.Row="1" Grid.Column="1"/>
+
+        <!-- Information de la message box -->
+        <TextBlock x:Name="txtMessage" Height="Auto" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" Margin="20" TextWrapping="Wrap"/>
+
+        <!-- Bouton Ok-->
+        <Button Click="OkClick" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Ok" FontSize="15" Margin="0,0,20,0" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Height="30" Width="75"/>
+    </Grid>
+</Window>

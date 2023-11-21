@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="CreationNote" Height="650" Width="800">
+        ResizeMode="NoResize"
+        Title="{DynamicResource TitreCreanote}" Height="600" Width="820">
     <!--auteur : Laszlo-->
 
     <!-- Change la couleur de fond de la page-->
@@ -17,6 +18,7 @@
     <Grid Margin="5,0,-5,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="3*"/>
@@ -32,41 +34,55 @@
         </Grid.ColumnDefinitions>
 
         <!-- Titre de la page -->
-        <Label Grid.Column="1" Content="Création de Note" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29" Foreground="#2B2B5A"/>
+        <Label x:Name="Titre" Grid.Column="1" Content="{DynamicResource TitreCreanote}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29" Foreground="#2B2B5A"/>
 
         <!-- Combobox gérant la confidentialité -->
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
-        <Label Grid.Column="1" Content="Confidentialité : " HorizontalAlignment="Left" Margin="93,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
+        <Label Grid.Column="1" Content="{DynamicResource ComboboxConf}" HorizontalAlignment="Left" Margin="93,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
         <ComboBox x:Name="ComboBoxConfidentialite" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" Background="#FF3DA79D">
-            <ComboBoxItem Content="Médical"/>
-            <ComboBoxItem Content="Confidentiel"/>
-            <ComboBoxItem Content="Interne"/>
-            <ComboBoxItem Content="Public"/>
+            <ComboBoxItem Content="{DynamicResource CateMedical}"/>
+            <ComboBoxItem Content="{DynamicResource CateConf}"/>
+            <ComboBoxItem Content="{DynamicResource CateInterne}"/>
+            <ComboBoxItem Content="{DynamicResource CatePublic}"/>
         </ComboBox>
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
 
         <!-- Combobox gérant la catégorie de la note -->
-        <Label Grid.Column="1" Content="Catégorie : " HorizontalAlignment="Left" Margin="100,4,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2">
-            <ComboBoxItem Content="Absentéisme"/>
-            <ComboBoxItem Content="Personnel"/>
-            <ComboBoxItem Content="Médical"/>
-            <ComboBoxItem Content="Résultats"/>
-            <ComboBoxItem Content="Orientation"/>
+        <Label Grid.Column="1" Content="{DynamicResource ComboboxCate}" HorizontalAlignment="Left" Margin="100,4,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
+        <ComboBox x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" SelectionChanged="ComboBoxCategorie_SelectionChanged">
+            <ComboBoxItem Content="{DynamicResource CateAbsenteisme}"/>
+            <ComboBoxItem Content="{DynamicResource CatePersonnel}"/>
+            <ComboBoxItem Content="{DynamicResource CateMedical}"/>
+            <ComboBoxItem Content="{DynamicResource CateResultats}"/>
+            <ComboBoxItem Content="{DynamicResource CateOrientation}"/>
+            <ComboBoxItem Content="{DynamicResource CateAutre}"/>
         </ComboBox>
 
         <!-- TextBox de la Nature de la note -->
-        <Rectangle Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="133,10,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" RadiusX="10" RadiusY="10" Grid.ColumnSpan="2"/>
-        <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="507,10,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="26" RadiusX="10" RadiusY="10"/>
-        <Label Grid.Column="1" Content="Nature : " HorizontalAlignment="Left" Margin="24,15,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="97,10,13,0" TextWrapping="Wrap" Text="{Binding Nature}" VerticalAlignment="Top" Height="37" BorderBrush="#FF3DA79D" BorderThickness="2" />
+        <Rectangle Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="88,4,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" RadiusX="10" RadiusY="10"/>
+        <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="423,4,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="26" RadiusX="10" RadiusY="10"/>
+        <Label Grid.Column="1" Content="{DynamicResource TextNature}" HorizontalAlignment="Left" Margin="113,9,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
+        <ComboBox x:Name="ComboBoxNature" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,4,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" SelectionChanged="ComboBoxNature_SelectionChanged">
+            <ComboBoxItem Content="{DynamicResource CateMail}"/>
+            <ComboBoxItem Content="{DynamicResource CateRdv}"/>
+            <ComboBoxItem Content="{DynamicResource CateLettre}"/>
+            <ComboBoxItem Content="{DynamicResource CateAppel}"/>
+            <ComboBoxItem Content="{DynamicResource CateAutre}"/>
+        </ComboBox>
+
+        <!-- Date picker de la note-->
+        <Rectangle Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="87,13,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="107" RadiusX="10" RadiusY="10"/>
+        <Label Grid.Column="1" Content="Date : " HorizontalAlignment="Left" Margin="118,18,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
+        <DatePicker x:Name="DateCreationNote" SelectedDateChanged="DateChanged" Grid.Column="1" HorizontalAlignment="Left" Margin="199,15,0,0" Grid.Row="4" VerticalAlignment="Top" Height="50"  Width="247" SelectedDateFormat="Short" FontSize="20" BorderBrush="Transparent"/>
+
 
         <!-- TextBox du commentaire de la note -->
-        <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Commentaire}" VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0"/>
-        <Rectangle Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="133,57,0,0"  Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" Grid.ColumnSpan="2" Grid.RowSpan="2" RadiusX="10" RadiusY="10"/>
-        <Label Grid.Column="1" Content="Commentaire  : " HorizontalAlignment="Left" Margin="10,62,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2"/>
+
+        <TextBox x:Name="TextCommentaire" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Commentaire}" VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0" TextChanged="TextCommentaire_TextChanged"/>
+        <Rectangle Grid.Row="4" HorizontalAlignment="Left" Height="37" Margin="0,74,0,0"  Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" Grid.RowSpan="2" RadiusX="10" RadiusY="10" Grid.Column="1"/>
+        <Label Grid.Column="1" Content="{DynamicResource CateCommentaire}" HorizontalAlignment="Left" Margin="10,78,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2"/>
 
         <!-- TextBox des pièces jointes (Yamato) -->
         <ScrollViewer Grid.Row="5" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="3" Margin="133,28,133,60" Grid.RowSpan="2">
@@ -77,9 +93,11 @@
         <Label Content="Pièces jointes : " HorizontalAlignment="Left" Margin="1,178,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2" Grid.Column="1"/>
 
         <!-- Boutons créer et annuler -->
-        <Button Grid.Column="1" Content="Créer" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="363,0,0,0"/>
-        <Button Grid.Column="1" Content="Ajouter une pièce jointe" HorizontalAlignment="Center"  Grid.Row="6" VerticalAlignment="Center" Width="140" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAjouterPJ"/>
-        <Button Grid.Column="1" Content="Annuler" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="97,0,0,0"/>
+        <Button x:Name="BoutonCreer" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0"/>
+        <Button x:Name="BoutonModifier" Grid.Column="1" Content="{DynamicResource BtnModifier}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickModify" Margin="310,0,0,0" Visibility="Collapsed"/>
+        <Button x:Name="BoutonAnnuler" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0"/>
+        <Button x:Name="BoutonValider" Grid.Column="1" Content="{DynamicResource BtnValider}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickValider" Margin="450,0,0,0" Visibility="Collapsed"/>
+
 
     </Grid>
 </Window>

@@ -39,7 +39,7 @@ namespace APIEtudiant.Controllers
 
 
         /// <summary>
-        /// Ajoute un etudiant à la BDD
+        /// Ajoute un etudiant à la BDD ou le modifie s'il existe déjà
         /// </summary>
         /// <param name="etu">etudiant à ajouter</param>
         /// <returns>si l'ajout à fonctionné</returns>
@@ -51,6 +51,24 @@ namespace APIEtudiant.Controllers
             if (etu != null)
             {
                 if (EtuManager.Instance.AddEtu(etu)) reponse = Ok();
+            }
+
+            return reponse;
+        }
+
+        /// <summary>
+        /// Ajoute un etudiant à la BDD seulement s'il n'existe PAS
+        /// </summary>
+        /// <param name="etu">etudiant à ajouter</param>
+        /// <returns>si l'ajout à fonctionné</returns>
+        /// <author>Nordine</author>
+        [HttpPost("CreateEtu")]
+        public ActionResult CreateEtu([FromBody] Etudiant? etu)
+        {
+            ActionResult reponse = BadRequest("Etudiant existe déjà");
+            if (etu != null)
+            {
+                if (EtuManager.Instance.CreateEtu(etu)) reponse = Ok();
             }
 
             return reponse;
