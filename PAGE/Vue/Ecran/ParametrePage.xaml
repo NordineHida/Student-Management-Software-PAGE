@@ -50,7 +50,7 @@
         <Label Content="{DynamicResource LabelPathGeneration}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One" />
 
         <!-- PasswordBox pour le mot de passe (Nordine) -->
-        <Button Content="{DynamicResource BtnParcourir}" Click="ChangerPathWord" Grid.Column="2" Grid.Row="2"  Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One"  FontSize="25"  Margin="0,106,0,0" HorizontalAlignment="Center" Width="186" Height="36" VerticalAlignment="Top" Grid.RowSpan="2">
+        <Button Content="{DynamicResource BtnParcourir}" Click="ChangerPathWord" Grid.Column="2" Grid.Row="2"  Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One"  FontSize="25"  Margin="0,106,0,0" HorizontalAlignment="Center" Width="186" Height="36" VerticalAlignment="Top" Grid.RowSpan="2">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -74,7 +74,7 @@
 
 
         <!--Bouton de Connexion (Nordine)-->
-        <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}"  FontSize="40" Click="ValiderParam" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20">
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}"  FontSize="40" Click="ValiderParam" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -97,7 +97,7 @@
         </Button>
 
         <!--Bouton pour annuler (Nordine)-->
-        <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="40" Click="CloseWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20">
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="40" Click="CloseWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">

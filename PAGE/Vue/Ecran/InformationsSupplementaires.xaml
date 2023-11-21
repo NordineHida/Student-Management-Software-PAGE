@@ -97,7 +97,7 @@
         <!-- Informations Complémentaires (Nordine & Yamato) -->
 
         <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato & Lucas)-->
-        <Button x:Name="BoutonInfoComp" FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAffiInfoComp}" Click="InfosComp_Click" Margin="20,29,20,0" Grid.Row="16" Grid.RowSpan="4">
+        <Button x:Name="BoutonInfoComp" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAffiInfoComp}" Click="InfosComp_Click" Margin="20,29,20,0" Grid.Row="16" Grid.RowSpan="4">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -128,7 +128,7 @@
         </Button>
 
         <!-- Bouton pour cacher les informations complémentaires (Lucas)-->
-        <Button x:Name="BoutonCacherInfoComp" FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCacherInfoComp}" Click="HideInfosComp_Click" Margin="20,29,20,0" Grid.Row="16" Grid.RowSpan="4" Visibility="Collapsed">
+        <Button x:Name="BoutonCacherInfoComp" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCacherInfoComp}" Click="HideInfosComp_Click" Margin="20,29,20,0" Grid.Row="16" Grid.RowSpan="4" Visibility="Collapsed">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -160,7 +160,7 @@
         </Button>
 
         <!-- Bouton "Modifier" (lucas) -->
-        <Button x:Name="BoutonModifier" FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnModifInfos}" Click="Modifier_Click" Margin="20,0,20,27" Grid.Row="13" Grid.RowSpan="4">
+        <Button x:Name="BoutonModifier" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnModifInfos}" Click="Modifier_Click" Margin="20,0,20,27" Grid.Row="13" Grid.RowSpan="4">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -192,7 +192,7 @@
         </Button>
 
         <!-- Bouton "Valider" pour sauvegarder les modifications (Lucas) -->
-        <Button FontSize="20" Foreground="#FF2B2B5A"  Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}" x:Name="BoutonValider" Click="Valider_Click" Margin="20,0,20,27" Grid.Row="13" Visibility="Collapsed" Grid.RowSpan="4">
+        <Button FontSize="20" Foreground="#FFFFFF"  Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}" x:Name="BoutonValider" Click="Valider_Click" Margin="20,0,20,27" Grid.Row="13" Visibility="Collapsed" Grid.RowSpan="4">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -225,7 +225,7 @@
 
         <!-- Bouton "Créer note" pour créer une note pour l'étudiant (Lucas) -->
 
-        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCreerNote}" x:Name="BoutonCreernote" Click="Creer_Click"  Margin="20,0,20,29" Grid.RowSpan="4" Grid.Row="9">
+        <Button FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCreerNote}" x:Name="BoutonCreernote" Click="Creer_Click"  Margin="20,0,20,29" Grid.RowSpan="4" Grid.Row="9">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">

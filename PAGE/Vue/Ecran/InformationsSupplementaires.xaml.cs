@@ -1,4 +1,5 @@
-﻿using PAGE.Model;
+﻿using DocumentFormat.OpenXml.Drawing;
+using PAGE.Model;
 using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 using MessageBox = System.Windows.Forms.MessageBox;
 using RadioButton = System.Windows.Controls.RadioButton;
 using TextBox = System.Windows.Controls.TextBox;
@@ -153,7 +155,8 @@ namespace PAGE.Vue.Ecran
             ActiverInput();
             BoutonModifier.Visibility = Visibility.Collapsed;
             BoutonValider.Visibility = Visibility.Visible;
-
+            BoutonCreernote.IsEnabled = false;
+            BoutonCreernote.Background = new SolidColorBrush(Colors.Gray);
         }
 
         /// <summary>
@@ -166,6 +169,8 @@ namespace PAGE.Vue.Ecran
         {
             BoutonValider.Visibility = Visibility.Collapsed;
             BoutonModifier.Visibility = Visibility.Visible;
+            BoutonCreernote.IsEnabled = true;
+            BoutonCreernote.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3DA79D"));
 
             DesactiverInput();
 
