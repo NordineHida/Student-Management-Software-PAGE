@@ -18,9 +18,11 @@ namespace PAGE.Vue.Ecran
         /// <summary>
         /// Constructeur de fenêtre CreationNote
         /// </summary>
-        /// <param name="note"></param>
+        /// <param name="note">note à créer/afficher/modifier</param>
+        /// <param name="notes">liste des notes existantes</param>
+        /// <param name="noteExiste">indique si la note a déjà été crée par cette fenêtre ou non</param>
         /// <author>Laszlo / Lucas / Nordine</author>
-        public CreationNote(Note note, Notes notes)
+        public CreationNote(Note note, Notes notes, bool noteExist)
         {
             InitializeComponent();
 
@@ -29,7 +31,7 @@ namespace PAGE.Vue.Ecran
             this.notes = notes;
 
             //Si on est en mode affichage (la note existe)
-            if (note.Categorie != "")
+            if (noteExist)
             {
                 Titre.Content = "Note :";
 
@@ -38,41 +40,41 @@ namespace PAGE.Vue.Ecran
                 //les switchs permettent d'afficher la valeur actuelle dans chaque comboBox 
                 switch (note.Categorie)
                 {
-                    case "Absentéisme":
+                    case CATEGORIE.ABSENTEISME:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[0];
                         break;
-                    case "Personnel":
+                    case CATEGORIE.PERSONNEL:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[1];
                         break;
-                    case "Medical":
+                    case CATEGORIE.MEDICAL:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[2];
                         break;
-                    case "Résultats":
+                    case CATEGORIE.RESULTATS:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[3];
                         break;
-                    case "Orientation":
+                    case CATEGORIE.ORIENTATION:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[4];
                         break;
-                    case "Autre":
+                    case CATEGORIE.AUTRE:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[5];
                         break;
                 }
 
                 switch (note.Nature)
                 {
-                    case "Mail":
+                    case NATURE.MAIL:
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[0];
                         break;
-                    case "Rdv":
+                    case NATURE.RDV:
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[1];
                         break;
-                    case "Lettre":
+                    case NATURE.LETTRE:
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[2];
                         break;
-                    case "Appel":
+                    case NATURE.APPEL:
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[3];
                         break;
-                    case "Autre":
+                    case NATURE.AUTRE:
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[5];
                         break;
                 }
@@ -213,22 +215,22 @@ namespace PAGE.Vue.Ecran
             switch (ComboBoxCategorie.SelectedIndex)
             {
                 case 0:
-                    note.Categorie = "Absentéisme";
+                    note.Categorie = CATEGORIE.ABSENTEISME;
                     break;
                 case 1:
-                    note.Categorie = "Personnel";
+                    note.Categorie = CATEGORIE.PERSONNEL;
                     break;
                 case 2:
-                    note.Categorie = "Médical";
+                    note.Categorie = CATEGORIE.MEDICAL;
                     break;
                 case 3:
-                    note.Categorie = "Résultats";
+                    note.Categorie = CATEGORIE.RESULTATS;
                     break;
                 case 4:
-                    note.Categorie = "Orientation";
+                    note.Categorie = CATEGORIE.ORIENTATION;
                     break;
                 case 5:
-                    note.Categorie = "Autre";
+                    note.Categorie = CATEGORIE.AUTRE;
                     break;
             }
 
@@ -245,19 +247,19 @@ namespace PAGE.Vue.Ecran
             switch (ComboBoxCategorie.SelectedIndex)
             {
                 case 0:
-                    note.Nature = "Mail";
+                    note.Nature = NATURE.MAIL;
                     break;
                 case 1:
-                    note.Nature = "Rdv";
+                    note.Nature = NATURE.RDV;
                     break;
                 case 2:
-                    note.Nature = "Lettre";
+                    note.Nature = NATURE.LETTRE;
                     break;
                 case 3:
-                    note.Nature = "Appel";
+                    note.Nature = NATURE.APPEL;
                     break;
                 case 4:
-                    note.Nature = "Autre";
+                    note.Nature = NATURE.AUTRE;
                     break;
             }
         }

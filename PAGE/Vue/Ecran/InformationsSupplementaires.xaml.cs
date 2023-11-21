@@ -560,51 +560,54 @@ namespace PAGE.Vue.Ecran
             return resultat;
 
         }
+
         /// <summary>
         /// La fonction utilise la catégorie Absentéisme pour filtrer les Notes.
         /// </summary>
         /// <param name="obj"></param>
         ///<returns>renvoie le filtre par Absentéisme</returns>
         /// <returns></returns>
+        /// <author>Stephane/ Laszlo</author>
         private bool Absenteisme(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Absentéisme", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.ABSENTEISME);
         }
-
 
         /// <summary>
         /// La fonction utilise la catégorie Personnel  pour filtrer les Notes.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>renvoie le filtre par raison Personnel</returns>
-        /// <author>Stephane</author>
+        /// <author>Stephane/ Laszlo</author>
         private bool Personnel(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Personnel", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.PERSONNEL);
         }
+
         /// <summary>
         /// La fonction utilise la catégorie Médical  pour filtrer les Notes.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>renvoie le filtre par raison Médical</returns>
-        /// <author>Stephane</author>
+        /// <author>Stephane/ Laszlo</author>
         private bool Medical(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Médical", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.MEDICAL);
         }
+
         /// <summary>
         /// La fonction utilise la catégorie Résultats  pour filtrer les Notes.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>renvoie le filtre par Résultats</returns>
-        /// <author>Stephane</author>
+        /// <author>Stephane/ Laszlo</author>
         private bool Resultats(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Résultats", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.RESULTATS);
         }
 
         /// <summary>
@@ -613,10 +616,11 @@ namespace PAGE.Vue.Ecran
         /// <param name="obj"></param>
         ///<returns>renvoie le filtre par orientation</returns>
         /// <returns></returns>
+        /// <author>Stephane/ Laszlo</author>
         private bool Orientation(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Orientation", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.ORIENTATION);
         }
 
         /// <summary>
@@ -624,16 +628,15 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>renvoie le filtre par Autre</returns>
-        /// <author>Stephane</author>
+        /// <author>Stephane/ Laszlo</author>
         private bool Autre(object obj)
         {
             var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Autre", StringComparison.OrdinalIgnoreCase);
+            return Filterobj.Categorie.Equals(CATEGORIE.AUTRE);
         }
 
 
         #endregion
-
 
 
         /// <summary>
@@ -696,7 +699,7 @@ namespace PAGE.Vue.Ecran
                 if (noteSelectionne != null)
                 {
                     // Créez une instance de la fenêtre CreationNote en passant la note et notes
-                    CreationNote affichageNote = new CreationNote(noteSelectionne,this.notes);
+                    CreationNote affichageNote = new CreationNote(noteSelectionne,this.notes,true);
                     affichageNote.Show();
                 }
             }
@@ -710,9 +713,17 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas</author>
         private void Creer_Click(object sender, RoutedEventArgs e)
         {
-            CreationNote creernote = new CreationNote(new Note("",DateTime.Now,"","",etudiant.NumApogee), this.notes);
-            creernote.Show();
-            ChargementDiffereNotes();
+            if (notes != null)
+            {
+                CreationNote creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee), this.notes, false);
+                creernote.Show();
+            }
+            else
+            {
+
+                System.Windows.Forms.MessageBox.Show("Veuillez attendre la fin du chargement des notes", "Une erreur est survenue", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         /// <summary>
