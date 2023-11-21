@@ -1,6 +1,4 @@
-﻿using DocumentFormat.OpenXml.ExtendedProperties;
-using Microsoft.Win32;
-using PAGE.Model;
+﻿using PAGE.Model;
 using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
@@ -10,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 using System.Windows.Input;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 

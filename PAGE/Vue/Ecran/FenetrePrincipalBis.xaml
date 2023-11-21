@@ -1,0 +1,104 @@
+﻿<Window x:Class="PAGE.Vue.Ecran.FenetrePrincipalBis"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PAGE.Vue.Ecran"
+        mc:Ignorable="d"
+        Title="FenetrePrincipalBis" 
+        Height="1000" Width="1500">
+    
+    <Window.Background>
+        <SolidColorBrush Color="#bfd7eb" />
+    </Window.Background>
+
+    <Window.Resources>
+        <!--Style des boutons aves picto-->
+        <Style x:Key="ImageButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="90"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Margin" Value="0 20 30 0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Width="90" Height="90" Background="#FF3DA79D" CornerRadius="40"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <!-- Colonne pour le logo -->
+            <ColumnDefinition Width="*"/>
+            <!-- Colonne pour le reste du contenu -->
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Première ligne pour le logo -->
+            <RowDefinition Height="Auto" />
+            <!-- Deuxième ligne pour les boutons -->
+            <RowDefinition Height="*" />
+            <!-- Troisième ligne pour la liste des étudiants -->
+        </Grid.RowDefinitions>
+
+        <!-- Logo avec effet d'ombre -->
+        <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0" Grid.Column="0" Margin="10" Width="150" Height="150" />
+
+
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
+
+
+            <Button ToolTip="{DynamicResource ToolTipPageConnexion}" Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage">
+                <Image Source="/Vue/Ressources/Picto/account.png" Stretch="Uniform" Margin="7"/>
+            </Button>
+
+            <Button ToolTip="{DynamicResource ToolTipPageParamètres}" Style="{StaticResource ImageButtonStyle}" Click="OpenParametresPage">
+                <Image Source="/Vue/Ressources/Picto/settings.png" Stretch="Uniform" Margin="10" />
+            </Button>
+
+            <Button ToolTip="{DynamicResource ToolTipImportation}" Style="{StaticResource ImageButtonStyle}" Click="ImporterEtudiants">
+                <Image Source="/Vue/Ressources/Picto/import.png"  Stretch="Uniform" Margin="13"/>
+            </Button>
+
+            <Button ToolTip="{DynamicResource ToolTipActualisation}" Style="{StaticResource ImageButtonStyle}" Click="BoutonActualiserListeEtudiant">
+                <Image Source="/Vue/Ressources/Picto/refresh.png"  Stretch="Uniform" Margin="9"/>
+            </Button>
+
+            <Button ToolTip="{DynamicResource ToolTipCreerEtudiant}" Style="{StaticResource ImageButtonStyle}" Click="BoutonCreerEtudiant">
+                <Image Source="/Vue/Ressources/Picto/account-plus.png"  Stretch="Uniform" Margin="9"/>
+            </Button>
+
+            <Button ToolTip="{DynamicResource ToolTipChoixPromo}" Style="{StaticResource ImageButtonStyle}" Click="OpenPromoPage">
+                <Image Source="/Vue/Ressources/Picto/calendar-account.png"  Stretch="Uniform" Margin="10"/>
+            </Button>
+
+        </StackPanel>
+
+        <!--Pour pouvoir scroller (Nordine)-->
+        <ScrollViewer Grid.Column="1" Margin="30" Grid.Row="2">
+            <!-- Liste des étudiants avec des EtudiantComponent (Nordine) -->
+            <StackPanel Name="StackPanelEtudiants" Background="#FFDFEAFF">
+                <!-- La liste d'étudiants sera ajoutée dynamiquement ici -->
+                
+                <!-- gestionnaire d'événements pour le clique sur les étudiant (Nordine) -->
+                <StackPanel.Resources>
+                    <Style TargetType="local:EtudiantComponent">
+                        <EventSetter Event="MouseDoubleClick" Handler="EtudiantComponent_MouseDoubleClick"/>
+                        
+                    </Style>
+                </StackPanel.Resources>
+            </StackPanel>
+        </ScrollViewer>
+
+
+
+
+    </Grid>
+</Window>

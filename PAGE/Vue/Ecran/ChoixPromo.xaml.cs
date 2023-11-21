@@ -32,7 +32,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void ValiderChoixPromo(object sender, RoutedEventArgs e)
         {
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
+            FenetrePrincipalBis fenetrePrincipal = new FenetrePrincipalBis();
             fenetrePrincipal.Show();
 
             this.Close();
