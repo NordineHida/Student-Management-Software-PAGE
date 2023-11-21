@@ -120,12 +120,11 @@ namespace PAGE.Vue.Ecran
                 string categorieChoisieString = categorieChoisie.ToString();
                 string[] motsCatChoisie = categorieChoisieString.Split(": ");
                 note.Categorie = motsCatChoisie[1];
-                //on crée la note
-                NoteDAO.Instance.CreateNote(note);
 
                 if (!string.IsNullOrEmpty(pieceJointe.FilePath))
                 {
-                    PieceJointeDAO.Instance.CreatePieceJointe(pieceJointe);
+                    PieceJointeDAO pieceJointeDAO = new PieceJointeDAO();
+                    pieceJointeDAO.CreatePieceJointe(pieceJointe);
                 }
                 //si les informations sont correcte on créer la note
                 if (isCreateOk(note))
@@ -152,7 +151,7 @@ namespace PAGE.Vue.Ecran
             /// <param name="sender"></param>
             /// <param name="e"></param>
             /// <author>Yamato</author>
-            private void ClickAjouterPJ(object sender, RoutedEventArgs e)
+            private void ClickAjouterPieceJointe(object sender, RoutedEventArgs e)
             {
                 // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
                 OpenFileDialog openFileDialog = new OpenFileDialog();

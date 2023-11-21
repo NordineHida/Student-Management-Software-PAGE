@@ -93,9 +93,10 @@
         <Label Content="Pièces jointes : " HorizontalAlignment="Left" Margin="1,178,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2" Grid.Column="1"/>
 
         <!-- Boutons créer et annuler -->
-        <Button x:Name="BoutonCreer" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0"/>
+        <Button x:Name="BoutonCreer" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Right"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="0,0,50,0"/>
+        <Button x:Name="BoutonAjouterPieceJointe" Grid.Column="1" Content="Ajouter PieceJointe" HorizontalAlignment="Center"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAjouterPieceJointe" />
         <Button x:Name="BoutonModifier" Grid.Column="1" Content="{DynamicResource BtnModifier}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickModify" Margin="310,0,0,0" Visibility="Collapsed"/>
-        <Button x:Name="BoutonAnnuler" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0"/>
+        <Button x:Name="BoutonAnnuler" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="50,0,0,0"/>
         <Button x:Name="BoutonValider" Grid.Column="1" Content="{DynamicResource BtnValider}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickValider" Margin="450,0,0,0" Visibility="Collapsed"/>
 
 
