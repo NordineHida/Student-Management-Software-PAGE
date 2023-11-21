@@ -27,10 +27,29 @@ namespace PAGE.Vue.Ecran
         public FenetreCreerEtudiant(Etudiants etudiants)
         {
             InitializeComponent();
-
-            sexeSelectionne = SEXE.AUTRE;
-            estBoursier = false;
             this.etudiants = etudiants;
+            ReinitialisationChamps();
+        }
+        /// <summary>
+        /// Cette méthode permet de réinitialiser les champs après la création d'un étudiant pour en créer un autre
+        /// </summary>
+        /// <author>Lucas</author>
+        private void ReinitialisationChamps()
+        {
+            radioAutre.IsChecked = true;
+            radioBoursierFalse.IsChecked = true;
+            txtNumApogee.Text = "";
+            txtName.Text = "";
+            txtPrenom.Text = "";
+            txtTypebac.Text = "";
+            txtMail.Text = "";
+            txtGroupe.Text = "";
+            txtRegime.Text = "";
+            txtLogin2.Text = "";
+            txtAdresse2.Text = "";
+            txtTelFixe2.Text = "";
+            txtTelPortable2.Text = "";
+            txtDateNaissance2.SelectedDate = DateTime.Now.AddYears(-15);
         }
 
 
@@ -60,6 +79,9 @@ namespace PAGE.Vue.Ecran
                 EtuDAO dao = new EtuDAO();
                 dao.CreateEtu(etudiant);
                 etudiants.AddEtu(etudiant);
+
+                //on réinitialise la page
+                ReinitialisationChamps();
             }
 
         }

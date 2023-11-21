@@ -84,11 +84,92 @@
         <Label Grid.Column="1" Content="{DynamicResource CateCommentaire}" HorizontalAlignment="Left" Margin="10,78,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2"/>
 
         <!-- Boutons créer et annuler -->
-        <Button x:Name="BoutonCreer" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0"/>
-        <Button x:Name="BoutonModifier" Grid.Column="1" Content="{DynamicResource BtnModifier}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickModify" Margin="310,0,0,0" Visibility="Collapsed"/>
-        <Button x:Name="BoutonAnnuler" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0"/>
-        <Button x:Name="BoutonValider" Grid.Column="1" Content="{DynamicResource BtnValider}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickValider" Margin="450,0,0,0" Visibility="Collapsed"/>
+        <Button x:Name="BoutonCreer" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
+                                        <Setter Property="Foreground" Value="#000000"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
 
+        <Button x:Name="BoutonModifier" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnModifier}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickModify" Margin="310,0,0,0" Visibility="Collapsed">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
+                                        <Setter Property="Foreground" Value="#000000"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
 
+        <Button x:Name="BoutonAnnuler" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
+                                        <Setter Property="Foreground" Value="#000000"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="BoutonValider" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnValider}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickValider" Margin="450,0,0,0" Visibility="Collapsed">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
+                                        <Setter Property="Foreground" Value="#000000"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using PAGE.Model;
+﻿using DocumentFormat.OpenXml.Drawing;
+using PAGE.Model;
 using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 using MessageBox = System.Windows.Forms.MessageBox;
 using RadioButton = System.Windows.Controls.RadioButton;
 using TextBox = System.Windows.Controls.TextBox;
@@ -160,6 +162,16 @@ namespace PAGE.Vue.Ecran
                 contInfosComp.Visibility = Visibility.Visible;
                 BoutonInfoComp.Visibility = Visibility.Collapsed;
                 BoutonCacherInfoComp.Visibility = Visibility.Visible;
+
+                if(etudiant.TelFixe == 0)
+                {
+                    txtTelFixe2.Text = "";
+                }
+
+                if (etudiant.TelPortable == 0)
+                {
+                    txtTelPortable2.Text = "";
+                }
             }
         }
 
@@ -188,6 +200,10 @@ namespace PAGE.Vue.Ecran
         private void Modifier_Click(object sender, RoutedEventArgs e)
         {
             ActiverInput();
+            BoutonModifier.Visibility = Visibility.Collapsed;
+            BoutonValider.Visibility = Visibility.Visible;
+            BoutonCreernote.IsEnabled = false;
+            BoutonCreernote.Background = new SolidColorBrush(Colors.Gray);
         }
 
         /// <summary>
@@ -198,7 +214,13 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
+            BoutonValider.Visibility = Visibility.Collapsed;
+            BoutonModifier.Visibility = Visibility.Visible;
+            BoutonCreernote.IsEnabled = true;
+            BoutonCreernote.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3DA79D"));
+
             DesactiverInput();
+
             //On récupere les nouvelles de l'étudiant
             Etudiant updateEtu = GetEtudiantUpdated();
             //On l'ajoute (le mets a jour puisqu'il existe)
@@ -456,7 +478,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void ActiverInput()
         {
-            BoutonValider.Visibility = Visibility.Visible;
+            
 
             // Rend les TextBox éditables
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
@@ -505,7 +527,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void DesactiverInput()
         {
-            BoutonValider.Visibility = Visibility.Collapsed;
+            
 
             // Rend les TextBox en lecture seule
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())

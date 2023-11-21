@@ -17,7 +17,7 @@
 
     <!--Parametre (nordine)-->
     <system:String x:Key="TitreParam">Settings</system:String>
-    <system:String x:Key="LabelLangueSelect">Language selected:</system:String>
+    <system:String x:Key="LabelLangueSelect">Language selected :</system:String>
     <system:String x:Key="LabelPathGeneration">Path :</system:String>
     <system:String x:Key="BtnParcourir">Browse...</system:String>
 
@@ -82,23 +82,24 @@
     <system:String x:Key="Prenom*">First Name :*</system:String>
     <system:String x:Key="NumApogee*">Apogee :*</system:String>
 
-    <system:String x:Key="Mail">Mail Adress:*</system:String>
-    <system:String x:Key="Groupe">Group:*</system:String>
+    <system:String x:Key="Mail">Mail Adress :*</system:String>
+    <system:String x:Key="Groupe">Group :*</system:String>
     <system:String x:Key="Sexe">Gender :*</system:String>
     <system:String x:Key="CateSexeH">Male</system:String>
     <system:String x:Key="CateSexeF">Female</system:String>
     <system:String x:Key="CateSexeA">Other</system:String>
-    <system:String x:Key="Bac">A-levels obtained:*</system:String>
+    <system:String x:Key="Bac">A-levels :*</system:String>
     <system:String x:Key="Boursier">Scholar :*</system:String>
     <system:String x:Key="Regime">Plan :*</system:String>
 
     <system:String x:Key="BtnCreerEtudiant">Create a Student</system:String>
-    <system:String x:Key="BtnAffiInfoComp">Display additional information</system:String>
+    <system:String x:Key="BtnAffiInfoComp">More Informations</system:String>
 
     <system:String x:Key="LabelChpObli">* = Mandatory field</system:String>
-    <system:String x:Key="Birth">Birth date:</system:String>
-    <system:String x:Key="Adresse">Residence address:</system:String>
-    <system:String x:Key="TelFixe">Fixed telephone number:</system:String>
+    <system:String x:Key="Birth">Birth date :</system:String>
+    <system:String x:Key="Birth*">Birth date :*</system:String>
+    <system:String x:Key="Adresse">Address :</system:String>
+    <system:String x:Key="TelFixe">Phone number :</system:String>
     <system:String x:Key="TelPort">Mobile phone :</system:String>
     <system:String x:Key="LoginRes">Network login :</system:String>
 
@@ -119,8 +120,8 @@
 
     <system:String x:Key="BtnCreerNote">Create a note</system:String>
     <system:String x:Key="BtnModifInfos">Modify informations</system:String>
-    <system:String x:Key="BtnAfficherInfosComp">Display additional informations</system:String>
-    <system:String x:Key="BtnCacherInfoComp">Hide additional informations</system:String>
+    <system:String x:Key="BtnAfficherInfosComp">More Informations</system:String>
+    <system:String x:Key="BtnCacherInfoComp">Hide Informations</system:String>
 
 
     <system:String x:Key="HeaderSupprNote">Delete note</system:String>
