@@ -262,38 +262,38 @@
             <!-- Date de naissance -->
             <WrapPanel>
                 <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="{DynamicResource Birth}" Margin="0,20,0,0" />
-                <DatePicker FontSize="20" IsEnabled="False" x:Name="txtDateNaissance2" SelectedDateFormat="Short" Margin="30,20,0,0"></DatePicker>
+                <DatePicker MinWidth="425" Grid.Column="3" FontSize="20" IsEnabled="False" x:Name="txtDateNaissance2" SelectedDateFormat="Short" Margin="30,20,0,0"></DatePicker>
             </WrapPanel>
 
 
             <!-- Adresse de résidence -->
             <WrapPanel>
                 <TextBlock x:Name="txtAdresse1" FontSize="20" Text="{DynamicResource Adresse}" Margin="0,20,0,0"/>
-                <TextBox Width="425" IsReadOnly="True" x:Name="txtAdresse2" FontSize="15" Margin="30,20,0,0" MaxWidth="425" TextWrapping="NoWrap" BorderThickness="0"/>
+                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtAdresse2" FontSize="15" Margin="30,20,0,0" MaxWidth="425" TextWrapping="NoWrap" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Téléphone fixe -->
             <WrapPanel>
                 <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="{DynamicResource TelFixe}" Margin="0,20,0,0" />
-                <TextBox Width="425" IsReadOnly="True" x:Name="txtTelFixe2" FontSize="15"  Margin="30,20,0,0" BorderThickness="0"/>
+                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtTelFixe2" FontSize="15"  Margin="30,20,0,0" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Téléphone portable -->
             <WrapPanel>
                 <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="{DynamicResource TelPort}" Margin="0,20,0,0"/>
-                <TextBox Width="425" IsReadOnly="True" x:Name="txtTelPortable2" FontSize="15"  Margin="30,20,0,0" BorderThickness="0"/>
+                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtTelPortable2" FontSize="15"  Margin="30,20,0,0" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Login réseau -->
             <WrapPanel>
                 <TextBlock x:Name="txtLogin1" FontSize="20" Text="{DynamicResource LoginRes}" Margin="0,20,0,0" />
-                <TextBox Width="425" IsReadOnly="True" x:Name="txtLogin2" FontSize="15" Margin="30,20,0,0" BorderThickness="0" />
+                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtLogin2" FontSize="15" Margin="30,20,0,0" BorderThickness="0" />
             </WrapPanel>
 
         </StackPanel>
 
         <!-- Liste des étudiants (stephane & Laszlo) -->
-        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="9"  MouseDoubleClick="maListView_MouseDoubleClick">
+        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="11"  MouseDoubleClick="maListView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding Categorie}">
@@ -332,15 +332,15 @@
 
         </ListView>
         <!-- LCombox et checkbox (stephane) -->
-        <CheckBox x:Name="ConfidentielCheckBox" Content="{DynamicResource ComboboxConf}" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="30" Width="140" Grid.Column="2" Margin="0,14,0,0" Grid.RowSpan="2" Checked="ConfidentielCheckBox_Checked" Unchecked="ConfidentielCheckBox_Unchecked" />
-        <ComboBox x:Name="ConfidentielCombobox" SelectionChanged="ConfidentielCombobox_SelectionChanged" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="30" Width="150" Grid.Column="2" Margin="0,14,0,0" Grid.RowSpan="2" Visibility="Hidden">
+        <CheckBox x:Name="ConfidentielCheckBox" Content="{DynamicResource ComboboxConf}" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="18" Height="30" Width="140" Grid.Column="2" Margin="516,0,0,0" Grid.RowSpan="2" Checked="ConfidentielCheckBox_Checked" Unchecked="ConfidentielCheckBox_Unchecked" />
+        <ComboBox x:Name="ConfidentielCombobox" SelectionChanged="ConfidentielCombobox_SelectionChanged" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="10" Height="28" Width="150" Grid.Column="2" Margin="516,0,0,0" Visibility="Hidden" Grid.RowSpan="2">
             <ComboBoxItem Content="{DynamicResource CateMedical}"/>
             <ComboBoxItem Content="{DynamicResource CateConf}"/>
             <ComboBoxItem Content="{DynamicResource CateInterne}"/>
             <ComboBoxItem Content="{DynamicResource CatePublic}"/>
         </ComboBox>
-        <CheckBox x:Name="CategorieCheckBox" Content="{DynamicResource ComboboxCate}" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="30" Width="120" Grid.Column="2" Margin="714,13,0,0" Grid.RowSpan="2" Checked="CategorieCheckBox_Checked" Unchecked="CategorieCheckBox_Unchecked" />
-        <ComboBox x:Name="CategorieCombobox" SelectionChanged="CategorieCombobox_SelectionChanged" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="30" Width="150" Grid.Column="2" Margin="714,13,0,0" Grid.RowSpan="2" Visibility="Hidden">
+        <CheckBox x:Name="CategorieCheckBox" Content="{DynamicResource ComboboxCate}" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="18" Height="30" Width="120" Grid.Column="2" Margin="829,0,0,0" Grid.RowSpan="2" Checked="CategorieCheckBox_Checked" Unchecked="CategorieCheckBox_Unchecked" />
+        <ComboBox x:Name="CategorieCombobox" SelectionChanged="CategorieCombobox_SelectionChanged" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="10" Height="28" Width="150" Grid.Column="2" Margin="799,0,0,0" Visibility="Hidden" Grid.RowSpan="2">
             <ComboBoxItem Content="{DynamicResource CateAbsenteisme}"/>
             <ComboBoxItem Content="{DynamicResource CatePersonnel}"/>
             <ComboBoxItem Content="{DynamicResource CateResultats}"/>
@@ -349,6 +349,7 @@
             <ComboBoxItem Content="{DynamicResource CateAutre}"/>
         </ComboBox>
 
+        <Label Grid.Column="2" FontSize="29" Content="Notes de l'étudiant : " HorizontalAlignment="Left" Margin="594,18,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#2B2B5A" RenderTransformOrigin="2.452,0.87" Height="57" Width="278" Grid.RowSpan="3"/>
 
     </Grid>
 

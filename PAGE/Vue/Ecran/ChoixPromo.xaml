@@ -42,7 +42,7 @@
         </ComboBox>
 
         <!--Bouton Valider (Nordine)-->
-        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="275,20,275,20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}" FontSize="24" Click="ValiderChoixPromo">
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="275,20,275,20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}" FontSize="24" Click="ValiderChoixPromo">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
