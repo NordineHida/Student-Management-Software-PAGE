@@ -151,6 +151,9 @@ namespace PAGE.Vue.Ecran
         private void Modifier_Click(object sender, RoutedEventArgs e)
         {
             ActiverInput();
+            BoutonModifier.Visibility = Visibility.Collapsed;
+            BoutonValider.Visibility = Visibility.Visible;
+
         }
 
         /// <summary>
@@ -161,7 +164,11 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
+            BoutonValider.Visibility = Visibility.Collapsed;
+            BoutonModifier.Visibility = Visibility.Visible;
+
             DesactiverInput();
+
             //On récupere les nouvelles de l'étudiant
             Etudiant updateEtu = GetEtudiantUpdated();
             //On l'ajoute (le mets a jour puisqu'il existe)
@@ -329,7 +336,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void ActiverInput()
         {
-            BoutonValider.Visibility = Visibility.Visible;
+            
 
             // Rend les TextBox éditables
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
@@ -375,7 +382,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void DesactiverInput()
         {
-            BoutonValider.Visibility = Visibility.Collapsed;
+            
 
             // Rend les TextBox en lecture seule
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())

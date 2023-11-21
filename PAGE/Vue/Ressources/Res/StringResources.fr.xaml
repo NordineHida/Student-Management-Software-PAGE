@@ -93,8 +93,8 @@
     <system:String x:Key="Regime">Régime :*</system:String>
 
     <system:String x:Key="BtnCreerEtudiant">Créer un étudiant</system:String>
-    <system:String x:Key="BtnAffiInfoComp">Afficher les informations complémentaires</system:String>
-    <system:String x:Key="BtnCacherInfoComp">Cacher les informations complémentaires</system:String>
+    <system:String x:Key="BtnAffiInfoComp">Afficher informations</system:String>
+    <system:String x:Key="BtnCacherInfoComp">Cacher informations</system:String>
 
     <system:String x:Key="LabelChpObli">* = Champ obligatoire</system:String>
     <system:String x:Key="Birth">Date de naissance : </system:String>

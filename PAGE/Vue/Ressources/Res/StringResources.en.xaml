@@ -92,7 +92,7 @@
     <system:String x:Key="Regime">Plan :*</system:String>
 
     <system:String x:Key="BtnCreerEtudiant">Create a Student</system:String>
-    <system:String x:Key="BtnAffiInfoComp">Display additional information</system:String>
+    <system:String x:Key="BtnAffiInfoComp">More Informations</system:String>
 
     <system:String x:Key="LabelChpObli">* = Mandatory field</system:String>
     <system:String x:Key="Birth">Birth date :</system:String>
@@ -119,8 +119,8 @@
 
     <system:String x:Key="BtnCreerNote">Create a note</system:String>
     <system:String x:Key="BtnModifInfos">Modify informations</system:String>
-    <system:String x:Key="BtnAfficherInfosComp">Display additional informations</system:String>
-    <system:String x:Key="BtnCacherInfoComp">Hide additional informations</system:String>
+    <system:String x:Key="BtnAfficherInfosComp">More Informations</system:String>
+    <system:String x:Key="BtnCacherInfoComp">Hide Informations</system:String>
 
 
     <system:String x:Key="HeaderSupprNote">Delete note</system:String>
