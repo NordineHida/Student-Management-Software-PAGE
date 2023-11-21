@@ -33,14 +33,6 @@ namespace APIEtudiant.Stockage
         public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu);
 
 
-        /// <summary>
-        /// Ajoute une piece jointe a la bdd
-        /// </summary>
-        /// <param name="pieceJointe">piece jointe</param>
-        /// <returns>renvoie true si l'ajout est un succès</returns>
-        /// <author>Yamato</author>
-        public bool CreatePieceJointe(PieceJointe pieceJointe);
-
         /// Ajout un étudiant a la BDD s'il n'existe PAS et renvoi true, sinon renvoi false
         /// </summary>
         /// <param name="etu">etudiant à ajouté</param>

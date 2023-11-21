@@ -27,8 +27,8 @@ namespace APIEtudiant.Model
 
         #endregion
 
-        //DAO d'étudiant 
-        private IEtuDAO EtuDAO => EtudiantDAOOracle.Instance;
+        //DAO de piece jointe 
+        private IPieceJointeDAO PieceJointeDAO => new PieceJointeDAOOracle();
 
         /// <summary>
         /// Ajoute une note à la BDD
@@ -38,7 +38,7 @@ namespace APIEtudiant.Model
         /// <author>Yamato</author>
         public bool CreatePieceJointe(PieceJointe pieceJointe)
         {
-            return EtuDAO.CreatePieceJointe(pieceJointe);
+            return PieceJointeDAO.CreatePieceJointe(pieceJointe);
         }
 
         
