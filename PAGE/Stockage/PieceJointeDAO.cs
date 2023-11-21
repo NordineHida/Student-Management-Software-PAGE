@@ -24,7 +24,7 @@ namespace PAGE.Stockage
             using (HttpClient client = new HttpClient())
             {
                 // Spécifiez l'URL de l'API
-                string apiUrl = "https://localhost:7038/Note/CreatePieceJointe";
+                string apiUrl = "https://localhost:7038/PieceJointe/CreatePieceJointe";
 
                 // Convertissez la note en JSON
                 string pieceJointeSerialise = JsonSerializer.Serialize(pieceJointe);
