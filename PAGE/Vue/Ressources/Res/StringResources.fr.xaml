@@ -106,7 +106,7 @@
 
 
     <!--InformationsSupplementaires (Lucas)-->
-    <system:String x:Key="TitreFenetreInformationsSupplementaires">Informations Supplementaires</system:String>
+    <system:String x:Key="TitreFenetreInformationsSupplementaires">Informations Supplémentaires</system:String>
 
 
     <system:String x:Key="Nom:">Nom :</system:String>
