@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace TestPAGE
 {
+    /// <summary>
+    /// Classe permettant de réaliser des tests unitaires sur les notes
+    /// </summary>
     public class TestNote
     {
+        /// <summary>
+        /// Méthode permettant de tester la création d'une note
+        /// </summary>
         [Fact]
         public void TestNoteConstructor()
         {

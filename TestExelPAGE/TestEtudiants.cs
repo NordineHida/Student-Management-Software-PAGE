@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace TestPAGE
 {
+    /// <summary>
+    /// Classe permettant de réaliser des tests sur les étudiants
+    /// </summary>
     public class TestEtudiants
     {
+        /// <summary>
+        /// methode testant la création d'un étudiant 
+        /// </summary>
+        /// <author>Lucas</author>
         [Fact]
         public void TestCreeretudiant()
         {
@@ -47,6 +54,10 @@ namespace TestPAGE
             Assert.Equal(adresse, etudiant.Adresse);
         }
 
+        /// <summary>
+        /// Methode testant l'équivalence entre 2 étudiants 
+        /// </summary>
+        /// <author>Lucas</author>
         [Fact]
 
         public void TestEqualEtu()
