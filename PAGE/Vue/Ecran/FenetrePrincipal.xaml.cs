@@ -236,7 +236,7 @@ namespace PAGE.Vue.Ecran
                 if (etudiantSelectionne != null)
                 {
                     // on affiche ces informations
-                    InformationsSupplementairesBis informationsSupplementaires = new InformationsSupplementairesBis(etudiantSelectionne, etudiants);
+                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants);
                     informationsSupplementaires.Show();
                 }
             }

@@ -3,6 +3,7 @@ using PAGE.Model;
 using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace PAGE.Vue.Ecran
         private bool estBoursier;
         private REGIME regimeEtu;
         private GROUPE groupeEtu;
+
 
         /// <summary>
         /// Constructeur qui prend l'étudiant selectionné avec le double clique
@@ -154,7 +156,7 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// <author>Luvas</author>
+        /// <author>Lucas</author>
         private void InfosComp_Click(object sender, RoutedEventArgs e)
         {
             if (contInfosComp.Visibility == Visibility.Collapsed)
@@ -180,7 +182,7 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// <author>Luvas</author>
+        /// <author>Lucas</author>
         private void HideInfosComp_Click(object sender, RoutedEventArgs e)
         {
 
@@ -233,6 +235,7 @@ namespace PAGE.Vue.Ecran
         /// Renvoi l'étudiant avec les nouvelles informations saisis par l'utilisateur
         /// </summary>
         /// <returns>l'étudiant modifié</returns>
+        /// <author>Laszlo</author>
         private Etudiant GetEtudiantUpdated()
         {
             Etudiant etudiantUpdated = null;
@@ -566,309 +569,53 @@ namespace PAGE.Vue.Ecran
             comboBoxGroupe.IsEnabled = false;
         }
 
-        #region affichage trie note
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stéphane</author>
-
-        private void ConfidentielCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            // Vérifie si la case à cocher est cochée
-            if (ConfidentielCheckBox.IsChecked == true)
-            {
-                // Affiche la ComboBox si la case à cocher est cochée
-                ConfidentielCombobox.Visibility = Visibility.Visible;
-            }
-        }
-        // Vérifie si la case à cocher est cochée
-        private void ConfidentielCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (ConfidentielCheckBox.IsChecked == false)
-            {
-                // cache la ComboBox si la case à cocher n'est pas cochée
-                ConfidentielCombobox.Visibility = Visibility.Hidden;
-                maListViewNote.Items.Filter = null;
-            }
-        }
-        // Vérifie si la case à cocher est cochée
-        private void CategorieCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            if (CategorieCheckBox.IsChecked == true)
-            {
-                // Affiche la ComboBox si la case à cocher est cochée
-                CategorieCombobox.Visibility = Visibility.Visible;
-                
-            }
-        }
-        // Vérifie si la case à cocher est cochée
-        private void CategorieCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (CategorieCheckBox.IsChecked == false)
-            {
-                // cache la ComboBox si la case à cocher n'est pas cochée
-
-                CategorieCombobox.Visibility = Visibility.Hidden;
-                maListViewNote.Items.Filter = null;
-            }
-        }
-
-
 
         /// <summary>
-        /// trie la liste a partir de la liste cliqué
+        /// Charge les notes depuis le DAO, les affiches et s'enregistre en observateur
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stéphane</author>
-        private bool isSortAscending = true;
-        
-
-        private void Trie_ClickNote(object sender, RoutedEventArgs e)
-        {
-            GridViewColumnHeader column = (sender as GridViewColumnHeader);
-
-            string sortBy = column.Tag.ToString();
-
-            // Vérifie s'il existe des descriptions de tri pour les éléments de la liste.
-            if (maListViewNote.Items.SortDescriptions.Count > 0)
-            {
-                // Efface les descriptions de tri existantes.
-                maListViewNote.Items.SortDescriptions.Clear();
-            }
-
-            ListSortDirection newDir;
-
-
-            // Détermine la direction de tri en fonction de la valeur de 'isSortAscending'.
-            // Si 'isSortAscending' est vrai, le tri est défini sur croissant, sinon sur décroissant.
-            // Inverse ensuite la valeur de 'isSortAscending'.
-            if (isSortAscending)
-            {
-                newDir = ListSortDirection.Ascending; //trie croisant 
-                isSortAscending = false;
-            }
-            else
-            {
-                newDir = ListSortDirection.Descending; //trie décroisant
-                isSortAscending = true;
-            }
-
-            // Ajouter une nouvelle description de tri à la liste 
-            maListViewNote.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
-        }
-
-        /// <summary>
-        /// Et utilisé quand la sélection de l'élément change.
-        /// Elle met à jour le filtre appliqué fonction du choix de l'utilisateur.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stephane</author>
-        private void CategorieCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Applique le filtre approprié dans maListView en fonction du choix de l'utilisateur.
-            maListViewNote.Items.Filter = GetFilter();
-
-        }
-
-        /// <summary>
-        /// Et utilisé quand la sélection de l'élément change.
-        /// Elle met à jour le filtre appliqué fonction du choix de l'utilisateur.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stephane</author>
-        private void ConfidentielCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Applique le filtre approprié dans maListView en fonction du choix de l'utilisateur.
-            maListViewNote.Items.Filter = GetFilter();
-
-        }
-
-
-
-        /// <summary>
-        /// renvoi le filtre selctionner dans le combobox
-        /// </summary>
-        /// <returns>le filtre adapter</returns>
-        /// <author>Stephane</author>
-        private Predicate<object> GetFilter()
-        {
-
-            Predicate<object> resultat = null;
-
-            switch (CategorieCombobox.SelectedIndex)
-            {
-                case 0: // "pour les raisons d'absences"
-                    resultat = Absenteisme;
-                    break;
-                case 1: // "pour les raisons personnels"
-                    resultat = Personnel;
-                    break;
-                case 2: // "pour les raisons medical"
-                    resultat = Resultats;
-                    break;
-                case 3: // "pour les resultats"
-                    resultat = Orientation;
-                    break;
-                case 4: // "pour les orientation"
-                    resultat = Medical;
-                    break;
-                case 5: // "pour toutes les autres raisons"
-                    resultat = Autre;
-                    break;
-            }
-
-            return resultat;
-
-        }
-
-        /// <summary>
-        /// La fonction utilise la catégorie Absentéisme pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        ///<returns>renvoie le filtre par Absentéisme</returns>
         /// <returns></returns>
-        /// <author>Stephane/ Laszlo</author>
-        private bool Absenteisme(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Equals(CATEGORIE.ABSENTEISME);
-        }
-
-        /// <summary>
-        /// La fonction utilise la catégorie Personnel  pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns>renvoie le filtre par raison Personnel</returns>
-        /// <author>Stephane/ Laszlo</author>
-        private bool Personnel(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Equals(CATEGORIE.PERSONNEL);
-        }
-
-        /// <summary>
-        /// La fonction utilise la catégorie Médical  pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns>renvoie le filtre par raison Médical</returns>
-        /// <author>Stephane/ Laszlo</author>
-        private bool Medical(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Equals(CATEGORIE.MEDICAL);
-        }
-
-        /// <summary>
-        /// La fonction utilise la catégorie Résultats  pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns>renvoie le filtre par Résultats</returns>
-        /// <author>Stephane/ Laszlo</author>
-        private bool Resultats(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Equals(CATEGORIE.RESULTATS);
-        }
-
-        /// <summary>
-        /// La fonction utilise la catégorie orientation pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        ///<returns>renvoie le filtre par orientation</returns>
-        /// <returns></returns>
-        /// <author>Stephane/ Laszlo</author>
-        private bool Orientation(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Equals(CATEGORIE.ORIENTATION);
-        }
-
-        /// <summary>
-        /// La fonction utilise la catégorie Autre pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns>renvoie le filtre par Autre</returns>
-        /// <author>Stephane/ Laszlo</author>
-        private bool Autre(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Equals(CATEGORIE.AUTRE);
-        }
-
-
-        #endregion
-
-
-        /// <summary>
-        /// Chargement des notes différé via l'API
-        /// </summary>
-        /// <author>Laszlo</author>
+        /// <author>Laszlo/Nordine</author>
         private async Task ChargementDiffereNotes()
         {
-            //On reinitialise la liste
-            maListViewNote.Items.Clear();
 
-            //On récupere l'ensemble des étudiants via l'API
+            // On récupère l'ensemble des étudiants via l'API
             NoteDAO dao = new NoteDAO();
             this.notes = new Notes((await dao.GetAllNotesByApogee(etudiant.NumApogee)).ToList());
 
-            foreach (Note note in notes.ListeNotes) 
-            {
-                //Si l'étudiant est pas déjà dans la liste on l'y ajoute
-                if (!maListViewNote.Items.Contains(note))
-                    maListViewNote.Items.Add(note);
-            }
-
-            //On enregistre cette fenetre comme observeur des notes
+            // On enregistre cette fenêtre comme observateur des notes
             notes.Register(this);
 
+            // Remplir le WrapPanel avec les NoteComponent
+            RemplirWrapPanelNotes(notes.ListeNotes);
         }
 
-        /// <summary>
-        /// Supprime une note via l'API
-        /// </summary>
-        /// <author>Laszlo</author>
-        private void DeleteNote(object sender, RoutedEventArgs e)
-        {
-            if (maListViewNote.SelectedItem != null)
-            {
-                // Obtenez l'étudiant sélectionné dans la ListView
-                Note noteSelectionne = maListViewNote.SelectedItem as Note;
-                if (noteSelectionne != null)
-                {
-                    NoteDAO dao = new NoteDAO();
-                    dao.DeleteNote(noteSelectionne);
-                    notes.RemoveNote(noteSelectionne);
-
-                }
-            }
-
-        }
 
         /// <summary>
-        /// Ouvre une fenêtre affichant la note lorsqu'on double clique sur la note
+        /// Remplit le WrapPanel des notes 
         /// </summary>
-        /// <author>Laszlo</author>
-        private void maListView_MouseDoubleClick(object sender, RoutedEventArgs e)
+        /// <param name="notes">Liste de notes à afficher</param>
+        /// <author>Nordine</author>
+        private void RemplirWrapPanelNotes(List<Note> notes)
         {
-            if (maListViewNote.SelectedItem != null)
-            {
-                // Obtenez l'étudiant sélectionné dans la ListView
-                Note noteSelectionne = maListViewNote.SelectedItem as Note;
+            // Efface les anciens éléments
+            WrapPanelNote.Children.Clear();
 
-                if (noteSelectionne != null)
-                {
-                    // Créez une instance de la fenêtre CreationNote en passant la note et notes
-                    CreationNote affichageNote = new CreationNote(noteSelectionne,this.notes,true);
-                    affichageNote.Show();
+            //on trie les notes du plus recent au plus ancient
+            notes = notes.OrderByDescending(note => note.DatePublication).ToList();
+
+            foreach (Note note in notes)
+            {
+                // Si la note n'est pas déjà dans le WrapPanel, on l'y ajoute
+                if (!WrapPanelNote.Children.OfType<NoteComponent>().Any(nc => nc.Note.IdNote == note.IdNote))
+                { 
+                    // Ajoute le NoteComponent personnalisé au WrapPanel
+                    NoteComponent noteComponent = new NoteComponent(note);
+                    WrapPanelNote.Children.Add(noteComponent);
                 }
             }
         }
+
+
 
         /// <summary>
         /// Crée une note pour un étudiant quand on clique sur le bouton créer et on initialise les valeurs nulles
@@ -885,8 +632,8 @@ namespace PAGE.Vue.Ecran
             }
             else
             {
-
-                System.Windows.Forms.MessageBox.Show("Veuillez attendre la fin du chargement des notes", "Une erreur est survenue", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PopUp popUp = new PopUp("Une erreur est survenue", "Veuillez attendre la fin du chargement des notes", TYPEICON.ERREUR);
+                popUp.ShowDialog();
             }
 
         }
@@ -904,5 +651,25 @@ namespace PAGE.Vue.Ecran
             ChargementDiffereNotes();
         }
 
+
+        /// <summary>
+        /// Ouvre une fenêtre affichant la note lorsqu'on double clique sur la note
+        /// </summary>
+        /// <author>Nordine</author>
+        private void DoubleCliqueSurNote(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (sender is NoteComponent noteComponent)
+            {
+                // On recupère l'étudiant associé au EtudiantComponent
+                Note noteSelectionne = noteComponent.Note;
+
+                if (noteSelectionne != null)
+                {
+                    // Créez une instance de la fenêtre CreationNote en passant la note et notes
+                    CreationNote affichageNote = new CreationNote(noteSelectionne, this.notes, true);
+                    affichageNote.Show();
+                }
+            }
+        }
     }
 }
