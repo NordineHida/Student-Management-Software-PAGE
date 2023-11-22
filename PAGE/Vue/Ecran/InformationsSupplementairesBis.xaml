@@ -334,7 +334,7 @@
 
         <Label Grid.Column="2" FontSize="29" Content="Notes de l'étudiant : " HorizontalAlignment="Left" Margin="594,18,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#2B2B5A" RenderTransformOrigin="2.452,0.87" Height="57" Width="278" Grid.RowSpan="3"/>
 
-        <Line X1="50" Y1="10" X2="50" Y2="850" Stroke="Black" StrokeThickness="3" Margin="430,138,509,0" Grid.RowSpan="21" Grid.Column="2" Height="907" VerticalAlignment="Top"/>
+        <Line X1="50" Y1="10" X2="50" Y2="850" Stroke="Black" StrokeThickness="3" Margin="430,1,509,-61" Grid.RowSpan="20" Grid.Column="2" Grid.Row="1"/>
     </Grid>
 
 </Window>
