@@ -34,13 +34,13 @@
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
         <Label Grid.Column="1" Content="Login" HorizontalAlignment="Left" Margin="116,3,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <TextBox x:Name="ComboBoxConfidentialite" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" BorderBrush="#FF3DA79D" Text="{Binding Login}" />
+        <TextBox x:Name="txtLogin" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" BorderBrush="#FF3DA79D" Text="{Binding Login}" />
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
 
         <!-- Combobox gérant la catégorie de la note -->
         <Label Grid.Column="1" Content="MDP" HorizontalAlignment="Left" Margin="120,6,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="txtCategorie" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" Text="{Binding Mdp}"/>
+        <TextBox x:Name="txtMDP" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" Text="{Binding Mdp}"/>
 
         <!-- Boutons créer et annuler -->
         <Button x:Name="BoutonCreer" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0">

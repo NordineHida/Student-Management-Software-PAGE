@@ -479,8 +479,16 @@ namespace PAGE.Vue.Ecran
 
         private void OpenCreationUtilisateur(object sender, RoutedEventArgs e)
         {
-            CreationUtilisateur creerUtilisateur = new CreationUtilisateur(new Utilisateur("",""),users);
-            creerUtilisateur.Show();
+            if (users!=null) 
+            {
+                CreationUtilisateur creerUtilisateur = new CreationUtilisateur(new Utilisateur("", ""), users);
+                creerUtilisateur.Show();
+            }
+            else
+            {
+                PopUp popUp = new PopUp("Erreur de chargement", "La liste d'utilisateurs n'a pas encore été chargé. Attendez un peu !", TYPEICON.ERREUR);
+                popUp.ShowDialog();
+            }
         }
     }
 
