@@ -35,7 +35,7 @@
         <TextBlock Text="{DynamicResource TitreConnexion}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="#FF2B2B5A" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Open Sauce One" />
 
         <!-- Label pour Nom d'utilisateur ou E-mail -->
-        <Label Content="{DynamicResource LabelAnnee}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
+        <Label Content="{DynamicResource LabelLogin}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
 
         <!-- TextBox pour le nom d'utilisateur (Lucas & Nordine) -->
         <TextBox x:Name="txtUsername"  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontFamily="Open Sauce One Light" Height="40"/>

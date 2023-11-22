@@ -75,7 +75,7 @@ namespace PAGE.Vue.Ecran
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[3];
                         break;
                     case NATURE.AUTRE:
-                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[5];
+                        ComboBoxNature.SelectedItem = ComboBoxNature.Items[4];
                         break;
                 }
 
@@ -249,7 +249,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void ComboBoxNature_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (ComboBoxCategorie.SelectedIndex)
+            switch (ComboBoxNature.SelectedIndex)
             {
                 case 0:
                     note.Nature = NATURE.MAIL;
@@ -291,5 +291,21 @@ namespace PAGE.Vue.Ecran
         {
             note.Commentaire = (string)TextCommentaire.Text;
         }
+
+
+        /// <summary>
+        /// Supprime la note via le DAO et ferme la fenetre
+        /// </summary>
+        /// <author>Nordine</author>
+        private void ClickSupprimer(object sender, RoutedEventArgs e)
+        {
+            NoteDAO dao = new NoteDAO();
+            dao.DeleteNote(this.note);
+            notes.RemoveNote(this.note);
+
+            this.Close();
+        }
+
+
     }
 }
