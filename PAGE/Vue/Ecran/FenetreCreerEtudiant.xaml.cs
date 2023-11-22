@@ -43,8 +43,10 @@ namespace PAGE.Vue.Ecran
             txtPrenom.Text = "";
             txtTypebac.Text = "";
             txtMail.Text = "";
-            txtGroupe.Text = "";
-            txtRegime.Text = "";
+            comboBoxGroupe.SelectedIndex = -1;
+
+            comboBoxRegime.SelectedIndex = -1;
+
             txtLogin2.Text = "";
             txtAdresse2.Text = "";
             txtTelFixe2.Text = "";
