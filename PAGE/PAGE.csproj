@@ -68,48 +68,48 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-Black.ttf">
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-Black.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-BlackItalic.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-BlackItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-Bold.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-Bold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-BoldItalic.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-BoldItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-ExtraBold.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-ExtraBold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-ExtraBoldItalic.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-ExtraBoldItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-Italic.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-Italic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-Light.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-Light.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-LightItalic.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-LightItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-Medium.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-Medium.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-MediumItalic.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-MediumItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-Regular.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-SemiBold.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-SemiBold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Vue\Ressources\Fonts\OpenSauceOne-SemiBoldItalic.ttf">
+    </Resource>
+    <Resource Include="Vue\Ressources\Fonts\OpenSauceOne-SemiBoldItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
     <Content Include="Vue\Ressources\Img\photo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

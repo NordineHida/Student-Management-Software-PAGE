@@ -525,7 +525,7 @@
                         </Border>
                     </theme:SystemDropShadowChrome>
                 </Popup>
-                <ToggleButton x:Name="toggleButton"  Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton1}"/>
+                <ToggleButton x:Name="toggleButton" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton1}"/>
                 <ContentPresenter x:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Grid>
             <ControlTemplate.Triggers>
@@ -877,6 +877,7 @@
 
         <!-- Titre de la page -->
         <Label x:Name="Titre" Grid.Column="1" Content="{DynamicResource TitreCreanote}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29" Foreground="#2B2B5A"/>
+        <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
 
         <!-- Combobox gérant la confidentialité -->
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="75,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
@@ -913,7 +914,7 @@
         <!-- Date picker de la note-->
         <Rectangle Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="87,13,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="107" RadiusX="10" RadiusY="10"/>
         <Label Grid.Column="1" Content="Date : " HorizontalAlignment="Left" Margin="118,18,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
-        <DatePicker x:Name="DateCreationNote" SelectedDateChanged="DateChanged" Grid.Column="1" HorizontalAlignment="Left" Margin="199,15,0,0" Grid.Row="4" VerticalAlignment="Top" Height="50"  Width="247" SelectedDateFormat="Short" FontSize="20" BorderBrush="Transparent"/>
+        <DatePicker Style="{DynamicResource DatePickerStyle1}" x:Name="DateCreationNote" SelectedDateChanged="DateChanged" Grid.Column="1" HorizontalAlignment="Left" Margin="185,13,0,0" Grid.Row="4" VerticalAlignment="Top" Height="50"  Width="247" SelectedDateFormat="Short" FontSize="20" BorderBrush="Transparent" />
 
 
         <!-- TextBox du commentaire de la note -->
