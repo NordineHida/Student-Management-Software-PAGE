@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace PAGE.Model
 {
-    //Différentes natures possibles d'une note
-    //<author>Laszlo</author>
+    /// <summary>
+    /// Différentes natures possibles d'une note
+    /// </summary>
+    ///<author>Laszlo</author>
     public enum NATURE
     {
         MAIL,RDV,LETTRE,APPEL,AUTRE
