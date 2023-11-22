@@ -9,7 +9,6 @@ using PAGE.Model;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using APIEtudiant.Stockage;
 
 namespace PAGE.Vue.Ecran
 {
@@ -121,10 +120,10 @@ namespace PAGE.Vue.Ecran
                 string[] motsCatChoisie = categorieChoisieString.Split(": ");
                 note.Categorie = motsCatChoisie[1];
 
-                if (!string.IsNullOrEmpty(pieceJointe.FilePath))
+                if (pieceJointe != null)
                 {
                     PieceJointeDAO pieceJointeDAO = new PieceJointeDAO();
-                    pieceJointeDAO.CreatePieceJointe(pieceJointe);
+                    pieceJointeDAO.UploadFile(pieceJointe);
                 }
                 //si les informations sont correcte on créer la note
                 if (isCreateOk(note))
@@ -157,15 +156,11 @@ namespace PAGE.Vue.Ecran
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 if (openFileDialog.ShowDialog() == true)
                 {
-                    // Obtenez le chemin du fichier sélectionné
                     string selectedFilePath = openFileDialog.FileName;
 
-                    this.pieceJointe.FilePath = selectedFilePath;
-
-                    // Obtenez le contenu actuel du TextBox
                     string currentContent = PieceJointeTextBlock.Text;
 
-                    // Ajoutez le chemin du fichier avec un saut de ligne
+                    // Ajout du chemin du fichier 
                     PieceJointeTextBlock.Text = currentContent + selectedFilePath + Environment.NewLine;
                 }
             }

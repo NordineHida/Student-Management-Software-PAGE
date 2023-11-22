@@ -18,6 +18,6 @@ namespace PAGE.Stockage
         /// <param name="pieceJointe">Piece jointe à ajouter</param>
         /// <returns>true si l'ajout est un succès</returns>
         /// <author>Yamato</author>
-        public Task CreatePieceJointe(PieceJointe pieceJointe);
+        public Task UploadFile(PieceJointe pieceJointe);
     }
 }

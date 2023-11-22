@@ -3,7 +3,7 @@
     public class PieceJointe
     {
         private int idPieceJointe;
-        private IFormFile fichier;
+        private IFormFile file;
         private string filePath;
 
         /// <summary>
@@ -16,7 +16,7 @@
         /// Récupère ou définit le fichier de la piece jointe
         /// </summary>
         /// <author>Yamato</author>
-        public IFormFile Fichier { get { return fichier; } set { fichier = value; } }
+        public IFormFile File { get { return file; } set { file = value; } }
 
         /// <summary>
         /// Récupère ou définit le chemin d'accès au fichier
@@ -29,9 +29,9 @@
         /// </summary>
         /// <param name="fichier">fichier</param>
         /// <author>Yamato</author>
-        public PieceJointe(IFormFile fichier, string filePath) 
+        public PieceJointe(IFormFile file, string filePath) 
         {
-            this.fichier = fichier;
+            this.file = file;
             this.filePath = filePath;
         }
 

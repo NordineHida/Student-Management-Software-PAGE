@@ -1,5 +1,7 @@
 ﻿using APIEtudiant.Model;
 using Microsoft.AspNetCore.Mvc;
+using Oracle.ManagedDataAccess.Client;
+using APIEtudiant.Stockage;
 
 namespace APIEtudiant.Controllers
 {
@@ -8,17 +10,45 @@ namespace APIEtudiant.Controllers
 
     public class PieceJointeController : ControllerBase
     {
-        [HttpPost("CreatePieceJointe")]
-        public ActionResult CreatePieceJointe([FromBody] PieceJointe pieceJointe)
+        private readonly PieceJointeManager pieceJointeManager; // Injectez la dépendance si nécessaire
+
+        public PieceJointeController(PieceJointeManager pieceJointeManager)
         {
-            ActionResult reponse = BadRequest();
-            //Si la note n'est pas null
-            if (pieceJointe != null)
+            this.pieceJointeManager = pieceJointeManager;
+        }
+
+        [HttpPost("upload")]
+        public async Task<IActionResult> UploadFile([FromForm] PieceJointe pieceJointe)
+        {
+            ActionResult reponse = BadRequest("Aucun fichier n'a été téléversé");
+
+            try
             {
-                //si l'ajout de la note a été un succès on renvoie OK
-                if (PieceJointeManager.Instance.CreatePieceJointe(pieceJointe)) reponse = Ok();
+                if (pieceJointe == null) reponse = BadRequest();
+
+                // Générez un chemin unique pour le fichier
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(pieceJointe.File.FileName);
+                string filePath = Path.Combine("chemin/vers/dossier/upload", fileName);
+
+                // Enregistrez le fichier sur le disque
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await pieceJointe.File.CopyToAsync(stream);
+                }
+
+                // Stockez le chemin du fichier dans la base de données Oracle
+                pieceJointeManager.SavePathfile(pieceJointe);
+
+                reponse = Ok("Fichier téléversé avec succès.");
+            }
+            catch (Exception ex)
+            {
+                // Gérez les erreurs
+                reponse = StatusCode(500, $"Une erreur s'est produite : {ex.Message}");
             }
             return reponse;
         }
-    }
+
+        
+    }    
 }

@@ -1,9 +1,8 @@
-﻿using PAGE.Model;
+﻿using Microsoft.AspNetCore.Http;
+using PAGE.Model;
 using PAGE.Vue.Ecran;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -13,32 +12,39 @@ namespace PAGE.Stockage
     public class PieceJointeDAO : IPieceJointeDAO
     {
         /// <summary>
-        /// Crée une piece jointe et l'ajoute à la BDD
+        /// Téléverse une pièce jointe vers l'API.
         /// </summary>
-        /// <param name="pieceJointe">piece jointe crée</param>
-        /// <returns>la tache qu'est d'ajouter la piece jointe à la BDD</returns>
+        /// <param name="file">Fichier à téléverser.</param>
+        /// <returns>La tâche qui représente le téléversement de la pièce jointe.</returns>
         /// <author>Yamato</author>
-        public async Task CreatePieceJointe(PieceJointe pieceJointe)
+        public async Task UploadFile(PieceJointe pieceJointe)
         {
-            // Créez une instance de HttpClient
             using (HttpClient client = new HttpClient())
             {
                 // Spécifiez l'URL de l'API
-                string apiUrl = "https://localhost:7038/PieceJointe/CreatePieceJointe";
-
-                // Convertissez la note en JSON
-                string pieceJointeSerialise = JsonSerializer.Serialize(pieceJointe);
+                string apiUrl = "https://localhost:7038/PieceJointe/UploadFile";
 
                 // Créez le contenu de la requête POST
-                HttpContent content = new StringContent(pieceJointeSerialise, Encoding.UTF8, "application/json");
-
-                // Effectuez la requête POST
-                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-
-                if (response.IsSuccessStatusCode)
+                using (var content = new MultipartFormDataContent())
                 {
-                    PopUp popUp = new PopUp("Piece Jointe", "La pièce jointe est ajouté", TYPEICON.SUCCES);
-                    popUp.ShowDialog();
+                    // Ajoutez le fichier à la requête
+                    content.Add(new StreamContent(pieceJointe.File.OpenReadStream())
+                    {
+                        Headers =
+                            {
+                                ContentLength = pieceJointe.File.Length,
+                                ContentType = new MediaTypeHeaderValue(pieceJointe.File.ContentType)
+                            }
+                    }, "file", pieceJointe.File.FileName);
+
+                    // Effectuez la requête POST
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        PopUp popUp = new PopUp("Piece Jointe", "La piece jointe est ajouté", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
                 }
             }
         }
