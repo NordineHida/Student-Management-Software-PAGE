@@ -28,7 +28,7 @@ namespace APIEtudiant.Controllers
 
                 // Générez un chemin unique pour le fichier
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(pieceJointe.File.FileName);
-                string filePath = Path.Combine("chemin/vers/dossier/upload", fileName);
+                string filePath = Path.Combine("Stockage/PiecesJointes", fileName);
 
                 // Enregistrez le fichier sur le disque
                 using (var stream = new FileStream(filePath, FileMode.Create))
