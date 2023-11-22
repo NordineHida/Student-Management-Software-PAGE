@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Forms;
-
 using PAGE.Model;
 using PAGE.Stockage;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -17,8 +15,6 @@ namespace PAGE.Vue.Ecran
         private Etudiants etudiants;
         private SEXE sexeSelectionne;
         private bool estBoursier;
-        private REGIME regimeEtu = REGIME.FI;
-        private GROUPE groupeEtu = GROUPE.A1;
 
         /// <summary>
         /// Constructeur (initialiser le sexe à AUTRE  et le bool boursier a false
@@ -27,31 +23,10 @@ namespace PAGE.Vue.Ecran
         public FenetreCreerEtudiant(Etudiants etudiants)
         {
             InitializeComponent();
+
+            sexeSelectionne = SEXE.AUTRE;
+            estBoursier = false;
             this.etudiants = etudiants;
-            ReinitialisationChamps();
-        }
-        /// <summary>
-        /// Cette méthode permet de réinitialiser les champs après la création d'un étudiant pour en créer un autre
-        /// </summary>
-        /// <author>Lucas</author>
-        private void ReinitialisationChamps()
-        {
-            radioAutre.IsChecked = true;
-            radioBoursierFalse.IsChecked = true;
-            txtNumApogee.Text = "";
-            txtName.Text = "";
-            txtPrenom.Text = "";
-            txtTypebac.Text = "";
-            txtMail.Text = "";
-            comboBoxGroupe.SelectedIndex = -1;
-
-            comboBoxRegime.SelectedIndex = -1;
-
-            txtLogin2.Text = "";
-            txtAdresse2.Text = "";
-            txtTelFixe2.Text = "";
-            txtTelPortable2.Text = "";
-            txtDateNaissance2.SelectedDate = DateTime.Now.AddYears(-15);
         }
 
 
@@ -60,7 +35,6 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// <author>Nordine</author>
         private void CreerEtudiant(object sender, RoutedEventArgs e)
         {
             if (IsSaisiCorrect())
@@ -70,20 +44,16 @@ namespace PAGE.Vue.Ecran
                 long.TryParse(txtTelFixe2.Text, out telFixe);
                 long.TryParse(txtTelPortable2.Text, out telPortable);
 
-        
                 //on créer l'étudiant a partir des infos saisis dans la fenêtre
                 Etudiant etudiant = new Etudiant(
-                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, groupeEtu, estBoursier,
-                regimeEtu, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
+                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, txtGroupe.Text, estBoursier,
+                txtRegime.Text, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
                 telFixe, telPortable, txtAdresse2.Text);
 
                 //on ajoute l'étudiant à la bdd
                 EtuDAO dao = new EtuDAO();
                 dao.CreateEtu(etudiant);
                 etudiants.AddEtu(etudiant);
-
-                //on réinitialise la page
-                ReinitialisationChamps();
             }
 
         }
@@ -139,14 +109,14 @@ namespace PAGE.Vue.Ecran
                 popUp.ShowDialog(); saisiCorrect = false;
             }
 
-            else if (comboBoxGroupe.SelectedIndex == -1)
+            else if (string.IsNullOrWhiteSpace(txtGroupe.Text))
             {
                 PopUp popUp = new PopUp("Création", "Le champ Groupe ne peut pas être vide", TYPEICON.ERREUR);
                 popUp.ShowDialog();
                 saisiCorrect = false;
             }
 
-            else if (comboBoxRegime.SelectedIndex == -1)
+            else if (string.IsNullOrWhiteSpace(txtRegime.Text))
             {
                 PopUp popUp = new PopUp("Création", "Le champ Régime ne peut pas être vide", TYPEICON.ERREUR);
                 popUp.ShowDialog();
@@ -247,72 +217,5 @@ namespace PAGE.Vue.Ecran
             estBoursier = true;
         }
 
-
-        /// <summary>
-        /// Quand on change le regime de la combobox, change la valeur du régime de l'etudiant 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Laszlo</author>
-        private void ComboBoxRegime_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (comboBoxRegime.SelectedIndex)
-            {
-                case 0:
-                    regimeEtu = REGIME.FI;
-                    break;
-                case 1:
-                    regimeEtu = REGIME.FC;
-                    break;
-                case 2:
-                    regimeEtu = REGIME.FA;
-                    break;
-            }
-
-        }
-
-        /// <summary>
-        /// Quand on change le groupe de la combobox, change la valeur du groupe de l'etudiant 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Laszlo</author>
-        private void ComboBoxGroupe_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (comboBoxGroupe.SelectedIndex)
-            {
-                case 0:
-                    groupeEtu = GROUPE.A1;
-                    break;
-                case 1:
-                    groupeEtu = GROUPE.A2;
-                    break;
-                case 2:
-                    groupeEtu = GROUPE.B1;
-                    break;
-                case 3:
-                    groupeEtu = GROUPE.B2;
-                    break;
-                case 4:
-                    groupeEtu = GROUPE.C1;
-                    break;
-                case 5:
-                    groupeEtu = GROUPE.C2;
-                    break;
-                case 6:
-                    groupeEtu = GROUPE.D1;
-                    break;
-                case 7:
-                    groupeEtu = GROUPE.D2;
-                    break;
-                case 8:
-                    groupeEtu = GROUPE.E1;
-                    break;
-                case 9:
-                    groupeEtu = GROUPE.E2;
-                    break;
-            }
-
-        }
     }
 }

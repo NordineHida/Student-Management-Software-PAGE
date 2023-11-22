@@ -15,7 +15,7 @@
 
     <Grid x:Name="GridInfoSupp">
         <Grid.RowDefinitions>
-            <RowDefinition Height="165*" />
+            <RowDefinition Height="145*" />
             <!-- Première ligne pour le logo -->
             <RowDefinition Height="29*" />
             <RowDefinition Height="29*" />
@@ -50,7 +50,7 @@
 
         <Rectangle Stretch="UniformToFill" Fill="White" Stroke="Black" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="59" />
 
-        <Image Source="/Vue/Ressources/Img/photo.png" Stretch="UniformToFill" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Height="177" Width="183" Margin="0,10,0,0" Grid.RowSpan="7"  />
+        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Height="177" Width="183" Margin="0,10,0,0" Grid.RowSpan="7"  />
 
         <!-- Informations Importantes -->
 
@@ -65,18 +65,7 @@
         <TextBox Width="425" IsReadOnly="True" x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="15" Grid.Row="5" Grid.Column="3" BorderThickness="0"/>
 
         <TextBlock Text="{DynamicResource Groupe:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="1" />
-        <ComboBox Width="425" IsReadOnly="True" IsEnabled="False" x:Name="comboBoxGroupe" HorizontalAlignment="Left" FontSize="15" Grid.Row="7" Grid.Column="3" BorderThickness="0" SelectionChanged="ComboBoxGroupe_SelectionChanged">
-            <ComboBoxItem Content="A1"/>
-            <ComboBoxItem Content="A2"/>
-            <ComboBoxItem Content="B1"/>
-            <ComboBoxItem Content="B2"/>
-            <ComboBoxItem Content="C1"/>
-            <ComboBoxItem Content="C2"/>
-            <ComboBoxItem Content="D1"/>
-            <ComboBoxItem Content="D2"/>
-            <ComboBoxItem Content="E1"/>
-            <ComboBoxItem Content="E2"/>
-        </ComboBox>
+        <TextBox Width="425" IsReadOnly="True" x:Name="txtGroupe" HorizontalAlignment="Left" FontSize="15" Grid.Row="7" Grid.Column="3" BorderThickness="0"/>
 
         <TextBlock Text="{DynamicResource Mail:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="1" />
         <TextBox Width="425" IsReadOnly="True" x:Name="txtMail" HorizontalAlignment="Left" FontSize="15" Grid.Row="9" Grid.Column="3" BorderThickness="0"/>
@@ -103,212 +92,62 @@
 
         <!-- Régime de formation (Nordine & Yamato)-->
         <TextBlock Text="{DynamicResource Regime:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
-        <ComboBox Width="425" IsReadOnly="True" IsEnabled="False" x:Name="comboBoxRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" BorderThickness="0" SelectionChanged="ComboBoxRegime_SelectionChanged">
-            <ComboBoxItem Content="FI"/>
-            <ComboBoxItem Content="FC"/>
-            <ComboBoxItem Content="FA"/>
-        </ComboBox>
+        <TextBox Width="425" IsReadOnly="True" x:Name="txtRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" BorderThickness="0"/>
 
         <!-- Informations Complémentaires (Nordine & Yamato) -->
 
         <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato & Lucas)-->
-        <Button x:Name="BoutonInfoComp" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAffiInfoComp}" Click="InfosComp_Click" Margin="20,29,20,0" Grid.Row="16" Grid.RowSpan="4">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
-                                        <Setter Property="Foreground" Value="#000000"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Value="300">
-                            <Setter Property="FontSize" Value="12"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Value="600">
-                            <Setter Property="FontSize" Value="16"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+        <Button x:Name="BoutonInfoComp" FontSize="14" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAffiInfoComp}" Click="InfosComp_Click" Margin="20,10,20,0" Grid.Row="15" Grid.RowSpan="2" />
 
         <!-- Bouton pour cacher les informations complémentaires (Lucas)-->
-        <Button x:Name="BoutonCacherInfoComp" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCacherInfoComp}" Click="HideInfosComp_Click" Margin="20,29,20,0" Grid.Row="16" Grid.RowSpan="4" Visibility="Collapsed">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
-                                        <Setter Property="Foreground" Value="#000000"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Value="300">
-                            <Setter Property="FontSize" Value="12"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Value="600">
-                            <Setter Property="FontSize" Value="16"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-
-        </Button>
-
+        <Button x:Name="BoutonCacherInfoComp" FontSize="14" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCacherInfoComp}" Click="HideInfosComp_Click" Margin="20,10,20,0" Grid.Row="15" Grid.RowSpan="2" Visibility="Collapsed"/>
+        
         <!-- Bouton "Modifier" (lucas) -->
-        <Button x:Name="BoutonModifier" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnModifInfos}" Click="Modifier_Click" Margin="20,0,20,27" Grid.Row="13" Grid.RowSpan="4">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
-                                        <Setter Property="Foreground" Value="#000000"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Value="300">
-                            <Setter Property="FontSize" Value="12"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Value="600">
-                            <Setter Property="FontSize" Value="16"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-
-        </Button>
+        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnModifInfos}" Click="Modifier_Click" Margin="20,0,20,2" Grid.Row="13" Grid.RowSpan="2" />
 
         <!-- Bouton "Valider" pour sauvegarder les modifications (Lucas) -->
-        <Button FontSize="20" Foreground="#FFFFFF"  Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}" x:Name="BoutonValider" Click="Valider_Click" Margin="20,0,20,27" Grid.Row="13" Visibility="Collapsed" Grid.RowSpan="4">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
-                                        <Setter Property="Foreground" Value="#000000"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Value="300">
-                            <Setter Property="FontSize" Value="12"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Value="600">
-                            <Setter Property="FontSize" Value="16"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
+        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}" x:Name="BoutonValider" Click="Valider_Click" Margin="20,20,20,0" Grid.Row="17" Visibility="Collapsed" Grid.RowSpan="2" />
 
-        </Button>
-
-        <!-- Bouton "Créer note" pour créer une note pour l'étudiant (Lucas) -->
-
-        <Button FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCreerNote}" x:Name="BoutonCreernote" Click="Creer_Click"  Margin="20,0,20,29" Grid.RowSpan="4" Grid.Row="9">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
-                                        <Setter Property="Foreground" Value="#000000"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Value="300">
-                            <Setter Property="FontSize" Value="12"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Value="600">
-                            <Setter Property="FontSize" Value="16"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-
-        </Button>
+        <Button FontSize="20" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCreerNote}" x:Name="BoutonCreernote" Click="Creer_Click"  Margin="20,14,20,15" Grid.RowSpan="3" Grid.Row="10"/>
 
 
         <StackPanel x:Name="contInfosComp" Visibility="Collapsed" Orientation="Vertical" Grid.RowSpan="2" Grid.Row="19"  Grid.Column="1"  Grid.ColumnSpan="2">
 
             <!-- Date de naissance -->
             <WrapPanel>
-                <TextBlock x:Name="txtDateNaissance1" MinWidth="50" FontSize="20" Text="{DynamicResource Birth}" Margin="0,20,0,0" />
-                <DatePicker Grid.Column="3" FontSize="20" IsEnabled="False" x:Name="txtDateNaissance2" SelectedDateFormat="Short" Margin="30,20,0,0"></DatePicker>
+                <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="{DynamicResource Birth}" Margin="0,20,0,0" />
+                <DatePicker FontSize="20" IsEnabled="False" x:Name="txtDateNaissance2" SelectedDateFormat="Short" Margin="30,20,0,0"></DatePicker>
             </WrapPanel>
 
 
             <!-- Adresse de résidence -->
             <WrapPanel>
                 <TextBlock x:Name="txtAdresse1" FontSize="20" Text="{DynamicResource Adresse}" Margin="0,20,0,0"/>
-                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtAdresse2" FontSize="15" Margin="30,20,0,0" MaxWidth="370" TextWrapping="NoWrap" BorderThickness="0"/>
+                <TextBox Width="425" IsReadOnly="True" x:Name="txtAdresse2" FontSize="15" Margin="30,20,0,0" MaxWidth="425" TextWrapping="NoWrap" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Téléphone fixe -->
             <WrapPanel>
                 <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="{DynamicResource TelFixe}" Margin="0,20,0,0" />
-                <TextBox Grid.Column="3" Width="430" IsReadOnly="True" x:Name="txtTelFixe2" FontSize="15"  Margin="30,20,0,0"  BorderThickness="0"/>
+                <TextBox Width="425" IsReadOnly="True" x:Name="txtTelFixe2" FontSize="15"  Margin="30,20,0,0" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Téléphone portable -->
             <WrapPanel>
                 <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="{DynamicResource TelPort}" Margin="0,20,0,0"/>
-                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtTelPortable2" FontSize="15"  Margin="30,20,0,0" MaxWidth="387" BorderThickness="0"/>
+                <TextBox Width="425" IsReadOnly="True" x:Name="txtTelPortable2" FontSize="15"  Margin="30,20,0,0" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Login réseau -->
             <WrapPanel>
                 <TextBlock x:Name="txtLogin1" FontSize="20" Text="{DynamicResource LoginRes}" Margin="0,20,0,0" />
-                <TextBox Grid.Column="3" Width="445" IsReadOnly="True" x:Name="txtLogin2" FontSize="15" Margin="30,20,0,0" BorderThickness="0" />
+                <TextBox Width="425" IsReadOnly="True" x:Name="txtLogin2" FontSize="15" Margin="30,20,0,0" BorderThickness="0" />
             </WrapPanel>
 
         </StackPanel>
 
         <!-- Liste des étudiants (stephane & Laszlo) -->
-        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="11"  MouseDoubleClick="maListView_MouseDoubleClick">
+        <ListView Name="maListViewNote" Margin="516,29,51,107"  Background="#FFDFEAFF"  Grid.RowSpan="12" Grid.Column="2" Grid.Row="9"  MouseDoubleClick="maListView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="80" DisplayMemberBinding="{Binding Categorie}">
@@ -347,15 +186,15 @@
 
         </ListView>
         <!-- LCombox et checkbox (stephane) -->
-        <CheckBox x:Name="ConfidentielCheckBox" Content="{DynamicResource ComboboxConf}" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="18" Height="30" Width="140" Grid.Column="2" Margin="516,0,0,0" Grid.RowSpan="2" Checked="ConfidentielCheckBox_Checked" Unchecked="ConfidentielCheckBox_Unchecked" />
-        <ComboBox x:Name="ConfidentielCombobox" SelectionChanged="ConfidentielCombobox_SelectionChanged" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="10" Height="28" Width="150" Grid.Column="2" Margin="516,0,0,0" Visibility="Hidden" Grid.RowSpan="2">
+        <CheckBox x:Name="ConfidentielCheckBox" Content="{DynamicResource ComboboxConf}" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="30" Width="140" Grid.Column="2" Margin="0,14,0,0" Grid.RowSpan="2" Checked="ConfidentielCheckBox_Checked" Unchecked="ConfidentielCheckBox_Unchecked" />
+        <ComboBox x:Name="ConfidentielCombobox" SelectionChanged="ConfidentielCombobox_SelectionChanged" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="30" Width="150" Grid.Column="2" Margin="0,14,0,0" Grid.RowSpan="2" Visibility="Hidden">
             <ComboBoxItem Content="{DynamicResource CateMedical}"/>
             <ComboBoxItem Content="{DynamicResource CateConf}"/>
             <ComboBoxItem Content="{DynamicResource CateInterne}"/>
             <ComboBoxItem Content="{DynamicResource CatePublic}"/>
         </ComboBox>
-        <CheckBox x:Name="CategorieCheckBox" Content="{DynamicResource ComboboxCate}" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="18" Height="30" Width="120" Grid.Column="2" Margin="829,0,0,0" Grid.RowSpan="2" Checked="CategorieCheckBox_Checked" Unchecked="CategorieCheckBox_Unchecked" />
-        <ComboBox x:Name="CategorieCombobox" SelectionChanged="CategorieCombobox_SelectionChanged" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="10" Height="28" Width="150" Grid.Column="2" Margin="799,0,0,0" Visibility="Hidden" Grid.RowSpan="2">
+        <CheckBox x:Name="CategorieCheckBox" Content="{DynamicResource ComboboxCate}" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="18" Height="30" Width="120" Grid.Column="2" Margin="714,13,0,0" Grid.RowSpan="2" Checked="CategorieCheckBox_Checked" Unchecked="CategorieCheckBox_Unchecked" />
+        <ComboBox x:Name="CategorieCombobox" SelectionChanged="CategorieCombobox_SelectionChanged" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="30" Width="150" Grid.Column="2" Margin="714,13,0,0" Grid.RowSpan="2" Visibility="Hidden">
             <ComboBoxItem Content="{DynamicResource CateAbsenteisme}"/>
             <ComboBoxItem Content="{DynamicResource CatePersonnel}"/>
             <ComboBoxItem Content="{DynamicResource CateResultats}"/>
@@ -364,9 +203,7 @@
             <ComboBoxItem Content="{DynamicResource CateAutre}"/>
         </ComboBox>
 
-        <Label Grid.Column="2" FontSize="29" Content="Notes de l'étudiant : " HorizontalAlignment="Left" Margin="594,18,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#2B2B5A" RenderTransformOrigin="2.452,0.87" Height="57" Width="278" Grid.RowSpan="3"/>
 
-        <Line X1="50" Y1="10" X2="50" Y2="850" Stroke="Black" StrokeThickness="3" Margin="430,138,509,0" Grid.RowSpan="21" Grid.Column="2" Height="907" VerticalAlignment="Top"/>
     </Grid>
 
 </Window>

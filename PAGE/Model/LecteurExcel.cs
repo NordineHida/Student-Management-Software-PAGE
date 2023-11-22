@@ -48,8 +48,6 @@ namespace PAGE.Model
             long telFixeInt = -1;
             DateTime dateNaissanceDT = new DateTime();
             SEXE sexeEtu = SEXE.AUTRE;
-            REGIME regimeEtu = REGIME.FI;
-            GROUPE groupeEtu = GROUPE.A1;
             bool estBoursierBool = false;
 
             //Date de base d'Excel à partir de laquel on compte le nombre de jour
@@ -115,54 +113,6 @@ namespace PAGE.Model
                                     break;
                             }
 
-                            //Conversion du string en REGIME
-                            switch (regimeFormation)
-                            {
-                                case "FI":
-                                    regimeEtu = REGIME.FI;
-                                    break;
-                                case "FC":
-                                    regimeEtu = REGIME.FC;
-                                    break;
-                                case "FA":
-                                    regimeEtu = REGIME.FA;
-                                    break;
-                            }
-
-                            //Conversion du string groupe en valeur de l'énumération GROUPE
-                            switch (groupe)
-                            {
-                                case "A2":
-                                    groupeEtu = GROUPE.A2;
-                                    break;
-                                case "B1":
-                                    groupeEtu = GROUPE.B1;
-                                    break;
-                                case "B2":
-                                    groupeEtu = GROUPE.B2;
-                                    break;
-                                case "C1":
-                                    groupeEtu = GROUPE.C1;
-                                    break;
-                                case "C2":
-                                    groupeEtu = GROUPE.C2;
-                                    break;
-                                case "D1":
-                                    groupeEtu = GROUPE.D1;
-                                    break;
-                                case "D2":
-                                    groupeEtu = GROUPE.D2;
-                                    break;
-                                case "E1":
-                                    groupeEtu = GROUPE.E1;
-                                    break;
-                                case "E2":
-                                    groupeEtu = GROUPE.E2;
-                                    break;
-                            }
-
-
-
                             //Conversion du string en Bool
                             estBoursierBool = false;
                             if (estBoursier == "OUI") estBoursierBool = true;
@@ -181,7 +131,7 @@ namespace PAGE.Model
                         }
                     }
                     //On crée l'étudiant
-                    Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupeEtu, estBoursierBool, regimeEtu, dateNaissanceDT, login, telPortableInt, telFixeInt, adresse);
+                    Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupe, estBoursierBool, regimeFormation, dateNaissanceDT, login, telPortableInt, telFixeInt, adresse);
 
                     //On l'ajoute à la liste d'étudiant
                     etudiants.Add(etudiant);

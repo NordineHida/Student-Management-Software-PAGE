@@ -67,6 +67,16 @@ namespace APIEtudiant.Model
         }
 
         /// <summary>
+        /// Renvoie toutes les notes 
+        /// </summary>
+        /// <returns>la liste de notes/returns>
+        /// <author>Laszlo</author>
+        public IEnumerable<Note> GetAllNotes()
+        {
+            return NoteDAO.GetAllNotes();
+        }
+
+        /// <summary>
         /// Modifie une note dans la BDD
         /// </summary>
         /// <param name="note">Note à modifier</param>
