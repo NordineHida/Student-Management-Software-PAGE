@@ -5,11 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"
-        Title="Page" 
+        Title="FenetrePrincipalBis" 
         Height="1000" Width="1500">
-
 
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
@@ -32,7 +29,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
     </Window.Resources>
 
     <Grid>
@@ -54,6 +50,18 @@
         <!-- Logo avec effet d'ombre -->
         <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0" Grid.Column="0" Margin="10" Width="150" Height="150" />
 
+        <!-- search bar des étudiants (Nordine/Stephane) -->
+        <StackPanel Grid.Column="1" Grid.Row="0" Margin="30,70,0,0">
+            <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Open Sauce One Bold" Foreground="#2B2B5A"/>
+            <ComboBox x:Name="ComboBoxFiltre" SelectionChanged="SelectionFiltreChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180" Margin="0,0,0,15" >
+                <ComboBoxItem Content="{DynamicResource Prenom}"></ComboBoxItem>
+                <ComboBoxItem Content="{DynamicResource Nom}"></ComboBoxItem>
+                <ComboBoxItem Content="{DynamicResource GroupeHead}"></ComboBoxItem>
+                <ComboBoxItem Content="{DynamicResource NumApogee}"></ComboBoxItem>
+            </ComboBox>
+            <TextBox  x:Name="TexteFiltre" TextChanged="TexteFiltreChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180"/>
+
+        </StackPanel>
 
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
@@ -85,41 +93,30 @@
 
         </StackPanel>
 
-        <!-- Liste des étudiants (stephane) -->
-        <ListView Name="maListView" Grid.Column="1" Margin="30" Grid.Row="2" Background="#FFDFEAFF" MouseDoubleClick="maListView_MouseDoubleClick" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding NumApogee}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="NumApogee" Click="Trie_Click" Content="{DynamicResource NumApogee}"></GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Nom}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Nom" Click="Trie_Click" Content="{DynamicResource Nom}"></GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Prenom }">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Prenom" Click="Trie_Click" Content="{DynamicResource Prenom}"></GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-           
-        </ListView>
+        <!--Header du scrollViewer-->
+        <WrapPanel Grid.Row="1" Grid.Column="1" Background="#3DA79D" Margin="30, 5, 30, 0" Height="50" >
+            <Button Content="{DynamicResource GroupeHead}" Height="50" Click="OrderByGroupe" HorizontalAlignment="Left"  MinWidth="120" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
+            <Button Content="Apogee" Height="50" Click="OrderByApogee" HorizontalAlignment="Left" MinWidth="205" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0" />
+            <Button Content="{DynamicResource Prenom}" Height="50" Click="OrderByPrenom" HorizontalAlignment="Center" MinWidth="340" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
+            <Button Content="{DynamicResource Nom}" Height="50" Click="OrderByNom" HorizontalAlignment="Left" MinWidth="500" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
+        </WrapPanel>
 
-        <!-- search bar des étudiants (stephane) -->
-        <Border Padding="0 5" Margin="105,111,1030,28" Grid.Column="1">
-            <Grid>
-                <ComboBox x:Name="FilterBy" SelectionChanged="FilterBy_SelectionChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180" Margin="0,-27,0,0">
-                    <ComboBoxItem Content="{DynamicResource Nom}"></ComboBoxItem>
-                    <ComboBoxItem Content="{DynamicResource Prenom}"></ComboBoxItem>
-                </ComboBox>
-                <TextBox  x:Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" HorizontalAlignment="Center" VerticalAlignment="Top" Width="180"/>
-            </Grid>
-        </Border>
-        <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" Margin="54,88,0,0" VerticalAlignment="Top" FontFamily="Open Sauce One"/>
+        <!--Pour pouvoir scroller (Nordine)-->
+        <ScrollViewer Grid.Column="1" Margin="30, 0, 30, 30" Grid.Row="2">
+            <!-- Liste des étudiants avec des EtudiantComponent (Nordine) -->
+            <StackPanel Name="StackPanelEtudiants" Background="#FFDFEAFF">
+                <!-- La liste d'étudiants sera ajoutée dynamiquement ici -->
 
+                <!-- gestionnaire d'événements pour le clique sur les étudiant (Nordine) -->
+                <StackPanel.Resources>
+                    <Style TargetType="local:EtudiantComponent">
+                        <EventSetter Event="MouseDoubleClick" Handler="EtudiantComponent_MouseDoubleClick"/>
+
+                    </Style>
+                </StackPanel.Resources>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
+
+
 </Window>

@@ -10,7 +10,8 @@
 
     <system:String x:Key="Nom">Nom</system:String>
     <system:String x:Key="Prenom">Prenom</system:String>
-    <system:String x:Key="NumApogee">NumApogee</system:String>
+    <system:String x:Key="GroupeHead">Groupe</system:String>
+    <system:String x:Key="NumApogee">Apogee</system:String>
     <system:String x:Key="Oui">Oui</system:String>
     <system:String x:Key="Non">Non</system:String>
 
@@ -73,7 +74,7 @@
     <system:String x:Key="ToolTipChoixPromo">Choisir la promotion</system:String>
     
     <!--PagePrincipale (Lucas)-->
-    <system:String x:Key="LabelTrie">Trier par :</system:String> 
+    <system:String x:Key="LabelTrie">Filtrer par :</system:String> 
     
     <!--CréerEtudiant (Lucas)-->
     <system:String x:Key="TitreFenetreCreerEtudiant">Créer un étudiant</system:String>
@@ -93,8 +94,8 @@
     <system:String x:Key="Regime">Régime :*</system:String>
 
     <system:String x:Key="BtnCreerEtudiant">Créer un étudiant</system:String>
-    <system:String x:Key="BtnAffiInfoComp">Afficher les informations complémentaires</system:String>
-    <system:String x:Key="BtnCacherInfoComp">Cacher les informations complémentaires</system:String>
+    <system:String x:Key="BtnAffiInfoComp">Afficher informations</system:String>
+    <system:String x:Key="BtnCacherInfoComp">Cacher informations</system:String>
 
     <system:String x:Key="LabelChpObli">* = Champ obligatoire</system:String>
     <system:String x:Key="Birth">Date de naissance : </system:String>

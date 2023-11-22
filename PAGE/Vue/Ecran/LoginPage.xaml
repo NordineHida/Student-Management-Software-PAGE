@@ -47,10 +47,51 @@
         <PasswordBox x:Name="txtPassword" FontSize="14" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Height="40"/>
 
         <!--Bouton de Connexion (Nordine)-->
-        <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnLogin}"  FontSize="40" Click="BoutonLogin" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20"/>
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnLogin}"  FontSize="40" Click="BoutonLogin" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
+                                        <Setter Property="Foreground" Value="#000000"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <!--Bouton pour annuler (Nordine)-->
-        <Button Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="40" Click="CloseLoginWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20"/>
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="40" Click="CloseLoginWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
+                                        <Setter Property="Foreground" Value="#000000"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        
         <Image Source="/Vue/Ressources/Img/LogoIUT.png" Grid.ColumnSpan="2" Margin="10,-4,280,106" Grid.RowSpan="2"/>
 
 

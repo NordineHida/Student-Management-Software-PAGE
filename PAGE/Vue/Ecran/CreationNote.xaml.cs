@@ -25,9 +25,11 @@ namespace PAGE.Vue.Ecran
         /// <summary>
         /// Constructeur de fenêtre CreationNote
         /// </summary>
-        /// <param name="note"></param>
+        /// <param name="note">note à créer/afficher/modifier</param>
+        /// <param name="notes">liste des notes existantes</param>
+        /// <param name="noteExiste">indique si la note a déjà été crée par cette fenêtre ou non</param>
         /// <author>Laszlo / Lucas / Nordine</author>
-        public CreationNote(Note note, Notes notes)
+        public CreationNote(Note note, Notes notes, bool noteExist)
         {
             InitializeComponent();
 
@@ -36,7 +38,7 @@ namespace PAGE.Vue.Ecran
             this.notes = notes;
 
             //Si on est en mode affichage (la note existe)
-            if (note.Categorie != "")
+            if (noteExist)
             {
                 Titre.Content = "Note :";
 
@@ -45,41 +47,41 @@ namespace PAGE.Vue.Ecran
                 //les switchs permettent d'afficher la valeur actuelle dans chaque comboBox 
                 switch (note.Categorie)
                 {
-                    case "Absentéisme":
+                    case CATEGORIE.ABSENTEISME:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[0];
                         break;
-                    case "Personnel":
+                    case CATEGORIE.PERSONNEL:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[1];
                         break;
-                    case "Medical":
+                    case CATEGORIE.MEDICAL:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[2];
                         break;
-                    case "Résultats":
+                    case CATEGORIE.RESULTATS:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[3];
                         break;
-                    case "Orientation":
+                    case CATEGORIE.ORIENTATION:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[4];
                         break;
-                    case "Autre":
+                    case CATEGORIE.AUTRE:
                         ComboBoxCategorie.SelectedItem = ComboBoxCategorie.Items[5];
                         break;
                 }
 
                 switch (note.Nature)
                 {
-                    case "Mail":
+                    case NATURE.MAIL:
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[0];
                         break;
-                    case "Rdv":
+                    case NATURE.RDV:
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[1];
                         break;
-                    case "Lettre":
+                    case NATURE.LETTRE:
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[2];
                         break;
-                    case "Appel":
+                    case NATURE.APPEL:
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[3];
                         break;
-                    case "Autre":
+                    case NATURE.AUTRE:
                         ComboBoxNature.SelectedItem = ComboBoxNature.Items[5];
                         break;
                 }
@@ -218,13 +220,19 @@ namespace PAGE.Vue.Ecran
 
             }
 
-            /// <summary>
-            /// Définit si l'on peut créer la note au moment de valider
-            /// </summary>
-            /// <param name="note">note à créer</param>
-            /// <returns>true si elle est correcte, faux sinon</returns>
-            /// <author>Nordine</author>
-            public bool isCreateOk(Note note)
+        }
+
+        /// <summary>
+        /// Définit si l'on peut créer la note au moment de valider
+        /// </summary>
+        /// <param name="note">note à créer</param>
+        /// <returns>true si elle est correcte, faux sinon</returns>
+        /// <author>Nordine</author>
+        public bool isCreateOk(Note note)
+        {
+            bool valide = true;
+
+            if (note.Categorie == null)
             {
                 bool valide = true;
 
@@ -291,24 +299,24 @@ namespace PAGE.Vue.Ecran
             /// <author>Nordine</author>
             private void ComboBoxNature_SelectionChanged(object sender, SelectionChangedEventArgs e)
             {
-                switch (ComboBoxCategorie.SelectedIndex)
-                {
-                    case 0:
-                        note.Nature = "Mail";
-                        break;
-                    case 1:
-                        note.Nature = "Rdv";
-                        break;
-                    case 2:
-                        note.Nature = "Lettre";
-                        break;
-                    case 3:
-                        note.Nature = "Appel";
-                        break;
-                    case 4:
-                        note.Nature = "Autre";
-                        break;
-                }
+                case 0:
+                    note.Categorie = CATEGORIE.ABSENTEISME;
+                    break;
+                case 1:
+                    note.Categorie = CATEGORIE.PERSONNEL;
+                    break;
+                case 2:
+                    note.Categorie = CATEGORIE.MEDICAL;
+                    break;
+                case 3:
+                    note.Categorie = CATEGORIE.RESULTATS;
+                    break;
+                case 4:
+                    note.Categorie = CATEGORIE.ORIENTATION;
+                    break;
+                case 5:
+                    note.Categorie = CATEGORIE.AUTRE;
+                    break;
             }
 
             /// <summary>
@@ -319,19 +327,21 @@ namespace PAGE.Vue.Ecran
             /// <author>Nordine</author>
             private void DateChanged(object sender, SelectionChangedEventArgs e)
             {
-                if (DateCreationNote.SelectedDate != null)
-                    note.DatePublication = (DateTime)DateCreationNote.SelectedDate;
-            }
-
-            /// <summary>
-            /// Quand on change le commentaire, on change aussi l'attribut
-            /// </summary>
-            /// <param name="sender"></param>
-            /// <param name="e"></param>
-            /// <author>Nordine</author>
-            private void TextCommentaire_TextChanged(object sender, TextChangedEventArgs e)
-            {
-                note.Commentaire = (string)TextCommentaire.Text;
+                case 0:
+                    note.Nature = NATURE.MAIL;
+                    break;
+                case 1:
+                    note.Nature = NATURE.RDV;
+                    break;
+                case 2:
+                    note.Nature = NATURE.LETTRE;
+                    break;
+                case 3:
+                    note.Nature = NATURE.APPEL;
+                    break;
+                case 4:
+                    note.Nature = NATURE.AUTRE;
+                    break;
             }
         }
     } 
