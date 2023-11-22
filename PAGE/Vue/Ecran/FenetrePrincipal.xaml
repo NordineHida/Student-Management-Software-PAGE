@@ -331,9 +331,11 @@
         <!-- Logo avec effet d'ombre -->
         <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0" Grid.Column="0" Margin="10" Width="150" Height="150" />
 
+        <Rectangle HorizontalAlignment="Left" Height="26" Fill="#FF3DA79D" VerticalAlignment="Top" Width="106"  RadiusX="10" RadiusY="10" Grid.Column="1" Margin="30,67,0,0"/>
+
         <!-- search bar des étudiants (Nordine/Stephane) -->
         <StackPanel Grid.Column="1" Grid.Row="0" Margin="30,70,0,0">
-            <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Open Sauce One Bold" Foreground="#2B2B5A"/>
+            <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Open Sauce One Bold" Foreground="#FFFFFF"/>
             <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxFiltre" SelectionChanged="SelectionFiltreChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180" Margin="0,0,0,15" >
                 <ComboBoxItem Content="{DynamicResource Prenom}"></ComboBoxItem>
                 <ComboBoxItem Content="{DynamicResource Nom}"></ComboBoxItem>
