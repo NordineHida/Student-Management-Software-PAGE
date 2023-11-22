@@ -37,10 +37,38 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    PopUp popUp = new PopUp("Note", "La note est crée", TYPEICON.SUCCES);
+                    PopUp popUp = new PopUp("Utilisateur", "L'utilisateur est créé", TYPEICON.SUCCES);
                     popUp.ShowDialog();
                 }
             }
+        }
+
+        /// <summary>
+        /// Récupère les utilisateurs de la BDD
+        /// </summary>
+        /// <returns>vrai si l'ajout est effectué, faux sinon</returns>
+        /// <author>Laszlo</author>
+        public async Task<IEnumerable<Utilisateur>> GetAllUtilisateurs()
+        {
+            //Dictionnaire d'étudiant (cle = num apogee, valeur = etudiant)
+            List<Utilisateur> users = new List<Utilisateur>();
+
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
+            {
+                // Spécifiez l'URL de l'API
+                string apiUrl = "https://localhost:7038/Utilisateur/GetAllUtilisateurs";
+
+                // Effectuez la requête GET
+                HttpResponseMessage reponse = await client.GetAsync(apiUrl);
+
+                //On récupere le json contenant la liste d'étudiant
+                string reponseString = await reponse.Content.ReadAsStringAsync();
+
+                //On la deserialise et on lit en IEnumerable qu'on convertit en List<Etudiant>
+                users = JsonSerializer.Deserialize<List<Utilisateur>>(reponseString);
+            }
+            return users;
         }
     }
 }

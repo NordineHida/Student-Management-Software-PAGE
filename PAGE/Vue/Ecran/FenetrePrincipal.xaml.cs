@@ -16,6 +16,7 @@ namespace PAGE.Vue.Ecran
     public partial class FenetrePrincipal : Window, IObservateur
     {
         private UIElement initialContent;
+        private Utilisateurs users;
         private Etudiants etudiants;
         private List<Etudiant> etudiantAffichage;
         private bool TriCroissant=false;
@@ -43,8 +44,20 @@ namespace PAGE.Vue.Ecran
         private async Task ChargementDiffereInitial()
         {
             // On récupère l'ensemble des étudiants via l'API
-            EtuDAO dao = new EtuDAO();
-            this.etudiants = new Etudiants((List<Etudiant>)await dao.GetAllEtu());
+            EtuDAO Etudao = new EtuDAO();
+            this.etudiants = new Etudiants((List<Etudiant>)await Etudao.GetAllEtu());
+
+            //On récupère l'ensemble des utilisateurs via l'API
+            List<Utilisateur> listUser;
+            Dictionary<string,Utilisateur> dicoUser = new Dictionary<string, Utilisateur>();
+            UtilisateurDAO userDAO = new UtilisateurDAO();
+            listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
+            for (int i=0;i< listUser.Count;i++)
+            {
+                dicoUser.Add(listUser[i].Login, listUser[i]);
+            }
+            this.users = new Utilisateurs(dicoUser);
+
 
             //Affiche les components des etudiants (trie par numero apogee par defaut
             AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
@@ -65,7 +78,18 @@ namespace PAGE.Vue.Ecran
             // On récupère l'ensemble des étudiants via l'API
             EtuDAO dao = new EtuDAO();
             this.etudiants = new Etudiants((List<Etudiant>)await dao.GetAllEtu());
-            
+
+            //On récupère l'ensemble des utilisateurs via l'API
+            List<Utilisateur> listUser;
+            Dictionary<string, Utilisateur> dicoUser = new Dictionary<string, Utilisateur>();
+            UtilisateurDAO userDAO = new UtilisateurDAO();
+            listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
+            for (int i = 0; i < listUser.Count; i++)
+            {
+                dicoUser.Add(listUser[i].Login, listUser[i]);
+            }
+            this.users = new Utilisateurs(dicoUser);
+
             //Affiche les components des etudiants (trie par numero apogee par defaut
             AfficherLesEtuComponent(etudiants.ListeEtu,TYPETRI.APOGEE);
 
@@ -453,7 +477,11 @@ namespace PAGE.Vue.Ecran
             return filter;
         }
 
-
+        private void OpenCreationUtilisateur(object sender, RoutedEventArgs e)
+        {
+            CreationUtilisateur creerUtilisateur = new CreationUtilisateur(new Utilisateur("",""),users);
+            creerUtilisateur.Show();
+        }
     }
 
     /// <summary>

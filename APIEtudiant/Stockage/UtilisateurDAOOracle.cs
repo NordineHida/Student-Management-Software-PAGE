@@ -66,6 +66,61 @@ namespace APIEtudiant.Stockage
             return ajoutReussi;
         }
 
+        /// <summary>
+        /// Récupère les utilisateurs de la BDD
+        /// </summary>
+        /// <returns>vrai si l'ajout est effectué, faux sinon</returns>
+        /// <author>Laszlo</author>
+        public IEnumerable<Utilisateur> GetAllUtilisateurs()
+        {
+            //Création d'une connexion Oracle
+            Connection con = new Connection();
+            //Liste d'étudiant à renvoyer
+            List<Utilisateur> users = new List<Utilisateur>();
+
+            try
+            {
+                // Création d'une commande Oracle pour récuperer l'ensemble des éléments de tout les étudiants
+                OracleCommand cmd = new OracleCommand("SELECT login,hashPassword FROM Utilisateur", con.OracleConnexion);
+
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    //Récupération(lecture) de tous les éléments d'un étudiant en bdd
+                    
+                    string login = reader.GetString(reader.GetOrdinal("login"));
+                    string hashPassword = reader.GetString(reader.GetOrdinal("hashPassword"));
+                    // Création de l'objet Utilisateur en utilisant les variables
+                    Utilisateur user = new Utilisateur(login, hashPassword);
+      
+                    users.Add(user);
+                }
+            }
+            // Gestion des exceptions
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                //On ferme la connexion
+                try
+                {
+                    if (con != null)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return users;
+
+        }
+
         public string HashMdp(string mdp)
         {
             string mdpHashed = "";

@@ -44,5 +44,15 @@ namespace APIEtudiant.Model
         {
             return UtilisateurDAO.CreateUtilisateur(user);
         }
+
+        /// <summary>
+        /// Récupère les utilisateurs de la BDD
+        /// </summary>
+        /// <returns>vrai si l'ajout est effectué, faux sinon</returns>
+        /// <author>Laszlo</author>
+        public IEnumerable<Utilisateur> GetAllUtilisateurs()
+        { 
+            return UtilisateurDAO.GetAllUtilisateurs();
+        }
     }
 }
