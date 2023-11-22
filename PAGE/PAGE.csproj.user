@@ -25,6 +25,9 @@
     <Compile Update="Vue\Ecran\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\NoteComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\ParametrePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -51,10 +54,16 @@
     <Page Update="Vue\Ecran\FenetrePrincipal.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Vue\Ecran\InformationsSupplementairesBis.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\InformationsSupplementaires.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\LoginPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\NoteComponent.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\ParametrePage.xaml">

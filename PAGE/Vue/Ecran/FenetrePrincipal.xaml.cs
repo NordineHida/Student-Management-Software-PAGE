@@ -212,7 +212,7 @@ namespace PAGE.Vue.Ecran
                 if (etudiantSelectionne != null)
                 {
                     // on affiche ces informations
-                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants);
+                    InformationsSupplementairesBis informationsSupplementaires = new InformationsSupplementairesBis(etudiantSelectionne, etudiants);
                     informationsSupplementaires.Show();
                 }
             }
@@ -264,7 +264,7 @@ namespace PAGE.Vue.Ecran
                 // Si l'étudiant n'est pas déjà dans le StackPanel, on l'y ajoute
                 if (!StackPanelEtudiants.Children.OfType<EtudiantComponent>().Any(uc => uc.NumeroApogee == etu.NumApogee))
                 {
-                    // Créez et ajoutez votre EtudiantComponent personnalisé au StackPanel
+                    // Ajoute l'EtudiantComponent personnalisé au StackPanel
                     EtudiantComponent EtudiantComponent = new EtudiantComponent(etu);
                     StackPanelEtudiants.Children.Add(EtudiantComponent);
                 }
