@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
         Title="FenetreEtudiantByCategorie"
-        Height="1000" Width="1500"      
+        Height="1000" Width="1500"    
+        Closing="FermerFenetre" 
         xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Window.Background>
@@ -320,6 +321,7 @@
 
         <Rectangle HorizontalAlignment="Left" Height="26" Fill="#FF3DA79D" VerticalAlignment="Top" Width="79"  RadiusX="10" RadiusY="10" Grid.Column="1" Margin="30,67,0,0"/>
 
+        
         <!-- search bar des étudiants (Nordine) -->
         <StackPanel Grid.Column="1" Grid.Row="0" Margin="30,70,0,0">
             <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}" Foreground="#FFFFFF"/>
@@ -330,7 +332,6 @@
                 <ComboBoxItem Content="{DynamicResource NumApogee}" ></ComboBoxItem>
             </ComboBox>
             <TextBox  x:Name="TexteFiltre" TextChanged="TexteFiltreChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180"/>
-
         </StackPanel>
 
         <!--Header du scrollViewer-->

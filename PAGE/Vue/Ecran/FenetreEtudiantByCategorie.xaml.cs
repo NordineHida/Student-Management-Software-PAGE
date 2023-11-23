@@ -356,5 +356,20 @@ namespace PAGE.Vue.Ecran
             }
             return filter;
         }
+
+
+        /// <summary>
+        /// Ouvre la fenetre principal et ferme la fenetre actuel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void FermerFenetre(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            FenetrePrincipal fp = new FenetrePrincipal();
+            fp.Show();
+
+            this.Close();
+        }
     }
 }
