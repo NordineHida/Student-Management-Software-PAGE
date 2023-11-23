@@ -37,8 +37,16 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    PopUp popUp = new PopUp("Utilisateur", "L'utilisateur est créé", TYPEICON.SUCCES);
-                    popUp.ShowDialog();
+                    if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                    {
+                        PopUp popUp = new PopUp("Utilisateur", "L'utilisateur est créé", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
+                    else
+                    {
+                        PopUp popUp = new PopUp("User", "User has been created", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
                 }
             }
         }
