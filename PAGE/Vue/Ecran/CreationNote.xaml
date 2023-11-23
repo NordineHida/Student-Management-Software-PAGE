@@ -16,7 +16,7 @@
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -89,7 +89,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <Border x:Name="templateRoot" CornerRadius="10" Background="{StaticResource ComboBox.Static.Background}" BorderBrush="{StaticResource ComboBox.Static.Border}" BorderThickness="{TemplateBinding BorderThickness}"  SnapsToDevicePixels="true">
+                        <Border x:Name="templateRoot" CornerRadius="10" Background="#e7e7e7" BorderBrush="{StaticResource ComboBox.Static.Border}" BorderThickness="{TemplateBinding BorderThickness}"  SnapsToDevicePixels="true">
                             <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                                 <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z" Fill="{StaticResource ComboBox.Static.Glyph}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
                             </Border>
@@ -1040,17 +1040,17 @@
 
         <!-- Combobox gérant la confidentialité -->
         <Label Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource ComboboxConf}" HorizontalAlignment="Left" Margin="93,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <ComboBox Style="{DynamicResource ComboBoxStyle1}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxConfidentialite" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" Background="#FF3DA79D" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-            <ComboBoxItem Content="{DynamicResource CateMedical}" FontFamily="{StaticResource OpenSauceOne}"/>
-            <ComboBoxItem Content="{DynamicResource CateConf}" FontFamily="{StaticResource OpenSauceOne}"/>
-            <ComboBoxItem Content="{DynamicResource CateInterne}" FontFamily="{StaticResource OpenSauceOne}"/>
-            <ComboBoxItem Content="{DynamicResource CatePublic}" FontFamily="{StaticResource OpenSauceOne}"/>
+        <ComboBox Style="{DynamicResource ComboBoxStyle1}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxConfidentialite" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <ComboBoxItem Content="{DynamicResource CateMedical}" FontFamily="{StaticResource OpenSauceOne}" Background="#3DA79D"  BorderBrush="#3DA79D"/>
+            <ComboBoxItem Content="{DynamicResource CateConf}" FontFamily="{StaticResource OpenSauceOne}" Background="#BFD7EB"  BorderBrush="#BFD7EB"/>
+            <ComboBoxItem Content="{DynamicResource CateInterne}" FontFamily="{StaticResource OpenSauceOne}" Foreground="White" Background="#2B2B5A" BorderBrush="#2B2B5A"/>
+            <ComboBoxItem Content="{DynamicResource CatePublic}" FontFamily="{StaticResource OpenSauceOne}" Background="#DFEAFF" BorderBrush="#DFEAFF"/>
         </ComboBox>
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
 
         <!-- Combobox gérant la catégorie de la note -->
         <Label Grid.Column="1" Content="{DynamicResource ComboboxCate}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" Margin="100,4,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" SelectionChanged="ComboBoxCategorie_SelectionChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+        <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" SelectionChanged="ComboBoxCategorie_SelectionChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <ComboBoxItem Content="{DynamicResource CateAbsenteisme}" FontFamily="{StaticResource OpenSauceOne}"/>
             <ComboBoxItem Content="{DynamicResource CatePersonnel}" FontFamily="{StaticResource OpenSauceOne}"/>
             <ComboBoxItem Content="{DynamicResource CateMedical}" FontFamily="{StaticResource OpenSauceOne}"/>
