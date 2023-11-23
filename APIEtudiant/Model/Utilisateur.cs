@@ -1,4 +1,6 @@
-﻿namespace APIEtudiant.Model
+﻿using APIEtudiant.Model.Enumerations;
+
+namespace APIEtudiant.Model
 {
 
     // Classe gérant les utilisateurs pouvant se connecter sur l'application et récupérer leurs droits

@@ -202,8 +202,16 @@ namespace PAGE.Vue.Ecran
             }
             else
             {
-                PopUp popUp = new PopUp("Création", "Veuillez attendre la fin du chargement des étudiants", TYPEICON.INFORMATION);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Veuillez attendre la fin du chargement des étudiants", TYPEICON.INFORMATION);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "Please wait until the students have finished loading", TYPEICON.INFORMATION);
+                    popUp.ShowDialog();
+                }
             }
 
         }
@@ -486,8 +494,16 @@ namespace PAGE.Vue.Ecran
             }
             else
             {
-                PopUp popUp = new PopUp("Erreur de chargement", "La liste d'utilisateurs n'a pas encore été chargé. Attendez un peu !", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Erreur de chargement", "La liste d'utilisateurs n'a pas encore été chargé. Veuillez patienter..", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Loading error", "The user list has not yet been loaded. Please wait..", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
         }
     }

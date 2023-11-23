@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Drawing;
 using PAGE.Model;
+using PAGE.Model.Enumerations;
 using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
@@ -333,54 +334,119 @@ namespace PAGE.Vue.Ecran
             bool saisiCorrect = true;
             if ((!string.IsNullOrWhiteSpace(txtNumApogee.Text)) && !System.Text.RegularExpressions.Regex.IsMatch(txtNumApogee.Text, "^[0-9]{1,8}$"))
             {
-                PopUp popUp = new PopUp("Création", "Le numéro d'apogée doit contenir uniquement des chiffres (maximum 8 chiffres)", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le numéro d'apogée doit contenir uniquement des chiffres (maximum 8 chiffres)", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The apogee number must contain only digits (maximum 8 digits)", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
 
             else if (string.IsNullOrWhiteSpace(txtNumApogee.Text))
             {
-                PopUp popUp = new PopUp("Création", "Veuillez saisir un numéro apogée", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Veuillez saisir un numéro apogée", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "Please enter an apogee number", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
 
             else if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                PopUp popUp = new PopUp("Création", "Le champ Nom ne peut pas être vide", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ Nom ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The Name field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
 
             else if (string.IsNullOrWhiteSpace(txtPrenom.Text))
             {
-                PopUp popUp = new PopUp("Création", "Le champ Prénom ne peut pas être vide", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ Prénom ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The First Name field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
 
             else if (string.IsNullOrWhiteSpace(txtTypebac.Text))
             {
-                PopUp popUp = new PopUp("Création", "Le champ de Type de Bac ne peut pas être vide", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if(Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ de Type de Bac ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The A-Level Type field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
 
             else if (string.IsNullOrWhiteSpace(txtMail.Text) || !txtMail.Text.Contains("@"))
             {
-                PopUp popUp = new PopUp("Création", "Le champ e-mail ne peut pas être vide", TYPEICON.ERREUR);
-                popUp.ShowDialog(); saisiCorrect = false;
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ e-mail ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The e-mail field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                saisiCorrect = false;
             }
             else if (comboBoxGroupe.SelectedIndex == -1)
             {
-                PopUp popUp = new PopUp("Création", "Le champ Groupe ne peut pas être vide", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ Groupe ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The Group field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
             else if (comboBoxRegime.SelectedIndex == -1)
             {
-                PopUp popUp = new PopUp("Création", "Le champ Régime ne peut pas être vide", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ Régime ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The Plan field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
 
@@ -392,30 +458,62 @@ namespace PAGE.Vue.Ecran
 
                 if (age < 13)
                 {
-                    PopUp popUp = new PopUp("Création", "L'âge de l'étudiant doit être d'au moins 15 ans", TYPEICON.ERREUR);
-                    popUp.ShowDialog();
+                    if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                    {
+                        PopUp popUp = new PopUp("Création", "L'âge de l'étudiant doit être d'au moins 13 ans", TYPEICON.ERREUR);
+                        popUp.ShowDialog();
+                    }
+                    else
+                    {
+                        PopUp popUp = new PopUp("Creation", "The student must be at least 13 years old", TYPEICON.ERREUR);
+                        popUp.ShowDialog();
+                    }
                     saisiCorrect = false;
                 }
             }
 
             else if (!txtDateNaissance2.SelectedDate.HasValue)
             {
-                PopUp popUp = new PopUp("Création", "Veuillez saisir une date de naissance", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Veuillez saisir une date de naissance", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "Please enter a date of birth", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
 
             else if ((txtTelFixe2.Text == null) && !int.TryParse(txtTelFixe2.Text, out _))
             {
-                PopUp popUp = new PopUp("Création", "Le numéro de téléphone fixe ne peut contenir que des chiffres", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le numéro de téléphone fixe ne peut contenir que des chiffres", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The landline telephone number can only contain digits", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
 
             else if ((txtTelPortable2.Text == null) && !int.TryParse(txtTelPortable2.Text, out _))
             {
-                PopUp popUp = new PopUp("Création", "Le numéro de téléphone portable ne peut contenir que des chiffres", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le numéro de téléphone portable ne peut contenir que des chiffres", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "Mobile phone numbers can only contain digits", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
             return saisiCorrect;
@@ -627,15 +725,22 @@ namespace PAGE.Vue.Ecran
         {
             if (notes != null)
             {
-                CreationNote creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee), this.notes, false);
+                CreationNote creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false);
                 creernote.Show();
             }
             else
             {
-                PopUp popUp = new PopUp("Une erreur est survenue", "Veuillez attendre la fin du chargement des notes", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Une erreur est survenue", "Veuillez attendre la fin du chargement des notes", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("An error has occurred", "Please wait until the notes have finished loading", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
-
         }
 
         /// <summary>

@@ -1039,12 +1039,14 @@
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
 
         <!-- Combobox gérant la confidentialité -->
-        <Label Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource ComboboxConf}" HorizontalAlignment="Left" Margin="93,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <ComboBox Style="{DynamicResource ComboBoxStyle1}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxConfidentialite" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-            <ComboBoxItem Content="{DynamicResource CateMedical}" FontFamily="{StaticResource OpenSauceOne}" Background="#3DA79D"  BorderBrush="#3DA79D"/>
-            <ComboBoxItem Content="{DynamicResource CateConf}" FontFamily="{StaticResource OpenSauceOne}" Background="#BFD7EB"  BorderBrush="#BFD7EB"/>
-            <ComboBoxItem Content="{DynamicResource CateInterne}" FontFamily="{StaticResource OpenSauceOne}" Foreground="White" Background="#2B2B5A" BorderBrush="#2B2B5A"/>
-            <ComboBoxItem Content="{DynamicResource CatePublic}" FontFamily="{StaticResource OpenSauceOne}" Background="#DFEAFF" BorderBrush="#DFEAFF"/>
+        <Rectangle Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
+        <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
+        <Label Grid.Column="1" Content="{DynamicResource ComboboxConf}"  FontFamily="{StaticResource OpenSauceOne}"  HorizontalAlignment="Left" Margin="93,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
+        <ComboBox x:Name="ComboBoxConfidentialite" Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}"  Grid.Row="1" HorizontalAlignment="Left" Width="250" Margin="185,0,0,21" BorderThickness="2" Background="#FF3DA79D" SelectionChanged="ComboBoxConfidentialite_SelectionChanged">
+            <ComboBoxItem FontFamily="{StaticResource OpenSauceOne}"  Content="{DynamicResource CateMedical}"/>
+            <ComboBoxItem FontFamily="{StaticResource OpenSauceOne}"  Content="{DynamicResource CateConf}"/>
+            <ComboBoxItem FontFamily="{StaticResource OpenSauceOne}"  Content="{DynamicResource CateInterne}"/>
+            <ComboBoxItem FontFamily="{StaticResource OpenSauceOne}"  Content="{DynamicResource CatePublic}"/>
         </ComboBox>
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
 

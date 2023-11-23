@@ -3,6 +3,7 @@ using PAGE.Model;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using PAGE.Model.Enumerations;
 
 namespace PAGE.Vue.Ecran
 {
@@ -13,7 +14,6 @@ namespace PAGE.Vue.Ecran
     {
         private Note note;
         private Notes notes;
-        private bool modeCreation;
 
         /// <summary>
         /// Constructeur de fenêtre CreationNote
@@ -79,6 +79,22 @@ namespace PAGE.Vue.Ecran
                         break;
                 }
 
+                switch (note.Confidentialite)
+                {
+                    case CONFIDENTIALITE.MEDICAL:
+                        ComboBoxConfidentialite.SelectedIndex = 0;
+                        break;
+                    case CONFIDENTIALITE.CONFIDENTIEL:
+                        ComboBoxConfidentialite.SelectedIndex = 1;
+                        break;
+                    case CONFIDENTIALITE.INTERNE:
+                        ComboBoxConfidentialite.SelectedIndex = 2;
+                        break;
+                    case CONFIDENTIALITE.PUBLIC:
+                        ComboBoxConfidentialite.SelectedIndex = 3;
+                        break;
+                }
+
 
 
                 ComboBoxConfidentialite.IsEnabled = false;
@@ -94,6 +110,7 @@ namespace PAGE.Vue.Ecran
                 //si la note n'existe pas, on met la date du jour par defaut
                 DateCreationNote.SelectedDate = DateTime.Now;
                 note.Commentaire = "";
+                BoutonSupprimer.Visibility = Visibility.Collapsed;
             }
 
         }
@@ -134,6 +151,7 @@ namespace PAGE.Vue.Ecran
         {
             BoutonValider.Visibility = Visibility.Visible;
             BoutonModifier.Visibility = Visibility.Collapsed;
+            BoutonSupprimer.Visibility = Visibility.Collapsed;
 
             Titre.Content = "Modification de note";
 
@@ -163,6 +181,7 @@ namespace PAGE.Vue.Ecran
                 //Le champs redeviennent non-editable
                 BoutonValider.Visibility = Visibility.Collapsed;
                 BoutonModifier.Visibility = Visibility.Visible;
+                BoutonSupprimer.Visibility = Visibility.Visible;
 
                 Titre.Content = "Note";
 
@@ -186,27 +205,94 @@ namespace PAGE.Vue.Ecran
         {
             bool valide = true;
 
-            if (note.Categorie == null)
+
+            if (note.Confidentialite == null)
             {
                 valide = false;
-                PopUp popUp = new PopUp("Création", "Veuillez choisir une catégorie", TYPEICON.ERREUR);
+                PopUp popUp = new PopUp("Création", "Veuillez choisir une confidentialité", TYPEICON.ERREUR);
                 popUp.ShowDialog();
             }
+            else if (note.Confidentialite != CONFIDENTIALITE.MEDICAL && note.Categorie == CATEGORIE.MEDICAL)
+            {
+                valide = false;
+                PopUp popUp = new PopUp("Création", "Une note de nature 'Medical' doit être de confidentialité 'Medical'", TYPEICON.ERREUR);
+                popUp.ShowDialog();
+            }
+            else if(note.Categorie == null)
+            {
+                valide = false;
 
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création note", "Veuillez choisir une catégorie", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Note creation", "Please choose a category", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+            }
             else if (note.Nature == null)
             {
                 valide = false; 
-                PopUp popUp = new PopUp("Création", "Veuillez choisir une nature", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création note", "Veuillez choisir une nature", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Note creation", "Please choose a nature", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
             else if (note.DatePublication > DateTime.Now)
             {
                 valide = false;
-                PopUp popUp = new PopUp("Création", "Veuillez choisir une date correcte", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création note", "Veuillez choisir une date correcte", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Note creation", "Please choose a correct date", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
 
             return valide;
+        }
+
+
+        /// <summary>
+        /// Quand on change la combobox des confidentialité change la confidentialite de la note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void ComboBoxConfidentialite_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (ComboBoxConfidentialite.SelectedIndex)
+            {
+                case 0:
+                    note.Confidentialite = CONFIDENTIALITE.MEDICAL;
+                    break;
+                case 1:
+                    note.Confidentialite = CONFIDENTIALITE.CONFIDENTIEL;
+                    break;
+                case 2:
+                    note.Confidentialite = CONFIDENTIALITE.INTERNE;
+                    break;
+                case 3:
+                    note.Confidentialite = CONFIDENTIALITE.PUBLIC;
+                    break;
+
+            }
+
         }
 
         /// <summary>
