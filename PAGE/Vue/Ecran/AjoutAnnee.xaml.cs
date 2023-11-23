@@ -19,9 +19,21 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class AjoutAnnee : Window
     {
+        /// <summary>
+        /// Renvoie l'année saisie 
+        /// </summary>
+        public string AnneeSaisie
+        {
+            get { return txtAnneeSaisie.Text; }
+        }
         public AjoutAnnee()
         {
             InitializeComponent();
+        }
+
+        private void OkClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

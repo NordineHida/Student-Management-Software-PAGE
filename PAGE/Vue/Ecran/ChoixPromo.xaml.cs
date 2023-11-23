@@ -20,13 +20,12 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class ChoixPromo : Window
     {
-        private Annee annee;
-        private Promotion promotion;
+        private List<Annee> annees = new List<Annee>();
 
         public ChoixPromo()
         {
-            InitializeComponent();
 
+            InitializeComponent();
         }
 
         /// <summary>
@@ -49,7 +48,14 @@ namespace PAGE.Vue.Ecran
         /// <author>Yamato</author>        
         private void AjouterAnnee(object sender, RoutedEventArgs e)
         {
+            // On ouvre une nouvelle fenêtre permettant la saisir de l'année à ajouter
+            AjoutAnnee ajoutAnnee = new AjoutAnnee();
+            ajoutAnnee.ShowDialog();
 
+            Annee nouvelleAnnee = new Annee(ajoutAnnee.AnneeSaisie, null, null, null);
+            annees.Add(nouvelleAnnee);
+
+            ComboBoxAnnee.ItemsSource = annees.Select(a => a.AnneeDebut).ToList();
         }
     }
 }

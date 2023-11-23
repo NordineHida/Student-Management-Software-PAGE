@@ -6,7 +6,7 @@
     /// <author>Yamato</author>
     public class Annee
     {
-        private int anneeDebut;
+        private string anneeDebut;
         private Promotion but1;
         private Promotion but2;
         private Promotion but3;
@@ -15,7 +15,7 @@
         /// Renvoie ou définit l'année de début 
         /// </summary>
         /// <author>Yamato</author>
-        public int AnneeDebut { get { return anneeDebut; } set { anneeDebut = value; } }
+        public string AnneeDebut { get { return anneeDebut; } set { anneeDebut = value; } }
 
         /// <summary>
         /// Renvoie ou définit la promotion de premiere année
@@ -43,7 +43,7 @@
         /// <param name="but2">promotion de deuxieme année</param>
         /// <param name="but3">promotion de troisieme année</param>
         /// <author>Yamato</author>
-        public Annee(int anneeDebut, Promotion but1, Promotion but2, Promotion but3)
+        public Annee(string anneeDebut, Promotion but1, Promotion but2, Promotion but3)
         {
             this.anneeDebut = anneeDebut;
             this.but1 = but1;
