@@ -14,6 +14,8 @@
     </Window.Background>
 
     <Window.Resources>
+        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
+
         <!--Style des boutons aves picto-->
         <Style x:Key="ImageButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="90"/>
@@ -335,12 +337,12 @@
 
         <!-- search bar des étudiants (Nordine/Stephane) -->
         <StackPanel Grid.Column="1" Grid.Row="0" Margin="30,70,0,0">
-            <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Open Sauce One Bold" Foreground="#FFFFFF"/>
-            <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxFiltre" SelectionChanged="SelectionFiltreChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180" Margin="0,0,0,15" >
-                <ComboBoxItem Content="{DynamicResource Prenom}"></ComboBoxItem>
-                <ComboBoxItem Content="{DynamicResource Nom}"></ComboBoxItem>
-                <ComboBoxItem Content="{DynamicResource GroupeHead}"></ComboBoxItem>
-                <ComboBoxItem Content="{DynamicResource NumApogee}"></ComboBoxItem>
+            <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}" Foreground="#FFFFFF"/>
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxFiltre" SelectionChanged="SelectionFiltreChanged" HorizontalAlignment="Left" FontFamily="{StaticResource OpenSauceOne}" VerticalAlignment="Center" Width="180" Margin="0,0,0,15" >
+                <ComboBoxItem Content="{DynamicResource Prenom}" ></ComboBoxItem>
+                <ComboBoxItem Content="{DynamicResource Nom}" ></ComboBoxItem>
+                <ComboBoxItem Content="{DynamicResource GroupeHead}" ></ComboBoxItem>
+                <ComboBoxItem Content="{DynamicResource NumApogee}" ></ComboBoxItem>
             </ComboBox>
             <TextBox  x:Name="TexteFiltre" TextChanged="TexteFiltreChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180"/>
 
