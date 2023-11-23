@@ -1,4 +1,4 @@
-﻿using APIEtudiant.Model;
+﻿using APIEtudiant.Model.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Linq;

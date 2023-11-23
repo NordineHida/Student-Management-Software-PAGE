@@ -1,4 +1,5 @@
 ﻿using APIEtudiant.Model;
+using APIEtudiant.Model.Enumerations;
 using Oracle.ManagedDataAccess.Client;
 
 namespace APIEtudiant.Stockage
