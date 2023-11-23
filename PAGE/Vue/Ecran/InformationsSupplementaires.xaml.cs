@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Drawing;
 using PAGE.Model;
+using PAGE.Model.Enumerations;
 using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
@@ -627,7 +628,7 @@ namespace PAGE.Vue.Ecran
         {
             if (notes != null)
             {
-                CreationNote creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee), this.notes, false);
+                CreationNote creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false);
                 creernote.Show();
             }
             else

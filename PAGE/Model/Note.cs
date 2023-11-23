@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAGE.Model.Enumerations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace PAGE.Model
     {
         #region attributs
         private int idNote=0;
+        private CONFIDENTIALITE confidentialite;
         private CATEGORIE categorie;
         private DateTime datePublication;
         private NATURE nature;
@@ -28,6 +30,14 @@ namespace PAGE.Model
         /// </summary>
         /// <author>Nordine</author>
         public int IdNote { get { return idNote; } set { idNote = value; } }
+
+
+
+        /// <summary>
+        /// Récupère ou définit la confidentialite de la note.
+        /// </summary>
+        /// <author>Nordine</author>
+        public CONFIDENTIALITE Confidentialite { get { return confidentialite; } set { confidentialite = value; } }
 
 
         /// <summary>
@@ -72,14 +82,16 @@ namespace PAGE.Model
         /// <param name="nature">Nature de la note (50 caractères maximum)</param>
         /// <param name="commentaire">Commentaire inscrit à l'intérieur de la note (255 caractères maximum)</param>
         /// <param name="apogeeEtudiant">Numéro apogée de l'étudiant dont la note parle</param>
-        /// <author>Laszlo</author>
-        public Note(CATEGORIE categorie, DateTime datePublication, NATURE nature, string commentaire, int apogeeEtudiant)
+        /// <param name="confidentialite">Confidentialite de la note</param>
+        /// <author>Laszlo/Nordine</author>
+        public Note(CATEGORIE categorie, DateTime datePublication, NATURE nature, string commentaire, int apogeeEtudiant, CONFIDENTIALITE confidentialite)
         {
             this.categorie = categorie;
             this.datePublication = datePublication;
             this.nature = nature;
             this.commentaire = commentaire;
             this.apogeeEtudiant = apogeeEtudiant;
+            this.confidentialite = confidentialite;
         }
 
         #endregion 
