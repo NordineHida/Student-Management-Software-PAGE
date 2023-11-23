@@ -9,6 +9,7 @@
         Title="{DynamicResource TitreFenetreChoixPromo}" Height="450" Width="800"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
+        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One </FontFamily>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -590,8 +591,8 @@
         </Grid.ColumnDefinitions>
 
         <!--Texte (Nordine)-->
-        <TextBlock Text="{DynamicResource LabelAnnee}" FontSize="50" FontFamily="Open Sauce One" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="#FF2B2B5A" />
-        <TextBlock Text="{DynamicResource LabelPromotion}" FontSize="50" FontFamily="Open Sauce One" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF2B2B5A" />
+        <TextBlock Text="{DynamicResource LabelAnnee}" FontSize="50" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="#FF2B2B5A" />
+        <TextBlock Text="{DynamicResource LabelPromotion}" FontSize="50" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF2B2B5A" />
 
         <!--ComboBox (Nordine)-->
         <ComboBox Style="{DynamicResource ComboBoxStyle1}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120">

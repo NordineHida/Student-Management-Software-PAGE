@@ -1039,7 +1039,7 @@
 
         <!-- Combobox gérant la confidentialité -->
         <Label Grid.Column="1" Content="{DynamicResource ComboboxConf}" HorizontalAlignment="Left" Margin="93,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxConfidentialite" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" Background="#FF3DA79D" SelectionChanged="ComboBoxConfidentialite_SelectionChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+        <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxConfidentialite" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" Background="#FF3DA79D" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <ComboBoxItem Content="{DynamicResource CateMedical}" FontFamily="open sauce one"/>
             <ComboBoxItem Content="{DynamicResource CateConf}"/>
             <ComboBoxItem Content="{DynamicResource CateInterne}"/>
