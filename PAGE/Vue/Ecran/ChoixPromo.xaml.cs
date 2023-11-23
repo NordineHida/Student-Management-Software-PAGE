@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAGE.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,15 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class ChoixPromo : Window
     {
+        private Annee annee;
+        private Promotion promotion;
+
         public ChoixPromo()
         {
             InitializeComponent();
+
+            ComboBoxAnnee.SelectionChanged += ComboBoxAnnee_SelectionChanged;
+
         }
 
         /// <summary>
@@ -36,6 +43,15 @@ namespace PAGE.Vue.Ecran
             fenetrePrincipal.Show();
 
             this.Close();
+        }
+
+        private void ComboBoxAnnee_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBoxAnnee.SelectedItem is ComboBoxItem selectedItem && selectedItem.Content.ToString() == "Ajouter une nouvelle année")
+            {
+                
+                
+            }
         }
     }
 }
