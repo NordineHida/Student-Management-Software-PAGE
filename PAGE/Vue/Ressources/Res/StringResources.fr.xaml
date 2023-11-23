@@ -73,9 +73,11 @@
     <system:String x:Key="ToolTipCreerEtudiant">Créer un étudiant</system:String>
     <system:String x:Key="ToolTipChoixPromo">Choisir la promotion</system:String>
     
-    <!--PagePrincipale (Lucas)-->
-    <system:String x:Key="LabelTrie">Filtrer par :</system:String> 
-    
+    <!--PagePrincipale (Lucas/ Nordine)-->
+    <system:String x:Key="LabelTrie">Filtrer par :</system:String>
+    <system:String x:Key="TitreFenetrePrincipal">Programme d’Aide à la Gestion des Etudiants</system:String>
+
+
     <!--CréerEtudiant (Lucas)-->
     <system:String x:Key="TitreFenetreCreerEtudiant">Créer un étudiant</system:String>
 

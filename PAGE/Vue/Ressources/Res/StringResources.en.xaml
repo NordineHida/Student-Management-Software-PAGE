@@ -74,6 +74,7 @@
 
     <!--PagePrincipale (Lucas)-->
     <system:String x:Key="LabelTrie">Filter by:</system:String>
+    <system:String x:Key="TitreFenetrePrincipal">PAGE</system:String>
 
     <!--CréerEtudiant (Lucas)-->
     <system:String x:Key="TitreFenetreCreerEtudiant">Create a student</system:String>

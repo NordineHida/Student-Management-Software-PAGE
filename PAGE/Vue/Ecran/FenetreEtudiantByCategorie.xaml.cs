@@ -11,62 +11,26 @@ using System.Linq;
 namespace PAGE.Vue.Ecran
 {
     /// <summary>
-    /// Logique d'interaction pour FenetrePrincipal.xaml
+    /// Logique d'interaction pour FenetreEtudiantByCategorie.xaml
     /// </summary>
-    public partial class FenetrePrincipal : Window, IObservateur
+    public partial class FenetreEtudiantByCategorie : Window, IObservateur
     {
         private Utilisateurs users;
         private Etudiants etudiants;
         private List<Etudiant> etudiantAffichage;
-        private bool TriCroissant=false;
+        private bool TriCroissant = false;
 
-        /// <summary>
-        /// Initialise la fenetre principal
-        /// </summary>
-        /// <author>Nordine & Stephane</author>
-        public FenetrePrincipal()
+        public FenetreEtudiantByCategorie(Etudiants etudiants)
         {
             InitializeComponent();
-            ChargementDiffereInitial(); 
+            this.etudiants = etudiants;
         }
 
-
-        /// <summary>
-        /// Chargement des etudiants différé via l'API et initisalise la liste d'étudiants à afficher
-        /// </summary>
-        /// <author>Nordine</author>
-        private async Task ChargementDiffereInitial()
-        {
-            // On récupère l'ensemble des étudiants via l'API
-            EtuDAO Etudao = new EtuDAO();
-            this.etudiants = new Etudiants((List<Etudiant>)await Etudao.GetAllEtu());
-
-            //On récupère l'ensemble des utilisateurs via l'API
-            List<Utilisateur> listUser;
-            Dictionary<string,Utilisateur> dicoUser = new Dictionary<string, Utilisateur>();
-            UtilisateurDAO userDAO = new UtilisateurDAO();
-            listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
-            for (int i=0;i< listUser.Count;i++)
-            {
-                dicoUser.Add(listUser[i].Login, listUser[i]);
-            }
-            this.users = new Utilisateurs(dicoUser);
-
-
-            //Affiche les components des etudiants (trie par numero apogee par defaut
-            AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
-
-            // On enregistre cette fenetre comme observeur des notes
-            etudiants.Register(this);
-
-            //initialisation etudiant a afficher
-            etudiantAffichage = etudiants.ListeEtu;
-        }
 
         /// <summary>
         /// Chargement des etudiants différé via l'API
         /// </summary>
-        /// <author>Nordine & Stephane</author>
+        /// <author>Nordine</author>
         private async Task ChargementDiffere()
         {
             // On récupère l'ensemble des étudiants via l'API
@@ -85,137 +49,18 @@ namespace PAGE.Vue.Ecran
             this.users = new Utilisateurs(dicoUser);
 
             //Affiche les components des etudiants (trie par numero apogee par defaut
-            AfficherLesEtuComponent(etudiants.ListeEtu,TYPETRI.APOGEE);
+            AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
 
             // On enregistre cette fenetre comme observeur des notes
             etudiants.Register(this);
         }
 
 
-
-        /// <summary>
-        /// Ouvre la fenetre de connexion 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void OpenLoginPage(object sender, RoutedEventArgs e)
-        {
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
-
-            this.Close();
-        }
-
-        /// <summary>
-        /// Ouvre la fenêtre des paramètres
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void OpenParametresPage(object sender, RoutedEventArgs e)
-        {
-            ParametrePage parametre = new ParametrePage();
-            parametre.Show();
-
-            this.Close();
-        }
-
-
-        /// <summary>
-        /// Quand on clique sur le bouton importer pour chercher le fichier excel avec les étudiants
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine & Stephane</author>
-        private void ImporterEtudiants(object sender, RoutedEventArgs e)
-        {
-            // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Fichiers Excel (*.xls, *.xlsx)|*.xls;*.xlsx";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                // Obtenez le chemin du fichier sélectionné
-                string selectedFilePath = openFileDialog.FileName;
-
-                // Appelez la méthode GetEtudiants avec le chemin du fichier
-                LecteurExcel lc = new LecteurExcel();
-                EtuDAO dao = new EtuDAO();
-                dao.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
-            }
-
-            //On actualise l'affichage
-            ActualiserEtudiant();
-        }
-
-        /// <summary>
-        /// Actualise la liste des étudiants
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void BoutonActualiserListeEtudiant(object sender, RoutedEventArgs e)
-        {
-            ActualiserEtudiant();
-        }
-
-        /// <summary>
-        /// Actualise l'affichage de la liste des étudiants
-        /// </summary>
-        /// <author>Nordine</author>
-        private async void ActualiserEtudiant()
-        {
-            await ChargementDiffere();
-        }
-
-        /// <summary>
-        /// Ouvre la fenetre de choix de l'année de et promotion 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void OpenPromoPage(object sender, RoutedEventArgs e)
-        {
-            ChoixPromo choixPromo = new ChoixPromo();
-            choixPromo.Show();
-            this.Close();
-        }
-
-
-        /// <summary>
-        /// Ouvre la fenêtre pour créer un étudiant
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void BoutonCreerEtudiant(object sender, RoutedEventArgs e)
-        {
-            if (etudiants != null)
-            {
-                FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant(etudiants);
-                fenetreCreerEtudiant.Show();
-            }
-            else
-            {
-                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
-                {
-                    PopUp popUp = new PopUp("Création", "Veuillez attendre la fin du chargement des étudiants", TYPEICON.INFORMATION);
-                    popUp.ShowDialog();
-                }
-                else
-                {
-                    PopUp popUp = new PopUp("Creation", "Please wait until the students have finished loading", TYPEICON.INFORMATION);
-                    popUp.ShowDialog();
-                }
-            }
-
-        }
-
         /// <summary>
         /// Une modification a ete recu, on raffraichis l'affichage
         /// </summary>
         /// <param name="Message">message specifique</param>
-        /// <author>Nordine/Laszlo</author>
+        /// <author>Nordine</author>
         public async void Notifier(string Message)
         {
             await Task.Delay(1000);
@@ -251,7 +96,7 @@ namespace PAGE.Vue.Ecran
         /// <param name="listEtudiants">liste des etudiants à afficher</param>
         /// <param name="typetri">type de tri</param>
         /// <author>Nordine</author>
-        private void AfficherLesEtuComponent(List<Etudiant> listEtudiants, TYPETRI ?typetri)
+        private void AfficherLesEtuComponent(List<Etudiant> listEtudiants, TYPETRI? typetri)
         {
             // On réinitialise le StackPanel
             StackPanelEtudiants.Children.Clear();
@@ -313,7 +158,7 @@ namespace PAGE.Vue.Ecran
             // Applique le filtre sur la liste d'étudiants
             List<Etudiant> filteredList = (List<Etudiant>)listEtudiants.Where(GetFilter(filterType, filterText)).ToList();
 
-            if(String.IsNullOrEmpty(filterText))
+            if (String.IsNullOrEmpty(filterText))
             {
                 ChargementDiffereInitial();
             }
@@ -322,6 +167,38 @@ namespace PAGE.Vue.Ecran
 
 
             AfficherLesEtuComponent(filteredList, null);
+        }
+
+        /// <summary>
+        /// Chargement des etudiants différé via l'API et initisalise la liste d'étudiants à afficher
+        /// </summary>
+        /// <author>Nordine</author>
+        private async Task ChargementDiffereInitial()
+        {
+            // On récupère l'ensemble des étudiants via l'API
+            EtuDAO Etudao = new EtuDAO();
+            this.etudiants = new Etudiants((List<Etudiant>)await Etudao.GetAllEtu());
+
+            //On récupère l'ensemble des utilisateurs via l'API
+            List<Utilisateur> listUser;
+            Dictionary<string, Utilisateur> dicoUser = new Dictionary<string, Utilisateur>();
+            UtilisateurDAO userDAO = new UtilisateurDAO();
+            listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
+            for (int i = 0; i < listUser.Count; i++)
+            {
+                dicoUser.Add(listUser[i].Login, listUser[i]);
+            }
+            this.users = new Utilisateurs(dicoUser);
+
+
+            //Affiche les components des etudiants (trie par numero apogee par defaut
+            AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
+
+            // On enregistre cette fenetre comme observeur des notes
+            etudiants.Register(this);
+
+            //initialisation etudiant a afficher
+            etudiantAffichage = etudiants.ListeEtu;
         }
 
 
@@ -425,7 +302,7 @@ namespace PAGE.Vue.Ecran
         private void TexteFiltreChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             //si un filtre du combobox a été selectionner
-            if(ComboBoxFiltre.SelectedIndex!=-1)
+            if (ComboBoxFiltre.SelectedIndex != -1)
             {
                 //on recupere le filtre selectionner dans la combobox
                 TYPETRI filterType = TYPETRI.APOGEE;
@@ -479,52 +356,5 @@ namespace PAGE.Vue.Ecran
             }
             return filter;
         }
-
-        private void OpenCreationUtilisateur(object sender, RoutedEventArgs e)
-        {
-            if (users!=null) 
-            {
-                CreationUtilisateur creerUtilisateur = new CreationUtilisateur(new Utilisateur("", ""), users);
-                creerUtilisateur.Show();
-            }
-            else
-            {
-                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
-                {
-                    PopUp popUp = new PopUp("Erreur de chargement", "La liste d'utilisateurs n'a pas encore été chargé. Veuillez patienter..", TYPEICON.ERREUR);
-                    popUp.ShowDialog();
-                }
-                else
-                {
-                    PopUp popUp = new PopUp("Loading error", "The user list has not yet been loaded. Please wait..", TYPEICON.ERREUR);
-                    popUp.ShowDialog();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Ouvre la fenetre avec les étudiants qui ont une certaine categorie de note
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void ClickAfficherEtudiantByCategorie(object sender, RoutedEventArgs e)
-        {
-            FenetreEtudiantByCategorie fenetreEtudiantByCategorie = new FenetreEtudiantByCategorie(this.etudiants);
-            fenetreEtudiantByCategorie.Show();
-
-            this.Close();
-        }
     }
-
-    /// <summary>
-    /// Différent élément qu'on peut utiliser pour trier
-    /// </summary>
-    /// <author>Nordine</author>
-    public enum TYPETRI
-    {
-        PRENOM,NOM,GROUPE,APOGEE
-    }
-
 }
-
