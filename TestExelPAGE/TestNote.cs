@@ -10,11 +10,14 @@ namespace TestPAGE
     /// <summary>
     /// Classe permettant de réaliser des tests unitaires sur les notes
     /// </summary>
+    /// <author>Lucas</author>
     public class TestNote
     {
         /// <summary>
         /// Méthode permettant de tester la création d'une note
         /// </summary>
+        /// <author>Lucas</author>
+
         [Fact]
         public void TestNoteConstructor()
         {
