@@ -72,8 +72,8 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="73*"/>
-            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="75*"/>
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
@@ -81,19 +81,19 @@
         <TextBlock Text="{DynamicResource TitreConnexion}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="#FF2B2B5A" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Open Sauce One" />
 
         <!-- Combobox gérant le login -->
-        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="240,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Center" Width="150" RadiusX="10" RadiusY="10" Grid.Row="1"/>
-        <Label Grid.Column="1" FontSize="15" Content="{DynamicResource LabelLogin}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="240,0,0,0" Grid.Row="1" VerticalAlignment="Center" Foreground="#FFFFFF" Width="150" Height="37"/>
-        <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="txtUsername" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Height="37" BorderThickness="2" Grid.ColumnSpan="2" Grid.Row="1" Margin="385,0,0,0" />
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="215,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Center" Width="171" RadiusX="10" RadiusY="10" Grid.Row="1"/>
+        <Label Grid.Column="1" FontSize="15" Content="{DynamicResource LabelLogin}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="215,0,0,0" Grid.Row="1" VerticalAlignment="Center" Foreground="#FFFFFF" Width="171" Height="54"/>
+        <TextBox Style="{DynamicResource TextBoxStyle1}" FontSize="20" x:Name="txtUsername" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" Height="54" BorderThickness="2" Grid.ColumnSpan="2" Grid.Row="1" Margin="380,0,0,0" />
 
 
         <!-- Combobox gérant le MDP -->
-        <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="240,50,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="150" RadiusX="10" RadiusY="10"/>
-        <Label Grid.Column="1" FontSize="15" Content="{DynamicResource LabelPassword}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="240,50,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="37" RenderTransformOrigin="0.5,0.5" Width="150"/>
-        <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="txtPassword" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="385,50,0,0" BorderThickness="2" Text="{Binding Mdp}" Grid.ColumnSpan="2"/>
+        <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="54" Margin="215,50,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="171" RadiusX="10" RadiusY="10"/>
+        <Label Grid.Column="1" FontSize="15" Content="{DynamicResource LabelPassword}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="215,50,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="54" RenderTransformOrigin="0.5,0.5" Width="171"/>
+        <TextBox Style="{DynamicResource TextBoxStyle1}" FontSize="20" x:Name="txtPassword" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="54" Margin="380,50,0,0" BorderThickness="2" Text="{Binding Mdp}" Grid.ColumnSpan="2"/>
 
 
         <!--Bouton de Connexion (Nordine)-->
-        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnLogin}"  FontSize="40" Click="BoutonLogin" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20">
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnLogin}"  FontSize="20" Click="BoutonLogin" Grid.Column="2" Grid.Row="4" Margin="120,40,120,40">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -116,7 +116,7 @@
         </Button>
 
         <!--Bouton pour annuler (Nordine)-->
-        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="40" Click="CloseLoginWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20">
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="20" Click="CloseLoginWindow" Grid.Column="1" Grid.Row="4" Margin="120,40,120,40">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
