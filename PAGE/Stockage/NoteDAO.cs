@@ -47,8 +47,16 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    PopUp popUp = new PopUp("Note", "La note est crée", TYPEICON.SUCCES);
-                    popUp.ShowDialog();
+                    if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                    {
+                        PopUp popUp = new PopUp("Création de note", "La note est crée", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
+                    else
+                    {
+                        PopUp popUp = new PopUp("Note creation", "The note is created", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
                 }
             }
         }
@@ -108,8 +116,16 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    PopUp popUp = new PopUp("Note", "La note est supprimée", TYPEICON.SUCCES);
-                    popUp.ShowDialog();
+                    if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                    {
+                        PopUp popUp = new PopUp("Suppresion de note", "La note est supprimée", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
+                    else
+                    {
+                        PopUp popUp = new PopUp("Note deleted", "The note is deleted", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
                 }
             }
         }
@@ -141,8 +157,16 @@ namespace PAGE.Stockage
 
                 if (response.IsSuccessStatusCode)
                 {
-                    PopUp popUp = new PopUp("Note", "La note est mise à jour", TYPEICON.SUCCES);
-                    popUp.ShowDialog();
+                    if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                    {
+                        PopUp popUp = new PopUp("Mise à jour", "La note est mise à jour", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
+                    else
+                    {
+                        PopUp popUp = new PopUp("Update", "The note has been updated", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
                 }
             }
         }

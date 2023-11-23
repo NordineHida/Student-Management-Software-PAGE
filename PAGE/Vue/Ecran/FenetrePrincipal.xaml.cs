@@ -178,8 +178,16 @@ namespace PAGE.Vue.Ecran
             }
             else
             {
-                PopUp popUp = new PopUp("Création", "Veuillez attendre la fin du chargement des étudiants", TYPEICON.INFORMATION);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Veuillez attendre la fin du chargement des étudiants", TYPEICON.INFORMATION);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "Please wait until the students have finished loading", TYPEICON.INFORMATION);
+                    popUp.ShowDialog();
+                }
             }
 
         }
