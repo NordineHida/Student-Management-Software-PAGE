@@ -12,8 +12,8 @@ namespace APIEtudiant.Model
     /// <author>Yamato</author>
     public enum NOMPROMOTION
     {
-        PremiereAnnee,
-        DeuxiemeAnnee,
-        TroisiemeAnnee
+        BUT1,
+        BUT2,
+        BUT3
     }
 }

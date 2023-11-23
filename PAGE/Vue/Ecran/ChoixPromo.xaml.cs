@@ -27,8 +27,6 @@ namespace PAGE.Vue.Ecran
         {
             InitializeComponent();
 
-            ComboBoxAnnee.SelectionChanged += ComboBoxAnnee_SelectionChanged;
-
         }
 
         /// <summary>
@@ -45,13 +43,13 @@ namespace PAGE.Vue.Ecran
             this.Close();
         }
 
-        private void ComboBoxAnnee_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /// <summary>
+        /// Bouton ouvrant une nouvelle fenetre permettant d'ajouter une année
+        /// </summary>
+        /// <author>Yamato</author>        
+        private void AjouterAnnee(object sender, RoutedEventArgs e)
         {
-            if (ComboBoxAnnee.SelectedItem is ComboBoxItem selectedItem && selectedItem.Content.ToString() == "Ajouter une nouvelle année")
-            {
-                
-                
-            }
+
         }
     }
 }

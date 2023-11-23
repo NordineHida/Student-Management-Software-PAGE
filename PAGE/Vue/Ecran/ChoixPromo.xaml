@@ -30,10 +30,15 @@
         <TextBlock Text="{DynamicResource LabelAnnee}" FontSize="50" FontFamily="Open Sauce One" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="#FF2B2B5A" />
         <TextBlock Text="{DynamicResource LabelPromotion}" FontSize="50" FontFamily="Open Sauce One" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF2B2B5A" />
 
-        <!--ComboBox (Nordine)-->
+        <!--ComboBox Année (Nordine)-->
         <ComboBox x:Name="ComboBoxAnnee" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120">
             <ComboBoxItem Content="Ajouter une nouvelle année"/>
         </ComboBox>
+        <!-- Bouton d'ajout d'une année (Yamato) -->
+        <!-- ajouter Visibility="Collapsed" après gestion des droits (collapsed de base et visible que pour admin) -->
+        <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent" BorderBrush="Transparent" Click="AjouterAnnee" >
+            <Image Source="/Vue/Ressources/Picto/plus-circle-outline.png" Stretch="Uniform" Height="25" Margin="0,0,170,0"/>
+        </Button>
         
         <ComboBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120">
             <ComboBoxItem Content="1ère année" x:Name="itemPremiereAnnee"/>
