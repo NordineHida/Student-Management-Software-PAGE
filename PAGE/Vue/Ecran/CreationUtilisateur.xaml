@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
-        Title="CreationUtilisateur" Height="450" Width="800">
+        Title="CreationUtilisateur" Height="650" Width="1200">
     <!--auteur : Laszlo-->
 
     <!-- Change la couleur de fond de la page-->
@@ -15,35 +15,37 @@
 
     <Grid Margin="5,0,-5,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Titre de la page -->
-        <Label x:Name="Titre" Grid.Column="1" Content="CreationUtilisateur" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29" Foreground="#2B2B5A"/>
+        <Label x:Name="Titre" Grid.Column="1" Content="Creation d'un Utilisateur :" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="#2B2B5A" Grid.ColumnSpan="2"/>
 
         <!-- Combobox gérant la confidentialité -->
-        <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
-        <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
-        <Label Grid.Column="1" Content="Login" HorizontalAlignment="Left" Margin="116,3,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <TextBox x:Name="txtLogin" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" BorderBrush="#FF3DA79D" Text="{Binding Login}" />
-        <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
-        <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="262,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Center" Width="110" RadiusX="10" RadiusY="10" Grid.Row="1"/>
+        <Label Grid.Column="1" Content="Login" HorizontalAlignment="Left" Margin="297,0,0,0" Grid.Row="1" VerticalAlignment="Center" Foreground="#FFFFFF"/>
+        <TextBox x:Name="txtLogin" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="37" BorderThickness="2" BorderBrush="#FF3DA79D" Text="{Binding Login}" Grid.ColumnSpan="2" Grid.Row="1" />
+        <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="257,50,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
 
         <!-- Combobox gérant la catégorie de la note -->
-        <Label Grid.Column="1" Content="MDP" HorizontalAlignment="Left" Margin="120,6,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="txtMDP" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" Text="{Binding Mdp}"/>
+        <Label Grid.Column="1" Content="MDP" HorizontalAlignment="Left" Margin="290,56,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
+        <TextBox x:Name="txtMDP" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Height="37" Margin="0,50,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" Text="{Binding Mdp}" Grid.ColumnSpan="2"/>
 
-        <!-- Boutons créer et annuler -->
-        <Button x:Name="BoutonCreer" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0">
+        <!-- Boutons créer -->
+
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCreer}"  FontSize="40" Click="ClickCreer" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -65,8 +67,8 @@
             </Button.Style>
         </Button>
 
-
-        <Button x:Name="BoutonAnnuler" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0">
+        <!--Bouton pour annuler (Nordine)-->
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" FontSize="40" Click="ClickAnnuler" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -88,6 +90,8 @@
             </Button.Style>
         </Button>
 
-        
+        <Image Source="/Vue/Ressources/Img/LogoIUT.png" Grid.ColumnSpan="2" Margin="10,-4,280,106" Grid.RowSpan="2"/>
+
+
     </Grid>
 </Window>
