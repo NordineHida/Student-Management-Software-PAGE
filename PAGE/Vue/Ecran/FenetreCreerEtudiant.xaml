@@ -637,7 +637,7 @@
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtNumApogee"  FontSize="20" Grid.Row="5" Grid.Column="3" />
 
         <TextBlock Text="{DynamicResource Groupe}"  FontSize="20" Grid.Row="7" Grid.Column="1" />
-        <ComboBox Style="{DynamicResource ComboBoxStyle1}" HorizontalAlignment="Left"  Width="500"  x:Name="comboBoxGroupe"  FontSize="16" Grid.Row="7" Grid.Column="3" SelectionChanged="ComboBoxGroupe_SelectionChanged">
+        <ComboBox Style="{DynamicResource ComboBoxStyle1}" HorizontalAlignment="Left"  Width="500"  x:Name="comboBoxGroupe"  FontSize="16" Grid.Row="7" Grid.Column="3" SelectionChanged="ComboBoxGroupe_SelectionChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <ComboBoxItem Content="A1"/>
             <ComboBoxItem Content="A2"/>
             <ComboBoxItem Content="B1"/>
@@ -675,7 +675,7 @@
 
         <!-- Régime de formation (Nordine  )-->
         <TextBlock Text="{DynamicResource Regime}"  FontSize="20" Grid.Row="17" Grid.Column="1" />
-        <ComboBox Style="{DynamicResource ComboBoxStyle2}" HorizontalAlignment="Left"  Width="500"  x:Name="comboBoxRegime"  FontSize="20" Grid.Row="17" Grid.Column="3" SelectionChanged="ComboBoxRegime_SelectionChanged">
+        <ComboBox Style="{DynamicResource ComboBoxStyle2}" HorizontalAlignment="Left"  Width="500"  x:Name="comboBoxRegime"  FontSize="20" Grid.Row="17" Grid.Column="3" SelectionChanged="ComboBoxRegime_SelectionChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <ComboBoxItem Content="FI"/>
             <ComboBoxItem Content="FC"/>
             <ComboBoxItem Content="FA"/>
@@ -711,7 +711,7 @@
 
         <!-- Date de naissance -->
         <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="{DynamicResource Birth*}"  Grid.Row="19" Grid.Column="1"  />
-        <DatePicker HorizontalAlignment="Left" FontSize="20" x:Name="txtDateNaissance2" Width="350" SelectedDateFormat="Short" Margin="0,0,80,20" Grid.Row="19" Grid.RowSpan="2" Grid.Column="3"/>
+        <DatePicker HorizontalAlignment="Left" FontSize="20" x:Name="txtDateNaissance2" Width="350" SelectedDateFormat="Short" Margin="0,0,80,20" Grid.Row="19" Grid.RowSpan="2" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
         <!-- Adresse de résidence -->
         <TextBlock x:Name="txtAdresse1" FontSize="20" Text="{DynamicResource Adresse}"   Grid.Row="21" Grid.Column="1"/>
