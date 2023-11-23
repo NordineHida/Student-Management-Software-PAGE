@@ -94,6 +94,7 @@ namespace PAGE.Vue.Ecran
                 //si la note n'existe pas, on met la date du jour par defaut
                 DateCreationNote.SelectedDate = DateTime.Now;
                 note.Commentaire = "";
+                BoutonSupprimer.Visibility = Visibility.Collapsed;
             }
 
         }
@@ -134,6 +135,7 @@ namespace PAGE.Vue.Ecran
         {
             BoutonValider.Visibility = Visibility.Visible;
             BoutonModifier.Visibility = Visibility.Collapsed;
+            BoutonSupprimer.Visibility = Visibility.Collapsed;
 
             Titre.Content = "Modification de note";
 
@@ -163,6 +165,7 @@ namespace PAGE.Vue.Ecran
                 //Le champs redeviennent non-editable
                 BoutonValider.Visibility = Visibility.Collapsed;
                 BoutonModifier.Visibility = Visibility.Visible;
+                BoutonSupprimer.Visibility = Visibility.Visible;
 
                 Titre.Content = "Note";
 

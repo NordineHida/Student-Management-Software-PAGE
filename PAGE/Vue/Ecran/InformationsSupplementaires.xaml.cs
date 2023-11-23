@@ -729,10 +729,17 @@ namespace PAGE.Vue.Ecran
             }
             else
             {
-                PopUp popUp = new PopUp("Une erreur est survenue", "Veuillez attendre la fin du chargement des notes", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Une erreur est survenue", "Veuillez attendre la fin du chargement des notes", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("An error has occurred", "Please wait until the notes have finished loading", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
-
         }
 
         /// <summary>
