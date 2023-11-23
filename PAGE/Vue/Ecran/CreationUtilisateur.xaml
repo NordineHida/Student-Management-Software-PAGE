@@ -12,6 +12,10 @@
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
     </Window.Background>
+    
+    <Window.Resources>
+        <FontFamily x:Key="OpenSauceOneBlack">/Vue/Ressources/Fonts/#Open Sauce One Black</FontFamily>
+    </Window.Resources>
 
     <Grid Margin="5,0,-5,0">
         <Grid.RowDefinitions>
@@ -28,22 +32,22 @@
         </Grid.ColumnDefinitions>
 
         <!-- Titre de la page -->
-        <Label x:Name="Titre" Grid.Column="1" Content="CreationUtilisateur" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29" Foreground="#2B2B5A"/>
+        <Label x:Name="Titre" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Content="CreationUtilisateur" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29" Foreground="#2B2B5A"/>
 
         <!-- Combobox gérant la confidentialité -->
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
-        <Label Grid.Column="1" Content="Login" HorizontalAlignment="Left" Margin="116,3,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <TextBox x:Name="txtLogin" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" BorderBrush="#FF3DA79D" Text="{Binding Login}" />
+        <Label Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="Login" HorizontalAlignment="Left" Margin="116,3,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
+        <TextBox x:Name="txtLogin" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" BorderBrush="#FF3DA79D" Text="{Binding Login}" />
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
 
         <!-- Combobox gérant la catégorie de la note -->
-        <Label Grid.Column="1" Content="MDP" HorizontalAlignment="Left" Margin="120,6,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="txtMDP" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" Text="{Binding Mdp}"/>
+        <Label Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="MDP" HorizontalAlignment="Left" Margin="120,6,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
+        <TextBox x:Name="txtMDP" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" Text="{Binding Mdp}"/>
 
         <!-- Boutons créer et annuler -->
-        <Button x:Name="BoutonCreer" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0">
+        <Button x:Name="BoutonCreer" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="310,0,0,0">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -66,7 +70,7 @@
         </Button>
 
 
-        <Button x:Name="BoutonAnnuler" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0">
+        <Button x:Name="BoutonAnnuler" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="118,0,0,0">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
