@@ -13,7 +13,7 @@ namespace APIEtudiant.Model
         private static UtilisateurManager instance;
 
         /// <summary>
-        /// Renvoie la seule instance de NoteManager
+        /// Renvoie la seule instance d'UtilisateurManager
         /// </summary>
         /// <author>Laszlo</author>
         public static UtilisateurManager Instance
