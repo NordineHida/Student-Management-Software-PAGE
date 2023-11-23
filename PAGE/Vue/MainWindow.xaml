@@ -15,9 +15,13 @@
         <SolidColorBrush Color="#bfd7eb" />
     </Window.Background>
 
+    <Window.Resources>
+        <FontFamily x:Key="OpenSauceOneBlack">/Vue/Ressources/Fonts/#Open Sauce One Black</FontFamily>
+    </Window.Resources>
+
     <!--Grille des éléments (Nordine)-->
     <Grid>
-        <TextBlock x:Name="TitreBienvenue" Text="{DynamicResource TitreBienvenue}" FontSize="72" Margin="148,161,-76,255" FontFamily="Open Sauce One Black" Foreground="#FF2B2B5A" />
+        <TextBlock x:Name="TitreBienvenue" Text="{DynamicResource TitreBienvenue}" FontSize="72" Margin="148,161,-76,255" FontFamily="{StaticResource OpenSauceOneBlack}" Foreground="#FF2B2B5A" />
         <Image Source="Ressources/Img/logoPage.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left" Height="228" Width="282" Margin="451,293,0,0" />
         <Image Source="Ressources/Img/logoIUT.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left" Height="169" Width="253" Margin="22,332,0,0" />
     </Grid>

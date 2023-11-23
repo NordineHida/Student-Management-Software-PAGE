@@ -32,13 +32,6 @@ namespace PAGE.Stockage
                 // Convertissez la note en JSON
                 string noteSerialise = JsonSerializer.Serialize(note);
 
-                switch (note.Categorie)
-                {
-                    case CATEGORIE.ABSENTEISME:
-                        noteSerialise.Replace("\"Categorie\"=0", "\"Categorie=Absenteisme\"");
-                        break;
-                }
-
                 // Créez le contenu de la requête POST
                 HttpContent content = new StringContent(noteSerialise, Encoding.UTF8, "application/json");
 

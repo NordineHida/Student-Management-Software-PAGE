@@ -13,16 +13,19 @@
     <Compile Update="Vue\Ecran\CreationNote.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\CreationUtilisateur.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\FenetreCreerEtudiant.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\FenetrePrincipal.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Vue\Ecran\InformationsSupplementaires.xaml.cs">
+    <Compile Update="Vue\Ecran\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Vue\Ecran\LoginPage.xaml.cs">
+    <Compile Update="Vue\Ecran\NoteComponent.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\ParametrePage.xaml.cs">
@@ -45,6 +48,9 @@
     <Page Update="Vue\Ecran\CreationNote.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Vue\Ecran\CreationUtilisateur.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\FenetreCreerEtudiant.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -55,6 +61,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\LoginPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\NoteComponent.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\ParametrePage.xaml">

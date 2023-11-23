@@ -29,8 +29,8 @@
     <!--Connexion (nordine)-->
     <system:String x:Key="TitreFenetreConnexion">Connection</system:String>
     <system:String x:Key="TitreConnexion">Type your login informations</system:String>
-    <system:String x:Key="LabelLogin">Login or mail :</system:String>
-    <system:String x:Key="LabelPassword">Password</system:String>
+    <system:String x:Key="LabelLogin">Login :</system:String>
+    <system:String x:Key="LabelPassword">Password :</system:String>
     <system:String x:Key="BtnLogin">Log in</system:String>
 
     <!--Bienvenue (nordine)-->
@@ -124,6 +124,6 @@
     <system:String x:Key="BtnCacherInfoComp">Hide Informations</system:String>
 
 
-    <system:String x:Key="HeaderSupprNote">Delete note</system:String>
+    <system:String x:Key="HeaderSupprNote">Delete</system:String>
 
 </ResourceDictionary>

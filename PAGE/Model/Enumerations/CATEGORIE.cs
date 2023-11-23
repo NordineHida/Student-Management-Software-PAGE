@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace PAGE.Model
 {
-    //Différentes catégories possibles d'une note
-    //<author>Laszlo</author>
+    /// <summary>
+    /// Différentes catégories possibles d'une note
+    /// </summary>
+    ///<author>Laszlo</author>
     public enum CATEGORIE
     {
         ABSENTEISME,PERSONNEL,MEDICAL,RESULTATS,ORIENTATION,AUTRE

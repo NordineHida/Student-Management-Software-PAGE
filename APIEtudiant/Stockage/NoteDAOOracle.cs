@@ -144,7 +144,13 @@ namespace APIEtudiant.Stockage
                     string categorieStr = reader.GetString(reader.GetOrdinal("categorie"));
                     DateTime datePublication = reader.GetDateTime(reader.GetOrdinal("datePublication"));
                     string natureStr = reader.GetString(reader.GetOrdinal("nature"));
-                    string commentaire = reader.GetString(reader.GetOrdinal("commentaire"));
+                    string commentaire="";
+                    // Vérifier si la valeur du champ "commentaire" n'est pas null
+                    if (!reader.IsDBNull(reader.GetOrdinal("commentaire")))
+                    {
+                        commentaire = reader.GetString(reader.GetOrdinal("commentaire"));
+                    }
+
 
                     CATEGORIE categorie=CATEGORIE.AUTRE;
                     switch (categorieStr)
@@ -157,6 +163,9 @@ namespace APIEtudiant.Stockage
                             break;
                         case "Personnel":
                             categorie = CATEGORIE.PERSONNEL;
+                            break;
+                        case "Orientation":
+                            categorie = CATEGORIE.ORIENTATION;
                             break;
                         case "Resultats":
                             categorie = CATEGORIE.RESULTATS;
@@ -294,6 +303,9 @@ namespace APIEtudiant.Stockage
                     break;
                 case CATEGORIE.PERSONNEL:
                     noteCat = "Personnel";
+                    break;
+                case CATEGORIE.ORIENTATION:
+                    noteCat = "Orientation";
                     break;
                 case CATEGORIE.RESULTATS:
                     noteCat = "Resultats";

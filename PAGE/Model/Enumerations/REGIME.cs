@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace PAGE.Model
 {
-    //Différents régimes possibles d'un étudiant
-    //<author>Laszlo</author>
+    /// <summary>
+    /// Différents régimes possibles d'un étudiant
+    /// </summary>
+    ///<author>Laszlo</author>
     public enum REGIME
     {
         FI,FC,FA   
