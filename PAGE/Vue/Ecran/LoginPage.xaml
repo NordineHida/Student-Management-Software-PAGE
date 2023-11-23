@@ -7,6 +7,7 @@
         WindowStartupLocation="CenterScreen"
         Height="650" Width="1200"
         Title="{DynamicResource TitreFenetreConnexion}">
+    
     <Window.Resources>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
@@ -52,16 +53,15 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
+        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
+        <FontFamily x:Key="OpenSauceOneLight">/Vue/Ressources/Fonts/#Open Sauce One Light</FontFamily>
     </Window.Resources>
 
     <!--Fond (Nordine)-->
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
     </Window.Background>
-    <Window.Resources>
-        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One </FontFamily>
-        <FontFamily x:Key="OpenSauceOneLight">/Vue/Ressources/Fonts/#Open Sauce One Light </FontFamily>
-    </Window.Resources>
+
     <Grid>
         <!--Grille (Nordine)-->
         <Grid.RowDefinitions>
