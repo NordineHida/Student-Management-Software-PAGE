@@ -338,7 +338,7 @@
         <!-- search bar des étudiants (Nordine/Stephane) -->
         <StackPanel Grid.Column="1" Grid.Row="0" Margin="30,70,0,0">
             <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}" Foreground="#FFFFFF"/>
-            <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxFiltre" SelectionChanged="SelectionFiltreChanged" HorizontalAlignment="Left" FontFamily="{StaticResource OpenSauceOne}" VerticalAlignment="Center" Width="180" Margin="0,0,0,15" >
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxFiltre" SelectionChanged="SelectionFiltreChanged" HorizontalAlignment="Left" FontFamily="{StaticResource OpenSauceOne}" VerticalAlignment="Center" Width="180" Margin="0,0,0,15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" >
                 <ComboBoxItem Content="{DynamicResource Prenom}" ></ComboBoxItem>
                 <ComboBoxItem Content="{DynamicResource Nom}" ></ComboBoxItem>
                 <ComboBoxItem Content="{DynamicResource GroupeHead}" ></ComboBoxItem>
