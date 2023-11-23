@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
-        mc:Ignorable="d"
-        Title="Ajouter une année" Height="120" Width="260"
+        mc:Ignorable="d"        
+        WindowStartupLocation="CenterScreen"
+        Title="Ajouter une année" Height="140" Width="260"
         ResizeMode="NoResize">
 
     <!--Fond (Yamato)-->
@@ -21,7 +22,7 @@
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <!-- Zone de saisie de l'année (Yamato) -->
-        <Label Grid.Row="1" Content="Veuillez saisir une année :" FontSize="15" FontFamily="Open Sauce One" />
+        <Label Grid.Row="1" Content="Veuillez saisir l'année à ajouter :" FontSize="15" FontFamily="Open Sauce One" />
         <TextBox Grid.Row="2" x:Name="txtAnneeSaisie" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60"/>
 
         <!-- Bouton Ok-->

@@ -1,17 +1,7 @@
 ﻿using PAGE.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PAGE.Vue.Ecran
 {
@@ -22,11 +12,17 @@ namespace PAGE.Vue.Ecran
     {
         private List<Annee> annees = new List<Annee>();
 
+
         public ChoixPromo()
         {
-            ComboBoxAnnee.ItemsSource = annees.Select(a => a.AnneeDebut).ToList();
-
             InitializeComponent();
+
+            if (ComboBoxAnnee != null)
+            {
+                ComboBoxAnnee.ItemsSource = annees;
+                ComboBoxAnnee.DisplayMemberPath = "AnneeDebut";
+            }
+
         }
 
         /// <summary>
@@ -44,6 +40,18 @@ namespace PAGE.Vue.Ecran
         }
 
         /// <summary>
+        /// Mets à jour la combobox en triant de la plus petite année à la plus grande
+        /// </summary>
+        /// <author>Yamato</author>
+        private void MettreAJourComboBox()
+        {
+            // Tri de la liste des années par ordre croissant
+            var anneesTriees = annees.OrderBy(a => a.AnneeDebut).ToList();
+
+            ComboBoxAnnee.ItemsSource = anneesTriees;
+        }
+
+        /// <summary>
         /// Bouton ouvrant une nouvelle fenetre permettant d'ajouter une année
         /// </summary>
         /// <author>Yamato</author>        
@@ -53,10 +61,13 @@ namespace PAGE.Vue.Ecran
             AjoutAnnee ajoutAnnee = new AjoutAnnee();
             ajoutAnnee.ShowDialog();
 
+            // On créer une nouvelle année avec l'année saisie
             Annee nouvelleAnnee = new Annee(ajoutAnnee.AnneeSaisie, null, null, null);
+
+            // On l'ajoute à la liste d'années
             annees.Add(nouvelleAnnee);
 
-            ComboBoxAnnee.ItemsSource = annees.Select(a => a.AnneeDebut).ToList();
+            MettreAJourComboBox();
         }
     }
 }

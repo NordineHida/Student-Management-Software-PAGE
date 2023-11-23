@@ -31,6 +31,10 @@ namespace PAGE.Vue.Ecran
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Ferme la fenêtre lors du click sur le bouton OK
+        /// </summary>
+        /// <author>Yamato</author>
         private void OkClick(object sender, RoutedEventArgs e)
         {
             this.Close();
