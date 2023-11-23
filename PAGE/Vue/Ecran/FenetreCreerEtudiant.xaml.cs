@@ -229,12 +229,12 @@ namespace PAGE.Vue.Ecran
                 {
                     if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
                     {
-                        PopUp popUp = new PopUp("Création", "L'âge de l'étudiant doit être d'au moins 15 ans", TYPEICON.ERREUR);
+                        PopUp popUp = new PopUp("Création", "L'âge de l'étudiant doit être d'au moins 13 ans", TYPEICON.ERREUR);
                         popUp.ShowDialog();
                     }
                     else
                     {
-                        PopUp popUp = new PopUp("Creation", "The student must be at least 15 years old", TYPEICON.ERREUR);
+                        PopUp popUp = new PopUp("Creation", "The student must be at least 13 years old", TYPEICON.ERREUR);
                         popUp.ShowDialog();
                     }
                     saisiCorrect = false;
