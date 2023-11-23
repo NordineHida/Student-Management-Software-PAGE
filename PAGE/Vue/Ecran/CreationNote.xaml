@@ -39,7 +39,7 @@
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="423,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="27" RadiusX="10" RadiusY="10"/>
         <Label Grid.Column="1" Content="{DynamicResource ComboboxConf}" HorizontalAlignment="Left" Margin="93,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <ComboBox x:Name="ComboBoxConfidentialite" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" Background="#FF3DA79D">
+        <ComboBox x:Name="ComboBoxConfidentialite" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="250" Margin="185,0,0,21" BorderThickness="2" Background="#FF3DA79D" SelectionChanged="ComboBoxConfidentialite_SelectionChanged">
             <ComboBoxItem Content="{DynamicResource CateMedical}"/>
             <ComboBoxItem Content="{DynamicResource CateConf}"/>
             <ComboBoxItem Content="{DynamicResource CateInterne}"/>

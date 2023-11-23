@@ -4,6 +4,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using APIEtudiant.Model;
+using APIEtudiant.Model.Enumerations;
 using Oracle.ManagedDataAccess.Client;
 
 namespace APIEtudiant.Stockage

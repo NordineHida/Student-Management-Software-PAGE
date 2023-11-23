@@ -1,4 +1,4 @@
-﻿namespace APIEtudiant.Model
+﻿namespace APIEtudiant.Model.Enumerations
 {
     /// <summary>
     /// Les sexes possibles d'un étudiant
