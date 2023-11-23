@@ -9,7 +9,8 @@
         Title="{DynamicResource TitreParam}"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
-        <Style x:Key="FocusVisual">
+        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One </FontFamily>
+            <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate>
@@ -324,16 +325,16 @@
         </ComboBox>
 
         <!-- Label pour la langue (nordine) -->
-        <Label Content="{DynamicResource LabelLangueSelect}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
+        <Label Content="{DynamicResource LabelLangueSelect}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}"/>
 
         <!-- TextBox pour le path de génération du word (Nordine) -->
-        <TextBox x:Name="LabelPathGeneration" Text="" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontFamily="Open Sauce One Light" Height="30" FontSize="20"/>
+        <TextBox x:Name="LabelPathGeneration" Text="" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}" Height="30" FontSize="20"/>
 
         <!-- Label l'emplacement de génération du word (Nordine) -->
-        <Label Content="{DynamicResource LabelPathGeneration}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One" />
+        <Label Content="{DynamicResource LabelPathGeneration}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}" />
 
         <!-- PasswordBox pour le mot de passe (Nordine) -->
-        <Button Content="{DynamicResource BtnParcourir}" Click="ChangerPathWord" Grid.Column="2" Grid.Row="2"  Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One"  FontSize="25"  Margin="0,106,0,0" HorizontalAlignment="Center" Width="186" Height="36" VerticalAlignment="Top" Grid.RowSpan="2">
+        <Button Content="{DynamicResource BtnParcourir}" Click="ChangerPathWord" Grid.Column="2" Grid.Row="2"  Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}"  FontSize="25"  Margin="0,106,0,0" HorizontalAlignment="Center" Width="186" Height="36" VerticalAlignment="Top" Grid.RowSpan="2">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -357,7 +358,7 @@
 
 
         <!--Bouton de Connexion (Nordine)-->
-        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}"  FontSize="40" Click="ValiderParam" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20">
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnValider}"  FontSize="40" Click="ValiderParam" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -380,7 +381,7 @@
         </Button>
 
         <!--Bouton pour annuler (Nordine)-->
-        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="40" Click="CloseWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20">
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="40" Click="CloseWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
