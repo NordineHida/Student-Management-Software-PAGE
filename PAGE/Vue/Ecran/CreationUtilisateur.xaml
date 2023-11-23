@@ -14,7 +14,7 @@
     </Window.Background>
     
     <Window.Resources>
-        <FontFamily x:Key="OpenSauceOneBlack">/Vue/Ressources/Fonts/#Open Sauce One Black</FontFamily>
+        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One </FontFamily>
     </Window.Resources>
 
     <Grid Margin="5,0,-5,0">
