@@ -6,14 +6,14 @@
     /// <author>Yamato</author>
     public class Promotion
     {
-        private Etudiants etudiants;
+        private List<Etudiant> etudiants = new List<Etudiant>();
         private NOMPROMOTION nomPromotion;
 
         /// <summary>
         /// Renvoie ou définit les étudiants composant la promotion
         /// </summary>
         /// <author>Yamato</author>
-        public Etudiants Etudiants { get { return etudiants; } set { etudiants = value; } }
+        public List<Etudiant> Etudiants { get { return etudiants; } set { etudiants = value; } }
 
         /// <summary>
         /// Renvoie ou définit le nom de la promotion (premiere année, deuxieme année, troisieme année)
@@ -27,7 +27,7 @@
         /// <param name="etu">etudiants de la promotion</param>
         /// <param name="nomPromo">nom de la promotion (premiere année, deuxieme année, troisieme année)</param>
         /// <author>Yamato</author>
-        public Promotion(Etudiants etu, NOMPROMOTION nomPromo)
+        public Promotion(List<Etudiant> etu, NOMPROMOTION nomPromo)
         {
             this.etudiants = etu;
             this.nomPromotion = nomPromo;

@@ -605,9 +605,9 @@
         </Button>
         
         <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120">
-            <ComboBoxItem Content="BUT1" x:Name="itemPremiereAnnee"/>
-            <ComboBoxItem Content="BUT2" x:Name="itemDeuxiemeAnnee"/>
-            <ComboBoxItem Content="BUT3" x:Name="itemTroisiemeAnnee"/>
+            <ComboBoxItem Content="BUT1" x:Name="itemBUT1"/>
+            <ComboBoxItem Content="BUT2" x:Name="itemBUT2"/>
+            <ComboBoxItem Content="BUT3" x:Name="itemBUT3"/>
         </ComboBox>
 
         <!--Bouton Valider (Nordine)-->

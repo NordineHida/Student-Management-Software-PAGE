@@ -24,6 +24,7 @@ namespace PAGE.Vue.Ecran
 
         public ChoixPromo()
         {
+            ComboBoxAnnee.ItemsSource = annees.Select(a => a.AnneeDebut).ToList();
 
             InitializeComponent();
         }
