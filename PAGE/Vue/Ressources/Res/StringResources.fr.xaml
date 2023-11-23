@@ -30,8 +30,8 @@
     <!--Connexion (nordine)-->
     <system:String x:Key="TitreFenetreConnexion">Connexion</system:String>
     <system:String x:Key="TitreConnexion">Entrez vos informations de connexion</system:String>
-    <system:String x:Key="LabelLogin">Nom d'utilisateur ou e-mail :</system:String>
-    <system:String x:Key="LabelPassword">Mot de passse</system:String>
+    <system:String x:Key="LabelLogin">Nom d'utilisateur :</system:String>
+    <system:String x:Key="LabelPassword">Mot de passe :</system:String>
     <system:String x:Key="BtnLogin">Se Connecter</system:String>
 
     <!--Bienvenue (nordine)-->
@@ -106,7 +106,7 @@
 
 
     <!--InformationsSupplementaires (Lucas)-->
-    <system:String x:Key="TitreFenetreInformationsSupplementaires">Informations Supplementaires</system:String>
+    <system:String x:Key="TitreFenetreInformationsSupplementaires">Informations Supplémentaires</system:String>
 
 
     <system:String x:Key="Nom:">Nom :</system:String>
@@ -123,6 +123,6 @@
     <system:String x:Key="BtnModifInfos">Modifier les informations</system:String>
     <system:String x:Key="BtnAfficherInfosComp">Afficher les informations complémentaires</system:String>
 
-    <system:String x:Key="HeaderSupprNote">Supprimer la note</system:String>
+    <system:String x:Key="HeaderSupprNote">Supprimer</system:String>
 
 </ResourceDictionary>

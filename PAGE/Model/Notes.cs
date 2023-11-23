@@ -51,7 +51,7 @@ namespace PAGE.Model
         /// <summary>
         /// Supprime une note de la liste
         /// </summary>
-        /// <param name="note">note à ajouter</param>
+        /// <param name="note">note à supprimer</param>
         /// <author>Laszlo</author>
         public void RemoveNote(Note note)
         {
