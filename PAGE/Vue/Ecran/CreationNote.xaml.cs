@@ -110,6 +110,7 @@ namespace PAGE.Vue.Ecran
                 //si la note n'existe pas, on met la date du jour par defaut
                 DateCreationNote.SelectedDate = DateTime.Now;
                 note.Commentaire = "";
+                BoutonSupprimer.Visibility = Visibility.Collapsed;
             }
 
         }
@@ -150,6 +151,7 @@ namespace PAGE.Vue.Ecran
         {
             BoutonValider.Visibility = Visibility.Visible;
             BoutonModifier.Visibility = Visibility.Collapsed;
+            BoutonSupprimer.Visibility = Visibility.Collapsed;
 
             Titre.Content = "Modification de note";
 
@@ -179,6 +181,7 @@ namespace PAGE.Vue.Ecran
                 //Le champs redeviennent non-editable
                 BoutonValider.Visibility = Visibility.Collapsed;
                 BoutonModifier.Visibility = Visibility.Visible;
+                BoutonSupprimer.Visibility = Visibility.Visible;
 
                 Titre.Content = "Note";
 
@@ -218,20 +221,47 @@ namespace PAGE.Vue.Ecran
             else if(note.Categorie == null)
             {
                 valide = false;
-                PopUp popUp = new PopUp("Création", "Veuillez choisir une catégorie", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création note", "Veuillez choisir une catégorie", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Note creation", "Please choose a category", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
             else if (note.Nature == null)
             {
                 valide = false; 
-                PopUp popUp = new PopUp("Création", "Veuillez choisir une nature", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création note", "Veuillez choisir une nature", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Note creation", "Please choose a nature", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
             else if (note.DatePublication > DateTime.Now)
             {
                 valide = false;
-                PopUp popUp = new PopUp("Création", "Veuillez choisir une date correcte", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création note", "Veuillez choisir une date correcte", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Note creation", "Please choose a correct date", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
 
             return valide;

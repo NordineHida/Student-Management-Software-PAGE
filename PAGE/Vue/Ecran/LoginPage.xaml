@@ -7,6 +7,55 @@
         WindowStartupLocation="CenterScreen"
         Height="650" Width="1200"
         Title="{DynamicResource TitreFenetreConnexion}">
+    
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
+        <FontFamily x:Key="OpenSauceOneLight">/Vue/Ressources/Fonts/#Open Sauce One Light</FontFamily>
+    </Window.Resources>
 
     <!--Fond (Nordine)-->
     <Window.Background>
@@ -26,28 +75,28 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="73*"/>
-            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="75*"/>
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Titre (Nordine) -->
         <TextBlock Text="{DynamicResource TitreConnexion}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="#FF2B2B5A" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Open Sauce One" />
 
-        <!-- Label pour Nom d'utilisateur ou E-mail -->
-        <Label Content="{DynamicResource LabelLogin}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
+        <!-- Combobox gérant le login -->
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="215,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Center" Width="171" RadiusX="10" RadiusY="10" Grid.Row="1"/>
+        <Label Grid.Column="1" FontSize="15" Content="{DynamicResource LabelLogin}" FontFamily="{StaticResource OpenSauceOne}"  HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="215,0,0,0" Grid.Row="1" VerticalAlignment="Center" Foreground="#FFFFFF" Width="171" Height="54"/>
+        <TextBox Style="{DynamicResource TextBoxStyle1}" FontSize="20" x:Name="txtUsername" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" Height="54" BorderThickness="2" Grid.ColumnSpan="2" Grid.Row="1" Margin="380,0,0,0" />
 
-        <!-- TextBox pour le nom d'utilisateur (Lucas & Nordine) -->
-        <TextBox x:Name="txtUsername"  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontFamily="Open Sauce One Light" Height="40"/>
 
-        <!-- Label pour le mot de passe (Lucas & Nordine) -->
-        <Label Content="{DynamicResource LabelPassword}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
+        <!-- Combobox gérant le MDP -->
+        <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="54" Margin="215,50,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="171" RadiusX="10" RadiusY="10"/>
+        <Label FontFamily="{StaticResource OpenSauceOne}"  Grid.Column="1" FontSize="15" Content="{DynamicResource LabelPassword}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="215,50,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="54" RenderTransformOrigin="0.5,0.5" Width="171"/>
+        <TextBox Style="{DynamicResource TextBoxStyle1}" FontSize="20" x:Name="txtPassword" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="54" Margin="380,50,0,0" BorderThickness="2" Text="{Binding Mdp}" Grid.ColumnSpan="2"/>
 
-        <!-- PasswordBox pour le mot de passe (Lucas & Nordine) -->
-        <PasswordBox x:Name="txtPassword" FontSize="14" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Height="40"/>
 
         <!--Bouton de Connexion (Nordine)-->
-        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnLogin}"  FontSize="40" Click="BoutonLogin" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20">
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnLogin}"  FontSize="20" Click="BoutonLogin" Grid.Column="2" Grid.Row="4" Margin="120,40,120,40">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -70,7 +119,7 @@
         </Button>
 
         <!--Bouton pour annuler (Nordine)-->
-        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="40" Click="CloseLoginWindow" Grid.Column="1" Grid.Row="4" Margin="70,20,70,20">
+        <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}"  Content="{DynamicResource BtnAnnuler}" Padding="10" FontSize="20" Click="CloseLoginWindow" Grid.Column="1" Grid.Row="4" Margin="120,40,120,40">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -91,7 +140,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        
+
         <Image Source="/Vue/Ressources/Img/LogoIUT.png" Grid.ColumnSpan="2" Margin="10,-4,280,106" Grid.RowSpan="2"/>
 
 

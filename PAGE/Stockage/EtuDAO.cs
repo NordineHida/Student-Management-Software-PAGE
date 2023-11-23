@@ -52,8 +52,16 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        PopUp popUp = new PopUp("Importation", "Les étudiants sont ajoutés", TYPEICON.SUCCES);
-                        popUp.ShowDialog();
+                        if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                        {
+                            PopUp popUp = new PopUp("Importation", "Les étudiants sont ajoutés", TYPEICON.SUCCES);
+                            popUp.ShowDialog();
+                        }
+                        else 
+                        {
+                            PopUp popUp = new PopUp("Import", "Students are added", TYPEICON.SUCCES);
+                            popUp.ShowDialog();
+                        } 
                     }
                 }
             }
@@ -90,8 +98,16 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        PopUp popUp = new PopUp("Ajout d'étudiant", "L'étudiant à bien été ajouté", TYPEICON.SUCCES);
-                        popUp.ShowDialog();
+                        if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                        {
+                            PopUp popUp = new PopUp("Ajout d'étudiant", "L'étudiant à bien été ajouté", TYPEICON.SUCCES);
+                            popUp.ShowDialog();
+                        }
+                        else
+                        {
+                            PopUp popUp = new PopUp("Add student", "The student has been added", TYPEICON.SUCCES);
+                            popUp.ShowDialog();
+                        }
                     }
                 }
             }
@@ -158,13 +174,29 @@ namespace PAGE.Stockage
 
                     if (response.IsSuccessStatusCode)
                     {
-                        PopUp popUp = new PopUp("Ajout d'étudiant", "L'étudiant à bien été crée", TYPEICON.SUCCES);
-                        popUp.ShowDialog();
+                        if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                        {
+                            PopUp popUp = new PopUp("Ajout d'étudiant", "L'étudiant à bien été crée", TYPEICON.SUCCES);
+                            popUp.ShowDialog();
+                        }
+                        else
+                        {
+                            PopUp popUp = new PopUp("Add student", "The student has been created", TYPEICON.SUCCES);
+                            popUp.ShowDialog();
+                        }
                     }
                     else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                     {
-                        PopUp popUp = new PopUp("Ajout d'étudiant", "Le numéro apogée existe déjà", TYPEICON.ERREUR);
-                        popUp.ShowDialog();
+                        if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                        {
+                            PopUp popUp = new PopUp("Ajout d'étudiant", "Le numéro apogée existe déjà", TYPEICON.ERREUR);
+                            popUp.ShowDialog();
+                        }
+                        else
+                        {
+                            PopUp popUp = new PopUp("Add student", "The apogee number already exists", TYPEICON.ERREUR);
+                            popUp.ShowDialog();
+                        }
                     }
                 }
             }
