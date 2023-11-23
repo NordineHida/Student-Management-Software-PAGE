@@ -5,33 +5,50 @@ using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PAGE.Model
 {
-    // Classe gérant les utilisateurs pouvant se connecter sur l'application et récupérer leurs droits
+    /// <summary>
+    /// Classe gérant les utilisateurs pouvant se connecter sur l'application et récupérer leurs droits
+    /// </summary>
     public class Utilisateur
     {
         private string login;
         private string mdp;
+        private string hashMdp;
         private Dictionary<int, ROLE> roles;
 
         /// <summary>
         /// Renvoie ou définit le login de l'utilisateur
         /// </summary>
+        /// <author>Laszlo</author>
         public string Login
         {
             get { return login; }
             set { login = value; }
         }
 
+        [JsonIgnore]
         /// <summary>
-        /// Renvoie ou définit le mot de passe de l'utilisateur
+        /// Renvoie ou définit le login de l'utilisateur
         /// </summary>
+        /// <author>Laszlo</author>
         public string Mdp
         {
             get { return mdp; }
             set { mdp = value; }
+        }
+
+        /// <summary>
+        /// Renvoie le mot de passe hashé
+        /// </summary>
+        /// <author>Laszlo</author>
+        public string HashMdp
+        {
+            get { return GetHashMdp(mdp); }
+            set { hashMdp = value; }
         }
 
         /// <summary>
@@ -58,6 +75,24 @@ namespace PAGE.Model
             roles.Add(annee, role);
         }
 
-       
+        /// <summary>
+        /// Hashe le mot de passe donné
+        /// </summary>
+        /// <param name="mdp">mot de passe à hasher</param>
+        /// <returns></returns>
+        public string GetHashMdp(string mdp)
+        {
+            string mdpHashed = "";
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashValue = sha256.ComputeHash(Encoding.UTF8.GetBytes(mdp));
+                foreach (byte b in hashValue)
+                {
+                    mdpHashed += $"{b:X2}";
+                }
+            }
+            return mdpHashed;
+        }
+
     }
 }

@@ -30,7 +30,7 @@ namespace APIEtudiant.Stockage
                 {
                     // On crée la requête SQL
                     string requete = String.Format("INSERT INTO Utilisateur(idUtilisateur,login,hashPassword)" +
-                        "VALUES(0, '{0}','{1}')",user.Login,HashMdp(user.Mdp));
+                        "VALUES(0, '{0}','{1}')",user.Login,user.HashMdp);
 
 
                     //On execute la requete
@@ -121,18 +121,49 @@ namespace APIEtudiant.Stockage
 
         }
 
-        public string HashMdp(string mdp)
+        /// <summary>
+        /// Regarde si l'utilisateur avec le logon et le mdp envoyé en paramètres existe, si oui, le renvoie
+        /// </summary>
+        /// <param name="login">login de l'utilisateur dont on vérifie l'existence</param>
+        /// <param name="mdp">mdp (hashé) de l'utilisateur dont on vérifie l'existence</param>
+        /// <returns>l'utilisateur, s'il existe</returns>
+        public Utilisateur GetUtilisateurByLoginMDP(string login, string mdp)
         {
-            string mdpHashed = "";
-            using (SHA256 sha256 = SHA256.Create())
+            //Création d'une connexion Oracle
+            Connection con = new Connection();
+            //étudiant à renvoyer
+            Utilisateur user = new Utilisateur(login, mdp);
+
+            try
             {
-                byte[] hashValue = sha256.ComputeHash(Encoding.UTF8.GetBytes(mdp));
-                foreach (byte b in hashValue)
+                
+                // Création d'une commande Oracle pour récuperer l'ensemble des éléments de tout les étudiants
+                OracleCommand cmd = new OracleCommand(String.Format("SELECT login,hashPassword FROM Utilisateur WHERE login='{0}' AND hashPassword={1}", login, mdp), con.OracleConnexion);
+
+                OracleDataReader reader = cmd.ExecuteReader();
+
+            }
+            // Gestion des exceptions
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                //On ferme la connexion
+                try
                 {
-                    mdpHashed += $"{b:X2}";
+                    if (con != null)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
             }
-            return mdpHashed;
+            return user;
         }
     }
 }

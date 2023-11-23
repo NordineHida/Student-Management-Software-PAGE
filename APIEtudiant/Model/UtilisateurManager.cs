@@ -54,5 +54,10 @@ namespace APIEtudiant.Model
         { 
             return UtilisateurDAO.GetAllUtilisateurs();
         }
+
+        /*public bool CreateToken(Utilisateur utilisateur)
+        {
+            //return
+        }*/
     }
 }
