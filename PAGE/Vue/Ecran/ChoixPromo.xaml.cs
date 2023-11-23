@@ -1,4 +1,6 @@
 ﻿using PAGE.Model;
+using PAGE.Stockage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -57,17 +59,34 @@ namespace PAGE.Vue.Ecran
         /// <author>Yamato</author>        
         private void AjouterAnnee(object sender, RoutedEventArgs e)
         {
-            // On ouvre une nouvelle fenêtre permettant la saisir de l'année à ajouter
+            // On ouvre une nouvelle fenêtre permettant la saisie de l'année à ajouter
             AjoutAnnee ajoutAnnee = new AjoutAnnee();
             ajoutAnnee.ShowDialog();
 
-            // On créer une nouvelle année avec l'année saisie
-            Annee nouvelleAnnee = new Annee(ajoutAnnee.AnneeSaisie, null, null, null);
+            // Ajout de l'année dans la liste que si celle-ci est valide
+            if (int.TryParse(ajoutAnnee.AnneeSaisie, out int anneeSaisie))
+            {
+                // Obtention de l'année actuelle
+                int anneeActuelle = DateTime.Now.Year;
 
-            // On l'ajoute à la liste d'années
-            annees.Add(nouvelleAnnee);
+                // Vérifiez si l'année saisie est supérieure à l'année actuelle
+                if (anneeSaisie <= anneeActuelle)
+                {
+                    // On créer une nouvelle année avec l'année saisie
+                    Annee nouvelleAnnee = new Annee(ajoutAnnee.AnneeSaisie, null, null, null);
 
-            MettreAJourComboBox();
+                    // On l'ajoute à la liste d'années
+                    annees.Add(nouvelleAnnee);
+
+                    // Création de l'année 
+                    AnneeDAO dao = new AnneeDAO();
+                    dao.CreateAnnee(nouvelleAnnee);
+
+                    MettreAJourComboBox();
+                }
+                
+            }
+
         }
     }
 }

@@ -24,7 +24,7 @@ namespace PAGE.Stockage
             using (HttpClient client = new HttpClient())
             {
                 // Spécifiez l'URL de l'API
-                string apiUrl = "https://localhost:7038/Annee/CreateAnnee";
+                string apiUrl = "https://localhost:7038/AnneeControlleur/CreateAnnee";
 
                 // Convertissez l'Utilisateur en JSON
                 string anneeSerialise = JsonSerializer.Serialize(annee);
