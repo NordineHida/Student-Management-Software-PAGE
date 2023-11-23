@@ -48,5 +48,22 @@ namespace APIEtudiant.Controllers
             if (users != null) reponse = Ok(users);
             return reponse;
         }
+
+        /// <summary>
+        /// Connecte un utilisateur sur l'application
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("Connexion")]
+        public ActionResult Connexion(string login, string mdp)
+        {
+            ActionResult reponse = BadRequest();
+            //Si l'utilisateur n'est pas null
+            if (login != null || mdp ==null)
+            {
+                //si l'ajout de l'utilisateur a été un succès on renvoie OK
+                if (UtilisateurManager.Instance.CreateToken(UtilisateurManager.Instance.GetUtilisateurByLoginMDP(login, mdp)))reponse = Ok();
+            }
+            return reponse;
+        }
     }
 }

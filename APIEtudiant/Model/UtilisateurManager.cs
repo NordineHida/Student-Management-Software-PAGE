@@ -34,6 +34,8 @@ namespace APIEtudiant.Model
         //DAO d'utilisateur
         private IUtilisateurDAO UtilisateurDAO => new UtilisateurDAOOracle();
 
+        private ITokenDAO TokenDAO => new TokenDAOOracle();
+
         /// <summary>
         /// Ajoute un Utilisateur à la BDD
         /// </summary>
@@ -55,9 +57,26 @@ namespace APIEtudiant.Model
             return UtilisateurDAO.GetAllUtilisateurs();
         }
 
-        /*public bool CreateToken(Utilisateur utilisateur)
+        /// <summary>
+        /// Regarde si l'utilisateur avec le login et le mdp envoyé en paramètres existe, si oui, le renvoie
+        /// </summary>
+        /// <param name="login">login de l'utilisateur dont on vérifie l'existence</param>
+        /// <param name="mdp">mdp (hashé) de l'utilisateur dont on vérifie l'existence</param>
+        /// <returns>l'utilisateur, s'il existe</returns>
+        public Utilisateur GetUtilisateurByLoginMDP(string login, string mdp)
         {
-            //return
-        }*/
+            return UtilisateurDAO.GetUtilisateurByLoginMDP(login, mdp);
+        }
+
+
+        /// <summary>
+        /// Crée un Token pour un utilisateur
+        /// </summary>
+        /// <param name="utilisateur">Utilisateur que le token vise</param>
+        /// <returns>vrai si le token est créé, faux sinon</returns>
+        public bool CreateToken(Utilisateur utilisateur)
+        {
+            return TokenDAO.CreateToken(utilisateur);
+        }
     }
 }
