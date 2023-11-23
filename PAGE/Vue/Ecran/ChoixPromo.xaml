@@ -595,11 +595,11 @@
         <TextBlock Text="{DynamicResource LabelPromotion}" FontSize="50" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF2B2B5A" />
 
         <!--ComboBox (Nordine)-->
-        <ComboBox Style="{DynamicResource ComboBoxStyle1}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120">
+        <ComboBox Style="{DynamicResource ComboBoxStyle1}" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120">
             <ComboBoxItem Content="2023/2024"/>
         </ComboBox>
-        
-        <ComboBox Style="{DynamicResource ComboBoxStyle2}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120">
+
+        <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120">
             <ComboBoxItem Content="1ère année"/>
             <ComboBoxItem Content="2ème année"/>
             <ComboBoxItem Content="3ème année"/>

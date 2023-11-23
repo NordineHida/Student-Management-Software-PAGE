@@ -10,6 +10,8 @@
         Title="{DynamicResource TitreFenetreInformationsSupplementaires}" Height="1000" Width="1500"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
+        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
+
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -618,17 +620,17 @@
         <!-- Informations Importantes -->
 
         <!-- Nom et Prenom (Nordine & Yamato) -->
-        <TextBlock Text="{DynamicResource Nom:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="1" />
-        <TextBox Width="425" IsReadOnly="True" x:Name="txtName" HorizontalAlignment="Left" FontSize="15" Grid.Row="1" Grid.Column="2" BorderThickness="0" Margin="0,1,0,25" Grid.RowSpan="2"/>
+        <TextBlock Text="{DynamicResource Nom:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="1" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" FontFamily="{StaticResource OpenSauceOne}" x:Name="txtName" HorizontalAlignment="Left" FontSize="15" Grid.Row="1" Grid.Column="2" BorderThickness="0" Margin="0,1,0,25" Grid.RowSpan="2"/>
 
-        <TextBlock Text="{DynamicResource Prenom:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="1" />
-        <TextBox Width="425" IsReadOnly="True" x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="15" Grid.Row="3" Grid.Column="3" BorderThickness="0" />
+        <TextBlock Text="{DynamicResource Prenom:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="3" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" FontFamily="{StaticResource OpenSauceOne}" x:Name="txtPrenom" HorizontalAlignment="Left" FontSize="15" Grid.Row="3" Grid.Column="3" BorderThickness="0" />
 
-        <TextBlock Text="{DynamicResource NumApogee:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="1" />
-        <TextBox Width="425" IsReadOnly="True" x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="15" Grid.Row="5" Grid.Column="3" BorderThickness="0"/>
+        <TextBlock Text="{DynamicResource NumApogee:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="5" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" FontFamily="{StaticResource OpenSauceOne}" x:Name="txtNumApogee" HorizontalAlignment="Left" FontSize="15" Grid.Row="5" Grid.Column="3" BorderThickness="0"/>
 
-        <TextBlock Text="{DynamicResource Groupe:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="1" />
-        <ComboBox Style="{DynamicResource ComboBoxStyle1}" Width="425" IsReadOnly="True" IsEnabled="False" x:Name="comboBoxGroupe" HorizontalAlignment="Left" FontSize="15" Grid.Row="7" Grid.Column="3" BorderThickness="0" SelectionChanged="ComboBoxGroupe_SelectionChanged">
+        <TextBlock Text="{DynamicResource Groupe:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="7" Grid.Column="1" />
+        <ComboBox Style="{DynamicResource ComboBoxStyle1}" FontFamily="{StaticResource OpenSauceOne}" Width="425" IsReadOnly="True" IsEnabled="False" x:Name="comboBoxGroupe" HorizontalAlignment="Left" FontSize="15" Grid.Row="7" Grid.Column="3" BorderThickness="0" SelectionChanged="ComboBoxGroupe_SelectionChanged">
             <ComboBoxItem Content="A1"/>
             <ComboBoxItem Content="A2"/>
             <ComboBoxItem Content="B1"/>
@@ -641,32 +643,32 @@
             <ComboBoxItem Content="E2"/>
         </ComboBox>
 
-        <TextBlock Text="{DynamicResource Mail:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="1" />
-        <TextBox Width="425" IsReadOnly="True" x:Name="txtMail" HorizontalAlignment="Left" FontSize="15" Grid.Row="9" Grid.Column="3" BorderThickness="0"/>
+        <TextBlock Text="{DynamicResource Mail:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" FontFamily="{StaticResource OpenSauceOne}" x:Name="txtMail" HorizontalAlignment="Left" FontSize="15" Grid.Row="9" Grid.Column="3" BorderThickness="0"/>
 
         <!-- Sexe (Nordine & Yamato)-->
-        <TextBlock Text="{DynamicResource Sexe:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="1" />
-        <WrapPanel Grid.Row="11" Grid.Column="3" x:Name="RadioSexe">
-            <RadioButton GroupName="sexeRadio" x:Name="radioHomme" Margin="20,0,0,0" IsEnabled="False" Checked="radioHomme_Checked" Content="{DynamicResource CateSexeH}" ></RadioButton>
-            <RadioButton GroupName="sexeRadio" x:Name="radioFemme" Margin="20,0,0,0" IsEnabled="False" Checked="radioFemme_Checked" Content="{DynamicResource CateSexeF}"></RadioButton>
-            <RadioButton GroupName="sexeRadio" x:Name="radioAutre" Margin="20,0,0,0" IsEnabled="False" Checked="radioAutre_Checked" Content="{DynamicResource CateSexeA}"></RadioButton>
+        <TextBlock Text="{DynamicResource Sexe:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="1" />
+        <WrapPanel Grid.Row="11" Grid.Column="3"  x:Name="RadioSexe">
+            <RadioButton GroupName="sexeRadio" FontFamily="{StaticResource OpenSauceOne}" x:Name="radioHomme" Margin="20,0,0,0" IsEnabled="False" Checked="radioHomme_Checked" Content="{DynamicResource CateSexeH}" ></RadioButton>
+            <RadioButton GroupName="sexeRadio" FontFamily="{StaticResource OpenSauceOne}" x:Name="radioFemme" Margin="20,0,0,0" IsEnabled="False" Checked="radioFemme_Checked" Content="{DynamicResource CateSexeF}"></RadioButton>
+            <RadioButton GroupName="sexeRadio" FontFamily="{StaticResource OpenSauceOne}" x:Name="radioAutre" Margin="20,0,0,0" IsEnabled="False" Checked="radioAutre_Checked" Content="{DynamicResource CateSexeA}"></RadioButton>
         </WrapPanel>
 
 
         <!-- Type de bac obtenu (Nordine & Yamato) -->
-        <TextBlock Text="{DynamicResource Bac:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="1" />
-        <TextBox Width="425" IsReadOnly="True" x:Name="txtTypebac" HorizontalAlignment="Left" FontSize="15" Grid.Row="13" Grid.Column="3" BorderThickness="0"/>
+        <TextBlock Text="{DynamicResource Bac:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="13" Grid.Column="1" />
+        <TextBox Width="425" IsReadOnly="True" FontFamily="{StaticResource OpenSauceOne}" x:Name="txtTypebac" HorizontalAlignment="Left" FontSize="15" Grid.Row="13" Grid.Column="3" BorderThickness="0"/>
 
         <!-- Statut (Boursier ou non)  (Nordine & Yamato)-->
-        <TextBlock Text="{DynamicResource Boursier:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="1" />
+        <TextBlock Text="{DynamicResource Boursier:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="15" Grid.Column="1" />
         <WrapPanel Grid.Row="15" Grid.Column="3" x:Name="RadioBoursier">
-            <RadioButton GroupName="Boursier" x:Name="radioBoursierTrue" Margin="20,0,0,0" IsEnabled="False" Checked="radioBoursierTrue_Checked" Content="{DynamicResource Oui}" ></RadioButton>
-            <RadioButton GroupName="Boursier" x:Name="radioBoursierFalse" Margin="20,0,0,0" IsEnabled="False" Checked="radioBoursierFalse_Checked" Content="{DynamicResource Non}"></RadioButton>
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierTrue" Margin="20,0,0,0" IsEnabled="False" Checked="radioBoursierTrue_Checked" Content="{DynamicResource Oui}" FontFamily="{StaticResource OpenSauceOne}" ></RadioButton>
+            <RadioButton GroupName="Boursier" x:Name="radioBoursierFalse" Margin="20,0,0,0" IsEnabled="False" Checked="radioBoursierFalse_Checked" Content="{DynamicResource Non}" FontFamily="{StaticResource OpenSauceOne}"></RadioButton>
         </WrapPanel>
 
         <!-- Régime de formation (Nordine & Yamato)-->
-        <TextBlock Text="{DynamicResource Regime:}" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
-        <ComboBox Style="{DynamicResource ComboBoxStyle2}" Width="425" IsReadOnly="True" IsEnabled="False" x:Name="comboBoxRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" BorderThickness="0" SelectionChanged="ComboBoxRegime_SelectionChanged">
+        <TextBlock Text="{DynamicResource Regime:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
+        <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" Width="425" IsReadOnly="True" IsEnabled="False" x:Name="comboBoxRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" BorderThickness="0" SelectionChanged="ComboBoxRegime_SelectionChanged">
             <ComboBoxItem Content="FI"/>
             <ComboBoxItem Content="FC"/>
             <ComboBoxItem Content="FA"/>
@@ -738,7 +740,7 @@
         </Button>
 
         <!-- Bouton "Modifier" (lucas) -->
-        <Button x:Name="BoutonModifier" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnModifInfos}" Click="Modifier_Click" Margin="20,0,20,27" Grid.Row="13" Grid.RowSpan="4">
+        <Button x:Name="BoutonModifier" FontFamily="{StaticResource OpenSauceOne}" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" Content="{DynamicResource BtnModifInfos}" Click="Modifier_Click" Margin="20,0,20,27" Grid.Row="13" Grid.RowSpan="4">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -770,7 +772,7 @@
         </Button>
 
         <!-- Bouton "Valider" pour sauvegarder les modifications (Lucas) -->
-        <Button FontSize="20" Foreground="#FFFFFF"  Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnValider}" x:Name="BoutonValider" Click="Valider_Click" Margin="20,0,20,27" Grid.Row="13" Visibility="Collapsed" Grid.RowSpan="4">
+        <Button FontSize="20" Foreground="#FFFFFF"  Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnValider}" x:Name="BoutonValider" Click="Valider_Click" Margin="20,0,20,27" Grid.Row="13" Visibility="Collapsed" Grid.RowSpan="4">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -803,13 +805,13 @@
 
         <!-- Bouton "Créer note" pour créer une note pour l'étudiant (Lucas) -->
 
-        <Button FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnCreerNote}" x:Name="BoutonCreernote" Click="Creer_Click"  Margin="20,0,20,29" Grid.RowSpan="4" Grid.Row="9">
+        <Button FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnCreerNote}" x:Name="BoutonCreernote" Click="Creer_Click"  Margin="20,0,20,29" Grid.RowSpan="4" Grid.Row="9">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
-                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                                <Border x:Name="border"  CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <ControlTemplate.Triggers>
@@ -835,37 +837,37 @@
         </Button>
 
 
-        <StackPanel x:Name="contInfosComp" Visibility="Collapsed" Orientation="Vertical" Grid.RowSpan="2" Grid.Row="19"  Grid.Column="1"  Grid.ColumnSpan="2">
+        <StackPanel x:Name="contInfosComp"  Visibility="Collapsed" Orientation="Vertical" Grid.RowSpan="2" Grid.Row="19"  Grid.Column="1"  Grid.ColumnSpan="2">
 
             <!-- Date de naissance -->
             <WrapPanel>
-                <TextBlock x:Name="txtDateNaissance1" MinWidth="50" FontSize="20" Text="{DynamicResource Birth}" Margin="0,20,0,0" />
-                <DatePicker Grid.Column="3" FontSize="20" IsEnabled="False" x:Name="txtDateNaissance2" SelectedDateFormat="Short" Margin="30,20,0,0"></DatePicker>
+                <TextBlock x:Name="txtDateNaissance1" FontFamily="{StaticResource OpenSauceOne}" MinWidth="50" FontSize="20" Text="{DynamicResource Birth}" Margin="0,20,0,0" />
+                <DatePicker Grid.Column="3" FontFamily="{StaticResource OpenSauceOne}" FontSize="20" IsEnabled="False" x:Name="txtDateNaissance2" SelectedDateFormat="Short" Margin="30,20,0,0"></DatePicker>
             </WrapPanel>
 
 
             <!-- Adresse de résidence -->
             <WrapPanel>
-                <TextBlock x:Name="txtAdresse1" FontSize="20" Text="{DynamicResource Adresse}" Margin="0,20,0,0"/>
-                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtAdresse2" FontSize="15" Margin="30,20,0,0" MaxWidth="370" TextWrapping="NoWrap" BorderThickness="0"/>
+                <TextBlock x:Name="txtAdresse1" FontFamily="{StaticResource OpenSauceOne}" FontSize="20" Text="{DynamicResource Adresse}" Margin="0,20,0,0"/>
+                <TextBox Grid.Column="3" Width="425" FontFamily="{StaticResource OpenSauceOne}" IsReadOnly="True" x:Name="txtAdresse2" FontSize="15" Margin="30,20,0,0" MaxWidth="370" TextWrapping="NoWrap" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Téléphone fixe -->
             <WrapPanel>
-                <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="{DynamicResource TelFixe}" Margin="0,20,0,0" />
-                <TextBox Grid.Column="3" Width="430" IsReadOnly="True" x:Name="txtTelFixe2" FontSize="15"  Margin="30,20,0,0"  BorderThickness="0"/>
+                <TextBlock x:Name="txtTelFixe1" FontFamily="{StaticResource OpenSauceOne}" FontSize="20" Text="{DynamicResource TelFixe}" Margin="0,20,0,0" />
+                <TextBox Grid.Column="3" Width="430" FontFamily="{StaticResource OpenSauceOne}" IsReadOnly="True" x:Name="txtTelFixe2" FontSize="15"  Margin="30,20,0,0"  BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Téléphone portable -->
             <WrapPanel>
-                <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="{DynamicResource TelPort}" Margin="0,20,0,0"/>
-                <TextBox Grid.Column="3" Width="425" IsReadOnly="True" x:Name="txtTelPortable2" FontSize="15"  Margin="30,20,0,0" MaxWidth="387" BorderThickness="0"/>
+                <TextBlock x:Name="txtTelPortable1" FontFamily="{StaticResource OpenSauceOne}" FontSize="20" Text="{DynamicResource TelPort}" Margin="0,20,0,0"/>
+                <TextBox Grid.Column="3" Width="425" FontFamily="{StaticResource OpenSauceOne}" IsReadOnly="True" x:Name="txtTelPortable2" FontSize="15"  Margin="30,20,0,0" MaxWidth="387" BorderThickness="0"/>
             </WrapPanel>
 
             <!-- Login réseau -->
             <WrapPanel>
-                <TextBlock x:Name="txtLogin1" FontSize="20" Text="{DynamicResource LoginRes}" Margin="0,20,0,0" />
-                <TextBox Grid.Column="3" Width="445" IsReadOnly="True" x:Name="txtLogin2" FontSize="15" Margin="30,20,0,0" BorderThickness="0" />
+                <TextBlock x:Name="txtLogin1" FontFamily="{StaticResource OpenSauceOne}" FontSize="20" Text="{DynamicResource LoginRes}" Margin="0,20,0,0" />
+                <TextBox Grid.Column="3" Width="445" FontFamily="{StaticResource OpenSauceOne}" IsReadOnly="True" x:Name="txtLogin2" FontSize="15" Margin="30,20,0,0" BorderThickness="0" />
             </WrapPanel>
 
         </StackPanel>
@@ -895,7 +897,7 @@
 
 
 
-        <Label Grid.Column="2" FontSize="29" Content="Notes de l'étudiant : " HorizontalAlignment="Left" Margin="594,18,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#2B2B5A" RenderTransformOrigin="2.452,0.87" Height="57" Width="278" Grid.RowSpan="3"/>
+        <Label FontFamily="{StaticResource OpenSauceOne}" Grid.Column="2" FontSize="29" Content="Notes de l'étudiant : " HorizontalAlignment="Left" Margin="594,18,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#2B2B5A" RenderTransformOrigin="2.452,0.87" Height="57" Width="278" Grid.RowSpan="3"/>
 
         <Line X1="50" Y1="10" X2="50" Y2="850" Stroke="Black" StrokeThickness="3" Margin="430,1,509,-61" Grid.RowSpan="20" Grid.Column="2" Grid.Row="1"/>
     </Grid>
