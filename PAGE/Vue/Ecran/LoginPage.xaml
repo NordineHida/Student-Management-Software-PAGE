@@ -41,13 +41,13 @@
         <Label Content="{DynamicResource LabelLogin}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}"/>
 
         <!-- TextBox pour le nom d'utilisateur (Lucas & Nordine) -->
-        <TextBox x:Name="txtUsername"  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOneLight}" Height="40"/>
+        <TextBox x:Name="txtUsername"  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOneLight}" Height="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
         <!-- Label pour le mot de passe (Lucas & Nordine) -->
         <Label Content="{DynamicResource LabelPassword}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}"/>
 
         <!-- PasswordBox pour le mot de passe (Lucas & Nordine) -->
-        <PasswordBox x:Name="txtPassword" FontFamily="{StaticResource OpenSauceOne}" FontSize="14" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Height="40"/>
+        <PasswordBox x:Name="txtPassword" FontFamily="{StaticResource OpenSauceOne}" FontSize="14" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Height="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
         <!--Bouton de Connexion (Nordine)-->
         <Button Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnLogin}"  FontSize="40" Click="BoutonLogin" Grid.Column="2" Grid.Row="4" Margin="70,20,70,20">

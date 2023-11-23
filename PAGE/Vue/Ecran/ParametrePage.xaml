@@ -319,7 +319,7 @@
         <TextBlock Text="{DynamicResource TitreParam}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"  FontWeight="Bold" Foreground="#FF2B2B5A" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Open Sauce One" />
 
         <!--ComboBox des langues disponibles-->
-        <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxLangue" Grid.Column="2" Grid.Row="1" Margin="70,40,70,40" Background="#FF2A2B5B" BorderBrush="#FF2A2B5B" FontSize="18" FontFamily="Open Sauce One">
+        <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxLangue" Grid.Column="2" Grid.Row="1" Margin="70,40,70,40" Background="#FF2A2B5B" BorderBrush="#FF2A2B5B" FontSize="18" FontFamily="Open Sauce One" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <ComboBoxItem FontSize="18" FontFamily="Open Sauce One" Foreground="#FF2A2B5B" >Français</ComboBoxItem>
             <ComboBoxItem FontSize="18" FontFamily="Open Sauce One" Foreground="#FF2A2B5B">English</ComboBoxItem>
         </ComboBox>
@@ -328,7 +328,7 @@
         <Label Content="{DynamicResource LabelLangueSelect}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}"/>
 
         <!-- TextBox pour le path de génération du word (Nordine) -->
-        <TextBox x:Name="LabelPathGeneration" Text="" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}" Height="30" FontSize="20"/>
+        <TextBox x:Name="LabelPathGeneration" Text="" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}" Height="30" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
         <!-- Label l'emplacement de génération du word (Nordine) -->
         <Label Content="{DynamicResource LabelPathGeneration}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}" />
