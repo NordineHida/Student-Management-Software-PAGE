@@ -14,13 +14,16 @@
                     <StackPanel Orientation="Horizontal">
                         <!-- Rond du groupe (Nordine)-->
                         <Border Background="#2B2B5A" Margin="15 3"  Width="70" Height="70" CornerRadius="25" BorderThickness="2" BorderBrush="Black"  >
-                            <TextBlock Text="{Binding NbNote}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="25" FontFamily="Open Sauce One Black"  />
+                            <TextBlock Text="{Binding Groupe}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="25" FontFamily="Open Sauce One Black"  />
                         </Border>
                         <!-- Info de l'étudiant (Nordine)-->
                         <WrapPanel>
                             <TextBlock Text="{Binding NumeroApogee}" Margin="20" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="30" MinWidth="170" MaxWidth="190"/>
                             <TextBlock Text="{Binding Prenom}"  Margin="20" VerticalAlignment="Center" FontFamily="Open Sauce One ExtraBold" Foreground="White" FontSize="30" MinWidth="350" MaxWidth="352"/>
                             <TextBlock Text="{Binding Nom}"  Margin="20"  VerticalAlignment=" Center" FontFamily="Open Sauce One ExtraBold" Foreground="White" FontSize="30" MinWidth="350" MaxWidth="352"/>
+                            <Border Background="#2B2B5A"  Width="70" Height="70" CornerRadius="25" BorderThickness="2" BorderBrush="Black"  >
+                                <TextBlock Text="{Binding NbNote}"  Margin="10" VerticalAlignment=" Center"  HorizontalAlignment="Center" FontFamily="Open Sauce One ExtraBold" Foreground="White" FontSize="30" />
+                            </Border>
                         </WrapPanel>
                     </StackPanel>
                 </Grid>

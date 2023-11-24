@@ -88,7 +88,7 @@ namespace APIEtudiant.Model
         /// </summary>
         /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
         /// <author>Nordine</author>
-        public Dictionary<Etudiant,int> GetAllEtuByCategorie(CATEGORIE categorie)
+        public List<Tuple<Etudiant, int>> GetAllEtuByCategorie(CATEGORIE categorie)
         {
             return EtuDAO.GetAllEtuByCategorie(categorie);
         }

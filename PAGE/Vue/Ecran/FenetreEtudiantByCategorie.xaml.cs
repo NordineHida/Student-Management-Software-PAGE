@@ -18,7 +18,7 @@ namespace PAGE.Vue.Ecran
     {
         private Etudiants etudiants;
         private List<Etudiant> etudiantAffichage;
-        private Dictionary<Etudiant, int> etudiantEtNote;
+        private List<Tuple<Etudiant, int>> etudiantEtNote;
         private bool TriCroissant = false;
         private CATEGORIE categorieComboBox;
 
@@ -26,7 +26,7 @@ namespace PAGE.Vue.Ecran
         {
             InitializeComponent();
             this.etudiants = etudiants;
-            etudiantEtNote = new Dictionary<Etudiant, int>();
+            etudiantEtNote = new List<Tuple<Etudiant, int>>();
         }
 
 
@@ -38,14 +38,15 @@ namespace PAGE.Vue.Ecran
         {
             // On récupère l'ensemble des étudiants et leur nbNote via l'API
             EtuDAO dao = new EtuDAO();
-
             etudiantEtNote = await dao.GetAllEtuByCategorie(categorieComboBox);
-            this.etudiants = new Etudiants(etudiantEtNote.Keys.ToList());
+;
+            //await dao.GetAllEtuByCategorie(categorieComboBox);
+            this.etudiants = new Etudiants(etudiantEtNote.Select(tuple => tuple.Item1).ToList());
 
             //Affiche les components des etudiants (trie par numero apogee par defaut
             AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
 
-            // On enregistre cette fenetre comme observeur des notes
+            // On enregistre cette fenetre comme observeur des etudiants
             etudiants.Register(this);
         }
 
@@ -70,10 +71,10 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void EtudiantComponent_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (sender is EtudiantComponent EtudiantComponent)
+            if (sender is EtudiantEtNoteComponent etudiantComponent)
             {
                 // On recupère l'étudiant associé au EtudiantComponent
-                Etudiant etudiantSelectionne = EtudiantComponent.Etudiant;
+                Etudiant etudiantSelectionne = etudiantComponent.Etudiant;
 
                 if (etudiantSelectionne != null)
                 {
@@ -85,7 +86,7 @@ namespace PAGE.Vue.Ecran
         }
 
         /// <summary>
-        /// Affiche les EtudiantComponent pour les Etudiant de la liste
+        /// Affiche les EtudiantEtNoteComponent pour les Etudiant de la liste
         /// </summary>
         /// <param name="listEtudiants">liste des etudiants à afficher</param>
         /// <param name="typetri">type de tri</param>
@@ -118,6 +119,11 @@ namespace PAGE.Vue.Ecran
                         listEtudiants.OrderByDescending(etudiant => etudiant.NumApogee).ToList() :
                         listEtudiants.OrderBy(etudiant => etudiant.NumApogee).ToList();
                     break;
+                case TYPETRI.NBNOTE:
+                    listEtudiants = TriCroissant ?
+                        etudiantEtNote.OrderBy(tuple => tuple.Item2).Select(tuple => tuple.Item1).ToList() :
+                        etudiantEtNote.OrderByDescending(tuple => tuple.Item2).Select(tuple => tuple.Item1).ToList();
+                    break;
                 default:
                     listEtudiants = TriCroissant ?
                         listEtudiants.OrderByDescending(etudiant => etudiant.NumApogee).ToList() :
@@ -128,10 +134,10 @@ namespace PAGE.Vue.Ecran
             foreach (Etudiant etu in listEtudiants)
             {
                 // Si l'étudiant n'est pas déjà dans le StackPanel, on l'y ajoute
-                if (!StackPanelEtudiants.Children.OfType<EtudiantComponent>().Any(uc => uc.NumeroApogee == etu.NumApogee))
+                if (!StackPanelEtudiants.Children.OfType<EtudiantEtNoteComponent>().Any(uc => uc.NumeroApogee == etu.NumApogee))
                 {
-                    // Ajoute l'EtudiantComponent personnalisé au StackPanel
-                    EtudiantComponent EtudiantComponent = new EtudiantComponent(etu);
+                    // Ajoute l'EtudiantEtNoteComponent personnalisé au StackPanel
+                    EtudiantEtNoteComponent EtudiantComponent = new EtudiantEtNoteComponent(etu, etudiantEtNote.FirstOrDefault(tuple => tuple.Item1.Equals(etu))?.Item2 ?? -1); //Mets -1 s'il ne trouve pas l'étudiant dans la liste  de tuple
                     StackPanelEtudiants.Children.Add(EtudiantComponent);
                 }
             }
@@ -222,6 +228,21 @@ namespace PAGE.Vue.Ecran
 
             //on raffiche les etudiants dans le bonne ordres
             AfficherLesEtuComponent(etudiantAffichage, TYPETRI.GROUPE);
+        }
+
+        /// <summary>
+        /// Trie par nombre de notes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void OrderByNbNote(object sender, RoutedEventArgs e)
+        {
+            // Inversion de la valeur de TriCroissant
+            TriCroissant = !TriCroissant;
+
+            //on raffiche les etudiants dans le bonne ordres
+            AfficherLesEtuComponent(etudiantAffichage, TYPETRI.NBNOTE);
         }
 
 
@@ -330,8 +351,6 @@ namespace PAGE.Vue.Ecran
         {
             FenetrePrincipal fp = new FenetrePrincipal();
             fp.Show();
-
-            this.Close();
         }
 
         /// <summary>
@@ -366,6 +385,7 @@ namespace PAGE.Vue.Ecran
 
             ChargementDiffere();
         }
+
 
     }
 }

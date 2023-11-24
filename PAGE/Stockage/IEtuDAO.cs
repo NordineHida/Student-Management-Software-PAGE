@@ -52,7 +52,7 @@ namespace PAGE.Stockage
         /// </summary>
         /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
         /// <author>Nordine</author>
-        public Task<Dictionary<Etudiant,int>> GetAllEtuByCategorie(CATEGORIE categorie);
+        public Task<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie);
 
     }
 }

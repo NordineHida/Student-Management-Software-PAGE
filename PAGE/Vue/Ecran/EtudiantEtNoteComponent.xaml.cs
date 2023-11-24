@@ -41,21 +41,28 @@ namespace PAGE.Vue.Ecran
         public int NbNote { get; set; }
 
         /// <summary>
+        /// groupe de l'étudiant
+        /// </summary>
+        /// <author>Nordine</author>
+        public string Groupe { get; set; }
+
+        /// <summary>
         /// Construit un component pour afficher l'étudiant en parametre
         /// </summary>
         /// <param name="etu">etudiant qu'on affiche</param>
         /// <author>Nordine</author>
-        public EtudiantEtNoteComponent(Tuple<Etudiant,int> CoupleEtuNote)
+        public EtudiantEtNoteComponent(Etudiant etu, int nbNote)
         {
             InitializeComponent();
             DataContext = this;
 
-            this.Etudiant = CoupleEtuNote.Item1;
+            this.Etudiant = etu;
             this.NumeroApogee = Etudiant.NumApogee;
             //NOM Prenom
             this.Nom = Etudiant.Nom.ToUpper();
             this.Prenom = char.ToUpper(Etudiant.Prenom[0]) + Etudiant.Prenom.Substring(1).ToLower();
-            this.NbNote = CoupleEtuNote.Item2;
+            this.NbNote = nbNote;
+            this.Groupe = etu.Groupe.ToString();
 
         }
     }

@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
         Title="FenetreEtudiantByCategorie"
+        Closing="FermerFenetre"
         Height="1000" Width="1500"    
-        Closing="FermerFenetre" 
         xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Window.Background>
@@ -350,7 +350,8 @@
             <Button Content="{DynamicResource GroupeHead}" Height="50" Click="OrderByGroupe" HorizontalAlignment="Left"  MinWidth="120" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
             <Button Content="Apogee" Height="50" Click="OrderByApogee" HorizontalAlignment="Left" MinWidth="205" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0" />
             <Button Content="{DynamicResource Prenom}" Height="50" Click="OrderByPrenom" HorizontalAlignment="Center" MinWidth="340" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
-            <Button Content="{DynamicResource Nom}" Height="50" Click="OrderByNom" HorizontalAlignment="Left" MinWidth="500" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
+            <Button Content="{DynamicResource Nom}" Height="50" Click="OrderByNom" HorizontalAlignment="Left" MinWidth="380" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
+            <Button Content="NbNote" Height="50" Click="OrderByNbNote" HorizontalAlignment="Left" MinWidth="200" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
         </WrapPanel>
 
         <!--Pour pouvoir scroller (Nordine)-->

@@ -547,12 +547,12 @@ namespace APIEtudiant.Stockage
         /// <param name="categorie">Catégorie spécifiée</param>
         /// <returns>Un dictionnaire avec les étudiants et le nombre de notes de la catégorie</returns>
         /// <author>Nordine</author>
-        public Dictionary<Etudiant, int> GetAllEtuByCategorie(CATEGORIE categorie)
+        public List<Tuple<Etudiant, int>> GetAllEtuByCategorie(CATEGORIE categorie)
         {
             // Création d'une connexion Oracle
             Connection con = new Connection();
             // Dictionnaire pour stocker les résultats
-            Dictionary<Etudiant, int> etudiantsByCategorie = new Dictionary<Etudiant, int>();
+            List<Tuple<Etudiant, int>> etudiantsByCategorie = new List<Tuple<Etudiant, int>>();
 
             try
             {
@@ -673,8 +673,10 @@ namespace APIEtudiant.Stockage
                         // Création de l'objet Etudiant en utilisant les variables
                         Etudiant etudiant = new Etudiant(numApogee, nom,prenom,sexeEtu,typeBac,mail,groupeEtu,estBoursier,regimeEtu,dateNaissance,login,(int)telFixe,(int)telPortable,adresse);
 
+                        //Creation couple 
+                        Tuple<Etudiant, int> couple = new (etudiant, nombreNotes);
                         // Ajout du couple (Etudiant, Nombre de notes de la catégorie) dans le dictionnaire
-                        etudiantsByCategorie.Add(etudiant, nombreNotes);
+                        etudiantsByCategorie.Add(couple);
                     }
 
                 }

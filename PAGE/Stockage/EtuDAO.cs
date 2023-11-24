@@ -203,10 +203,10 @@ namespace PAGE.Stockage
         /// </summary>
         /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
         /// <author>Nordine</author>
-        public async Task<Dictionary<Etudiant, int>> GetAllEtuByCategorie(CATEGORIE categorie)
+        public async Task<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie)
         {
             //Dictionnaire d'étudiant (cle = etudiant , valeur = etudiant)
-            Dictionary<Etudiant,int> etudiantEtNbNote = new Dictionary<Etudiant, int>();
+            List<Tuple<Etudiant, int>> etudiantEtNbNote = new List<Tuple<Etudiant, int>>();
 
             int idCategorie=-1;
 
@@ -245,7 +245,7 @@ namespace PAGE.Stockage
                 string reponseString = await reponse.Content.ReadAsStringAsync();
 
                 //On la deserialise et on lit le dico etudiant/nbnote
-                etudiantEtNbNote = JsonSerializer.Deserialize<Dictionary<Etudiant, int>>(reponseString);
+                etudiantEtNbNote = JsonSerializer.Deserialize<List<Tuple<Etudiant, int>>>(reponseString);
             }
 
             return etudiantEtNbNote;

@@ -1,6 +1,7 @@
 ﻿using APIEtudiant.Model;
 using Microsoft.AspNetCore.Mvc;
 using APIEtudiant.Model.Enumerations;
+using System.Collections.Generic;
 
 namespace APIEtudiant.Controllers
 {
@@ -96,13 +97,13 @@ namespace APIEtudiant.Controllers
         /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
         /// <author>Nordine</author>
         [HttpGet("GetAllEtuByCategorie")]
-        public ActionResult<Dictionary<Etudiant, int>> GetAllEtuByCategorie(CATEGORIE categorie)
+        public ActionResult<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie)
         {
             //Cas par défaut
-            ActionResult<Dictionary<Etudiant, int>> reponse = BadRequest();
+            ActionResult<List<Tuple<Etudiant, int>>> reponse = BadRequest();
 
             //On récupere les etudiants depuis le manager
-            Dictionary<Etudiant, int> etudiants = EtuManager.Instance.GetAllEtuByCategorie(categorie);
+            List<Tuple<Etudiant, int>> etudiants = EtuManager.Instance.GetAllEtuByCategorie(categorie);
 
             //Si c'est pas null on renvoi un Ok avec les etudiants
             if (etudiants != null) reponse = Ok(etudiants);
