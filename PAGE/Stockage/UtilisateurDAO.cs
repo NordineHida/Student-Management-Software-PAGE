@@ -102,7 +102,7 @@ namespace PAGE.Stockage
                 //On le deserialise
                 token = JsonSerializer.Deserialize<Token>(reponseString);
 
-                if (token == null)
+                if (token.UserToken == null)
                 {
                     PopUp popUp = new PopUp("Connexion", "Il y a eu un problème lors de la connexion. Veuillez Réessayer", TYPEICON.ERREUR);
                     popUp.ShowDialog();
