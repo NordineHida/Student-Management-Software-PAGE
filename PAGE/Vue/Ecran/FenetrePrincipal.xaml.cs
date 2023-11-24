@@ -29,9 +29,6 @@ namespace PAGE.Vue.Ecran
         public FenetrePrincipal()
         {
             InitializeComponent();
-
-            initialContent = (UIElement?)this.Content;
-
             ChargementDiffereInitial();
 
         }
@@ -43,9 +40,6 @@ namespace PAGE.Vue.Ecran
         public FenetrePrincipal(Promotion promo)
         {
             InitializeComponent();
-
-            initialContent = (UIElement?)this.Content;
-
             ChargementDiffereInitial();
             this.promo = promo;
 

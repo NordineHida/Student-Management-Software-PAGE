@@ -119,8 +119,12 @@
     <Content Include="Vue\Ressources\Fonts\OpenSauceOne-SemiBoldItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Vue\Ressources\Picto\minus-circle-outline.png" />
-    <Resource Include="Vue\Ressources\Picto\plus-circle-outline.png" />
+    <Resource Include="Vue\Ressources\Picto\minus-circle-outline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Vue\Ressources\Picto\plus-circle-outline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
 
     <Content Include="Vue\Ressources\Picto\note-search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PAGE.Model;
+using PAGE.Model.PatternObserveur;
+using System;
 using System.Windows;
 
 namespace PAGE.Vue.Ecran
@@ -11,6 +13,7 @@ namespace PAGE.Vue.Ecran
         /// <summary>
         /// Renvoie l'année saisie 
         /// </summary>
+        /// <author>Nordine/Yamato</author>
         public int AnneeSaisie
         {
             get { return Int32.Parse(txtAnneeSaisie.Text); }
@@ -26,7 +29,17 @@ namespace PAGE.Vue.Ecran
         /// <author>Yamato</author>
         private void OkClick(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if (AnneeSaisie != null)
+            {
+
+                this.Close();
+            }
+            else
+            {
+                PopUp popUp = new PopUp("Erreur année", "Veuillez selectionner une année", TYPEICON.ERREUR);
+                popUp.ShowDialog();
+            }
         }
+
     }
 }

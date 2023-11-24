@@ -34,6 +34,11 @@ namespace PAGE.Stockage
                     PopUp popUp = new PopUp("Année", "L'année est ajouté", TYPEICON.SUCCES);
                     popUp.ShowDialog();
                 }
+                else
+                {
+                    PopUp popUp = new PopUp("Erreur année", "L'année existe déjà", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
         }
 

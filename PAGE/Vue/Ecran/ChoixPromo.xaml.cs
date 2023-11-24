@@ -1,5 +1,6 @@
 ﻿using PAGE.Model;
 using PAGE.Model.Enumerations;
+using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace PAGE.Vue.Ecran
     /// <summary>
     /// Logique d'interaction pour ChoixPromo.xaml
     /// </summary>
-    public partial class ChoixPromo : Window
+    public partial class ChoixPromo : Window 
     {
         private List<Annee> annees = new List<Annee>();
         private Promotion promotion;
@@ -28,6 +29,10 @@ namespace PAGE.Vue.Ecran
         /// <author>Yamato</author>
         public Promotion Promotion { get { return promotion; } set { promotion = value; } }
 
+        /// <summary>
+        /// Constructeur de la page (initialise les éléments)
+        /// </summary>
+        /// <author>Nordine/Yamato</author>
         public ChoixPromo()
         {
             InitializeComponent();
@@ -99,7 +104,7 @@ namespace PAGE.Vue.Ecran
         /// <summary>
         /// Bouton ouvrant une nouvelle fenetre permettant d'ajouter une année
         /// </summary>
-        /// <author>Yamato</author>        
+        /// <author>Yamato/Nordine</author>        
         private void AjouterAnnee(object sender, RoutedEventArgs e)
         {
             // On ouvre une nouvelle fenêtre permettant la saisie de l'année à ajouter
@@ -115,6 +120,9 @@ namespace PAGE.Vue.Ecran
             // Création de l'année 
             AnneeDAO dao = new AnneeDAO();
             dao.CreateAnnee(nouvelleAnnee.AnneeDebut);
+
+            //on remet a jour la combobox
+            MettreAJourComboBox();
         }
 
         private void SupprimerAnnee(object sender, RoutedEventArgs e)
@@ -136,5 +144,6 @@ namespace PAGE.Vue.Ecran
                 dao.DeleteAnnee(anneeSelectionnee.AnneeDebut);
             }
         }
+
     }
 }
