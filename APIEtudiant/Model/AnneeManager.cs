@@ -13,7 +13,7 @@ namespace APIEtudiant.Model
         private static AnneeManager instance;
 
         /// <summary>
-        /// Renvoie la seule isntance d'AnneeManager
+        /// Renvoie la seule instance d'AnneeManager
         /// </summary>
         /// <author>Yamato</author>
         public static AnneeManager Instance
@@ -40,7 +40,7 @@ namespace APIEtudiant.Model
         /// <param name="annee">Année à ajouter</param>
         /// <returns>true si l'ajout est un succès</returns>
         /// <author>Yamato</author>
-        public bool CreateAnnee(Annee annee)
+        public bool CreateAnnee(int annee)
         {
             return AnneeDAO.CreateAnnee(annee);
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APIEtudiant.Model
+namespace APIEtudiant.Model.Enumerations
 {
     /// <summary>
     /// Différent noms de promotions chaque promotion d'une année

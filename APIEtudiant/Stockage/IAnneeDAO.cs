@@ -14,7 +14,7 @@ namespace APIEtudiant.Stockage
         /// <param name="annee">Année à ajouter</param>
         /// <returns>true si l'ajout est effectué</returns>
         /// <author>Yamato</author>
-        public bool CreateAnnee(Annee annee);
+        public bool CreateAnnee(int? annee);
 
     }
 }

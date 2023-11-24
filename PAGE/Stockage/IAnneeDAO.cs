@@ -19,6 +19,6 @@ namespace PAGE.Stockage
         /// <param name="annee">Année à ajouter</param>
         /// <returns>true si l'ajout est effectué</returns>
         /// <author>Yamato</author>
-        public Task CreateAnnee(Annee annee);
+        public Task CreateAnnee(int annee);
     }
 }

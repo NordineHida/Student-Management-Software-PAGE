@@ -1,11 +1,9 @@
 ﻿using PAGE.Model;
 using PAGE.Vue.Ecran;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PAGE.Stockage
@@ -18,26 +16,21 @@ namespace PAGE.Stockage
         /// <param name="annee">Année à ajouter</param>
         /// <returns>vrai si l'ajout est effectué</returns>
         /// <author>Yamato</author>
-        public async Task CreateAnnee(Annee annee)
+        public async Task CreateAnnee(int annee)
         {
             // Créez une instance de HttpClient
             using (HttpClient client = new HttpClient())
             {
                 // Spécifiez l'URL de l'API
-                string apiUrl = "https://localhost:7038/AnneeControlleur/CreateAnnee";
+                string apiUrl = $"https://localhost:7038/AnneeControlleur/CreateAnnee?annee={annee}";
 
-                // Convertissez l'Utilisateur en JSON
-                string anneeSerialise = JsonSerializer.Serialize(annee);
+                // Effectuez la requête GET
+                HttpResponseMessage reponse = await client.GetAsync(apiUrl);
 
-                // Créez le contenu de la requête POST
-                HttpContent content = new StringContent(anneeSerialise, Encoding.UTF8, "application/json");
 
-                // Effectuez la requête POST
-                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-
-                if (response.IsSuccessStatusCode)
+                if (reponse.IsSuccessStatusCode)
                 {
-                    PopUp popUp = new PopUp("Année", "L'année est créé", TYPEICON.SUCCES);
+                    PopUp popUp = new PopUp("Année", "L'année est ajouté", TYPEICON.SUCCES);
                     popUp.ShowDialog();
                 }
             }

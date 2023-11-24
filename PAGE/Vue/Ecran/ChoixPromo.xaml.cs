@@ -13,7 +13,7 @@ namespace PAGE.Vue.Ecran
     public partial class ChoixPromo : Window
     {
         private List<Annee> annees = new List<Annee>();
-
+        public List<Annee> Annees { get { return annees; } }
 
         public ChoixPromo()
         {
@@ -63,30 +63,17 @@ namespace PAGE.Vue.Ecran
             AjoutAnnee ajoutAnnee = new AjoutAnnee();
             ajoutAnnee.ShowDialog();
 
-            // Ajout de l'année dans la liste que si celle-ci est valide
-            if (int.TryParse(ajoutAnnee.AnneeSaisie, out int anneeSaisie))
-            {
-                // Obtention de l'année actuelle
-                int anneeActuelle = DateTime.Now.Year;
+            // On créer une nouvelle année avec l'année saisie
+            Annee nouvelleAnnee = new Annee(ajoutAnnee.AnneeSaisie);
 
-                // Vérifiez si l'année saisie est supérieure à l'année actuelle
-                if (anneeSaisie <= anneeActuelle)
-                {
-                    // On créer une nouvelle année avec l'année saisie
-                    Annee nouvelleAnnee = new Annee(ajoutAnnee.AnneeSaisie, null, null, null);
+            // On l'ajoute à la liste d'années
+            annees.Add(nouvelleAnnee);
 
-                    // On l'ajoute à la liste d'années
-                    annees.Add(nouvelleAnnee);
+            // Création de l'année 
+            AnneeDAO dao = new AnneeDAO();
+            dao.CreateAnnee(nouvelleAnnee.AnneeDebut);
 
-                    // Création de l'année 
-                    AnneeDAO dao = new AnneeDAO();
-                    dao.CreateAnnee(nouvelleAnnee);
-
-                    MettreAJourComboBox();
-                }
-                
-            }
-
+            MettreAJourComboBox();
         }
     }
 }

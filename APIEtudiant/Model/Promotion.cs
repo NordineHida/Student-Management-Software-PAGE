@@ -1,4 +1,6 @@
-﻿namespace APIEtudiant.Model
+﻿using APIEtudiant.Model.Enumerations;
+
+namespace APIEtudiant.Model
 {
     /// <summary>
     /// Promotion d'étudiants
@@ -27,10 +29,10 @@
         /// <param name="etu">etudiants de la promotion</param>
         /// <param name="nomPromo">nom de la promotion (premiere année, deuxieme année, troisieme année)</param>
         /// <author>Yamato</author>
-        public Promotion(List<Etudiant> etu, NOMPROMOTION nomPromo)
+        public Promotion(List<Etudiant> Etudiants, NOMPROMOTION NomPromotion)
         {
-            this.etudiants = etu;
-            this.nomPromotion = nomPromo;
+            this.etudiants = Etudiants;
+            this.nomPromotion = NomPromotion;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace APIEtudiant.Stockage
         /// <param name="annee">Année à ajouter</param>
         /// <returns>true si l'ajout est effectué</returns>
         /// <author>Yamato</author>
-        public bool CreateAnnee(Annee? annee)
+        public bool CreateAnnee(int? annee)
         {
             bool ajoutReussi = false;
             if (annee != null)
@@ -23,7 +23,7 @@ namespace APIEtudiant.Stockage
                 {
                     // On crée la requête SQL
                     string requete = String.Format("INSERT INTO ANNEE(anneeDebut)" +
-                        "VALUES('{0}')", annee.AnneeDebut);
+                        "VALUES('{0}')", annee);
 
 
                     //On execute la requete
