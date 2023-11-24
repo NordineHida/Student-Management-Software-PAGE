@@ -28,8 +28,6 @@ namespace PAGE.Vue.Ecran
         {
             InitializeComponent();
 
-            initialContent = (UIElement?)this.Content;
-
             ChargementDiffereInitial();
  
         }
