@@ -594,7 +594,7 @@
         <TextBlock Text="{DynamicResource LabelAnnee}" FontSize="50" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="#FF2B2B5A" />
         <TextBlock Text="{DynamicResource LabelPromotion}" FontSize="50" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF2B2B5A" />
 
-        <!--ComboBox Année (Nordine)-->
+        <!--ComboBox Année (Yamato)-->
         <ComboBox Style="{DynamicResource ComboBoxStyle1}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxAnnee" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120" ItemsSource="{Binding annees}" DisplayMemberPath="AnneeDebut">
         </ComboBox>
         <!-- Bouton d'ajout d'une année (Yamato) -->

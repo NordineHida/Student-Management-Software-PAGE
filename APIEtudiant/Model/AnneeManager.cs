@@ -44,5 +44,15 @@ namespace APIEtudiant.Model
         {
             return AnneeDAO.CreateAnnee(annee);
         }
+
+        /// <summary>
+        /// Renvoi toutes les années
+        /// </summary>
+        /// <returns>Ensemble de tout les étudiants</returns>
+        /// <author>Yamato</author>
+        public List<Annee> GetAllAnnee()
+        {
+            return AnneeDAO.GetAllAnnee();
+        }
     }
 }

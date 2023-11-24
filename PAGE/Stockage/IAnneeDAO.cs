@@ -20,5 +20,12 @@ namespace PAGE.Stockage
         /// <returns>true si l'ajout est effectué</returns>
         /// <author>Yamato</author>
         public Task CreateAnnee(int annee);
+
+        /// <summary>
+        /// Récupère toutes les années de la bdd
+        /// </summary>
+        /// <returns>liste d'années de la bdd</returns>
+        /// <author>Yamato</author>
+        public Task<List<Annee>> GetAllAnnee();
     }
 }

@@ -16,5 +16,19 @@ namespace APIEtudiant.Stockage
         /// <author>Yamato</author>
         public bool CreateAnnee(int? annee);
 
+        /// <summary>
+        /// Renvoi toutes les années
+        /// </summary>
+        /// <returns>Un ensemble d'années</returns>
+        /// <author>Yamato</author>
+        public List<Annee> GetAllAnnee();
+
+        /// <summary>
+        /// Supprime une année de la bdd
+        /// </summary>
+        /// <param name="annee">année à supprimer</param>
+        /// <returns>true si la suppression est effectué</returns>
+        public bool DeleteAnnee(int? annee);
+
     }
 }

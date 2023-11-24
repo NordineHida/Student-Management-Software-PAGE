@@ -28,5 +28,24 @@ namespace APIEtudiant.Controllers
             }
             return reponse;
         }
+
+        /// <summary>
+        /// Renvoi un IEnumerable d'années avec toutes les années de la BDD
+        /// </summary>
+        /// <returns>IEnumerable d'années</returns>
+        /// <author>Yamato</author>
+        [HttpGet("GetAllAnnee")]
+        public ActionResult<List<Annee>> GetAllEtu()
+        {
+            //Cas par défaut
+            ActionResult<List<Annee>> reponse = BadRequest();
+
+            //On récupere les etudiants depuis le manager
+            List<Annee> annee = AnneeManager.Instance.GetAllAnnee();
+
+            //Si c'est pas null on renvoi un Ok avec les années
+            if (annee != null) reponse = Ok(annee);
+            return reponse;
+        }
     }
 }

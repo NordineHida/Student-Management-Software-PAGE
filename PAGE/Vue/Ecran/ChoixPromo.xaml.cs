@@ -1,6 +1,5 @@
 ﻿using PAGE.Model;
 using PAGE.Stockage;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -18,13 +17,10 @@ namespace PAGE.Vue.Ecran
         public ChoixPromo()
         {
             InitializeComponent();
+            MettreAJourComboBox();
 
-            if (ComboBoxAnnee != null)
-            {
-                ComboBoxAnnee.ItemsSource = annees;
-                ComboBoxAnnee.DisplayMemberPath = "AnneeDebut";
-            }
-
+            ComboBoxAnnee.ItemsSource = annees;
+            ComboBoxAnnee.DisplayMemberPath = "AnneeDebut";
         }
 
         /// <summary>
@@ -45,10 +41,13 @@ namespace PAGE.Vue.Ecran
         /// Mets à jour la combobox en triant de la plus petite année à la plus grande
         /// </summary>
         /// <author>Yamato</author>
-        private void MettreAJourComboBox()
+        private async void MettreAJourComboBox()
         {
+            AnneeDAO dao = new AnneeDAO();
+            annees = await dao.GetAllAnnee();
+
             // Tri de la liste des années par ordre croissant
-            var anneesTriees = annees.OrderBy(a => a.AnneeDebut).ToList();
+            List<Annee> anneesTriees = annees.OrderBy(a => a.AnneeDebut).ToList();
 
             ComboBoxAnnee.ItemsSource = anneesTriees;
         }
@@ -72,8 +71,6 @@ namespace PAGE.Vue.Ecran
             // Création de l'année 
             AnneeDAO dao = new AnneeDAO();
             dao.CreateAnnee(nouvelleAnnee.AnneeDebut);
-
-            MettreAJourComboBox();
         }
     }
 }
