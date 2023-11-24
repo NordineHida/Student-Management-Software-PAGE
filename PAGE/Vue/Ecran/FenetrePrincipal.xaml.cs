@@ -27,9 +27,7 @@ namespace PAGE.Vue.Ecran
         public FenetrePrincipal()
         {
             InitializeComponent();
-
-            ChargementDiffereInitial();
- 
+            ChargementDiffereInitial(); 
         }
 
         /// <summary>

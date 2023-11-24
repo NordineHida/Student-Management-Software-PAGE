@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
-        Title="CreationUtilisateur" Height="650" Width="1200">
+        Title="{DynamicResource CreationUtilisateur}" Height="650" Width="1200">
     <Window.Resources>
         <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
@@ -79,7 +79,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Titre de la page -->
-        <Label x:Name="Titre" Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="Creation d'un Utilisateur" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="#2B2B5A" Grid.ColumnSpan="2"/>
+        <Label x:Name="Titre" Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource CreerunUtilisateur}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="#2B2B5A" Grid.ColumnSpan="2"/>
 
         <!-- Combobox gérant la confidentialité -->
         <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="251,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Center" Width="175" RadiusX="10" RadiusY="10" Grid.Row="1"/>
