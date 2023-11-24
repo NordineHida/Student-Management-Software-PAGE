@@ -19,10 +19,19 @@
     <Compile Update="Vue\Ecran\CreationUtilisateur.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\EtudiantEtNoteComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\FenetreCreerEtudiant.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\FenetreEtudiantByCategorie.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\FenetrePrincipal.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\GestionUtilisateurs.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\LoginPage.xaml.cs">
@@ -38,6 +47,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\EtudiantComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\UserComponent.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\MainWindow.xaml.cs">
@@ -57,10 +69,19 @@
     <Page Update="Vue\Ecran\CreationUtilisateur.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Vue\Ecran\EtudiantEtNoteComponent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\FenetreCreerEtudiant.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Vue\Ecran\FenetreEtudiantByCategorie.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\FenetrePrincipal.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\GestionUtilisateurs.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\InformationsSupplementaires.xaml">
@@ -79,6 +100,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\EtudiantComponent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\UserComponent.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\MainWindow.xaml">

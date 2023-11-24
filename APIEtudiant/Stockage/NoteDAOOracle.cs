@@ -18,12 +18,12 @@ namespace APIEtudiant.Stockage
         /// <author>Nordine</author>
         private static Dictionary<int, CATEGORIE> AssociationCategorieId = new Dictionary<int, CATEGORIE>
         {
-            { 1, CATEGORIE.ABSENTEISME },
-            { 2, CATEGORIE.PERSONNEL },
-            { 3, CATEGORIE.MEDICAL },
-            { 4, CATEGORIE.RESULTATS },
-            { 5, CATEGORIE.ORIENTATION },
-            { 6, CATEGORIE.AUTRE }
+            { 0, CATEGORIE.ABSENTEISME },
+            { 1, CATEGORIE.PERSONNEL },
+            { 2, CATEGORIE.MEDICAL },
+            { 3, CATEGORIE.RESULTATS },
+            { 4, CATEGORIE.ORIENTATION },
+            { 5, CATEGORIE.AUTRE }
         };
 
         /// <summary>
@@ -32,10 +32,10 @@ namespace APIEtudiant.Stockage
         /// <author>Nordine</author>
         private static Dictionary<int, CONFIDENTIALITE> AssociationConfidentialiteId = new Dictionary<int, CONFIDENTIALITE>
         {
-            { 1, CONFIDENTIALITE.MEDICAL },
-            { 2, CONFIDENTIALITE.CONFIDENTIEL },
-            { 3, CONFIDENTIALITE.INTERNE },
-            { 4, CONFIDENTIALITE.PUBLIC }
+            { 0, CONFIDENTIALITE.MEDICAL },
+            { 1, CONFIDENTIALITE.CONFIDENTIEL },
+            { 2, CONFIDENTIALITE.INTERNE },
+            { 3, CONFIDENTIALITE.PUBLIC }
         };
 
         /// <summary>
@@ -44,11 +44,11 @@ namespace APIEtudiant.Stockage
         /// <author>Nordine</author>
         private static Dictionary<int, NATURE> AssociationNatureId = new Dictionary<int, NATURE>
         {
-            { 1, NATURE.MAIL },
-            { 2, NATURE.RDV },
-            { 3, NATURE.LETTRE },
-            { 4, NATURE.APPEL },
-            { 5, NATURE.AUTRE }
+            { 0, NATURE.MAIL },
+            { 1, NATURE.RDV },
+            { 2, NATURE.LETTRE },
+            { 3, NATURE.APPEL },
+            { 4, NATURE.AUTRE }
         };
         /// <summary>
         /// Ajoute une note à la BDD

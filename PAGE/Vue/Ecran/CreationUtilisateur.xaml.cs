@@ -36,7 +36,7 @@ namespace PAGE.Vue.Ecran
         {
             if (isCreateOk()) 
             {
-                UtilisateurDAO dao = new UtilisateurDAO();
+                IUtilisateurDAO dao = new UtilisateurDAO();
                 dao.CreateUtilisateur(user);
                 users.AddUser(user);
                 this.Close();
@@ -82,21 +82,25 @@ namespace PAGE.Vue.Ecran
                     popUp.ShowDialog();
                 }
             }
-            else if (users.ListUser.ContainsKey(txtLogin.Text))
-            {
-                ok = false;
+            else foreach (Utilisateur user in users.ListUser)
+                {
+                    if (user.Login == txtLogin.Text)
+                    {
+                        ok = false;
 
-                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
-                {
-                    PopUp popUp = new PopUp("Création", "Ce login est déjà pris : Choisissez-en un autre", TYPEICON.ERREUR);
-                    popUp.ShowDialog();
+                        if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                        {
+                            PopUp popUp = new PopUp("Création", "Ce login est déjà pris : Choisissez-en un autre", TYPEICON.ERREUR);
+                            popUp.ShowDialog();
+                        }
+                        else
+                        {
+                            PopUp popUp = new PopUp("Creation", "This login is already taken: Choose another one", TYPEICON.ERREUR);
+                            popUp.ShowDialog();
+                        }
+                    }
+                       
                 }
-                else
-                {
-                    PopUp popUp = new PopUp("Creation", "This login is already taken: Choose another one", TYPEICON.ERREUR);
-                    popUp.ShowDialog();
-                }
-            }
             return ok;
         }
     }

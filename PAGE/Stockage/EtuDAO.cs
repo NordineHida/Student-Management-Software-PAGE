@@ -17,15 +17,6 @@ namespace PAGE.Stockage
     public class EtuDAO : IEtuDAO
     {
         /// <summary>
-        /// constructeur de dao d'étudiant
-        /// </summary>
-        /// <author>Nordine</author>
-        public EtuDAO()
-        {
-
-        }
-
-        /// <summary>
         /// Ajoute plusieurs etudiants à la BDD
         /// </summary>
         /// <param name="listeEtu">liste d'étudiant a ajouter</param>
@@ -123,9 +114,9 @@ namespace PAGE.Stockage
         /// </summary>
         /// <returns>Un ensemble d'étudiant</returns>
         /// <author>Nordine</author>
-        public async Task<IEnumerable<Etudiant>> GetAllEtu()
+        public async Task<IEnumerable<Etudiant>> GetAllEtu()    
         {
-            //Dictionnaire d'étudiant (cle = num apogee, valeur = etudiant)
+            //Liste d'étudiant
             List<Etudiant> etudiants = new List<Etudiant>();
 
             // Créez une instance de HttpClient
@@ -205,6 +196,61 @@ namespace PAGE.Stockage
 
             }
         }
+
+
+        /// <summary>
+        /// Renvoi tout les étudiants de la BDD qui ont une note de la categorie donner
+        /// </summary>
+        /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
+        /// <author>Nordine</author>
+        public async Task<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie)
+        {
+            //Dictionnaire d'étudiant (cle = etudiant , valeur = etudiant)
+            List<Tuple<Etudiant, int>> etudiantEtNbNote = new List<Tuple<Etudiant, int>>();
+
+            int idCategorie=-1;
+
+            switch (categorie)
+            {
+                case CATEGORIE.ABSENTEISME:
+                    idCategorie = 0;
+                    break;
+                case CATEGORIE.PERSONNEL:
+                    idCategorie = 1;
+                    break;
+                case CATEGORIE.MEDICAL:
+                    idCategorie = 2;
+                    break;
+                case CATEGORIE.RESULTATS:
+                    idCategorie = 3;
+                    break;
+                case CATEGORIE.ORIENTATION:
+                    idCategorie = 4;
+                    break;
+                case CATEGORIE.AUTRE:
+                    idCategorie = 5;
+                    break;
+            }
+
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
+            {
+                // Spécifiez l'URL de l'API
+                string apiUrl = $"https://localhost:7038/EtuControlleur/GetAllEtuByCategorie?categorie={idCategorie}";
+
+                // Effectuez la requête GET
+                HttpResponseMessage reponse = await client.GetAsync(apiUrl);
+
+                //On récupere le json contenant la liste d'étudiant
+                string reponseString = await reponse.Content.ReadAsStringAsync();
+
+                //On la deserialise et on lit le dico etudiant/nbnote
+                etudiantEtNbNote = JsonSerializer.Deserialize<List<Tuple<Etudiant, int>>>(reponseString);
+            }
+
+            return etudiantEtNbNote;
+        }
+
     }
 }
                                                           

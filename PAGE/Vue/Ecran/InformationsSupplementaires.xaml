@@ -10,6 +10,7 @@
         Title="{DynamicResource TitreFenetreInformationsSupplementaires}" Height="1000" Width="1500"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
+        <!-- style des combox stéphane -->
         <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
 
         <Style x:Key="FocusVisual">
@@ -89,7 +90,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <Border x:Name="templateRoot" CornerRadius="10" Background="{StaticResource ComboBox.Static.Background}" BorderBrush="{StaticResource ComboBox.Static.Border}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                        <Border x:Name="templateRoot" CornerRadius="10" Background="White" BorderBrush="{StaticResource ComboBox.Static.Border}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                             <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                                 <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z" Fill="{StaticResource ComboBox.Static.Glyph}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
                             </Border>
@@ -369,7 +370,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <Border x:Name="templateRoot" CornerRadius="10" Background="{StaticResource ComboBox.Static.Background1}" BorderBrush="{StaticResource ComboBox.Static.Border1}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                        <Border x:Name="templateRoot" CornerRadius="10" Background="White" BorderBrush="{StaticResource ComboBox.Static.Border1}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                             <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                                 <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z" Fill="{StaticResource ComboBox.Static.Glyph1}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
                             </Border>
@@ -897,7 +898,7 @@
 
 
 
-        <Label FontFamily="{StaticResource OpenSauceOne}" Grid.Column="2" FontSize="29" Content="Notes de l'étudiant : " HorizontalAlignment="Left" Margin="594,18,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#2B2B5A" RenderTransformOrigin="2.452,0.87" Height="57" Width="278" Grid.RowSpan="3"/>
+        <Label FontFamily="{StaticResource OpenSauceOne}" Grid.Column="2" FontSize="29" Content="{DynamicResource NoteEtudiant}" HorizontalAlignment="Left" Margin="594,18,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#2B2B5A" RenderTransformOrigin="2.452,0.87" Height="57" Width="278" Grid.RowSpan="3"/>
 
         <Line X1="50" Y1="10" X2="50" Y2="850" Stroke="Black" StrokeThickness="3" Margin="430,1,509,-61" Grid.RowSpan="20" Grid.Column="2" Grid.Row="1"/>
     </Grid>

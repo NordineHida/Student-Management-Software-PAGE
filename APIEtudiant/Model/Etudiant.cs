@@ -7,7 +7,7 @@ namespace APIEtudiant.Model
     /// un Etudiant en BUT Informatique
     /// </summary>
     /// <author>Nordine</author>
-    public class Etudiant
+    public class Etudiant : IEquatable<Etudiant>
     {
         #region Attributs
 
@@ -163,6 +163,64 @@ namespace APIEtudiant.Model
         public override string ToString()
         {
             return this.nom;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Etudiant etudiant &&
+                   numApogee == etudiant.numApogee &&
+                   nom == etudiant.nom &&
+                   prenom == etudiant.prenom &&
+                   sexe == etudiant.sexe &&
+                   typeBac == etudiant.typeBac &&
+                   mail == etudiant.mail &&
+                   groupe == etudiant.groupe &&
+                   estBoursier == etudiant.estBoursier &&
+                   typeFormation == etudiant.typeFormation &&
+                   dateNaissance == etudiant.dateNaissance &&
+                   login == etudiant.login &&
+                   telFixe == etudiant.telFixe &&
+                   telPortable == etudiant.telPortable &&
+                   adresse == etudiant.adresse;
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(numApogee);
+            hash.Add(nom);
+            hash.Add(prenom);
+            hash.Add(sexe);
+            hash.Add(typeBac);
+            hash.Add(mail);
+            hash.Add(groupe);
+            hash.Add(estBoursier);
+            hash.Add(typeFormation);
+            hash.Add(dateNaissance);
+            hash.Add(login);
+            hash.Add(telFixe);
+            hash.Add(telPortable);
+            hash.Add(adresse);
+            return hash.ToHashCode();
+        }
+
+        public bool Equals(Etudiant? other)
+        {
+            return other is Etudiant etudiant &&
+            numApogee == etudiant.numApogee &&
+            nom == etudiant.nom &&
+            prenom == etudiant.prenom &&
+            sexe == etudiant.sexe &&
+            typeBac == etudiant.typeBac &&
+            mail == etudiant.mail &&
+            groupe == etudiant.groupe &&
+            estBoursier == etudiant.estBoursier &&
+            typeFormation == etudiant.typeFormation &&
+            dateNaissance == etudiant.dateNaissance &&
+            login == etudiant.login &&
+            telFixe == etudiant.telFixe &&
+            telPortable == etudiant.telPortable &&
+            adresse == etudiant.adresse;
         }
         #endregion
     }

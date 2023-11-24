@@ -12,11 +12,6 @@ namespace APIEtudiant.Stockage
     public class EtudiantDAOOracle : IEtuDAO
     {
 
-        public EtudiantDAOOracle()
-        {
-
-        }
-
         /// <summary>
         /// Renvoi tout les étudiants de la BDD Oracle
         /// </summary>
@@ -209,7 +204,6 @@ namespace APIEtudiant.Stockage
                 }
             }
             return etudiants;
-
         }
 
         /// <summary>
@@ -440,7 +434,7 @@ namespace APIEtudiant.Stockage
                                                   estBoursier, getRegimeString(etu), etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
                                                   etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
 
-                OracleCommand updateCmd = new OracleCommand(insertQuery, con.OracleConnexion);
+                 OracleCommand updateCmd = new OracleCommand(insertQuery, con.OracleConnexion);
 
                 if (updateCmd.ExecuteNonQuery() == 1)
                 {
@@ -547,6 +541,169 @@ namespace APIEtudiant.Stockage
             return ajoutReussi;
         }
 
+        /// <summary>
+        /// Renvoi tous les étudiants ayant au moins une note de la catégorie spécifiée
+        /// </summary>
+        /// <param name="categorie">Catégorie spécifiée</param>
+        /// <returns>Un dictionnaire avec les étudiants et le nombre de notes de la catégorie</returns>
+        /// <author>Nordine</author>
+        public List<Tuple<Etudiant, int>> GetAllEtuByCategorie(CATEGORIE categorie)
+        {
+            // Création d'une connexion Oracle
+            Connection con = new Connection();
+            // Dictionnaire pour stocker les résultats
+            List<Tuple<Etudiant, int>> etudiantsByCategorie = new List<Tuple<Etudiant, int>>();
+
+            try
+            {
+                string requete = "SELECT e.numApogee, e.nom, e.prenom, e.sexe, e.typeBac, e.mail, e.groupe, e.estBoursier, e.regimeFormation, e.dateNaissance, e.adresse, e.telPortable, e.telFixe, e.login, COUNT(n.idNote) AS NombreNotes " +
+                     "FROM Etudiant e " +
+                     "JOIN Note n ON e.numApogee = n.apogeeEtudiant " +
+                     "WHERE n.idCategorie = :categorie " +
+                     "GROUP BY e.numApogee, e.nom, e.prenom, e.sexe, e.typeBac, e.mail, e.groupe, e.estBoursier, e.regimeFormation, e.dateNaissance, e.adresse, e.telPortable, e.telFixe, e.login";
+
+
+                using (OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion))
+                {
+                    cmd.Parameters.Add("categorie", OracleDbType.Int32).Value = (int)categorie;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        // Récupération(lecture) de tous les éléments d'un étudiant en bdd
+                        int numApogee = reader.GetInt32(reader.GetOrdinal("numApogee"));
+                        string nom = reader.GetString(reader.GetOrdinal("nom"));
+                        string prenom = reader.GetString(reader.GetOrdinal("prenom"));
+                        string sexeBDD = reader.GetString(reader.GetOrdinal("sexe"));
+                        SEXE sexeEtu = sexeBDD == "F" ? SEXE.FEMININ : (sexeBDD == "M" ? SEXE.MASCULIN : SEXE.AUTRE);
+                        string typeBac = reader.GetString(reader.GetOrdinal("typeBac"));
+                        string mail = reader.GetString(reader.GetOrdinal("mail"));
+
+                        //On convertit la string du regime en valeur de l'enumération REGIME
+                        string groupe = reader.GetString(reader.GetOrdinal("groupe"));
+                        groupe.Substring(groupe.Length - 2, 2);
+                        GROUPE groupeEtu = GROUPE.A1;
+                        switch (groupe)
+                        {
+                            case "A2":
+                                groupeEtu = GROUPE.A2;
+                                break;
+                            case "B1":
+                                groupeEtu = GROUPE.B1;
+                                break;
+                            case "B2":
+                                groupeEtu = GROUPE.B2;
+                                break;
+                            case "C1":
+                                groupeEtu = GROUPE.C1;
+                                break;
+                            case "C2":
+                                groupeEtu = GROUPE.C2;
+                                break;
+                            case "D1":
+                                groupeEtu = GROUPE.D1;
+                                break;
+                            case "D2":
+                                groupeEtu = GROUPE.D2;
+                                break;
+                            case "E1":
+                                groupeEtu = GROUPE.E1;
+                                break;
+                            case "E2":
+                                groupeEtu = GROUPE.E2;
+                                break;
+                        }
+                        bool estBoursier = reader.GetString(reader.GetOrdinal("estBoursier")) == "OUI";
+                        string regimeFormation = reader.GetString(reader.GetOrdinal("regimeFormation"));
+                        REGIME regimeEtu = (REGIME)Enum.Parse(typeof(REGIME), regimeFormation);
+                        // Récupération du nombre de notes de la catégorie
+                        int nombreNotes = reader.GetInt32(reader.GetOrdinal("NombreNotes"));
+
+                        DateTime dateNaissance;
+                        if (!reader.IsDBNull(reader.GetOrdinal("dateNaissance")))
+                        {
+                            dateNaissance = reader.GetDateTime(reader.GetOrdinal("dateNaissance"));
+                        }
+                        else
+                        {
+                            dateNaissance = DateTime.MinValue;
+                        }
+
+                        string login;
+                        if (!reader.IsDBNull(reader.GetOrdinal("login")))
+                        {
+                            login = reader.GetString(reader.GetOrdinal("login"));
+                        }
+                        else
+                        {
+                            login = string.Empty;
+                        }
+
+                        long telFixe;
+                        if (!reader.IsDBNull(reader.GetOrdinal("telFixe")))
+                        {
+                            telFixe = reader.GetInt64(reader.GetOrdinal("telFixe"));
+                        }
+                        else
+                        {
+                            telFixe = 0;
+                        }
+
+                        long telPortable;
+                        if (!reader.IsDBNull(reader.GetOrdinal("telPortable")))
+                        {
+                            telPortable = reader.GetInt64(reader.GetOrdinal("telPortable"));
+                        }
+                        else
+                        {
+                            telPortable = 0;
+                        }
+
+                        string adresse;
+                        if (!reader.IsDBNull(reader.GetOrdinal("adresse")))
+                        {
+                            adresse = reader.GetString(reader.GetOrdinal("adresse"));
+                        }
+                        else
+                        {
+                            adresse = string.Empty;
+                        }
+
+                        // Création de l'objet Etudiant en utilisant les variables
+                        Etudiant etudiant = new Etudiant(numApogee, nom,prenom,sexeEtu,typeBac,mail,groupeEtu,estBoursier,regimeEtu,dateNaissance,login,(int)telFixe,(int)telPortable,adresse);
+
+                        //Creation couple 
+                        Tuple<Etudiant, int> couple = new (etudiant, nombreNotes);
+                        // Ajout du couple (Etudiant, Nombre de notes de la catégorie) dans le dictionnaire
+                        etudiantsByCategorie.Add(couple);
+                    }
+
+                }
+            }
+            // Gestion des exceptions
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                // Fermeture de la connexion
+                try
+                {
+                    if (con != null)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return etudiantsByCategorie;
+        }
 
     }
 }

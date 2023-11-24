@@ -66,6 +66,7 @@
     <None Remove="Vue\Ressources\Picto\information.png" />
     <None Remove="Vue\Ressources\Picto\minus-circle-outline.png" />
     <None Remove="Vue\Ressources\Picto\plus-circle-outline.png" />
+    <None Remove="Vue\Ressources\Picto\note-search.png" />
     <None Remove="Vue\Ressources\Picto\refresh.png" />
     <None Remove="Vue\Ressources\Picto\settings.png" />
     <None Remove="Vue\Ressources\Picto\settings.svg" />
@@ -120,6 +121,10 @@
     </Content>
     <Resource Include="Vue\Ressources\Picto\minus-circle-outline.png" />
     <Resource Include="Vue\Ressources\Picto\plus-circle-outline.png" />
+
+    <Content Include="Vue\Ressources\Picto\note-search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Vue\Ressources\Img\Notes\noteAbsenteisme.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

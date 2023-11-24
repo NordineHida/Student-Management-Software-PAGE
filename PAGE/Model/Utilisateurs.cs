@@ -9,12 +9,11 @@ namespace PAGE.Model
 {
     public class Utilisateurs : Observable
     {
-        private Dictionary<string,Utilisateur> listUser;
-
+        private List<Utilisateur> listUser;
         /// <summary>
         /// liste des utilisateurs de l'application
         /// </summary>
-        public Dictionary<string,Utilisateur> ListUser
+        public List<Utilisateur> ListUser
         {
             get { return listUser; }
             set { listUser = value; }
@@ -24,7 +23,7 @@ namespace PAGE.Model
         /// Construit une liste d'utilisateur à partir d'une liste donnée en parametre
         /// </summary>
         /// <param name="listUser"></param>
-        public Utilisateurs(Dictionary<string, Utilisateur> listUser)
+        public Utilisateurs(List<Utilisateur> listUser)
         {
             this.listUser = listUser;
         }
@@ -35,7 +34,7 @@ namespace PAGE.Model
         /// <param name="user">utilisateur à ajouter</param>
         public void AddUser(Utilisateur user)
         {
-            listUser.Add(user.Login, user);
+            listUser.Add(user);
             Notifier("Utilisateur créé");
         }
 
@@ -45,7 +44,7 @@ namespace PAGE.Model
         /// <param name="user">utilisateur à supprimer</param>
         public void DeleteUser(Utilisateur user)
         {
-            listUser.Remove(user.Login);
+            listUser.Remove(user);
             Notifier("Utilisateur supprimé");
         }
     }

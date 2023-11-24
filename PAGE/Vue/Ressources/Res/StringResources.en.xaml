@@ -14,6 +14,8 @@
     <system:String x:Key="NumApogee">Apogee</system:String>
     <system:String x:Key="Oui">Yes</system:String>
     <system:String x:Key="Non">No</system:String>
+    <system:String x:Key="Login">Login</system:String>
+
 
     <!--Parametre (nordine)-->
     <system:String x:Key="TitreParam">Settings</system:String>
@@ -65,7 +67,9 @@
 
 
     <!--ToolTips (Lucas) -->
-    <system:String x:Key="ToolTipPageConnexion">Login page</system:String>
+    <system:String x:Key="ToolTipPageConnexion">Login</system:String>
+    <system:String x:Key="ToolTipPageCrerutilisateur">Create User</system:String>
+    <system:String x:Key="ToolTipPageGestionUtilisateurs">User Management</system:String>
     <system:String x:Key="ToolTipPageParamètres">Parameters</system:String>
     <system:String x:Key="ToolTipImportation">Import students</system:String>
     <system:String x:Key="ToolTipActualisation">Refresh student list</system:String>
@@ -74,6 +78,7 @@
 
     <!--PagePrincipale (Lucas)-->
     <system:String x:Key="LabelTrie">Filter by:</system:String>
+    <system:String x:Key="TitreFenetrePrincipal">PAGE</system:String>
 
     <!--CréerEtudiant (Lucas)-->
     <system:String x:Key="TitreFenetreCreerEtudiant">Create a student</system:String>
@@ -123,7 +128,17 @@
     <system:String x:Key="BtnAfficherInfosComp">More Informations</system:String>
     <system:String x:Key="BtnCacherInfoComp">Hide Informations</system:String>
 
-
+    <system:String x:Key="NoteEtudiant">Student's notes :</system:String>
     <system:String x:Key="HeaderSupprNote">Delete</system:String>
+    <system:String x:Key="BtnAfficherEtudiantByCate">Show student by note's category</system:String>
 
+    <!--Pages Créer un utilisateur (Lucas) -->
+
+    <system:String x:Key="CreationUtilisateur">User Creation</system:String>
+    <system:String x:Key="CreerunUtilisateur">User Creation</system:String>
+
+    <!--Page Gestion des utilisateurs (Lucas) -->
+
+    <system:String x:Key="GestionUser">User Management</system:String>
+    <system:String x:Key="TootTipFenetreCategorie">Show student by note's category</system:String>
 </ResourceDictionary>

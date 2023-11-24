@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using PAGE.Model;
+using PAGE.Stockage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +22,11 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class LoginPage : Window
     {
-        public LoginPage()
+        private Utilisateur user;
+        public LoginPage(Utilisateur user)
         {
+            this.user = user;
+            DataContext = user;
             InitializeComponent();
         }
 
@@ -39,17 +45,18 @@ namespace PAGE.Vue.Ecran
 
         }
 
+
         /// <summary>
         /// Ferme la page de login et affiche la fenetre principal avec les nouvelles informations
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BoutonLogin(object sender, RoutedEventArgs e)
+        private async void BoutonLogin(object sender, RoutedEventArgs e)
         {
-            //LE LOGIN N'EST PAS ENCORE IMPLEMENTé
-            throw new NotImplementedException();
+            user.Mdp = txtPassword.Password;
 
-
+            IUtilisateurDAO dao = new UtilisateurDAO();
+            Token token = await dao.Connexion(user.Login,user.HashMdp);
             FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
             fenetrePrincipal.Show();
 
