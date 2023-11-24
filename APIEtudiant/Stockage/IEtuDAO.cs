@@ -1,4 +1,5 @@
 ﻿using APIEtudiant.Model;
+using APIEtudiant.Model.Enumerations;
 
 namespace APIEtudiant.Stockage
 {
@@ -39,5 +40,12 @@ namespace APIEtudiant.Stockage
         /// <param name="etu">etudiant à ajouté</param>
         /// <returns>si l'ajout est un succès</returns>
         public bool CreateEtu(Etudiant etu);
+
+        /// <summary>
+        /// Renvoi tout les étudiants de la BDD qui ont une note de la categorie donner
+        /// </summary>
+        /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
+        /// <author>Nordine</author>
+        public Dictionary<Etudiant, int> GetAllEtuByCategorie(CATEGORIE categorie);
     }
 }

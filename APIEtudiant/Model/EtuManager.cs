@@ -1,4 +1,5 @@
-﻿using APIEtudiant.Stockage;
+﻿using APIEtudiant.Model.Enumerations;
+using APIEtudiant.Stockage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,6 +80,17 @@ namespace APIEtudiant.Model
         public bool CreateEtu(Etudiant etu)
         {
             return EtuDAO.CreateEtu(etu);
+        }
+
+
+        /// <summary>
+        /// Renvoi tout les étudiants de la BDD qui ont une note de la categorie donner et le nombre de note de cette categorie
+        /// </summary>
+        /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
+        /// <author>Nordine</author>
+        public Dictionary<Etudiant,int> GetAllEtuByCategorie(CATEGORIE categorie)
+        {
+            return EtuDAO.GetAllEtuByCategorie(categorie);
         }
 
 

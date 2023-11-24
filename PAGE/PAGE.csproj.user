@@ -16,6 +16,9 @@
     <Compile Update="Vue\Ecran\CreationUtilisateur.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\EtudiantEtNoteComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\FenetreCreerEtudiant.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +55,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\CreationUtilisateur.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\EtudiantEtNoteComponent.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\FenetreCreerEtudiant.xaml">
