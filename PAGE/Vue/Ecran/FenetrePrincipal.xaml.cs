@@ -48,14 +48,10 @@ namespace PAGE.Vue.Ecran
 
             //On récupère l'ensemble des utilisateurs via l'API
             List<Utilisateur> listUser;
-            Dictionary<string,Utilisateur> dicoUser = new Dictionary<string, Utilisateur>();
             UtilisateurDAO userDAO = new UtilisateurDAO();
             listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
-            for (int i=0;i< listUser.Count;i++)
-            {
-                dicoUser.Add(listUser[i].Login, listUser[i]);
-            }
-            this.users = new Utilisateurs(dicoUser);
+            
+            this.users = new Utilisateurs(listUser);
 
 
             //Affiche les components des etudiants (trie par numero apogee par defaut
@@ -80,14 +76,10 @@ namespace PAGE.Vue.Ecran
 
             //On récupère l'ensemble des utilisateurs via l'API
             List<Utilisateur> listUser;
-            Dictionary<string, Utilisateur> dicoUser = new Dictionary<string, Utilisateur>();
             UtilisateurDAO userDAO = new UtilisateurDAO();
             listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
-            for (int i = 0; i < listUser.Count; i++)
-            {
-                dicoUser.Add(listUser[i].Login, listUser[i]);
-            }
-            this.users = new Utilisateurs(dicoUser);
+            
+            this.users = new Utilisateurs(listUser);
 
             //Affiche les components des etudiants (trie par numero apogee par defaut
             AfficherLesEtuComponent(etudiants.ListeEtu,TYPETRI.APOGEE);
@@ -514,7 +506,7 @@ namespace PAGE.Vue.Ecran
     /// <author>Nordine</author>
     public enum TYPETRI
     {
-        PRENOM,NOM,GROUPE,APOGEE
+        PRENOM,NOM,GROUPE,APOGEE,LOGIN
     }
 
 }

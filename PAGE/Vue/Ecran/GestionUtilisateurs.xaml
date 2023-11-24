@@ -338,13 +338,13 @@
 
         <Rectangle HorizontalAlignment="Left" Height="26" Fill="#FF3DA79D" VerticalAlignment="Top" Width="79"  RadiusX="10" RadiusY="10" Grid.Column="1" Margin="30,67,0,0"/>
 
-        <!-- search bar des étudiants (Nordine/Stephane) -->
+        <!-- search bar des utilisateurs -->
         <StackPanel Grid.Column="1" Grid.Row="0" Margin="30,70,0,0">
             <Label  Grid.Column="1" Content="{DynamicResource LabelTrie}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="{StaticResource OpenSauceOne}" Foreground="#FFFFFF"/>
-            <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxFiltre" HorizontalAlignment="Left" FontFamily="{StaticResource OpenSauceOne}" VerticalAlignment="Center" Width="180" Margin="0,0,0,15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" >
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxFiltre" SelectionChanged="SelectionFiltreChanged" HorizontalAlignment="Left" FontFamily="{StaticResource OpenSauceOne}" VerticalAlignment="Center" Width="180" Margin="0,0,0,15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" >
                 <ComboBoxItem Content="{DynamicResource Login}" ></ComboBoxItem>
             </ComboBox>
-            <TextBox x:Name="TexteFiltre" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180"/>
+            <TextBox x:Name="TexteFiltre" TextChanged="TexteFiltreChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180"/>
 
         </StackPanel>
 
@@ -359,6 +359,23 @@
         <WrapPanel Grid.Row="1" Grid.Column="1" Background="#3DA79D" Margin="30, 5, 30, 0" Height="50" >
             <Button Content="{DynamicResource Login}" Height="50" Click="OrderByLogin" HorizontalAlignment="Center" MinWidth="340" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
         </WrapPanel>
+
+        <!--Pour pouvoir scroller-->
+        <ScrollViewer Grid.Column="1" Margin="30, 0, 30, 30" Grid.Row="2">
+            <!-- Liste des utilisateurs avec des UserComponent-->
+            <StackPanel Name="StackPanelUser" Background="#FFDFEAFF">
+                <!-- La liste des utilisateurs sera ajoutée dynamiquement ici -->
+
+                <!-- gestionnaire d'événements pour le clique sur les Utilisateurs -->
+                <StackPanel.Resources>
+                    <Style TargetType="local:UserComponent">
+                        <EventSetter Event="MouseDoubleClick" Handler="UserComponent_MouseDoubleClick"/>
+
+                    </Style>
+                </StackPanel.Resources>
+            </StackPanel>
+        </ScrollViewer>
+        
     </Grid>
     
     

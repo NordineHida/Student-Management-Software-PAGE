@@ -40,6 +40,9 @@
     <Compile Update="Vue\Ecran\EtudiantComponent.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\UserComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +82,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\EtudiantComponent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\UserComponent.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\MainWindow.xaml">
