@@ -1,4 +1,5 @@
 ﻿
+using DocumentFormat.OpenXml.Spreadsheet;
 using PAGE.Model;
 using PAGE.Vue.Ecran;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PAGE.Stockage
 {
-    public class UtilisateurDAO
+    public class UtilisateurDAO : IUtilisateurDAO
     {
         /// <summary>
         /// Ajoute un utilisateur à la BDD
@@ -69,6 +70,37 @@ namespace PAGE.Stockage
                 users = JsonSerializer.Deserialize<List<Utilisateur>>(reponseString);
             }
             return users;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Token?> Connexion(string login, string mdp)
+        {
+            Token token = null;
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
+            {
+                // Spécifiez l'URL de l'API
+                string apiUrl = String.Format("https://localhost:7038/Utilisateur/Connexion?login={0}&mdp={1}",login,mdp);
+
+                // Effectuez la requête GET
+                HttpResponseMessage reponse = await client.GetAsync(apiUrl);
+
+                //On récupere le json contenant le token
+                string reponseString = await reponse.Content.ReadAsStringAsync();
+
+                //On le deserialise
+                token = JsonSerializer.Deserialize<Token>(reponseString);
+
+                if (token == null)
+                {
+                    PopUp popUp = new PopUp("Connexion", "Il y a eu un problème lors de la connexion. Veuillez Réessayer", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+            }
+            return token;
         }
     }
 }

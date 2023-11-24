@@ -38,7 +38,7 @@
         <Label Content="{DynamicResource LabelLogin}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>
 
         <!-- TextBox pour le nom d'utilisateur (Lucas & Nordine) -->
-        <TextBox x:Name="txtUsername"  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontFamily="Open Sauce One Light" Height="40"/>
+        <TextBox x:Name="txtUsername"  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontFamily="Open Sauce One Light" Height="40" Text="{Binding Login}"/>
 
         <!-- Label pour le mot de passe (Lucas & Nordine) -->
         <Label Content="{DynamicResource LabelPassword}" FontSize="30" Foreground="#FF2B2B5A" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Open Sauce One"/>

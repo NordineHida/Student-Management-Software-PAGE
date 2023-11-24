@@ -52,15 +52,22 @@ namespace APIEtudiant.Controllers
         /// <summary>
         /// Connecte un utilisateur sur l'application
         /// </summary>
-        /// <returns></returns>
-        [HttpPost("Connexion")]
-        public ActionResult<Token> Connexion(string login, string mdp)
+        ///<param name="login">login de l'utilisateur</param>
+        ///<param name="mdp">mot de passe de l'utiisateur</param>
+        /// <returns>Le token prouvant la connexion</returns>
+        [HttpGet("Connexion")]
+        public ActionResult<Token?> Connexion(string login, string mdp)
         {
             ActionResult reponse = BadRequest();
             //Si l'utilisateur n'est pas null
-            Token token = UtilisateurManager.Instance.CreateToken(UtilisateurManager.Instance.GetUtilisateurByLoginMDP(login, mdp));
+            Token token = null;
+            Utilisateur ? user = UtilisateurManager.Instance.GetUtilisateurByLoginMDP(login, mdp);
+            if (user != null)
+            {
+                token = UtilisateurManager.Instance.CreateToken(user);
+            }
             if (token != null) reponse = Ok(token);
             return reponse;
-        }
+       }
     }
 }

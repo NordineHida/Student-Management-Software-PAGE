@@ -28,6 +28,6 @@ namespace APIEtudiant.Stockage
         /// <param name="login">login de l'utilisateur dont on vérifie l'existence</param>
         /// <param name="mdp">mdp (hashé) de l'utilisateur dont on vérifie l'existence</param>
         /// <returns>l'utilisateur, s'il existe</returns>
-        public Utilisateur GetUtilisateurByLoginMDP(string login, string mdp);
+        public Utilisateur? GetUtilisateurByLoginMDP(string login, string mdp);
     }
 }

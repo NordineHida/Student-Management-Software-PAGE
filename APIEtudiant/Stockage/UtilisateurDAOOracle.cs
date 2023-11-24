@@ -127,21 +127,25 @@ namespace APIEtudiant.Stockage
         /// <param name="login">login de l'utilisateur dont on vérifie l'existence</param>
         /// <param name="mdp">mdp (hashé) de l'utilisateur dont on vérifie l'existence</param>
         /// <returns>l'utilisateur, s'il existe</returns>
-        public Utilisateur GetUtilisateurByLoginMDP(string login, string mdp)
+        public Utilisateur? GetUtilisateurByLoginMDP(string login, string mdp)
         {
             //Création d'une connexion Oracle
             Connection con = new Connection();
             //étudiant à renvoyer
-            Utilisateur user = new Utilisateur(login, mdp);
+            Utilisateur user = null;
 
             try
             {
-                
+
                 // Création d'une commande Oracle pour récuperer l'ensemble des éléments de tout les étudiants
-                OracleCommand cmd = new OracleCommand(String.Format("SELECT login,hashPassword FROM Utilisateur WHERE login='{0}' AND hashPassword={1}", login, mdp), con.OracleConnexion);
+                OracleCommand cmd = new OracleCommand(String.Format("SELECT login,hashPassword FROM Utilisateur WHERE login='{0}' AND hashPassword='{1}'", login, mdp), con.OracleConnexion);
 
                 OracleDataReader reader = cmd.ExecuteReader();
 
+                while (reader.Read())
+                {
+                    user = new Utilisateur(reader.GetString(reader.GetOrdinal("login")), reader.GetString(reader.GetOrdinal("hashPassword")));
+                }
             }
             // Gestion des exceptions
             catch (OracleException ex)

@@ -14,7 +14,7 @@ namespace APIEtudiant.Stockage
         /// <param name="user">utilisateur possédant le token</param>
         /// <returns>vrai si le token a été créé, faux sinon</returns>
         /// <author>Laszlo</author>
-        public Token CreateToken(Utilisateur user);
+        public Token? CreateToken(Utilisateur user);
 
     }
 }

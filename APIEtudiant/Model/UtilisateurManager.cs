@@ -63,7 +63,7 @@ namespace APIEtudiant.Model
         /// <param name="login">login de l'utilisateur dont on vérifie l'existence</param>
         /// <param name="mdp">mdp (hashé) de l'utilisateur dont on vérifie l'existence</param>
         /// <returns>l'utilisateur, s'il existe</returns>
-        public Utilisateur GetUtilisateurByLoginMDP(string login, string mdp)
+        public Utilisateur? GetUtilisateurByLoginMDP(string login, string mdp)
         {
             return UtilisateurDAO.GetUtilisateurByLoginMDP(login, mdp);
         }
@@ -74,7 +74,7 @@ namespace APIEtudiant.Model
         /// </summary>
         /// <param name="utilisateur">Utilisateur que le token vise</param>
         /// <returns>le token créé</returns>
-        public Token CreateToken(Utilisateur utilisateur)
+        public Token? CreateToken(Utilisateur utilisateur)
         {
             return TokenDAO.CreateToken(utilisateur);
         }

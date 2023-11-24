@@ -106,7 +106,7 @@ namespace PAGE.Vue.Ecran
         /// <param name="e"></param>
         private void OpenLoginPage(object sender, RoutedEventArgs e)
         {
-            LoginPage loginPage = new LoginPage();
+            LoginPage loginPage = new LoginPage(new Utilisateur("",""));
             loginPage.Show();
 
             this.Close();
