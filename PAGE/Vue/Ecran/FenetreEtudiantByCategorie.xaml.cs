@@ -7,211 +7,55 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace PAGE.Vue.Ecran
 {
     /// <summary>
-    /// Logique d'interaction pour FenetrePrincipal.xaml
+    /// Logique d'interaction pour FenetreEtudiantByCategorie.xaml
     /// </summary>
-    public partial class FenetrePrincipal : Window, IObservateur
+    public partial class FenetreEtudiantByCategorie : Window, IObservateur
     {
-        private Utilisateurs users;
         private Etudiants etudiants;
         private List<Etudiant> etudiantAffichage;
-        private bool TriCroissant=false;
+        private List<Tuple<Etudiant, int>> etudiantEtNote;
+        private bool TriCroissant = false;
+        private CATEGORIE categorieComboBox;
 
-        /// <summary>
-        /// Initialise la fenetre principal
-        /// </summary>
-        /// <author>Nordine & Stephane</author>
-        public FenetrePrincipal()
+        public FenetreEtudiantByCategorie(Etudiants etudiants)
         {
             InitializeComponent();
-
-            initialContent = (UIElement?)this.Content;
-
-            ChargementDiffereInitial();
- 
+            this.etudiants = etudiants;
+            etudiantEtNote = new List<Tuple<Etudiant, int>>();
         }
 
-
-        /// <summary>
-        /// Chargement des etudiants différé via l'API et initisalise la liste d'étudiants à afficher
-        /// </summary>
-        /// <author>Nordine</author>
-        private async Task ChargementDiffereInitial()
-        {
-            // On récupère l'ensemble des étudiants via l'API
-            EtuDAO Etudao = new EtuDAO();
-            this.etudiants = new Etudiants((List<Etudiant>)await Etudao.GetAllEtu());
-
-            //On récupère l'ensemble des utilisateurs via l'API
-            List<Utilisateur> listUser;
-            UtilisateurDAO userDAO = new UtilisateurDAO();
-            listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
-            
-            this.users = new Utilisateurs(listUser);
-
-
-            //Affiche les components des etudiants (trie par numero apogee par defaut
-            AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
-
-            // On enregistre cette fenetre comme observeur des notes
-            etudiants.Register(this);
-
-            //initialisation etudiant a afficher
-            etudiantAffichage = etudiants.ListeEtu;
-        }
 
         /// <summary>
         /// Chargement des etudiants différé via l'API
         /// </summary>
-        /// <author>Nordine & Stephane</author>
+        /// <author>Nordine</author>
         private async Task ChargementDiffere()
         {
-            // On récupère l'ensemble des étudiants via l'API
+            // On récupère l'ensemble des étudiants et leur nbNote via l'API
             EtuDAO dao = new EtuDAO();
-            this.etudiants = new Etudiants((List<Etudiant>)await dao.GetAllEtu());
-
-            //On récupère l'ensemble des utilisateurs via l'API
-            List<Utilisateur> listUser;
-            UtilisateurDAO userDAO = new UtilisateurDAO();
-            listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
-            
-            this.users = new Utilisateurs(listUser);
+            etudiantEtNote = await dao.GetAllEtuByCategorie(categorieComboBox);
+;
+            //await dao.GetAllEtuByCategorie(categorieComboBox);
+            this.etudiants = new Etudiants(etudiantEtNote.Select(tuple => tuple.Item1).ToList());
 
             //Affiche les components des etudiants (trie par numero apogee par defaut
-            AfficherLesEtuComponent(etudiants.ListeEtu,TYPETRI.APOGEE);
+            AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
 
-            // On enregistre cette fenetre comme observeur des notes
+            // On enregistre cette fenetre comme observeur des etudiants
             etudiants.Register(this);
         }
 
-
-
-        /// <summary>
-        /// Ouvre la fenetre de connexion 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void OpenLoginPage(object sender, RoutedEventArgs e)
-        {
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
-
-            this.Close();
-        }
-
-        /// <summary>
-        /// Ouvre la fenêtre des paramètres
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void OpenParametresPage(object sender, RoutedEventArgs e)
-        {
-            ParametrePage parametre = new ParametrePage();
-            parametre.Show();
-
-            this.Close();
-        }
-
-
-        /// <summary>
-        /// Quand on clique sur le bouton importer pour chercher le fichier excel avec les étudiants
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine & Stephane</author>
-        private void ImporterEtudiants(object sender, RoutedEventArgs e)
-        {
-            // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Fichiers Excel (*.xls, *.xlsx)|*.xls;*.xlsx";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                // Obtenez le chemin du fichier sélectionné
-                string selectedFilePath = openFileDialog.FileName;
-
-                // Appelez la méthode GetEtudiants avec le chemin du fichier
-                LecteurExcel lc = new LecteurExcel();
-                EtuDAO dao = new EtuDAO();
-                dao.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
-            }
-
-            //On actualise l'affichage
-            ActualiserEtudiant();
-        }
-
-        /// <summary>
-        /// Actualise la liste des étudiants
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void BoutonActualiserListeEtudiant(object sender, RoutedEventArgs e)
-        {
-            ActualiserEtudiant();
-        }
-
-        /// <summary>
-        /// Actualise l'affichage de la liste des étudiants
-        /// </summary>
-        /// <author>Nordine</author>
-        private async void ActualiserEtudiant()
-        {
-            await ChargementDiffere();
-        }
-
-        /// <summary>
-        /// Ouvre la fenetre de choix de l'année de et promotion 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void OpenPromoPage(object sender, RoutedEventArgs e)
-        {
-            ChoixPromo choixPromo = new ChoixPromo();
-            choixPromo.Show();
-            this.Close();
-        }
-
-
-        /// <summary>
-        /// Ouvre la fenêtre pour créer un étudiant
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void BoutonCreerEtudiant(object sender, RoutedEventArgs e)
-        {
-            if (etudiants != null)
-            {
-                FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant(etudiants);
-                fenetreCreerEtudiant.Show();
-            }
-            else
-            {
-                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
-                {
-                    PopUp popUp = new PopUp("Création", "Veuillez attendre la fin du chargement des étudiants", TYPEICON.INFORMATION);
-                    popUp.ShowDialog();
-                }
-                else
-                {
-                    PopUp popUp = new PopUp("Creation", "Please wait until the students have finished loading", TYPEICON.INFORMATION);
-                    popUp.ShowDialog();
-                }
-            }
-
-        }
 
         /// <summary>
         /// Une modification a ete recu, on raffraichis l'affichage
         /// </summary>
         /// <param name="Message">message specifique</param>
-        /// <author>Nordine/Laszlo</author>
+        /// <author>Nordine</author>
         public async void Notifier(string Message)
         {
             await Task.Delay(1000);
@@ -227,10 +71,10 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void EtudiantComponent_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (sender is EtudiantComponent EtudiantComponent)
+            if (sender is EtudiantEtNoteComponent etudiantComponent)
             {
                 // On recupère l'étudiant associé au EtudiantComponent
-                Etudiant etudiantSelectionne = EtudiantComponent.Etudiant;
+                Etudiant etudiantSelectionne = etudiantComponent.Etudiant;
 
                 if (etudiantSelectionne != null)
                 {
@@ -242,12 +86,12 @@ namespace PAGE.Vue.Ecran
         }
 
         /// <summary>
-        /// Affiche les EtudiantComponent pour les Etudiant de la liste
+        /// Affiche les EtudiantEtNoteComponent pour les Etudiant de la liste
         /// </summary>
         /// <param name="listEtudiants">liste des etudiants à afficher</param>
         /// <param name="typetri">type de tri</param>
         /// <author>Nordine</author>
-        private void AfficherLesEtuComponent(List<Etudiant> listEtudiants, TYPETRI ?typetri)
+        private void AfficherLesEtuComponent(List<Etudiant> listEtudiants, TYPETRI? typetri)
         {
             // On réinitialise le StackPanel
             StackPanelEtudiants.Children.Clear();
@@ -275,6 +119,11 @@ namespace PAGE.Vue.Ecran
                         listEtudiants.OrderByDescending(etudiant => etudiant.NumApogee).ToList() :
                         listEtudiants.OrderBy(etudiant => etudiant.NumApogee).ToList();
                     break;
+                case TYPETRI.NBNOTE:
+                    listEtudiants = TriCroissant ?
+                        etudiantEtNote.OrderBy(tuple => tuple.Item2).Select(tuple => tuple.Item1).ToList() :
+                        etudiantEtNote.OrderByDescending(tuple => tuple.Item2).Select(tuple => tuple.Item1).ToList();
+                    break;
                 default:
                     listEtudiants = TriCroissant ?
                         listEtudiants.OrderByDescending(etudiant => etudiant.NumApogee).ToList() :
@@ -285,10 +134,10 @@ namespace PAGE.Vue.Ecran
             foreach (Etudiant etu in listEtudiants)
             {
                 // Si l'étudiant n'est pas déjà dans le StackPanel, on l'y ajoute
-                if (!StackPanelEtudiants.Children.OfType<EtudiantComponent>().Any(uc => uc.NumeroApogee == etu.NumApogee))
+                if (!StackPanelEtudiants.Children.OfType<EtudiantEtNoteComponent>().Any(uc => uc.NumeroApogee == etu.NumApogee))
                 {
-                    // Ajoute l'EtudiantComponent personnalisé au StackPanel
-                    EtudiantComponent EtudiantComponent = new EtudiantComponent(etu);
+                    // Ajoute l'EtudiantEtNoteComponent personnalisé au StackPanel
+                    EtudiantEtNoteComponent EtudiantComponent = new EtudiantEtNoteComponent(etu, etudiantEtNote.FirstOrDefault(tuple => tuple.Item1.Equals(etu))?.Item2 ?? -1); //Mets -1 s'il ne trouve pas l'étudiant dans la liste  de tuple
                     StackPanelEtudiants.Children.Add(EtudiantComponent);
                 }
             }
@@ -307,11 +156,11 @@ namespace PAGE.Vue.Ecran
             StackPanelEtudiants.Children.Clear();
 
             // Applique le filtre sur la liste d'étudiants
-            List<Etudiant> filteredList = (List<Etudiant>)listEtudiants.Where(GetFilter(filterType, filterText)).ToList();
+            List<Etudiant> filteredList = listEtudiants.Where(GetFilter(filterType, filterText)).ToList();
 
-            if(String.IsNullOrEmpty(filterText))
+            if (String.IsNullOrEmpty(filterText))
             {
-                ChargementDiffereInitial();
+                ChargementDiffere();
             }
             else
                 etudiantAffichage = filteredList;
@@ -381,6 +230,21 @@ namespace PAGE.Vue.Ecran
             AfficherLesEtuComponent(etudiantAffichage, TYPETRI.GROUPE);
         }
 
+        /// <summary>
+        /// Trie par nombre de notes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void OrderByNbNote(object sender, RoutedEventArgs e)
+        {
+            // Inversion de la valeur de TriCroissant
+            TriCroissant = !TriCroissant;
+
+            //on raffiche les etudiants dans le bonne ordres
+            AfficherLesEtuComponent(etudiantAffichage, TYPETRI.NBNOTE);
+        }
+
 
         /// <summary>
         /// Quand on change le filtre selectionner dans la combobox des filtres
@@ -421,7 +285,7 @@ namespace PAGE.Vue.Ecran
         private void TexteFiltreChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             //si un filtre du combobox a été selectionner
-            if(ComboBoxFiltre.SelectedIndex!=-1)
+            if (ComboBoxFiltre.SelectedIndex != -1)
             {
                 //on recupere le filtre selectionner dans la combobox
                 TYPETRI filterType = TYPETRI.APOGEE;
@@ -476,51 +340,52 @@ namespace PAGE.Vue.Ecran
             return filter;
         }
 
-        private void OpenGestionUtilisateur(object sender, RoutedEventArgs e)
-        {
-            if (users != null)
-            {
-                GestionUtilisateurs gestionUtilisateurs = new GestionUtilisateurs();
-                gestionUtilisateurs.Show();
-            }
-            else
-            {
-                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
-                {
-                    PopUp popUp = new PopUp("Erreur de chargement", "La liste d'utilisateurs n'a pas encore été chargé. Veuillez patienter..", TYPEICON.ERREUR);
-                    popUp.ShowDialog();
-                }
-                else
-                {
-                    PopUp popUp = new PopUp("Loading error", "The user list has not yet been loaded. Please wait..", TYPEICON.ERREUR);
-                    popUp.ShowDialog();
-                }
-            }
-        }
 
         /// <summary>
-        /// Ouvre la fenetre avec les étudiants qui ont une certaine categorie de note
+        /// Ouvre la fenetre principal et ferme la fenetre actuel
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <author>Nordine</author>
-        private void ClickAfficherEtudiantByCategorie(object sender, RoutedEventArgs e)
+        private void FermerFenetre(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            FenetreEtudiantByCategorie fenetreEtudiantByCategorie = new FenetreEtudiantByCategorie(this.etudiants);
-            fenetreEtudiantByCategorie.Show();
-
-            this.Close();
+            FenetrePrincipal fp = new FenetrePrincipal();
+            fp.Show();
         }
-    }
 
-    /// <summary>
-    /// Différent élément qu'on peut utiliser pour trier
-    /// </summary>
-    /// <author>Nordine</author>
-    public enum TYPETRI
-    {
-        PRENOM,NOM,GROUPE,APOGEE,NBNOTE,LOGIN
-    }
+        /// <summary>
+        /// Quand on change la combobox des categorie, chante l'attribut categorie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void ComboBoxCategorie_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            switch (ComboBoxCategorie.SelectedIndex)
+            {
+                case 0:
+                    categorieComboBox = CATEGORIE.ABSENTEISME;
+                    break;
+                case 1:
+                    categorieComboBox = CATEGORIE.PERSONNEL;
+                    break;
+                case 2:
+                    categorieComboBox = CATEGORIE.MEDICAL;
+                    break;
+                case 3:
+                    categorieComboBox = CATEGORIE.RESULTATS;
+                    break;
+                case 4:
+                    categorieComboBox = CATEGORIE.ORIENTATION;
+                    break;
+                case 5:
+                    categorieComboBox = CATEGORIE.AUTRE;
+                    break;
+            }
 
+            ChargementDiffere();
+        }
+
+
+    }
 }
-
