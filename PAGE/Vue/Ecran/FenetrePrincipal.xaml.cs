@@ -32,6 +32,21 @@ namespace PAGE.Vue.Ecran
  
         }
 
+        /// <summary>
+        /// Initialise la fenetre principal
+        /// </summary>
+        /// <param name="token">Token permettant de récupérer le rôle</param>
+        /// <author>Laszlo</author>
+        public FenetrePrincipal(Token token)
+        {
+            InitializeComponent();
+
+            initialContent = (UIElement?)this.Content;
+
+            ChargementDiffereInitial();
+
+
+        }
 
         /// <summary>
         /// Chargement des etudiants différé via l'API et initisalise la liste d'étudiants à afficher
@@ -95,7 +110,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void OpenLoginPage(object sender, RoutedEventArgs e)
         {
-            LoginPage loginPage = new LoginPage();
+            LoginPage loginPage = new LoginPage(new Utilisateur("",""));
             loginPage.Show();
 
             this.Close();

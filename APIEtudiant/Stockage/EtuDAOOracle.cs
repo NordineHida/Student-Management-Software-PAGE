@@ -434,7 +434,7 @@ namespace APIEtudiant.Stockage
                                                   estBoursier, getRegimeString(etu), etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
                                                   etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
 
-                OracleCommand updateCmd = new OracleCommand(insertQuery, con.OracleConnexion);
+                 OracleCommand updateCmd = new OracleCommand(insertQuery, con.OracleConnexion);
 
                 if (updateCmd.ExecuteNonQuery() == 1)
                 {
