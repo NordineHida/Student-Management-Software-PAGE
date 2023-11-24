@@ -335,7 +335,7 @@
         </StackPanel>
 
         <!-- Combobox gérant la catégorie de la note -->
-        <Label Content="{DynamicResource ComboboxCate}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Right"   Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5" Margin="0,0,350,0"/>
+        <Label Content="{DynamicResource ComboboxCate}" FontFamily="{StaticResource OpenSauceOne}" Foreground="#FF2B2B5A" HorizontalAlignment="Right"   Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"  Height="31" RenderTransformOrigin="0.5,0.5" Margin="0,0,350,0"/>
         <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="250" Height="37" Margin="20" BorderThickness="2" SelectionChanged="ComboBoxCategorie_SelectionChanged" VerticalContentAlignment="Center" >
             <ComboBoxItem Content="{DynamicResource CateAbsenteisme}" FontFamily="{StaticResource OpenSauceOne}"/>
             <ComboBoxItem Content="{DynamicResource CatePersonnel}" FontFamily="{StaticResource OpenSauceOne}"/>
