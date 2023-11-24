@@ -94,6 +94,6 @@
         <TextBlock x:Name="txtMessage" Height="Auto" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" Margin="20" TextWrapping="Wrap"/>
 
         <!-- Bouton Ok-->
-        <Button Style="{DynamicResource ButtonStyle1}" Click="OkClick"  Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Ok" FontSize="15" Margin="0,0,20,0" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Height="30" Width="75"/>
+        <Button Style="{DynamicResource ButtonStyle1}" Click="OkClick"  Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Ok" FontSize="15" Margin="0,0,20,0" Foreground="White" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Height="30" Width="75"/>
     </Grid>
 </Window>
