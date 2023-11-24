@@ -208,27 +208,27 @@ namespace PAGE.Stockage
             //Dictionnaire d'étudiant (cle = etudiant , valeur = etudiant)
             Dictionary<Etudiant,int> etudiantEtNbNote = new Dictionary<Etudiant, int>();
 
-            int idCategorie=0;
+            int idCategorie=-1;
 
             switch (categorie)
             {
                 case CATEGORIE.ABSENTEISME:
-                    idCategorie = 1;
+                    idCategorie = 0;
                     break;
                 case CATEGORIE.PERSONNEL:
-                    idCategorie = 2;
+                    idCategorie = 1;
                     break;
                 case CATEGORIE.MEDICAL:
-                    idCategorie = 3;
+                    idCategorie = 2;
                     break;
                 case CATEGORIE.RESULTATS:
-                    idCategorie = 4;
+                    idCategorie = 3;
                     break;
                 case CATEGORIE.ORIENTATION:
-                    idCategorie = 5;
+                    idCategorie = 4;
                     break;
                 case CATEGORIE.AUTRE:
-                    idCategorie = 6;
+                    idCategorie = 5;
                     break;
             }
 
