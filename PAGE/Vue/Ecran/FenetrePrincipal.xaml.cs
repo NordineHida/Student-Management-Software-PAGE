@@ -515,7 +515,7 @@ namespace PAGE.Vue.Ecran
     /// <author>Nordine</author>
     public enum TYPETRI
     {
-        PRENOM,NOM,GROUPE,APOGEE,LOGIN,NBNOTE
+        PRENOM,NOM,GROUPE,APOGEE,NBNOTE,LOGIN
     }
 
 }
