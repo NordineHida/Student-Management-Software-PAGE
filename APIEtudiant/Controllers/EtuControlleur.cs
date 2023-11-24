@@ -1,12 +1,7 @@
 ﻿using APIEtudiant.Model;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using APIEtudiant.Model;
-using System;
+using APIEtudiant.Model.Enumerations;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APIEtudiant.Controllers
 {
@@ -92,6 +87,26 @@ namespace APIEtudiant.Controllers
             //Sinon si l'ajout est un succes alors on renvoi Ok
             else if (EtuManager.Instance.AddSeveralEtu(listeEtu)) reponse = Ok();
 
+            return reponse;
+        }
+
+
+        /// <summary>
+        /// Renvoi tout les étudiants de la BDD qui ont une note de la categorie donner
+        /// </summary>
+        /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
+        /// <author>Nordine</author>
+        [HttpGet("GetAllEtuByCategorie")]
+        public ActionResult<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie)
+        {
+            //Cas par défaut
+            ActionResult<List<Tuple<Etudiant, int>>> reponse = BadRequest();
+
+            //On récupere les etudiants depuis le manager
+            List<Tuple<Etudiant, int>> etudiants = EtuManager.Instance.GetAllEtuByCategorie(categorie);
+
+            //Si c'est pas null on renvoi un Ok avec les etudiants
+            if (etudiants != null) reponse = Ok(etudiants);
             return reponse;
         }
     }
