@@ -132,4 +132,19 @@
     <system:String x:Key="HeaderSupprNote">Supprimer</system:String>
     <system:String x:Key="BtnAfficherEtudiantByCate">Afficher les étudiants par catégorie de note</system:String>
 
+    <system:String x:Key="NoteEtudiant">Notes de l'étudiant :</system:String>
+
+    <!--Page Créer un utilisateur (Lucas) -->
+
+    <system:String x:Key="CreationUtilisateur">Création Utilisateur</system:String>
+    <system:String x:Key="CreerunUtilisateur">Création d'un Utilisateur</system:String>
+
+    <!--Page Gestion des utilisateurs (Lucas) -->
+
+    <system:String x:Key="GestionUser">Gestion des utilisateurs</system:String>
+
+
+
+
+
 </ResourceDictionary>
