@@ -29,6 +29,15 @@ namespace APIEtudiant.Model
         }
 
         /// <summary>
+        /// renvoie le role avec en cle l'annee
+        /// </summary>
+        /// <author>Laszlo</author>
+        public Dictionary<int, ROLE> Roles
+        {
+            get { return roles; }
+            set { roles = value; }
+        }
+        /// <summary>
         /// Construit un utilisateur en lui donnant un login et un mot de passe
         /// </summary>
         /// <param name="login">login de l'utilisateur</param>

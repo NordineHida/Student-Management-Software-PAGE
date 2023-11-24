@@ -29,18 +29,39 @@ namespace APIEtudiant.Stockage
                 try
                 {
                     // On crée la requête SQL
-                    string requete = String.Format("INSERT INTO Utilisateur(idUtilisateur,login,hashPassword)" +
-                        "VALUES(0, '{0}','{1}')",user.Login,HashMdp(user.Mdp));
+                    string requeteCreationUtilisateur = String.Format("INSERT INTO Utilisateur(idUtilisateur,login,hashPassword)" +
+                        "VALUES(0, '{0}','{1}')",user.Login,user.HashMdp);
 
-
+                    
                     //On execute la requete
-                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
+                    OracleCommand cmdCreationUtilisateur = new OracleCommand(requeteCreationUtilisateur, con.OracleConnexion);
 
 
                     //On verifie que la ligne est bien inséré, si oui on passe le bool à true
-                    if (cmd.ExecuteNonQuery() == 1)
+                    if (cmdCreationUtilisateur.ExecuteNonQuery() == 1)
                     {
-                        ajoutReussi = true;
+                        //On récupère l'ID
+                        int idUser = 0;
+                        string getIdRequete = String.Format("SELECT idUtilisateur FROM Utilisateur Where login='{0}'", user.Login);
+
+                        OracleCommand getId = new OracleCommand(getIdRequete, con.OracleConnexion);
+                        OracleDataReader reader = getId.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            idUser = reader.GetInt32(reader.GetOrdinal("idUtilisateur"));
+                        }
+
+                        string requeteInitialisationRole = String.Format("INSERT INTO RoleUtilisateur (annee,idUtilisateur,idRole) VALUES ({0},'{1}',6)", 2023, idUser);
+                        //On execute la requete
+                        OracleCommand cmdInitialisationRole = new OracleCommand(requeteInitialisationRole, con.OracleConnexion);
+
+                        {
+                            if (cmdInitialisationRole.ExecuteNonQuery() == 1)
+                            {
+                                ajoutReussi = true;
+                            }
+                        }
                     }
                 }
                 // Gestion des exceptions

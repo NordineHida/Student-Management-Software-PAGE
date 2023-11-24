@@ -35,6 +35,27 @@ namespace PAGE.Model
         }
 
         /// <summary>
+        /// Renvoie le mot de passe hashé
+        /// </summary>
+        /// <author>Laszlo</author>
+        public string HashMdp
+        {
+            get { return GetHashMdp(mdp); }
+            set { hashMdp = value; }
+        }
+
+        /// <summary>
+        /// renvoie le role avec en cle l'annee
+        /// </summary>
+        /// <author>Laszlo</author>
+        public Dictionary<int, ROLE> Roles
+        {
+            get { return roles; }
+            set {  roles = value; }
+        }
+
+
+        /// <summary>
         /// Construit un utilisateur en lui donnant un login et un mot de passe
         /// </summary>
         /// <param name="login">login de l'utilisateur</param>

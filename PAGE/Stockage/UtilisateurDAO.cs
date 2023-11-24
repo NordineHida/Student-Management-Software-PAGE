@@ -26,6 +26,8 @@ namespace PAGE.Stockage
                 // Spécifiez l'URL de l'API
                 string apiUrl = "https://localhost:7038/Utilisateur/CreateUtilisateur";
 
+                user.Roles[2023] = ROLE.LAMBDA;
+
                 // Convertissez l'Utilisateur en JSON
                 string userSerialise = JsonSerializer.Serialize(user);
 
