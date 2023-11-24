@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="FenetrePrincipalBis" 
         Height="1000" Width="1500"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Window.Background>
@@ -351,8 +353,8 @@
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
 
-            <Button ToolTip="{DynamicResource ToolTipPageCrerutilisateur}" Style="{StaticResource ImageButtonStyle}" Click="OpenCreationUtilisateur">
-                <Image Source="/Vue/Ressources/Picto/account.png" Stretch="Uniform" Margin="7"/>
+            <Button ToolTip="{DynamicResource ToolTipPageGestionUtilisateurs}" Style="{StaticResource ImageButtonStyle}" Click="OpenGestionUtilisateur">
+                <Image Source="/Vue/Ressources/Picto/account-edit.png" Stretch="Uniform" Margin="7"/>
             </Button>
             
             <Button ToolTip="{DynamicResource ToolTipPageConnexion}" Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage">

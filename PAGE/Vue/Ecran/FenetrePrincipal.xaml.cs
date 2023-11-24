@@ -32,7 +32,6 @@ namespace PAGE.Vue.Ecran
             initialContent = (UIElement?)this.Content;
 
             ChargementDiffereInitial();
-
  
         }
 
@@ -485,12 +484,12 @@ namespace PAGE.Vue.Ecran
             return filter;
         }
 
-        private void OpenCreationUtilisateur(object sender, RoutedEventArgs e)
+        private void OpenGestionUtilisateur(object sender, RoutedEventArgs e)
         {
-            if (users!=null) 
+            if (users != null)
             {
-                CreationUtilisateur creerUtilisateur = new CreationUtilisateur(new Utilisateur("", ""), users);
-                creerUtilisateur.Show();
+                GestionUtilisateurs gestionUtilisateurs = new GestionUtilisateurs();
+                gestionUtilisateurs.Show();
             }
             else
             {
@@ -506,6 +505,7 @@ namespace PAGE.Vue.Ecran
                 }
             }
         }
+
     }
 
     /// <summary>

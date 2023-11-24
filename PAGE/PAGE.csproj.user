@@ -22,6 +22,9 @@
     <Compile Update="Vue\Ecran\FenetrePrincipal.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\GestionUtilisateurs.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -55,6 +58,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\FenetrePrincipal.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\GestionUtilisateurs.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\InformationsSupplementaires.xaml">

@@ -14,6 +14,8 @@
     <system:String x:Key="NumApogee">Apogee</system:String>
     <system:String x:Key="Oui">Yes</system:String>
     <system:String x:Key="Non">No</system:String>
+    <system:String x:Key="Login">Login</system:String>
+
 
     <!--Parametre (nordine)-->
     <system:String x:Key="TitreParam">Settings</system:String>
@@ -65,8 +67,9 @@
 
 
     <!--ToolTips (Lucas) -->
-    <system:String x:Key="ToolTipPageConnexion">Login page</system:String>
+    <system:String x:Key="ToolTipPageConnexion">Login</system:String>
     <system:String x:Key="ToolTipPageCrerutilisateur">Create User</system:String>
+    <system:String x:Key="ToolTipPageGestionUtilisateurs">User Management</system:String>
     <system:String x:Key="ToolTipPageParamètres">Parameters</system:String>
     <system:String x:Key="ToolTipImportation">Import students</system:String>
     <system:String x:Key="ToolTipActualisation">Refresh student list</system:String>
