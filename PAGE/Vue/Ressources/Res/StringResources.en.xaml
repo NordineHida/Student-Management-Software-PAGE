@@ -128,11 +128,17 @@
     <system:String x:Key="BtnAfficherInfosComp">More Informations</system:String>
     <system:String x:Key="BtnCacherInfoComp">Hide Informations</system:String>
 
-
+    <system:String x:Key="NoteEtudiant">Student's notes :</system:String>
     <system:String x:Key="HeaderSupprNote">Delete</system:String>
     <system:String x:Key="BtnAfficherEtudiantByCate">Show student by note's category</system:String>
 
+    <!--Pages Créer un utilisateur (Lucas) -->
 
+    <system:String x:Key="CreationUtilisateur">User Creation</system:String>
+    <system:String x:Key="CreerunUtilisateur">User Creation</system:String>
+
+    <!--Page Gestion des utilisateurs (Lucas) -->
+
+    <system:String x:Key="GestionUser">User Management</system:String>
     <system:String x:Key="TootTipFenetreCategorie">Show student by note's category</system:String>
-    
 </ResourceDictionary>

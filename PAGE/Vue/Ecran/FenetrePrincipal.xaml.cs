@@ -27,9 +27,7 @@ namespace PAGE.Vue.Ecran
         public FenetrePrincipal()
         {
             InitializeComponent();
-
-            ChargementDiffereInitial();
- 
+            ChargementDiffereInitial(); 
         }
 
 
@@ -95,7 +93,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void OpenLoginPage(object sender, RoutedEventArgs e)
         {
-            LoginPage loginPage = new LoginPage();
+            LoginPage loginPage = new LoginPage(new Utilisateur("",""));
             loginPage.Show();
 
             this.Close();

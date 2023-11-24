@@ -7,7 +7,7 @@ namespace APIEtudiant.Model
     public class Utilisateur
     {
         private string login;
-        private string mdp;
+        private string hashMdp;
         private Dictionary<int, ROLE> roles;
 
         /// <summary>
@@ -22,10 +22,10 @@ namespace APIEtudiant.Model
         /// <summary>
         /// Renvoie ou définit le mot de passe de l'utilisateur
         /// </summary>
-        public string Mdp
+        public string HashMdp
         {
-            get { return mdp; }
-            set { mdp = value; }
+            get { return hashMdp; }
+            set { hashMdp = value; }
         }
 
         /// <summary>
@@ -34,10 +34,10 @@ namespace APIEtudiant.Model
         /// <param name="login">login de l'utilisateur</param>
         /// <param name="mdp">mot de passe de l'utilisateur</param>
         /// <author>Laszlo</author>
-        public Utilisateur(string login, string mdp)
+        public Utilisateur(string login, string hashMdp)
         {
             this.login = login;
-            this.mdp = mdp;
+            this.hashMdp = hashMdp;
             roles = new Dictionary<int, ROLE>();
         }
 

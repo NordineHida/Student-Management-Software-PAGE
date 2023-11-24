@@ -36,7 +36,7 @@ namespace PAGE.Vue.Ecran
         {
             if (isCreateOk()) 
             {
-                UtilisateurDAO dao = new UtilisateurDAO();
+                IUtilisateurDAO dao = new UtilisateurDAO();
                 dao.CreateUtilisateur(user);
                 users.AddUser(user);
                 this.Close();

@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
         Title="FenetreEtudiantByCategorie"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
         Closing="FermerFenetre"
         Height="1000" Width="1500"    
         xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
