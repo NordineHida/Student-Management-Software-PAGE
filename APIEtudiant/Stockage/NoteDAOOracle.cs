@@ -130,7 +130,7 @@ namespace APIEtudiant.Stockage
                     OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
 
 
-                    //On verifie que la ligne est bien inséré, si oui on passe le bool à true
+                    //On verifie que la ligne est bien supprimé, si oui on passe le bool à true
                     if (cmd.ExecuteNonQuery() == 1)
                     {
                         suppressionReussie = true;

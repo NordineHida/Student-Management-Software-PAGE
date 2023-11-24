@@ -111,5 +111,58 @@ namespace APIEtudiant.Stockage
             return annees;
 
         }
+
+        /// <summary>
+        /// Supprime une année de la BDD
+        /// </summary>
+        /// <param name="annee">Année à supprimer</param>
+        /// <returns>true si la suppression est un succès</returns>
+        /// <author>Yamato</author>
+        public bool DeleteAnnee(int annee)
+        {
+            bool suppressionReussie = false;
+            if (annee != null)
+            {
+                // Création d'une connexion Oracle
+                Connection con = new Connection();
+
+                try
+                {
+                    // On crée la requête SQL
+                    string requete = $"DELETE FROM ANNEE WHERE anneeDebut={annee}";
+
+
+                    //On execute la requete
+                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
+
+
+                    //On verifie que la ligne est bien supprimée, si oui on passe le bool à true
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        suppressionReussie = true;
+                    }
+                }
+                // Gestion des exceptions
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    try
+                    {
+                        if (con != null)
+                        {
+                            con.Close();
+                        }
+                    }
+                    catch (OracleException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            return suppressionReussie;
+        }
     }
 }

@@ -71,7 +71,7 @@ namespace PAGE.Stockage
         /// <param name="annee">année supprimé</param>
         /// <returns>la tache qu'est de supprimer une année de la BDD</returns>
         /// <author>Yamato</author>
-        public async Task DeleteAnnee(Annee annee)
+        public async Task DeleteAnnee(int annee)
         {
             // Créez une instance de HttpClient
             using (HttpClient client = new HttpClient())

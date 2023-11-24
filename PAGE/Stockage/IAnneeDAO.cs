@@ -27,5 +27,12 @@ namespace PAGE.Stockage
         /// <returns>liste d'années de la bdd</returns>
         /// <author>Yamato</author>
         public Task<List<Annee>> GetAllAnnee();
+
+        /// <summary>
+        /// Supprime une année de la bdd
+        /// </summary>
+        /// <param name="annee">année à supprimer</param>
+        /// <returns>true si la suppression est effectué</returns>
+        public Task DeleteAnnee(int annee);
     }
 }

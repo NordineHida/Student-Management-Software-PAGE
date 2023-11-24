@@ -54,5 +54,10 @@ namespace APIEtudiant.Model
         {
             return AnneeDAO.GetAllAnnee();
         }
+
+        public bool DeleteAnnee(int annee)
+        {
+            return AnneeDAO.DeleteAnnee(annee);
+        }
     }
 }

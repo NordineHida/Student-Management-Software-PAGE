@@ -15,6 +15,7 @@ namespace PAGE.Model
     {
         private List<Etudiant> etudiants;
         private NOMPROMOTION nomPromotion;
+        private int anneeDebut;
 
         /// <summary>
         /// Renvoie ou définit les étudiants composant la promotion
@@ -29,15 +30,20 @@ namespace PAGE.Model
         public NOMPROMOTION NomPromotion { get { return nomPromotion; } set {  nomPromotion = value; } }
 
         /// <summary>
+        /// Renvoie ou définit l'année de début de la promotion
+        /// </summary>
+        /// <author>Yamato</author>
+        public int AnneeDebut { get { return anneeDebut; } set { anneeDebut = value; } }
+
+        /// <summary>
         /// Constructeur de Promotion
         /// </summary>
-        /// <param name="etu">etudiants de la promotion</param>
         /// <param name="nomPromo">nom de la promotion (premiere année, deuxieme année, troisieme année)</param>
         /// <author>Yamato</author>
-        public Promotion(List<Etudiant> etu, NOMPROMOTION nomPromo) 
+        public Promotion(NOMPROMOTION nomPromo, int anneeDebut) 
         {
-            this.etudiants = etu;
             this.nomPromotion = nomPromo;
+            this.anneeDebut = anneeDebut;
         }
     }
 }

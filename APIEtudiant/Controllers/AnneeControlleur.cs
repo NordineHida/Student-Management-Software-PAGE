@@ -47,5 +47,23 @@ namespace APIEtudiant.Controllers
             if (annee != null) reponse = Ok(annee);
             return reponse;
         }
+
+        /// <summary>
+        /// Supprime une année de la BDD
+        /// </summary>
+        /// <param name="annee">Année à Supprimer</param>
+        /// <author>Yamato</author>
+        [HttpGet("DeleteAnnee")]
+        public ActionResult DeleteAnnee(int annee)
+        {
+            ActionResult reponse = BadRequest();
+            //Si l'année n'est pas null
+            if (annee != null)
+            {
+                //si la suppression de l'année a été un succès on renvoie OK
+                if (AnneeManager.Instance.DeleteAnnee(annee)) reponse = Ok();
+            }
+            return reponse;
+        }
     }
 }

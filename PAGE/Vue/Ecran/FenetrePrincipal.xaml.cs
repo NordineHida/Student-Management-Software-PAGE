@@ -21,6 +21,8 @@ namespace PAGE.Vue.Ecran
         private List<Etudiant> etudiantAffichage;
         private bool TriCroissant=false;
 
+        Promotion promo;
+
         /// <summary>
         /// Initialise la fenetre principal
         /// </summary>
@@ -33,7 +35,21 @@ namespace PAGE.Vue.Ecran
 
             ChargementDiffereInitial();
 
- 
+        }
+
+        /// <summary>
+        /// Initialise la fenetre principal depuis l'annee selectionner
+        /// </summary>
+        /// <author>Nordine/Yamato</author>
+        public FenetrePrincipal(Promotion promo)
+        {
+            InitializeComponent();
+
+            initialContent = (UIElement?)this.Content;
+
+            ChargementDiffereInitial();
+            this.promo = promo;
+
         }
 
 

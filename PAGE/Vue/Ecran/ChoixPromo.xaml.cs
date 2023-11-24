@@ -1,5 +1,7 @@
 ﻿using PAGE.Model;
+using PAGE.Model.Enumerations;
 using PAGE.Stockage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -12,7 +14,19 @@ namespace PAGE.Vue.Ecran
     public partial class ChoixPromo : Window
     {
         private List<Annee> annees = new List<Annee>();
+        private Promotion promotion;
+
+        /// <summary>
+        /// Renvoie une liste d'année
+        /// </summary>
+        /// <author>Yamato</author>
         public List<Annee> Annees { get { return annees; } }
+
+        /// <summary>
+        /// Renvoie ou définit la promotion selectionnée dans la combobox
+        /// </summary>
+        /// <author>Yamato</author>
+        public Promotion Promotion { get { return promotion; } set { promotion = value; } }
 
         public ChoixPromo()
         {
@@ -31,10 +45,40 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void ValiderChoixPromo(object sender, RoutedEventArgs e)
         {
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
-            fenetrePrincipal.Show();
+            if (ComboBoxAnnee.SelectedIndex == -1 || ComboBoxPromotion.SelectedIndex == -1)
+            {
+                PopUp popUp = new PopUp("Erreur de selection", "Veuillez séléctionner une année et une promotion", TYPEICON.ERREUR);
+                popUp.ShowDialog();
+            }
+            else
+            {
+                // Prendre l'année selectionné
+                NOMPROMOTION np;
+                switch (ComboBoxPromotion.SelectedIndex)
+                {
+                    case 0:
+                        np = NOMPROMOTION.BUT1;
+                        break;
+                    case 1:
+                        np = NOMPROMOTION.BUT2;
+                        break;
+                    default:
+                        np = NOMPROMOTION.BUT3;
+                        break;
+                }
 
-            this.Close();
+                
+                Annee anneeeSelection = (Annee)ComboBoxAnnee.Items[ComboBoxAnnee.SelectedIndex];
+
+
+
+                FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(new Promotion(np,anneeeSelection.AnneeDebut));
+                fenetrePrincipal.Show();
+
+                this.Close();
+            }
+
+
         }
 
         /// <summary>
@@ -71,6 +115,26 @@ namespace PAGE.Vue.Ecran
             // Création de l'année 
             AnneeDAO dao = new AnneeDAO();
             dao.CreateAnnee(nouvelleAnnee.AnneeDebut);
+        }
+
+        private void SupprimerAnnee(object sender, RoutedEventArgs e)
+        {
+            Annee anneeSelectionnee = ComboBoxAnnee.SelectedItem as Annee;
+
+            if (anneeSelectionnee != null)
+            {
+                // Supprimez l'année de la liste
+                annees.Remove(anneeSelectionnee);
+
+                // Mettez à jour la ComboBox
+                ComboBoxAnnee.ItemsSource = null;
+                ComboBoxAnnee.ItemsSource = annees;
+                ComboBoxAnnee.DisplayMemberPath = "AnneeDebut";
+
+                // Supprimez l'année de la base de données
+                AnneeDAO dao = new AnneeDAO();
+                dao.DeleteAnnee(anneeSelectionnee.AnneeDebut);
+            }
         }
     }
 }
