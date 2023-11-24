@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace PAGE.Vue.Ecran
 {
@@ -15,15 +16,17 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class FenetreEtudiantByCategorie : Window, IObservateur
     {
-        private Utilisateurs users;
         private Etudiants etudiants;
         private List<Etudiant> etudiantAffichage;
+        private Dictionary<Etudiant, int> etudiantEtNote;
         private bool TriCroissant = false;
+        private CATEGORIE categorieComboBox;
 
         public FenetreEtudiantByCategorie(Etudiants etudiants)
         {
             InitializeComponent();
             this.etudiants = etudiants;
+            etudiantEtNote = new Dictionary<Etudiant, int>();
         }
 
 
@@ -33,20 +36,11 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private async Task ChargementDiffere()
         {
-            // On récupère l'ensemble des étudiants via l'API
+            // On récupère l'ensemble des étudiants et leur nbNote via l'API
             EtuDAO dao = new EtuDAO();
-            this.etudiants = new Etudiants((List<Etudiant>)await dao.GetAllEtu());
 
-            //On récupère l'ensemble des utilisateurs via l'API
-            List<Utilisateur> listUser;
-            Dictionary<string, Utilisateur> dicoUser = new Dictionary<string, Utilisateur>();
-            UtilisateurDAO userDAO = new UtilisateurDAO();
-            listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
-            for (int i = 0; i < listUser.Count; i++)
-            {
-                dicoUser.Add(listUser[i].Login, listUser[i]);
-            }
-            this.users = new Utilisateurs(dicoUser);
+            etudiantEtNote = await dao.GetAllEtuByCategorie(categorieComboBox);
+            this.etudiants = new Etudiants(etudiantEtNote.Keys.ToList());
 
             //Affiche les components des etudiants (trie par numero apogee par defaut
             AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
@@ -156,49 +150,17 @@ namespace PAGE.Vue.Ecran
             StackPanelEtudiants.Children.Clear();
 
             // Applique le filtre sur la liste d'étudiants
-            List<Etudiant> filteredList = (List<Etudiant>)listEtudiants.Where(GetFilter(filterType, filterText)).ToList();
+            List<Etudiant> filteredList = listEtudiants.Where(GetFilter(filterType, filterText)).ToList();
 
             if (String.IsNullOrEmpty(filterText))
             {
-                ChargementDiffereInitial();
+                ChargementDiffere();
             }
             else
                 etudiantAffichage = filteredList;
 
 
             AfficherLesEtuComponent(filteredList, null);
-        }
-
-        /// <summary>
-        /// Chargement des etudiants différé via l'API et initisalise la liste d'étudiants à afficher
-        /// </summary>
-        /// <author>Nordine</author>
-        private async Task ChargementDiffereInitial()
-        {
-            // On récupère l'ensemble des étudiants via l'API
-            EtuDAO Etudao = new EtuDAO();
-            this.etudiants = new Etudiants((List<Etudiant>)await Etudao.GetAllEtu());
-
-            //On récupère l'ensemble des utilisateurs via l'API
-            List<Utilisateur> listUser;
-            Dictionary<string, Utilisateur> dicoUser = new Dictionary<string, Utilisateur>();
-            UtilisateurDAO userDAO = new UtilisateurDAO();
-            listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
-            for (int i = 0; i < listUser.Count; i++)
-            {
-                dicoUser.Add(listUser[i].Login, listUser[i]);
-            }
-            this.users = new Utilisateurs(dicoUser);
-
-
-            //Affiche les components des etudiants (trie par numero apogee par defaut
-            AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
-
-            // On enregistre cette fenetre comme observeur des notes
-            etudiants.Register(this);
-
-            //initialisation etudiant a afficher
-            etudiantAffichage = etudiants.ListeEtu;
         }
 
 
@@ -371,5 +333,39 @@ namespace PAGE.Vue.Ecran
 
             this.Close();
         }
+
+        /// <summary>
+        /// Quand on change la combobox des categorie, chante l'attribut categorie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void ComboBoxCategorie_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            switch (ComboBoxCategorie.SelectedIndex)
+            {
+                case 0:
+                    categorieComboBox = CATEGORIE.ABSENTEISME;
+                    break;
+                case 1:
+                    categorieComboBox = CATEGORIE.PERSONNEL;
+                    break;
+                case 2:
+                    categorieComboBox = CATEGORIE.MEDICAL;
+                    break;
+                case 3:
+                    categorieComboBox = CATEGORIE.RESULTATS;
+                    break;
+                case 4:
+                    categorieComboBox = CATEGORIE.ORIENTATION;
+                    break;
+                case 5:
+                    categorieComboBox = CATEGORIE.AUTRE;
+                    break;
+            }
+
+            ChargementDiffere();
+        }
+
     }
 }

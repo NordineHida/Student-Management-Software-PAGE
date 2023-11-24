@@ -334,6 +334,17 @@
             <TextBox  x:Name="TexteFiltre" TextChanged="TexteFiltreChanged" HorizontalAlignment="Left" VerticalAlignment="Center" Width="180"/>
         </StackPanel>
 
+        <!-- Combobox gérant la catégorie de la note -->
+        <Label Content="{DynamicResource ComboboxCate}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Right"   Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5" Margin="0,0,350,0"/>
+        <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="250" Height="37" Margin="20" BorderThickness="2" SelectionChanged="ComboBoxCategorie_SelectionChanged" VerticalContentAlignment="Center" >
+            <ComboBoxItem Content="{DynamicResource CateAbsenteisme}" FontFamily="{StaticResource OpenSauceOne}"/>
+            <ComboBoxItem Content="{DynamicResource CatePersonnel}" FontFamily="{StaticResource OpenSauceOne}"/>
+            <ComboBoxItem Content="{DynamicResource CateMedical}" FontFamily="{StaticResource OpenSauceOne}"/>
+            <ComboBoxItem Content="{DynamicResource CateResultats}" FontFamily="{StaticResource OpenSauceOne}"/>
+            <ComboBoxItem Content="{DynamicResource CateOrientation}" FontFamily="{StaticResource OpenSauceOne}"/>
+            <ComboBoxItem Content="{DynamicResource CateAutre}" FontFamily="{StaticResource OpenSauceOne}"/>
+        </ComboBox>
+
         <!--Header du scrollViewer-->
         <WrapPanel Grid.Row="1" Grid.Column="1" Background="#3DA79D" Margin="30, 5, 30, 0" Height="50" >
             <Button Content="{DynamicResource GroupeHead}" Height="50" Click="OrderByGroupe" HorizontalAlignment="Left"  MinWidth="120" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
@@ -350,7 +361,7 @@
 
                 <!-- gestionnaire d'événements pour le clique sur les étudiant (Nordine) -->
                 <StackPanel.Resources>
-                    <Style TargetType="local:EtudiantComponent">
+                    <Style TargetType="local:EtudiantEtNoteComponent">
                         <EventSetter Event="MouseDoubleClick" Handler="EtudiantComponent_MouseDoubleClick"/>
 
                     </Style>
