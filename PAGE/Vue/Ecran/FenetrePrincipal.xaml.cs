@@ -36,6 +36,21 @@ namespace PAGE.Vue.Ecran
  
         }
 
+        /// <summary>
+        /// Initialise la fenetre principal
+        /// </summary>
+        /// <param name="token">Token permettant de récupérer le rôle</param>
+        /// <author>Laszlo</author>
+        public FenetrePrincipal(Token token)
+        {
+            InitializeComponent();
+
+            initialContent = (UIElement?)this.Content;
+
+            ChargementDiffereInitial();
+
+
+        }
 
         /// <summary>
         /// Chargement des etudiants différé via l'API et initisalise la liste d'étudiants à afficher

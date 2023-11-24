@@ -57,7 +57,7 @@ namespace PAGE.Vue.Ecran
 
             IUtilisateurDAO dao = new UtilisateurDAO();
             Token token = await dao.Connexion(user.Login,user.HashMdp);
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
+            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(token);
             fenetrePrincipal.Show();
 
             this.Close();
