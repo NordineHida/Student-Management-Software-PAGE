@@ -64,6 +64,7 @@
     <None Remove="Vue\Ressources\Picto\filter-settings.svg" />
     <None Remove="Vue\Ressources\Picto\import.png" />
     <None Remove="Vue\Ressources\Picto\information.png" />
+    <None Remove="Vue\Ressources\Picto\note-search.png" />
     <None Remove="Vue\Ressources\Picto\refresh.png" />
     <None Remove="Vue\Ressources\Picto\settings.png" />
     <None Remove="Vue\Ressources\Picto\settings.svg" />
@@ -114,6 +115,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Vue\Ressources\Fonts\OpenSauceOne-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Vue\Ressources\Picto\note-search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Vue\Ressources\Img\Notes\noteAbsenteisme.png">

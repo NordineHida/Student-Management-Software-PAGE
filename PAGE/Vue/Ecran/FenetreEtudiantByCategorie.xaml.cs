@@ -43,6 +43,8 @@ namespace PAGE.Vue.Ecran
             //await dao.GetAllEtuByCategorie(categorieComboBox);
             this.etudiants = new Etudiants(etudiantEtNote.Select(tuple => tuple.Item1).ToList());
 
+            etudiantAffichage = etudiants.ListeEtu;
+
             //Affiche les components des etudiants (trie par numero apogee par defaut
             AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
 
@@ -273,7 +275,9 @@ namespace PAGE.Vue.Ecran
             string filterText = TexteFiltre.Text;
 
             // Appel de la méthode avec le filtre sélectionné
-            AfficherLesEtuComponentFiltre(etudiants.ListeEtu, filterType, filterText);
+            AfficherLesEtuComponentFiltre(etudiantEtNote.Select(tuple => tuple.Item1).ToList(), filterType, filterText);
+
+
         }
 
         /// <summary>
@@ -306,7 +310,7 @@ namespace PAGE.Vue.Ecran
                 string filterText = TexteFiltre.Text;
 
                 // Appel de la méthode avec le filtre sélectionné
-                AfficherLesEtuComponentFiltre(etudiantAffichage, filterType, filterText);
+                AfficherLesEtuComponentFiltre(etudiantEtNote.Select(tuple => tuple.Item1).ToList(), filterType, filterText);
             }
 
         }

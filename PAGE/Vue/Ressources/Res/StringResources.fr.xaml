@@ -130,6 +130,7 @@
     <system:String x:Key="BtnAfficherInfosComp">Afficher les informations complémentaires</system:String>
 
     <system:String x:Key="HeaderSupprNote">Supprimer</system:String>
-    <system:String x:Key="BtnAfficherEtudiantByCate">Afficher les étudiants par catégorie de note</system:String>
+
+    <system:String x:Key="TootTipFenetreCategorie">Afficher les étudiants par catégorie de note</system:String>
 
 </ResourceDictionary>

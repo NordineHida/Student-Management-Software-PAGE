@@ -393,8 +393,6 @@
 
         <Rectangle HorizontalAlignment="Left" Height="26" Fill="#FF3DA79D" VerticalAlignment="Top" Width="79"  RadiusX="10" RadiusY="10" Grid.Column="1" Margin="30,67,0,0"/>
 
-        <!-- Bouton pour afficher la fenetre des étudiants par categorie de note -->
-        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" Content="{DynamicResource BtnAfficherEtudiantByCate}" Click="ClickAfficherEtudiantByCategorie" Foreground="White" />
 
         <!-- search bar des étudiants (Nordine/Stephane) -->
         <StackPanel Grid.Column="1" Grid.Row="0" Margin="30,70,0,0">
@@ -409,13 +407,17 @@
 
         </StackPanel>
 
-        <!-- Buttons -->
+        <!-- Buttons (Nordine) -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
 
             <Button ToolTip="{DynamicResource ToolTipPageGestionUtilisateurs}" Style="{StaticResource ImageButtonStyle}" Click="OpenGestionUtilisateur">
                 <Image Source="/Vue/Ressources/Picto/account-edit.png" Stretch="Uniform" Margin="7"/>
             </Button>
-            
+
+            <Button ToolTip="{DynamicResource TootTipFenetreCategorie}" Style="{StaticResource ImageButtonStyle}" Click="ClickAfficherEtudiantByCategorie">
+                <Image Source="/Vue/Ressources/Picto/note-search.png" Stretch="Uniform" Margin="7"/>
+            </Button>
+
             <Button ToolTip="{DynamicResource ToolTipPageConnexion}" Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage">
                 <Image Source="/Vue/Ressources/Picto/account.png" Stretch="Uniform" Margin="7"/>
             </Button>

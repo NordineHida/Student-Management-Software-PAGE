@@ -132,4 +132,7 @@
     <system:String x:Key="HeaderSupprNote">Delete</system:String>
     <system:String x:Key="BtnAfficherEtudiantByCate">Show student by note's category</system:String>
 
+
+    <system:String x:Key="TootTipFenetreCategorie">Show student by note's category</system:String>
+    
 </ResourceDictionary>
