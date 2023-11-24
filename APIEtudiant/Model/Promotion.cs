@@ -36,9 +36,8 @@ namespace APIEtudiant.Model
         /// <param name="Etudiants">etudiants de la promotion</param>
         /// <param name="NomPromotion">nom de la promotion (premiere année, deuxieme année, troisieme année)</param>
         /// <author>Yamato</author>
-        public Promotion(List<Etudiant> Etudiants, NOMPROMOTION NomPromotion, int AnneeDebut)
+        public Promotion(NOMPROMOTION NomPromotion, int AnneeDebut)
         {
-            this.etudiants = Etudiants;
             this.nomPromotion = NomPromotion;
             this.anneeDebut = AnneeDebut;
         }
