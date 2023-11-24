@@ -85,13 +85,13 @@
 
         <!-- Combobox gérant le login -->
         <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="215,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Center" Width="171" RadiusX="10" RadiusY="10" Grid.Row="1"/>
-        <Label Grid.Column="1" FontSize="15" Content="{DynamicResource LabelLogin}" FontFamily="{StaticResource OpenSauceOne}"  HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="215,0,0,0" Grid.Row="1" VerticalAlignment="Center" Foreground="#FFFFFF" Width="171" Height="54"/>
+        <Label Grid.Column="1" FontSize="19" Content="{DynamicResource LabelLogin}" FontFamily="{StaticResource OpenSauceOne}"  HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="215,0,0,0" Grid.Row="1" VerticalAlignment="Center" Foreground="#FFFFFF" Width="171" Height="54"/>
         <TextBox Style="{DynamicResource TextBoxStyle1}" FontSize="20" x:Name="txtUsername" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" Height="54" BorderThickness="2" Grid.ColumnSpan="2" Grid.Row="1" Margin="380,0,0,0" />
 
 
         <!-- Combobox gérant le MDP -->
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="54" Margin="215,50,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="171" RadiusX="10" RadiusY="10"/>
-        <Label FontFamily="{StaticResource OpenSauceOne}"  Grid.Column="1" FontSize="15" Content="{DynamicResource LabelPassword}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="215,50,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="54" RenderTransformOrigin="0.5,0.5" Width="171"/>
+        <Label FontFamily="{StaticResource OpenSauceOne}"  Grid.Column="1" FontSize="19" Content="{DynamicResource LabelPassword}" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="215,50,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="54" RenderTransformOrigin="0.5,0.5" Width="171"/>
         <TextBox Style="{DynamicResource TextBoxStyle1}" FontSize="20" x:Name="txtPassword" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="54" Margin="380,50,0,0" BorderThickness="2" Text="{Binding Mdp}" Grid.ColumnSpan="2"/>
 
 

@@ -67,6 +67,7 @@
 
     <!--ToolTips (Lucas) -->
     <system:String x:Key="ToolTipPageConnexion">Page de connexion</system:String>
+    <system:String x:Key="ToolTipPageCrerutilisateur">Créer un utilisateur</system:String>
     <system:String x:Key="ToolTipPageParamètres">Paramètres</system:String>
     <system:String x:Key="ToolTipImportation">Importer des étudiants</system:String>
     <system:String x:Key="ToolTipActualisation">Actualiser la liste des étudiants</system:String>

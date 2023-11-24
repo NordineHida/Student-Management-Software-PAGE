@@ -351,7 +351,7 @@
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
 
-            <Button ToolTip="Machin" Style="{StaticResource ImageButtonStyle}" Click="OpenCreationUtilisateur">
+            <Button ToolTip="{DynamicResource ToolTipPageCrerutilisateur}" Style="{StaticResource ImageButtonStyle}" Click="OpenCreationUtilisateur">
                 <Image Source="/Vue/Ressources/Picto/account.png" Stretch="Uniform" Margin="7"/>
             </Button>
             
