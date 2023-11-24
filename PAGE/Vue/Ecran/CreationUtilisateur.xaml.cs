@@ -55,20 +55,47 @@ namespace PAGE.Vue.Ecran
             if (txtLogin.Text == "")
             {
                 ok = false;
-                PopUp popUp = new PopUp("Création", "Le champ de login ne doit pas être vide", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ de login ne doit pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The login field must not be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
             if (txtMDP.Text == "")
             {
                 ok = false;
-                PopUp popUp = new PopUp("Création", "Le champ de mot de passe ne doit pas être vide", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+                
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ de mot de passe ne doit pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The password field must not be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
             else if (users.ListUser.ContainsKey(txtLogin.Text))
             {
                 ok = false;
-                PopUp popUp = new PopUp("Création", "Ce login est déjà pris : Choisissez-en un autre", TYPEICON.ERREUR);
-                popUp.ShowDialog();
+
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Ce login est déjà pris : Choisissez-en un autre", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "This login is already taken: Choose another one", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
             }
             return ok;
         }
