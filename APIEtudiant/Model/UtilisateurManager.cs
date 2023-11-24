@@ -73,8 +73,8 @@ namespace APIEtudiant.Model
         /// Crée un Token pour un utilisateur
         /// </summary>
         /// <param name="utilisateur">Utilisateur que le token vise</param>
-        /// <returns>vrai si le token est créé, faux sinon</returns>
-        public bool CreateToken(Utilisateur utilisateur)
+        /// <returns>le token créé</returns>
+        public Token CreateToken(Utilisateur utilisateur)
         {
             return TokenDAO.CreateToken(utilisateur);
         }

@@ -10,14 +10,14 @@ namespace APIEtudiant.Stockage
     public class TokenDAOOracle : ITokenDAO
     {
         /// <summary>
-        /// Ajoute un token à la BDD
+        /// Ajoute un token à la BDD puis le récupère
         /// </summary>
         /// <param name="note">token à ajouter</param>
         /// <returns>true si l'ajout est un succès</returns>
         /// <author>Laszlo</author>
         public Token CreateToken(Utilisateur user)
         {
-                Token tokenCree = new Token(-1, DateTime.Now);
+                Token tokenCree = new Token(null, DateTime.Now.AddMilliseconds(-1));
                 // Création d'une connexion Oracle
                 Connection con = new Connection();
                 
@@ -35,30 +35,45 @@ namespace APIEtudiant.Stockage
                          idUser = reader.GetInt32(reader.GetOrdinal("idUtilisateur"));
                     }
 
-                    string requeteTokenExiste = String.Format("SELECT * FROM Token Where idUtilisateur={0} AND datelimite>TO_DATE('{1}', 'YYYY-MM-DD'))", idUser, DateTime.Now);
+                    string requeteTokenExiste = String.Format("SELECT COUNT(*) FROM Token Where idUtilisateur={0} AND datelimite>TO_DATE('{1}', 'DD-MM-YYYY HH-MI-SS')", idUser, DateTime.Now);
                     OracleCommand TokenExiste = new OracleCommand(requeteTokenExiste, con.OracleConnexion);
                     reader = TokenExiste.ExecuteReader();
-
-                //Vérifier si un token existe déja : si oui, le supprimer et créer un nuveau
+                    bool isInsertOk = false;
+                    //Vérifier si un token existe déja : si oui, le supprimer et créer un nuveau
                     while (reader.Read())
                     {
-                        
+                        if (reader.GetInt32(reader.GetOrdinal("COUNT(*)")) == 0)
+                        {
+                            isInsertOk = true;
+                        }
+                        else
+                        {
+                            string requeteSuppression = String.Format("DELETE FROM TOKEN WHERE idUtilisateur={0} AND datelimite>TO_DATE('{1}', 'DD-MM-YYYY HH-MI-SS')", idUser, DateTime.Now);
+                            OracleCommand delete = new OracleCommand(requeteSuppression, con.OracleConnexion);
+                            if (delete.ExecuteNonQuery() == 1)
+                            {
+                                isInsertOk=true;
+                            }
                     }
+                    }
+
+                    DateTime dateTime = DateTime.Now.AddMinutes(10);
+                    // On insère la ligne dans la BDD
                     // On crée la requête SQL
                     string requeteInsertion = String.Format("INSERT INTO Token(idUtilisateur,token,datelimite)" +
-                        "VALUES({0}, '{1}', TO_DATE('{2}', 'YYYY-MM-DD'))",idUser,user.Login , DateTime.Now);
+                            "VALUES({0}, '{1}', TO_DATE('{2}', 'DD-MM-YYYY HH-MI-SS'))", idUser, user.Login, dateTime);
 
 
-                    //On execute la requete
+                    // On execute la requete
                     OracleCommand cmd = new OracleCommand(requeteInsertion, con.OracleConnexion);
-
-
-                    //On verifie que la ligne est bien inséré, si oui on récupère ce Token
+                    //On verifie que la ligne est bien insérée, si oui on récupère ce Token
                     if (cmd.ExecuteNonQuery() == 1)
                     {
-                        DateTime dateTime = DateTime.Now;
-                        tokenCree = new Token(idUser, dateTime.AddMinutes(10));
+                        tokenCree.DateExpiration = dateTime;
+                        tokenCree.UserToken = user;
                     }
+                    
+                    
                 }
                 // Gestion des exceptions
                 catch (OracleException ex)
@@ -81,5 +96,6 @@ namespace APIEtudiant.Stockage
                 }
             return tokenCree;
         }
+
     }
 }

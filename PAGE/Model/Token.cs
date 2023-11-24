@@ -1,8 +1,11 @@
-﻿namespace APIEtudiant.Model
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PAGE.Model
 {
-    /// <summary>
-    /// Tokens déterminant si l'action est possible ou s'il faut se reconnevter
-    /// </summary>
     public class Token
     {
         private Utilisateur userToken;
@@ -11,12 +14,12 @@
         /// <summary>
         /// Utilisateur visé par le token
         /// </summary>
-        public Utilisateur UserToken { get {  return userToken; } set { userToken = value; } }
-        
+        public Utilisateur UserToken { get { return userToken; } set { userToken = value; } }
+
         /// <summary>
         /// Date à laquelle le token s'expire
         /// </summary>
-        public DateTime DateExpiration { get {  return dateExpiration; } set {  dateExpiration = value; } }
+        public DateTime DateExpiration { get { return dateExpiration; } set { dateExpiration = value; } }
 
         /// <summary>
         /// Crée un token à partir d'un utilisateur et d'une date d'expiration
