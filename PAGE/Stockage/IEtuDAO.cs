@@ -47,6 +47,13 @@ namespace PAGE.Stockage
         public Task CreateEtu(Etudiant etu);
 
 
+        /// <summary>
+        /// Renvoi tout les étudiants de la BDD qui ont une note de la categorie donner
+        /// </summary>
+        /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
+        /// <author>Nordine</author>
+        public Task<Dictionary<Etudiant,int>> GetAllEtuByCategorie(CATEGORIE categorie);
+
     }
 }
 
