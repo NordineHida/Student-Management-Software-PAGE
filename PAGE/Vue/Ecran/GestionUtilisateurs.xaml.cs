@@ -13,12 +13,18 @@ namespace PAGE.Vue.Ecran
     /// <summary>
     /// Logique d'interaction pour GestionUtilisateurs.xaml
     /// </summary>
+    /// <author>Lucas</author>
     public partial class GestionUtilisateurs : Window, IObservateur
     {
         private Utilisateurs users;
         private UIElement initialContent;
         private List<Utilisateur> UserAffichage;
         private bool TriCroissant = false;
+
+        /// <summary>
+        /// Initialise la fenetre Gestion Utilisateurs
+        /// </summary>
+        /// <author>Lucas</author>
 
         public GestionUtilisateurs()
         {
@@ -29,6 +35,12 @@ namespace PAGE.Vue.Ecran
             ChargementDiffereInitial();
         }
 
+        /// <summary>
+        /// Ouvre une fenêtre pour créer un utilisateur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
         private void OpenCreerUtilisateur(object sender, RoutedEventArgs e)
         {
             if (users != null)
@@ -51,6 +63,11 @@ namespace PAGE.Vue.Ecran
             }
         }
 
+        /// <summary>
+        /// Chargement des utilisateurs différé via l'API
+        /// </summary>
+        /// <returns></returns>
+        /// <author>Lucas</author>
         private async Task ChargementDiffere()
         {
             //On récupère l'ensemble des utilisateurs via l'API
@@ -64,6 +81,12 @@ namespace PAGE.Vue.Ecran
 
             users.Register(this);
         }
+
+        /// <summary>
+        /// Chargement des utilisateurs différé via l'API et initialise la liste des utilisateurs à afficher
+        /// </summary>
+        /// <returns></returns>
+        /// <author>Lucas</author>
         private async Task ChargementDiffereInitial()
         {
             //On récupère l'ensemble des utilisateurs via l'API
@@ -80,12 +103,23 @@ namespace PAGE.Vue.Ecran
             UserAffichage = users.ListUser;
         }
 
+        /// <summary>
+        /// Une modification a ete recu, on raffraichis l'affichage
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <author>Lucas</author>
         public async void Notifier(string Message)
         {
             await Task.Delay(1000);
 
             ChargementDiffere();
         }
+        /// <summary>
+        /// Affiche les UserComponent pour les User de la liste
+        /// </summary>
+        /// <param name="listUsers"></param>
+        /// <param name="typetri"></param>
+        /// <author>Lucas</author>
         private void AfficherLesUserComponent(List<Utilisateur> listUsers, TYPETRI? typetri)
         {
             // On réinitialise le StackPanel
@@ -115,7 +149,12 @@ namespace PAGE.Vue.Ecran
         }
 
 
-
+        /// <summary>
+        /// Double click sur un user, ouvre une page informative
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
         private void UserComponent_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (sender is UserComponent UserComponent)
@@ -125,12 +164,17 @@ namespace PAGE.Vue.Ecran
 
                 if (userSelectionne != null)
                 {
-                    // on affiche ces informations
-                    //InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(UserSelectionne, user);
-                    //informationsSupplementaires.Show();
+                   //non implémenté
                 }
             }
         }
+
+        /// <summary>
+        /// tri les user par le login
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
         private void OrderByLogin(object sender, RoutedEventArgs e)
         {
             // Inversion de la valeur de TriCroissant
@@ -140,6 +184,12 @@ namespace PAGE.Vue.Ecran
             AfficherLesUserComponent(UserAffichage, TYPETRI.APOGEE);
         }
 
+        /// <summary>
+        /// Quand on change le filtre selectionné dans la combobox des filtres ( pour l'instant il n'y en a qu'un)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
         private void SelectionFiltreChanged(object sender, SelectionChangedEventArgs e)
         {
             //on recupere le filtre selectionner dans la combobox
@@ -157,6 +207,12 @@ namespace PAGE.Vue.Ecran
             AfficherLesUserComponentFiltre(users.ListUser, filterType, filterText);
         }
 
+        /// <summary>
+        /// Quand le texte du filtre/Recherche a changer on mets a jour l'affichage des users avec ce nouveau filtre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
         private void TexteFiltreChanged(object sender, TextChangedEventArgs e)
         {
             //si un filtre du combobox a été selectionner
@@ -178,6 +234,13 @@ namespace PAGE.Vue.Ecran
             }
         }
 
+        /// <summary>
+        /// Affiche la liste des Users filtré
+        /// </summary>
+        /// <param name="listEtudiants">liste des users a filtrer</param>
+        /// <param name="filterType">type de filtre</param>
+        /// <param name="filterText">texte saisi pour filtrer</param>
+        /// <author>Lucas</author>
         private void AfficherLesUserComponentFiltre(List<Utilisateur> listUsers, TYPETRI filterType, string filterText)
         {
             // On réinitialise le StackPanel
@@ -197,6 +260,14 @@ namespace PAGE.Vue.Ecran
             AfficherLesUserComponent(filteredList, null);
         }
 
+
+        /// <summary>
+        /// Renvoi le filtre d'utilisateur 
+        /// </summary>
+        /// <param name="filterType">type de filtre choisi (login)</param>
+        /// <param name="filterText">Texte saisi pour filtre</param>
+        /// <returns></returns>
+        /// <author>Lucas</author>
         private Func<Utilisateur, bool>? GetFilter(TYPETRI filterType, string filterText)
         {
             Func<Utilisateur, bool> filter = null;
