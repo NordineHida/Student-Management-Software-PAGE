@@ -5,11 +5,14 @@ using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PAGE.Model
 {
-    // Classe gérant les utilisateurs pouvant se connecter sur l'application et récupérer leurs droits
+    /// <summary>
+    /// Classe gérant les utilisateurs pouvant se connecter sur l'application et récupérer leurs droits
+    /// </summary>
     public class Utilisateur
     {
         private string login;
@@ -20,15 +23,18 @@ namespace PAGE.Model
         /// <summary>
         /// Renvoie ou définit le login de l'utilisateur
         /// </summary>
+        /// <author>Laszlo</author>
         public string Login
         {
             get { return login; }
             set { login = value; }
         }
 
+        [JsonIgnore]
         /// <summary>
-        /// Renvoie ou définit le mot de passe de l'utilisateur
+        /// Renvoie ou définit le login de l'utilisateur
         /// </summary>
+        /// <author>Laszlo</author>
         public string Mdp
         {
             get { return mdp; }

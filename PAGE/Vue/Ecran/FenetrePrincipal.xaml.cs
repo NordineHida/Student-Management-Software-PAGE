@@ -20,6 +20,8 @@ namespace PAGE.Vue.Ecran
         private List<Etudiant> etudiantAffichage;
         private bool TriCroissant=false;
 
+        Promotion promo;
+
         /// <summary>
         /// Initialise la fenetre principal
         /// </summary>
@@ -27,9 +29,20 @@ namespace PAGE.Vue.Ecran
         public FenetrePrincipal()
         {
             InitializeComponent();
-
             ChargementDiffereInitial();
- 
+
+        }
+
+        /// <summary>
+        /// Initialise la fenetre principal depuis l'annee selectionner
+        /// </summary>
+        /// <author>Nordine/Yamato</author>
+        public FenetrePrincipal(Promotion promo)
+        {
+            InitializeComponent();
+            ChargementDiffereInitial();
+            this.promo = promo;
+
         }
 
 
@@ -95,7 +108,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void OpenLoginPage(object sender, RoutedEventArgs e)
         {
-            LoginPage loginPage = new LoginPage();
+            LoginPage loginPage = new LoginPage(new Utilisateur("",""));
             loginPage.Show();
 
             this.Close();

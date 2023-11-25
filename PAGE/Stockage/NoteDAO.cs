@@ -85,10 +85,10 @@ namespace PAGE.Stockage
 
 
         /// <summary>
-        /// Crée une note et l'ajoute à la BDD
+        /// Supprime une note de la BDD
         /// </summary>
-        /// <param name="note">note crée</param>
-        /// <returns>la tache qu'est d'ajouter la note à la BDD</returns>
+        /// <param name="note">note supprimée</param>
+        /// <returns>la tache qu'est de supprimer la note à la BDD</returns>
         /// <author>Laszlo</author>
         public async Task DeleteNote(Note note)
         {
@@ -111,7 +111,7 @@ namespace PAGE.Stockage
                 {
                     if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
                     {
-                        PopUp popUp = new PopUp("Suppresion de note", "La note est supprimée", TYPEICON.SUCCES);
+                        PopUp popUp = new PopUp("Suppression de note", "La note est supprimée", TYPEICON.SUCCES);
                         popUp.ShowDialog();
                     }
                     else

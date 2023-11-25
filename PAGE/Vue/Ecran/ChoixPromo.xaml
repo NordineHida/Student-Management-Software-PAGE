@@ -595,15 +595,24 @@
         <TextBlock Text="{DynamicResource LabelAnnee}" FontSize="50" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="#FF2B2B5A" />
         <TextBlock Text="{DynamicResource LabelPromotion}" FontSize="50" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF2B2B5A" />
 
-        <!--ComboBox (Nordine)-->
-        <ComboBox Style="{DynamicResource ComboBoxStyle1}" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-            <ComboBoxItem Content="2023/2024"/>
+        <!--ComboBox Année (Yamato)-->
+        <ComboBox Style="{DynamicResource ComboBoxStyle1}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxAnnee" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120" ItemsSource="{Binding annees}" DisplayMemberPath="AnneeDebut">
         </ComboBox>
+        <!-- Bouton d'ajout d'une année (Yamato) -->
+        <!-- ajouter Visibility="Collapsed" après gestion des droits sur les 2 boutons (collapsed de base et visible que pour admin) -->
+        <Button ToolTip="Ajouter une année" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Background="Transparent"  BorderBrush="Transparent" Click="AjouterAnnee" Margin="124,0,0,0">
+            <Image Source="/Vue/Ressources/Picto/plus-circle-outline.png" Stretch="Uniform" Height="22"/>
+        </Button>
+        <!-- Bouton de suppression d'une année (Yamato) -->
+        <Button ToolTip="Supprimer une année" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Background="Transparent"  BorderBrush="Transparent" Click="SupprimerAnnee" Margin="150,0,0,0">
+            <Image Source="/Vue/Ressources/Picto/minus-circle-outline.png" Stretch="Uniform" Height="22"/>
+        </Button>
 
-        <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-            <ComboBoxItem Content="1ère année"/>
-            <ComboBoxItem Content="2ème année"/>
-            <ComboBoxItem Content="3ème année"/>
+        <!-- ComboBox des promotions (Yamato) -->
+        <ComboBox x:Name="ComboBoxPromotion" Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Width="120">
+            <ComboBoxItem Content="BUT1" x:Name="itemBUT1"/>
+            <ComboBoxItem Content="BUT2" x:Name="itemBUT2"/>
+            <ComboBoxItem Content="BUT3" x:Name="itemBUT3"/>
         </ComboBox>
 
         <!--Bouton Valider (Nordine)-->
