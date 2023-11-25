@@ -11,7 +11,7 @@ namespace APIEtudiant.Stockage
         /// </summary>
         /// <param name="annee">Année à ajouter</param>
         /// <returns>true si l'ajout est effectué</returns>
-        /// <author>Yamato</author>
+        /// <author>Yamato/Nordine</author>
         public bool CreateAnnee(int? annee)
         {
             bool ajoutReussi = false;
@@ -23,13 +23,10 @@ namespace APIEtudiant.Stockage
                 try
                 {
                     // On crée la requête SQL
-                    string requete = String.Format("INSERT INTO ANNEE(anneeDebut)" +
-                        "VALUES('{0}')", annee);
-
+                    string requete = $"INSERT INTO Annee (anneeDebut) VALUES ({annee})";
 
                     //On execute la requete
                     OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
-
 
                     //On verifie que la ligne est bien inséré, si oui on passe le bool à true
                     if (cmd.ExecuteNonQuery() == 1)
@@ -113,36 +110,45 @@ namespace APIEtudiant.Stockage
         }
 
         /// <summary>
-        /// Supprime une année de la BDD
+        /// Supprime une année de la bdd
         /// </summary>
-        /// <param name="annee">Année à supprimer</param>
-        /// <returns>true si la suppression est un succès</returns>
-        /// <author>Yamato</author>
-        public bool DeleteAnnee(int annee)
+        /// <param name="annee">année à supprimer</param>
+        /// <returns>true si la suppression est effectué</returns>
+        public bool DeleteAnnee(int? annee)
         {
             bool suppressionReussie = false;
-            if (annee != null)
+            if (annee!=null)
             {
-                // Création d'une connexion Oracle
                 Connection con = new Connection();
 
                 try
-                {
-                    // On crée la requête SQL
-                    string requete = $"DELETE FROM ANNEE WHERE anneeDebut={annee}";
+                {                    
+                    // Commencer une transaction
+                    OracleTransaction transaction = con.OracleConnexion.BeginTransaction();
 
-
-                    //On execute la requete
-                    OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion);
-
-
-                    //On verifie que la ligne est bien supprimée, si oui on passe le bool à true
-                    if (cmd.ExecuteNonQuery() == 1)
+                    try
                     {
+                        // Supprimer les promotions associées à l'année
+                        string deletePromotions = $"DELETE FROM Promotion WHERE anneeDebut = {annee}";
+                        OracleCommand deletePromotionsCmd = new OracleCommand(deletePromotions, con.OracleConnexion);
+                        deletePromotionsCmd.ExecuteNonQuery();
+
+                        // Supprimer l'année
+                        string deleteAnnee = $"DELETE FROM Annee WHERE anneeDebut = {annee}";
+                        OracleCommand deleteAnneeCmd = new OracleCommand(deleteAnnee, con.OracleConnexion);
+                        deleteAnneeCmd.ExecuteNonQuery();
+
+                        // Valider la transaction si toutes les opérations ont réussi
+                        transaction.Commit();
                         suppressionReussie = true;
                     }
+                    catch (Exception ex)
+                    {
+                        // En cas d'erreur, annuler la transaction
+                        transaction.Rollback();
+                        Console.WriteLine($"Erreur lors de la suppression en cascade : {ex.Message}");
+                    }
                 }
-                // Gestion des exceptions
                 catch (OracleException ex)
                 {
                     Console.WriteLine(ex.Message);
@@ -164,5 +170,6 @@ namespace APIEtudiant.Stockage
             }
             return suppressionReussie;
         }
+
     }
 }
