@@ -8,15 +8,8 @@ namespace APIEtudiant.Model
     /// <author>Yamato</author>
     public class Promotion
     {
-        private List<Etudiant> etudiants = new List<Etudiant>();
         private NOMPROMOTION nomPromotion;
         private int anneeDebut;
-
-        /// <summary>
-        /// Renvoie ou définit les étudiants composant la promotion
-        /// </summary>
-        /// <author>Yamato</author>
-        public List<Etudiant> Etudiants { get { return etudiants; } set { etudiants = value; } }
 
         /// <summary>
         /// Renvoie ou définit le nom de la promotion (premiere année, deuxieme année, troisieme année)
