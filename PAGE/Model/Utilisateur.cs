@@ -14,6 +14,7 @@ namespace PAGE.Model
     {
         private string login;
         private string mdp;
+        private string hashMdp;
         private Dictionary<int, ROLE> roles;
 
         /// <summary>
@@ -79,6 +80,23 @@ namespace PAGE.Model
             roles.Add(annee, role);
         }
 
-       
+        /// <summary>
+        /// Hashe le mot de passe donné
+        /// </summary>
+        /// <param name="mdp">mot de passe à hasher</param>
+        /// <returns></returns>
+        public string GetHashMdp(string mdp)
+        {
+            string mdpHashed = "";
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashValue = sha256.ComputeHash(Encoding.UTF8.GetBytes(mdp));
+                foreach (byte b in hashValue)
+                {
+                    mdpHashed += $"{b:X2}";
+                }
+            }
+            return mdpHashed;
+        }
     }
 }

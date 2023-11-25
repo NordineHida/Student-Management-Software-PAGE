@@ -30,7 +30,7 @@ namespace APIEtudiant.Stockage
                 {
                     // On crée la requête SQL
                     string requeteCreationUtilisateur = String.Format("INSERT INTO Utilisateur(idUtilisateur,login,hashPassword)" +
-                        "VALUES(0, '{0}','{1}')",user.Login,user.HashMdp);
+                        "VALUES(0, '{0}','{1}')",user.Login,user.Mdp);
 
                     
                     //On execute la requete
