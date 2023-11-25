@@ -30,5 +30,13 @@ namespace PAGE.Stockage
         /// </summary>
         /// <returns></returns>
         public Task<Token?> Connexion(string login,string mdp);
+
+        /// <summary>
+        /// Modifie le rôle d'un utilisateur pour l'année courante
+        /// </summary>
+        /// <param name="user">utilisateur à ajouter</param>
+        /// <returns>vrai si l'ajout est effectué, faux sinon</returns>
+        /// <author>Laszlo</author>
+        public Task UpdateRole(Utilisateur user, ROLE role);
     }
 }

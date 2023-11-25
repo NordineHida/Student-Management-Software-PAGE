@@ -27,8 +27,6 @@ namespace PAGE.Stockage
                 // Spécifiez l'URL de l'API
                 string apiUrl = "https://localhost:7038/Utilisateur/CreateUtilisateur";
 
-                user.Roles[2023] = ROLE.LAMBDA;
-
                 // Convertissez l'Utilisateur en JSON
                 string userSerialise = JsonSerializer.Serialize(user);
 
@@ -116,6 +114,66 @@ namespace PAGE.Stockage
                 }
             }
             return token;
+        }
+
+        public async Task UpdateRole(Utilisateur user, ROLE role)
+        {
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
+            {
+                // Spécifiez l'URL de l'API
+                string apiUrl = String.Format("https://localhost:7038/Utilisateur/UpdateRole?role={0}",GetIdRole(role));
+
+                // Convertissez l'Utilisateur en JSON
+                string userSerialise = JsonSerializer.Serialize(user);
+
+                // Créez le contenu de la requête POST
+                HttpContent content = new StringContent(userSerialise, Encoding.UTF8, "application/json");
+
+                // Effectuez la requête POST
+                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                    {
+                        PopUp popUp = new PopUp("Utilisateur", "L'utilisateur est modifié", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
+                    else
+                    {
+                        PopUp popUp = new PopUp("User", "User has been updated", TYPEICON.SUCCES);
+                        popUp.ShowDialog();
+                    }
+                }
+            }
+        }
+
+        private int GetIdRole(ROLE role)
+        {
+            int idRole = 5;
+            switch (role)
+            {
+                case ROLE.DIRECTEURDEPARTEMENT:
+                    idRole = 0;
+                    break;
+                case ROLE.DIRECTEURETUDES1:
+                    idRole = 1;
+                    break;
+                case ROLE.DIRECTEURETUDES2:
+                    idRole = 2;
+                    break;
+                case ROLE.DIRECTEURETUDES3:
+                    idRole = 3;
+                    break;
+                case ROLE.ADMIN:
+                    idRole = 4;
+                    break;
+                default:
+                    idRole = 5;
+                    break;
+            }
+            return idRole;
         }
     }
 }
