@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PAGE.Model
+namespace PAGE.Model.Enumerations
 {
     /// <summary>
     /// Différents régimes possibles d'un étudiant
@@ -12,6 +12,6 @@ namespace PAGE.Model
     ///<author>Laszlo</author>
     public enum REGIME
     {
-        FI,FC,FA   
+        FI, FC, FA
     }
 }
