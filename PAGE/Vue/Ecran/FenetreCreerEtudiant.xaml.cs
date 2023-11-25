@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 
 using PAGE.Model;
+using PAGE.Model.Enumerations;
 using PAGE.Stockage;
 using MessageBox = System.Windows.Forms.MessageBox;
 
@@ -19,16 +20,19 @@ namespace PAGE.Vue.Ecran
         private bool estBoursier;
         private REGIME regimeEtu = REGIME.FI;
         private GROUPE groupeEtu = GROUPE.A1;
+        private Promotion promo;
 
         /// <summary>
         /// Constructeur (initialiser le sexe à AUTRE  et le bool boursier a false
         /// </summary>
         /// <author>Nordine</author>
-        public FenetreCreerEtudiant(Etudiants etudiants)
+        public FenetreCreerEtudiant(Etudiants etudiants, Promotion promo)
         {
             InitializeComponent();
+            this.promo = promo;
             this.etudiants = etudiants;
             ReinitialisationChamps();
+
         }
         /// <summary>
         /// Cette méthode permet de réinitialiser les champs après la création d'un étudiant pour en créer un autre
@@ -79,7 +83,7 @@ namespace PAGE.Vue.Ecran
 
                 //on ajoute l'étudiant à la bdd
                 EtuDAO dao = new EtuDAO();
-                dao.CreateEtu(etudiant);
+                dao.CreateEtu(etudiant,this.promo);
                 etudiants.AddEtu(etudiant);
 
                 //on réinitialise la page
