@@ -1,4 +1,4 @@
-﻿using PAGE.Model;
+﻿using PAGE.Model.Enumerations;
 using PAGE.Model.PatternObserveur;
 using System;
 using System.Windows;

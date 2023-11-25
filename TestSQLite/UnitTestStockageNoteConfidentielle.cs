@@ -1,4 +1,4 @@
-﻿using PAGE.Model.StockageNoteConfidentielles;
+﻿using PAGE.Stockage.StockageNoteConfidentielle;
 using System;
 using System.Collections.Generic;
 using System.Data;

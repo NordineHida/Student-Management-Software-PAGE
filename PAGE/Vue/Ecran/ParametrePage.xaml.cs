@@ -1,4 +1,5 @@
 ﻿using PAGE.Model;
+using PAGE.Model.Enumerations;
 using System;
 using System.Windows;
 using System.Windows.Controls;

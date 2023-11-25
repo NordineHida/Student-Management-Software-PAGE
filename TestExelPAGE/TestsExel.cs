@@ -1,5 +1,4 @@
-using PAGE.Model;
-
+using PAGE.Model.Enumerations;
 
 namespace TestPAGE
 {

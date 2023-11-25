@@ -1,5 +1,6 @@
 ﻿
 using PAGE.Model;
+using PAGE.Model.Enumerations;
 using PAGE.Stockage;
 using System;
 using System.Collections.Generic;

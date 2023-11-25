@@ -1,6 +1,7 @@
 ﻿
 using DocumentFormat.OpenXml.Spreadsheet;
 using PAGE.Model;
+using PAGE.Model.Enumerations;
 using PAGE.Vue.Ecran;
 using System;
 using System.Collections.Generic;

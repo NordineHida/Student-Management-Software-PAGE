@@ -1,4 +1,4 @@
-﻿using PAGE.Model;
+﻿using PAGE.Model.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
