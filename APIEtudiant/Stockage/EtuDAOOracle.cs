@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using APIEtudiant.Model;
+﻿using APIEtudiant.Model;
 using APIEtudiant.Model.Enumerations;
 using Oracle.ManagedDataAccess.Client;
 
@@ -13,22 +8,24 @@ namespace APIEtudiant.Stockage
     {
 
         /// <summary>
-        /// Renvoi tout les étudiants de la BDD Oracle
+        /// Renvoi tout les étudiants de la BDD Oracle de al promo
         /// </summary>
+        /// <param name="promo">Promo dont on veut le etudiants</param>
         /// <returns>la liste des étudiants de la BDD Oracle</returns>
         /// <author>Nordine</author>
-        public IEnumerable<Etudiant> GetAllEtu()
+        public IEnumerable<Etudiant> GetAllEtu(Promotion promo)
         {
             //Création d'une connexion Oracle
             Connection con = new Connection();
             //Liste d'étudiant à renvoyer
             List<Etudiant> etudiants = new List<Etudiant>();
 
+            int idPromo = GetIdPromotion(promo);
+
             try
             {
                 // Création d'une commande Oracle pour récuperer l'ensemble des éléments de tout les étudiants
-                OracleCommand cmd = new OracleCommand("SELECT numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login FROM Etudiant", con.OracleConnexion);
-
+                OracleCommand cmd = new OracleCommand($"SELECT e.numApogee, e.nom, e.prenom, e.sexe, e.typeBac, e.mail, e.groupe, e.estBoursier, e.regimeFormation, e.dateNaissance, e.adresse, e.telPortable, e.telFixe, e.login FROM Etudiant e INNER JOIN Promotion_Etudiant pe ON e.numApogee = pe.numApogee WHERE pe.idPromotion = {idPromo}", con.OracleConnexion);
                 OracleDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -210,26 +207,104 @@ namespace APIEtudiant.Stockage
         /// Ajoute un nouvelle étudiant (ou le modifie s'il existe déjà)
         /// </summary>
         /// <param name="etu">etudiant qu'on veut ajouter</param>
+        /// <param name="promotion">promo dans laquel on doit mettre l'etudiant</param>
         /// <returns>si l'ajout est un succes</returns>
         /// <author>Nordine</author>
-        public bool AddEtu(Etudiant etu)
+        public bool AddEtu(Etudiant etu, Promotion promotion)
         {
             bool ajoutReussi = false;
 
-            if (etu != null)
+            if (etu != null && promotion != null)
             {
-                //Si l'étudiant existe
-                if (IsEtudiantExist(etu))
+                // Si le couple etudiant/promo existe
+                if (IsEtudiantExistInPromo(etu,promotion))
                 {
-                    //on le modifie
+                    // On modifie l'etudiant a cette promo
                     ajoutReussi = ModifierEtudiant(etu);
                 }
-                //sinon on le créer
+                // Sinon,
                 else
-                {   
-                    ajoutReussi = CreerEtudiant(etu);
+                {
+                    //si l'étudiant existe mais n'est pas dans la promo
+                    if (IsEtudiantExist(etu))
+                    {
+                        //on l'ajoute dans la promo
+                        ajoutReussi = AjouterEtudiantAPromotion(etu.NumApogee, promotion);
+                    }
+
+                    //sinon il n'existe pas du tout alors on le creer et on l'ajoute a la promo
+                    else
+                    {
+                        ajoutReussi = CreerEtudiant(etu, promotion);
+
+                        if (ajoutReussi)
+                        {
+                            // On ajoute l'étudiant à la promotion spécifiée
+                            ajoutReussi = AjouterEtudiantAPromotion(etu.NumApogee, promotion);
+                        }
+                    }
                 }
             }
+            return ajoutReussi;
+        }
+
+        /// <summary>
+        /// Ajoute l'étudiant dans la promotion
+        /// </summary>
+        /// <param name="numApogee">num apogee de l'étudiant</param>
+        /// <param name="promotion">promo dans laquel on doit l'ajouter</param>
+        /// <returns>si l'ajout est un succes</returns>
+        /// <author>Nordine</author>
+        private bool AjouterEtudiantAPromotion(int numApogee, Promotion promotion)
+        {
+            bool ajoutReussi = false;
+
+            //on recupere l'id de la promotion
+            int idpromo = GetIdPromotion(promotion);
+
+            Connection con = new Connection();
+
+            try
+            {
+                // Vérifier si l'étudiant n'est pas déjà dans la promotion
+                string checkIfExists = $"SELECT * FROM Promotion_Etudiant WHERE IDPROMOTION = {idpromo} AND numApogee = {numApogee}";
+
+                OracleCommand checkCmd = new OracleCommand(checkIfExists, con.OracleConnexion);
+                int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                if (count == 0)
+                {
+                    // Ajouter l'étudiant à la promotion
+                    string insertIntoPromotion = $"INSERT INTO Promotion_Etudiant (idPromotion, numApogee) VALUES ({idpromo}, {numApogee})";
+                    OracleCommand insertCmd = new OracleCommand(insertIntoPromotion, con.OracleConnexion);
+                    insertCmd.ExecuteNonQuery();
+
+                    ajoutReussi = true;
+                }
+                else
+                {
+                    Console.WriteLine("L'étudiant est déjà dans la promotion.");
+                }
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                try
+                {
+                    if (con != null)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
             return ajoutReussi;
         }
 
@@ -237,19 +312,26 @@ namespace APIEtudiant.Stockage
         /// Ajout un étudiant a la BDD s'il n'existe PAS et renvoi true, sinon renvoi false
         /// </summary>
         /// <param name="etu">etudiant à ajouté</param>
+        /// <param name="promo">Promo actuel où on veut ajouter l'étu</param>
         /// <returns>si l'ajout est un succès</returns>
-        public bool CreateEtu(Etudiant etu)
+        public bool CreateEtu(Etudiant etu,Promotion promo)
         {
             bool ajoutReussi = false;
 
             if (etu != null)
             {
-                //Si l'étudiant existe pas on le créer
-                if (!IsEtudiantExist(etu))
+                //Si l'étudiant existe pas dans la promo 
+                if (!IsEtudiantExistInPromo(etu,promo))                      
                 {
-                    ajoutReussi = CreerEtudiant(etu);
+                    //s'il n'existe pas du tout
+                    if (!IsEtudiantExist(etu))
+                    {
+                        //on le creer 
+                        ajoutReussi = CreerEtudiant(etu, promo);
+                    }
+                    // On ajoute l'étudiant à la promotion spécifiée
+                    ajoutReussi = AjouterEtudiantAPromotion(etu.NumApogee, promo);
                 }
-
             }
             return ajoutReussi;
         }
@@ -413,30 +495,29 @@ namespace APIEtudiant.Stockage
         /// <param name="etu">etudiant à creer</param>
         /// <returns>si la creation est un succès</returns>
         /// <author>Nordine</author>
-        private bool CreerEtudiant(Etudiant etu)
+        private bool CreerEtudiant(Etudiant etu, Promotion promotion)
         {
-
             bool ajoutReussi = false;
 
             // Création d'une connexion Oracle
             Connection con = new Connection();
 
-
             string etuSexe = getSexeString(etu);
-
             string estBoursier = etu.EstBoursier ? "OUI" : "NON";
+            int idPromo = GetIdPromotion(promotion);
 
             try
             {
+                // Insertion de l'étudiant dans la table Etudiant
                 string insertQuery = string.Format(@"INSERT INTO Etudiant(numApogee, nom, prenom, sexe, typeBac, mail, groupe, estBoursier, regimeFormation, dateNaissance, adresse, telPortable, telFixe, login)
-                                                   VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', TO_DATE('{9}', 'YYYY-MM-DD'), '{10}', {11}, {12}, '{13}')",
+                                           VALUES({0}, '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', TO_DATE('{9}', 'YYYY-MM-DD'), '{10}', {11}, {12}, '{13}')",
                                                   etu.NumApogee, etu.Nom, etu.Prenom, etuSexe, etu.TypeBac, etu.Mail, getGroupeString(etu),
                                                   estBoursier, getRegimeString(etu), etu.DateNaissance.Date.ToString("yyyy-MM-dd"),
                                                   etu.Adresse, etu.TelPortable, etu.TelFixe, etu.Login);
 
-                 OracleCommand updateCmd = new OracleCommand(insertQuery, con.OracleConnexion);
+                OracleCommand insertCmd = new OracleCommand(insertQuery, con.OracleConnexion);
 
-                if (updateCmd.ExecuteNonQuery() == 1)
+                if (insertCmd.ExecuteNonQuery() == 1)
                 {
                     ajoutReussi = true;
                 }
@@ -459,7 +540,72 @@ namespace APIEtudiant.Stockage
                     Console.WriteLine(ex.Message);
                 }
             }
+
             return ajoutReussi;
+        }
+
+        /// <summary>
+        /// Renvoie l'idPromotion dans la bdd
+        /// </summary>
+        /// <param name="promo">Promo dont on veut l'id</param>
+        /// <returns>Id de la promo</returns>
+        /// <author>Nordine</author>
+        private int GetIdPromotion(Promotion promotion)
+        {
+            int idPromo = -1;
+
+            int idNomPromo = 0;
+            switch (promotion.NomPromotion)
+            {
+                case NOMPROMOTION.BUT1:
+                    idNomPromo = 0;
+                    break;
+                case NOMPROMOTION.BUT2:
+                    idNomPromo = 1;
+                    break;
+                case NOMPROMOTION.BUT3:
+                    idNomPromo = 2;
+                    break;
+            }
+
+            Connection con = new Connection();
+
+            try
+            {
+                // On récupère l'id
+                string requete = $"SELECT IDPROMOTION FROM Promotion WHERE IDNOMPROMOTION = {idNomPromo} AND Anneedebut = {promotion.AnneeDebut}";
+
+                OracleCommand checkCmd = new OracleCommand(requete, con.OracleConnexion);
+
+                // Utilisation d'ExecuteScalar pour obtenir une seule valeur
+                object result = checkCmd.ExecuteScalar();
+
+                if (result != null)
+                {
+                    // Conversion de la valeur en int
+                    idPromo = Convert.ToInt32(result);
+                }
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                try
+                {
+                    if (con != null)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return idPromo;
         }
 
         /// <summary>
@@ -484,7 +630,7 @@ namespace APIEtudiant.Stockage
                     etudiantExist = true;
                 }
 
-            }                
+            }
             catch (OracleException ex)
             {
                 Console.WriteLine(ex.Message);
@@ -501,37 +647,89 @@ namespace APIEtudiant.Stockage
                 catch (OracleException ex)
                 {
                     Console.WriteLine(ex.Message);
-             
+
                 }
             }
             return etudiantExist;
         }
 
+
+        /// <summary>
+        /// Renvoie si le couple numApogee/idPromo existe dans la bdd
+        /// </summary>
+        /// <param name="etu">Etudiant à chercher</param>
+        /// <param name="promo">Promotion dans laquelle vérifier l'existence</param>
+        /// <returns>si le couple numApogee/idPromo existe dans la bdd</returns>
+        /// <author>Nordine</author>
+        private bool IsEtudiantExistInPromo(Etudiant etu, Promotion promo)
+        {
+            bool etudiantExist = false;
+            // Création d'une connexion Oracle
+            Connection con = new Connection();
+
+            try
+            {
+                // On vérifie si un étudiant avec le même numéro d'apogée existe déjà dans la promotion
+                int idPromo = GetIdPromotion(promo);
+
+                if (idPromo != -1)
+                {
+                    string checkIfExistsQuery = $"SELECT COUNT(*) FROM Promotion_Etudiant WHERE IDPROMOTION = {idPromo} AND numApogee = {etu.NumApogee}";
+                    OracleCommand checkIfExistsCmd = new OracleCommand(checkIfExistsQuery, con.OracleConnexion);
+                    int existingCount = Convert.ToInt32(checkIfExistsCmd.ExecuteScalar());
+                    if (existingCount > 0)
+                    {
+                        etudiantExist = true;
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                try
+                {
+                    if (con != null)
+                    {
+                        con.Close();
+                    }
+                }
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            return etudiantExist;
+        }
+
+
         /// <summary>
         /// Ajoute les touts les étudiants de la liste d'étudiants
         /// </summary>
         /// <param name="listeEtu">Liste d'étudiant à ajouter</param>
+        /// <param name="promotion">promo dans laquel on ajoute les étudiants</param>
         /// <returns>true si l'ajout est un succes</returns>
         /// <author>Nordine</author>
-        public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu)
+        public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu, Promotion promotion)
         {
             bool ajoutReussi = true;
 
-            //Pour tout les étudiants de la liste
+            // Pour tous les étudiants de la liste
             foreach (Etudiant etu in listeEtu)
             {
-                //on essaye de les ajouter
+                // On essaie de les ajouter
                 try
                 {
-                    //On ajoute et on récupere le bool de succès
-                    bool succes = EtuManager.Instance.AddEtu(etu);
+                    // On ajoute et on récupère le bool de succès
+                    bool succes = AddEtu(etu, promotion);
 
-                    //Si le succes est faux lors d'un ajout, l'ajout total est concidéré comme un echec
+                    // Si le succès est faux lors d'un ajout, l'ajout total est considéré comme un échec
                     if (!succes)
                     {
                         ajoutReussi = false;
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -540,6 +738,7 @@ namespace APIEtudiant.Stockage
             }
             return ajoutReussi;
         }
+
 
         /// <summary>
         /// Renvoi tous les étudiants ayant au moins une note de la catégorie spécifiée
