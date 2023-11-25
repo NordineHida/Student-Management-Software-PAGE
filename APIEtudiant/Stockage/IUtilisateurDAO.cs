@@ -1,4 +1,5 @@
 ﻿using APIEtudiant.Model;
+using APIEtudiant.Model.Enumerations;
 
 namespace APIEtudiant.Stockage
 {
@@ -29,5 +30,14 @@ namespace APIEtudiant.Stockage
         /// <param name="mdp">mdp (hashé) de l'utilisateur dont on vérifie l'existence</param>
         /// <returns>l'utilisateur, s'il existe</returns>
         public Utilisateur? GetUtilisateurByLoginMDP(string login, string mdp);
+
+        /// <summary>
+        /// Modifie le rôle d'un utilisateur
+        /// </summary>
+        /// <param name="user">utilisateur dont le rôle va être changé</param>
+        /// <param name="role">Nouveau rôle attribué</param>
+        /// <returns>vrai si le changement a été effectué, faux sinon</returns>
+        /// <author>Laszlo</author>
+        public bool UpdateRole(Utilisateur user, ROLE role);
     }
 }

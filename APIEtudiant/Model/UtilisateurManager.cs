@@ -1,4 +1,5 @@
-﻿using APIEtudiant.Stockage;
+﻿using APIEtudiant.Model.Enumerations;
+using APIEtudiant.Stockage;
 
 namespace APIEtudiant.Model
 {
@@ -77,6 +78,17 @@ namespace APIEtudiant.Model
         public Token? CreateToken(Utilisateur utilisateur)
         {
             return TokenDAO.CreateToken(utilisateur);
+        }
+
+        /// <summary>
+        /// Modifie le rôle d'un utilisateur
+        /// </summary>
+        /// <param name="user">utilisateur dont le role doit etre modifié</param>
+        /// <param name="role">nouveau role attribué</param>
+        /// <returns></returns>
+        public bool UpdateRole(Utilisateur user, ROLE role)
+        {
+            return UtilisateurDAO.UpdateRole(user,role);
         }
     }
 }

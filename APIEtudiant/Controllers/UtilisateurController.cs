@@ -1,4 +1,5 @@
 ﻿using APIEtudiant.Model;
+using APIEtudiant.Model.Enumerations;
 using APIEtudiant.Stockage;
 using Microsoft.AspNetCore.Mvc;
 
@@ -69,5 +70,24 @@ namespace APIEtudiant.Controllers
             if (token != null) reponse = Ok(token);
             return reponse;
        }
+
+        /// <summary>
+        /// Modifie le role d'un utilisateur
+        /// </summary>
+        /// <param name="user">Utilisateur dont le rôle doit être modifié</param>
+        /// <param name="role">nouveau role attribué</param>
+        /// <author>Laszlo</author>
+        [HttpPost("UpdateRole")]
+        public ActionResult UpdateRole([FromBody] Utilisateur user,ROLE role)
+        {
+            ActionResult reponse = BadRequest();
+            //Si l'utilisateur n'est pas null
+            if (user != null)
+            {
+                //si l'ajout de l'utilisateur a été un succès on renvoie OK
+                if (UtilisateurManager.Instance.UpdateRole(user, role)) reponse = Ok();
+            }
+            return reponse;
+        }
     }
 }

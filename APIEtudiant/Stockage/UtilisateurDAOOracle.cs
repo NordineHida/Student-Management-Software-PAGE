@@ -2,6 +2,7 @@
 using Oracle.ManagedDataAccess.Client;
 using System.Security.Cryptography;
 using System.Text;
+using APIEtudiant.Model.Enumerations;
 
 namespace APIEtudiant.Stockage
 {
@@ -30,7 +31,7 @@ namespace APIEtudiant.Stockage
                 {
                     // On crée la requête SQL
                     string requeteCreationUtilisateur = String.Format("INSERT INTO Utilisateur(idUtilisateur,login,hashPassword)" +
-                        "VALUES(0, '{0}','{1}')",user.Login,user.Mdp);
+                        "VALUES(0, '{0}','{1}')",user.Login,user.HashMdp);
 
                     
                     //On execute la requete
@@ -52,7 +53,7 @@ namespace APIEtudiant.Stockage
                             idUser = reader.GetInt32(reader.GetOrdinal("idUtilisateur"));
                         }
 
-                        string requeteInitialisationRole = String.Format("INSERT INTO RoleUtilisateur (annee,idUtilisateur,idRole) VALUES ({0},'{1}',6)", 2023, idUser);
+                        string requeteInitialisationRole = String.Format("INSERT INTO RoleUtilisateur (annee,idUtilisateur,idRole) VALUES ({0},'{1}',5)", 2023, idUser);
                         //On execute la requete
                         OracleCommand cmdInitialisationRole = new OracleCommand(requeteInitialisationRole, con.OracleConnexion);
 
@@ -190,5 +191,98 @@ namespace APIEtudiant.Stockage
             }
             return user;
         }
+
+
+        /// <summary>
+        /// Modifie le rôle d'un utilisateur
+        /// </summary>
+        /// <param name="user">utilisateur dont le rôle va être changé</param>
+        /// <param name="role">nouveau role attribué</param>
+        /// <returns>vrai si le changement a été effectué, faux sinon</returns>
+        /// <author>Laszlo</author>
+        public bool UpdateRole(Utilisateur user, ROLE role)
+        {
+            bool modifReussie = false;
+            if (user != null)
+            {
+                // Création d'une connexion Oracle
+                Connection con = new Connection();
+
+                try
+                {
+                        //On récupère l'ID
+                        int idUser = 0;
+                        string getIdRequete = String.Format("SELECT idUtilisateur FROM Utilisateur Where login='{0}'", user.Login);
+
+                        OracleCommand getId = new OracleCommand(getIdRequete, con.OracleConnexion);
+                        OracleDataReader reader = getId.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            idUser = reader.GetInt32(reader.GetOrdinal("idUtilisateur"));
+                        }
+
+                        string requeteInitialisationRole = String.Format("UPDATE RoleUtilisateur SET annee={0}, idUtilisateur='{1}', idRole={2}", 2023, idUser,GetIdRole(role));
+                        //On execute la requete
+                        OracleCommand cmdInitialisationRole = new OracleCommand(requeteInitialisationRole, con.OracleConnexion);
+
+                        {
+                            if (cmdInitialisationRole.ExecuteNonQuery() == 1)
+                            {
+                                modifReussie = true;
+                            }
+                        }
+                }
+                // Gestion des exceptions
+                catch (OracleException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    try
+                    {
+                        if (con != null)
+                        {
+                            con.Close();
+                        }
+                    }
+                    catch (OracleException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            return modifReussie;
+        }
+
+       
+        private int GetIdRole(ROLE role)
+        {
+            int idRole = 5;
+            switch (role)
+            {
+                case ROLE.DIRECTEURDEPARTEMENT:
+                    idRole = 0;
+                    break;
+                case ROLE.DIRECTEURETUDES1:
+                    idRole = 1;
+                    break;
+                case ROLE.DIRECTEURETUDES2:
+                    idRole = 2;
+                    break;
+                case ROLE.DIRECTEURETUDES3:
+                    idRole = 3;
+                    break;
+                case ROLE.ADMIN:
+                    idRole = 4;
+                    break;
+                default:
+                    idRole = 5;
+                    break;
+            }
+            return idRole;
+        }
+
     }
 }
