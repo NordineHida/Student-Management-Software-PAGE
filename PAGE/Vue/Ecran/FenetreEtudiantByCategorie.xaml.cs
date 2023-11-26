@@ -89,7 +89,15 @@ namespace PAGE.Vue.Ecran
                 if (etudiantSelectionne != null)
                 {
                     // on affiche ces informations
-                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants,this.promo);
+                    InformationsSupplementaires informationsSupplementaires;
+                    if (token != null)
+                    {
+                        informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants, this.promo,token);
+                    }
+                    else
+                    {
+                        informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants, this.promo, null);
+                    }
                     informationsSupplementaires.Show();
                 }
             }

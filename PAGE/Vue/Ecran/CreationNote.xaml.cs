@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using PAGE.Model.Enumerations;
+using DocumentFormat.OpenXml.Vml.Office;
 
 namespace PAGE.Vue.Ecran
 {
@@ -14,6 +15,8 @@ namespace PAGE.Vue.Ecran
     {
         private Note note;
         private Notes notes;
+        private Token token;
+        private Promotion promo;
 
         /// <summary>
         /// Constructeur de fenêtre CreationNote
@@ -22,21 +25,31 @@ namespace PAGE.Vue.Ecran
         /// <param name="notes">liste des notes existantes</param>
         /// <param name="noteExiste">indique si la note a déjà été crée par cette fenêtre ou non</param>
         /// <author>Laszlo / Lucas / Nordine</author>
-        public CreationNote(Note note, Notes notes, bool noteExist)
+        public CreationNote(Note note, Notes notes, bool noteExist,Promotion promo, Token? tokenUtilisateur)
         {
             InitializeComponent();
 
             DataContext = note;
             this.note = note;
             this.notes = notes;
-
+            this.promo = promo;
+            this.token = tokenUtilisateur;
+            
+                
             //Si on est en mode affichage (la note existe)
             if (noteExist)
             {
                 Titre.Content = "Note :";
-
                 BoutonCreer.Visibility = Visibility.Collapsed;
-                BoutonModifier.Visibility = Visibility.Visible;
+
+                if (tokenUtilisateur != null)
+                {
+                    if (token.UserToken.Roles[promo.AnneeDebut] != ROLE.LAMBDA || token.UserToken.Roles[promo.AnneeDebut] != ROLE.ADMIN)
+                    {
+                        BoutonSupprimer.Visibility = Visibility.Visible;
+                        BoutonModifier.Visibility = Visibility.Visible;
+                    }
+                }
                 //les switchs permettent d'afficher la valeur actuelle dans chaque comboBox 
                 switch (note.Categorie)
                 {
@@ -113,6 +126,7 @@ namespace PAGE.Vue.Ecran
                 BoutonSupprimer.Visibility = Visibility.Collapsed;
             }
 
+            
         }
 
         /// <summary>

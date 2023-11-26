@@ -35,6 +35,17 @@ namespace PAGE.Vue.Ecran
             if (tokenUtilisateur != null )
             {
                 this.token=token;
+
+                if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.ADMIN)
+                {
+                    BtnGestionUtilisateur.Visibility = Visibility.Visible;
+                    BtnImporterEtudiant.Visibility = Visibility.Visible;
+                }
+                if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.DIRECTEURDEPARTEMENT)
+                {
+                    BtnImporterEtudiant.Visibility = Visibility.Visible;
+                    BtnCreerEtudiant.Visibility= Visibility.Visible;
+                }
             }
             ChargementDiffereInitial();     
 
@@ -266,7 +277,15 @@ namespace PAGE.Vue.Ecran
                 if (etudiantSelectionne != null)
                 {
                     // on affiche ces informations
-                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants,this.promo);
+                    InformationsSupplementaires informationsSupplementaires;
+                    if (token != null)
+                    {
+                        informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants, this.promo, token);
+                    }
+                    else
+                    {
+                        informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants, this.promo, null);
+                    }
                     informationsSupplementaires.Show();
                 }
             }
