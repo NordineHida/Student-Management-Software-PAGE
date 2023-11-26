@@ -49,11 +49,15 @@ namespace PAGE.Vue.Ecran
             if (tokenUtilisateur != null )
             {
                 this.token = tokenUtilisateur;
-                if (token.UserToken.Roles[promo.AnneeDebut] != ROLE.LAMBDA || token.UserToken.Roles[promo.AnneeDebut] != ROLE.ADMIN)
+                if (token.UserToken.Roles.ContainsKey(promo.AnneeDebut))
                 {
-                    BoutonCreernote.Visibility = Visibility.Visible;
-                    BoutonModifier.Visibility = Visibility.Visible;
+                    if (token.UserToken.Roles[promo.AnneeDebut] != ROLE.LAMBDA || token.UserToken.Roles[promo.AnneeDebut] != ROLE.ADMIN)
+                    {
+                        BoutonCreernote.Visibility = Visibility.Visible;
+                        BoutonModifier.Visibility = Visibility.Visible;
+                    }
                 }
+                   
 
             }
 

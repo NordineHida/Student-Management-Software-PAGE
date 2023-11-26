@@ -44,10 +44,13 @@ namespace PAGE.Vue.Ecran
 
                 if (tokenUtilisateur != null)
                 {
-                    if (token.UserToken.Roles[promo.AnneeDebut] != ROLE.LAMBDA || token.UserToken.Roles[promo.AnneeDebut] != ROLE.ADMIN)
+                    if (token.UserToken.Roles.ContainsKey(promo.AnneeDebut))
                     {
-                        BoutonSupprimer.Visibility = Visibility.Visible;
-                        BoutonModifier.Visibility = Visibility.Visible;
+                        if (token.UserToken.Roles[promo.AnneeDebut] != ROLE.LAMBDA || token.UserToken.Roles[promo.AnneeDebut] != ROLE.ADMIN)
+                        {
+                            BoutonSupprimer.Visibility = Visibility.Visible;
+                            BoutonModifier.Visibility = Visibility.Visible;
+                        }
                     }
                 }
                 //les switchs permettent d'afficher la valeur actuelle dans chaque comboBox 
