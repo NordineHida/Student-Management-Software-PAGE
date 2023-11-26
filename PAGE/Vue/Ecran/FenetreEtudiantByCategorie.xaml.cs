@@ -23,13 +23,18 @@ namespace PAGE.Vue.Ecran
         private bool TriCroissant = false;
         private CATEGORIE categorieComboBox;
         private Promotion promo;
+        private Token token;
 
-        public FenetreEtudiantByCategorie(Etudiants etudiants,Promotion promo)
+        public FenetreEtudiantByCategorie(Etudiants etudiants,Promotion promo, Token? tokenUtilisateur)
         {
             InitializeComponent();
             this.promo = promo;
             this.etudiants = etudiants;
             etudiantEtNote = new List<Tuple<Etudiant, int>>();
+            if (tokenUtilisateur != null)
+            {
+                this.token = token;
+            }
         }
 
 
@@ -356,7 +361,15 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void FermerFenetre(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            FenetrePrincipal fp = new FenetrePrincipal(promo);
+            FenetrePrincipal fp;
+            if (token != null)
+            {
+                fp = new FenetrePrincipal(promo, token);
+            }
+            else
+            {
+                fp = new FenetrePrincipal(promo, null);
+            }
             fp.Show();
         }
 

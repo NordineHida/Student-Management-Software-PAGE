@@ -17,6 +17,7 @@ namespace PAGE.Vue.Ecran
     {
         private List<Annee> annees = new List<Annee>();
         private Promotion promotion;
+        private Token token;
 
         /// <summary>
         /// Renvoie une liste d'année
@@ -34,13 +35,15 @@ namespace PAGE.Vue.Ecran
         /// Constructeur de la page (initialise les éléments)
         /// </summary>
         /// <author>Nordine/Yamato</author>
-        public ChoixPromo()
+        public ChoixPromo(Token? tokenUtilisateur)
         {
             InitializeComponent();
             MettreAJourComboBox();
 
             ComboBoxAnnee.ItemsSource = annees;
             ComboBoxAnnee.DisplayMemberPath = "AnneeDebut";
+
+            this.token = token;
         }
 
         /// <summary>
@@ -76,9 +79,15 @@ namespace PAGE.Vue.Ecran
                 
                 Annee anneeeSelection = (Annee)ComboBoxAnnee.Items[ComboBoxAnnee.SelectedIndex];
 
-
-
-                FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(new Promotion(np,anneeeSelection.AnneeDebut));
+                FenetrePrincipal fenetrePrincipal;
+                if (token != null)
+                {
+                    fenetrePrincipal = new FenetrePrincipal(new Promotion(np, anneeeSelection.AnneeDebut), token);
+                }
+                else
+                {
+                    fenetrePrincipal = new FenetrePrincipal(new Promotion(np, anneeeSelection.AnneeDebut), null);
+                }
                 fenetrePrincipal.Show();
 
                 this.Close();

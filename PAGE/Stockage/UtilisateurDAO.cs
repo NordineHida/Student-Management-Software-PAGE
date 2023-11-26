@@ -19,8 +19,9 @@ namespace PAGE.Stockage
         /// Ajoute un utilisateur à la BDD
         /// </summary>
         /// <param name="user">utilisateur à ajouter</param>
+        /// <param name="annee">annee courante</param>
         /// <returns>vrai si l'ajout est effectué, faux sinon</returns>
-        public async Task CreateUtilisateur(Utilisateur user)
+        public async Task CreateUtilisateur(Utilisateur user, int annee)
         {
             // Créez une instance de HttpClient
             using (HttpClient client = new HttpClient())
@@ -117,6 +118,13 @@ namespace PAGE.Stockage
             return token;
         }
 
+        /// <summary>
+        /// Modifie le rôle d'un utilisateur
+        /// </summary>
+        /// <param name="user">utilisateur dont le rôle va être changé</param>
+        /// <param name="role">nouveau role attribué</param>
+        /// <returns>vrai si le changement a été effectué, faux sinon</returns>
+        /// <author>Laszlo</author>
         public async Task UpdateRole(Utilisateur user, ROLE role)
         {
             // Créez une instance de HttpClient

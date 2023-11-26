@@ -125,7 +125,15 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void OpenParametresPage(object sender, RoutedEventArgs e)
         {
-            ParametrePage parametre = new ParametrePage(promo);
+            ParametrePage parametre;
+            if (this.token != null)
+            {
+               parametre = new ParametrePage(promo, token);
+            }
+            else
+            {
+                parametre = new ParametrePage(promo, null);
+            }
             parametre.Show();
 
             this.Close();
@@ -187,7 +195,15 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void OpenPromoPage(object sender, RoutedEventArgs e)
         {
-            ChoixPromo choixPromo = new ChoixPromo();
+            ChoixPromo choixPromo;
+            if (this.token != null)
+            {
+                choixPromo = new ChoixPromo(token);
+            }
+            else
+            {
+                choixPromo = new ChoixPromo(null);
+            }
             choixPromo.Show();
             this.Close();
         }
@@ -495,7 +511,7 @@ namespace PAGE.Vue.Ecran
         {
             if (users != null)
             {
-                GestionUtilisateurs gestionUtilisateurs = new GestionUtilisateurs();
+                GestionUtilisateurs gestionUtilisateurs = new GestionUtilisateurs(promo);
                 gestionUtilisateurs.Show();
             }
             else
@@ -521,7 +537,15 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void ClickAfficherEtudiantByCategorie(object sender, RoutedEventArgs e)
         {
-            FenetreEtudiantByCategorie fenetreEtudiantByCategorie = new FenetreEtudiantByCategorie(this.etudiants,this.promo);
+            FenetreEtudiantByCategorie fenetreEtudiantByCategorie;
+            if (token != null)
+            {
+                fenetreEtudiantByCategorie = new FenetreEtudiantByCategorie(this.etudiants, this.promo, token);
+            }
+            else
+            {
+                fenetreEtudiantByCategorie = new FenetreEtudiantByCategorie(this.etudiants, this.promo, null);
+            }
             fenetreEtudiantByCategorie.Show();
 
             this.Close();

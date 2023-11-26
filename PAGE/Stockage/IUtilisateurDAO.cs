@@ -1,4 +1,5 @@
-﻿using PAGE.Model;
+﻿using PAGE.Model.Enumerations;
+using PAGE.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,10 @@ namespace PAGE.Stockage
         /// Ajoute un utilisateur à la BDD
         /// </summary>
         /// <param name="user">utilisateur à ajouter</param>
+        /// <param name="annee">annee courante</param>
         /// <returns>vrai si l'ajout est effectué, faux sinon</returns>
         /// <author>Laszlo</author>
-        public Task CreateUtilisateur(Utilisateur user);
+        public Task CreateUtilisateur(Utilisateur user, int annee);
 
         /// <summary>
         /// Récupère les utilisateurs de la BDD

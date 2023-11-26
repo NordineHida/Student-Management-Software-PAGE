@@ -16,10 +16,11 @@ namespace APIEtudiant.Stockage
         /// Ajoute un utilisateur à la BDD
         /// </summary>
         /// <param name="user">utilisateur à ajouter</param>
+        /// <param name="annee">annee pour laquelle le role donne est actif</param>
         /// <returns>vrai si l'ajout est effectué, faux sinon</returns>
         /// <author>Laszlo</author>
         // <summary> 
-        public bool CreateUtilisateur(Utilisateur? user)
+        public bool CreateUtilisateur(Utilisateur? user, int annee)
         {
             bool ajoutReussi = false;
             if (user != null)
@@ -53,7 +54,7 @@ namespace APIEtudiant.Stockage
                             idUser = reader.GetInt32(reader.GetOrdinal("idUtilisateur"));
                         }
 
-                        string requeteInitialisationRole = String.Format("INSERT INTO RoleUtilisateur (annee,idUtilisateur,idRole) VALUES ({0},'{1}',5)", 2023, idUser);
+                        string requeteInitialisationRole = String.Format("INSERT INTO RoleUtilisateur (annee,idUtilisateur,idRole) VALUES ({0},'{1}',5)", annee, idUser);
                         //On execute la requete
                         OracleCommand cmdInitialisationRole = new OracleCommand(requeteInitialisationRole, con.OracleConnexion);
 
@@ -200,7 +201,7 @@ namespace APIEtudiant.Stockage
         /// <param name="role">nouveau role attribué</param>
         /// <returns>vrai si le changement a été effectué, faux sinon</returns>
         /// <author>Laszlo</author>
-        public bool UpdateRole(Utilisateur user, ROLE role)
+        public bool UpdateRole(Utilisateur user, ROLE role, int annee)
         {
             bool modifReussie = false;
             if (user != null)
@@ -222,7 +223,7 @@ namespace APIEtudiant.Stockage
                             idUser = reader.GetInt32(reader.GetOrdinal("idUtilisateur"));
                         }
 
-                        string requeteInitialisationRole = String.Format("UPDATE RoleUtilisateur SET annee={0}, idUtilisateur='{1}', idRole={2}", 2023, idUser,GetIdRole(role));
+                        string requeteInitialisationRole = String.Format("UPDATE RoleUtilisateur SET annee={0}, idUtilisateur='{1}', idRole={2}", annee, idUser,GetIdRole(role));
                         //On execute la requete
                         OracleCommand cmdInitialisationRole = new OracleCommand(requeteInitialisationRole, con.OracleConnexion);
 

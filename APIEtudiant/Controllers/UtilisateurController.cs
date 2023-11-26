@@ -17,16 +17,17 @@ namespace APIEtudiant.Controllers
         /// Ajoute un Utilisateur à la BDD
         /// </summary>
         /// <param name="user">Utilisateur à ajouter</param>
+        /// <param name="annee">annee courante</param>
         /// <author>Laszlo</author>
         [HttpPost("CreateUtilisateur")]
-        public ActionResult CreateUtilisateur([FromBody] Utilisateur user)
+        public ActionResult CreateUtilisateur([FromBody] Utilisateur user, int annee)
         {
             ActionResult reponse = BadRequest();
             //Si l'utilisateur n'est pas null
             if (user != null)
             {
                 //si l'ajout de l'utilisateur a été un succès on renvoie OK
-                if (UtilisateurManager.Instance.CreateUtilisateur(user)) reponse = Ok();
+                if (UtilisateurManager.Instance.CreateUtilisateur(user, annee)) reponse = Ok();
             }
             return reponse;
         }
@@ -76,16 +77,17 @@ namespace APIEtudiant.Controllers
         /// </summary>
         /// <param name="user">Utilisateur dont le rôle doit être modifié</param>
         /// <param name="role">nouveau role attribué</param>
+        /// <param name="annee">annee pour laquelle le role donne est actif</param>
         /// <author>Laszlo</author>
         [HttpPost("UpdateRole")]
-        public ActionResult UpdateRole([FromBody] Utilisateur user,ROLE role)
+        public ActionResult UpdateRole([FromBody] Utilisateur user,ROLE role, int annee)
         {
             ActionResult reponse = BadRequest();
             //Si l'utilisateur n'est pas null
             if (user != null)
             {
                 //si l'ajout de l'utilisateur a été un succès on renvoie OK
-                if (UtilisateurManager.Instance.UpdateRole(user, role)) reponse = Ok();
+                if (UtilisateurManager.Instance.UpdateRole(user, role,annee)) reponse = Ok();
             }
             return reponse;
         }

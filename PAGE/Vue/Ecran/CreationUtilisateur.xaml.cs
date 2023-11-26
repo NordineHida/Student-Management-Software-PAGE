@@ -25,12 +25,14 @@ namespace PAGE.Vue.Ecran
     {
         Utilisateur user;
         Utilisateurs users;
-        public CreationUtilisateur(Utilisateur user,Utilisateurs users)
+        Promotion promo;
+        public CreationUtilisateur(Utilisateur user,Utilisateurs users, Promotion promo)
         {
             this.user = user;
             this.users = users;
             DataContext = user;
             InitializeComponent();
+            this.promo = promo;
         }
 
         private void ClickCreer(object sender, RoutedEventArgs e)
@@ -38,7 +40,7 @@ namespace PAGE.Vue.Ecran
             if (isCreateOk()) 
             {
                 IUtilisateurDAO dao = new UtilisateurDAO();
-                dao.CreateUtilisateur(user);
+                dao.CreateUtilisateur(user,promo.AnneeDebut);
                 users.AddUser(user);
                 this.Close();
             }

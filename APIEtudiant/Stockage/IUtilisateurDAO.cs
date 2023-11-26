@@ -13,8 +13,9 @@ namespace APIEtudiant.Stockage
         /// Ajoute un utilisateur à la BDD
         /// </summary>
         /// <param name="user">utilisateur à ajouter</param>
+        /// <param name="annee">annee courante</param>
         /// <returns>vrai si l'ajout est effectué, faux sinon</returns>
-        public bool CreateUtilisateur(Utilisateur user);
+        public bool CreateUtilisateur(Utilisateur user, int annee);
 
         /// <summary>
         /// Récupère les utilisateurs de la BDD
@@ -36,8 +37,9 @@ namespace APIEtudiant.Stockage
         /// </summary>
         /// <param name="user">utilisateur dont le rôle va être changé</param>
         /// <param name="role">Nouveau rôle attribué</param>
+        /// <param name="annee">annee pour laquelle le role donne est actif</param>
         /// <returns>vrai si le changement a été effectué, faux sinon</returns>
         /// <author>Laszlo</author>
-        public bool UpdateRole(Utilisateur user, ROLE role);
+        public bool UpdateRole(Utilisateur user, ROLE role, int annee);
     }
 }

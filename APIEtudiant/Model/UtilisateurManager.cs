@@ -41,11 +41,12 @@ namespace APIEtudiant.Model
         /// Ajoute un Utilisateur à la BDD
         /// </summary>
         /// <param name="user">Utilisateur à ajouter</param>
+        /// <param name="annee">annee courante</param>
         /// <returns>true si l'ajout est un succès</returns>
         /// <author>Laszlo</author>
-        public bool CreateUtilisateur(Utilisateur user)
+        public bool CreateUtilisateur(Utilisateur user, int annee)
         {
-            return UtilisateurDAO.CreateUtilisateur(user);
+            return UtilisateurDAO.CreateUtilisateur(user, annee);
         }
 
         /// <summary>
@@ -85,10 +86,11 @@ namespace APIEtudiant.Model
         /// </summary>
         /// <param name="user">utilisateur dont le role doit etre modifié</param>
         /// <param name="role">nouveau role attribué</param>
+        /// <param name="annee">annee pour laquelle le role donne est actif</param>
         /// <returns></returns>
-        public bool UpdateRole(Utilisateur user, ROLE role)
+        public bool UpdateRole(Utilisateur user, ROLE role, int annee)
         {
-            return UtilisateurDAO.UpdateRole(user,role);
+            return UtilisateurDAO.UpdateRole(user,role,annee);
         }
     }
 }

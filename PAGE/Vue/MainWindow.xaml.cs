@@ -57,7 +57,7 @@ namespace PAGE.Vue
             await Task.Delay(1000);
 
             // On créer et on affiche la fenêtre pour choisir l'année et la promo
-            ChoixPromo fenetrePromo = new ChoixPromo();
+            ChoixPromo fenetrePromo = new ChoixPromo(null);
             fenetrePromo.Show();
 
             // On ferme la fenêtre 

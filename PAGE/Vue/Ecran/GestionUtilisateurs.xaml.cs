@@ -21,16 +21,17 @@ namespace PAGE.Vue.Ecran
         private UIElement initialContent;
         private List<Utilisateur> UserAffichage;
         private bool TriCroissant = false;
+        private Promotion promo;
 
         /// <summary>
         /// Initialise la fenetre Gestion Utilisateurs
         /// </summary>
         /// <author>Lucas</author>
 
-        public GestionUtilisateurs()
+        public GestionUtilisateurs(Promotion promo)
         {
             InitializeComponent();
-
+            this.promo = promo;
             initialContent = (UIElement?)this.Content;
 
             ChargementDiffereInitial();
@@ -46,7 +47,7 @@ namespace PAGE.Vue.Ecran
         {
             if (users != null)
             {
-                CreationUtilisateur creerUtilisateur = new CreationUtilisateur(new Utilisateur("", ""), users);
+                CreationUtilisateur creerUtilisateur = new CreationUtilisateur(new Utilisateur("", ""), users, promo);
                 creerUtilisateur.Show();
             }
             else
