@@ -551,15 +551,5 @@ namespace PAGE.Vue.Ecran
             this.Close();
         }
     }
-
-    /// <summary>
-    /// Différent élément qu'on peut utiliser pour trier
-    /// </summary>
-    /// <author>Nordine</author>
-    public enum TYPETRI
-    {
-        PRENOM,NOM,GROUPE,APOGEE,NBNOTE,LOGIN
-    }
-
 }
 
