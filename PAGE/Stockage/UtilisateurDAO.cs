@@ -27,7 +27,7 @@ namespace PAGE.Stockage
             using (HttpClient client = new HttpClient())
             {
                 // Spécifiez l'URL de l'API
-                string apiUrl = "https://localhost:7038/Utilisateur/CreateUtilisateur";
+                string apiUrl = String.Format("https://localhost:7038/Utilisateur/CreateUtilisateur?annee={0}",annee);
 
                 // Convertissez l'Utilisateur en JSON
                 string userSerialise = JsonSerializer.Serialize(user);
@@ -125,13 +125,13 @@ namespace PAGE.Stockage
         /// <param name="role">nouveau role attribué</param>
         /// <returns>vrai si le changement a été effectué, faux sinon</returns>
         /// <author>Laszlo</author>
-        public async Task UpdateRole(Utilisateur user, ROLE role)
+        public async Task UpdateRole(Utilisateur user, ROLE role, int annee)
         {
             // Créez une instance de HttpClient
             using (HttpClient client = new HttpClient())
             {
                 // Spécifiez l'URL de l'API
-                string apiUrl = String.Format("https://localhost:7038/Utilisateur/UpdateRole?role={0}",GetIdRole(role));
+                string apiUrl = String.Format("https://localhost:7038/Utilisateur/UpdateRole?role={0}&annee={1}", GetIdRole(role),annee);
 
                 // Convertissez l'Utilisateur en JSON
                 string userSerialise = JsonSerializer.Serialize(user);

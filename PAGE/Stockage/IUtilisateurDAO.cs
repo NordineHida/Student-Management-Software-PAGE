@@ -39,6 +39,6 @@ namespace PAGE.Stockage
         /// <param name="user">utilisateur à ajouter</param>
         /// <returns>vrai si l'ajout est effectué, faux sinon</returns>
         /// <author>Laszlo</author>
-        public Task UpdateRole(Utilisateur user, ROLE role);
+        public Task UpdateRole(Utilisateur user, ROLE role, int annee);
     }
 }
