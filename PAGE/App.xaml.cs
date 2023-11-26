@@ -1,6 +1,6 @@
 ﻿using PAGE.Model;
 using PAGE.Model.PatternObserveur;
-using PAGE.Model.StockageNoteConfidentielles;
+using PAGE.Stockage.StockageNoteConfidentielle;
 using System;
 using System.Windows;
 

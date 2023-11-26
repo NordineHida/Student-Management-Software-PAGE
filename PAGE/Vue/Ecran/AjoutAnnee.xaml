@@ -6,27 +6,52 @@
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"        
         WindowStartupLocation="CenterScreen"
-        Title="Ajouter une année" Height="140" Width="260"
+        Title="{DynamicResource TitreFenetreAnnee}" 
+        Height="140" Width="260"
         ResizeMode="NoResize">
 
     <!--Fond (Yamato)-->
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />
     </Window.Background>
+    
+    <Window.Resources>
+        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-        <!-- Zone de saisie de l'année (Yamato) -->
-        <Label Grid.Row="1" Content="Veuillez saisir l'année à ajouter :" FontSize="15" FontFamily="Open Sauce One" />
-        <TextBox Grid.Row="2" x:Name="txtAnneeSaisie" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60"/>
+        <!-- Zone de saisie de l'année (Yamato/Nordine) -->
+        <Label Grid.Row="1" Content="{DynamicResource LabelSelectionAnnee}" Foreground="#FF2B2B5A" FontSize="15" FontFamily="{StaticResource OpenSauceOne}" />
+        <TextBox Grid.Row="2" x:Name="txtAnneeSaisie" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60"/>
 
         <!-- Bouton Ok-->
-        <Button Click="OkClick" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Ok" FontSize="12" Margin="0,0,20,0" Foreground="#FF2B2B5A" Background="#FF3DA79D" FontFamily="Open Sauce One" Height="20" Width="65"/>
+        <Button Click="OkClick" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Ok" FontSize="12" Margin="0,0,20,0" Foreground="White" Background="#FF3DA79D" FontFamily="Open Sauce One" Height="20" Width="65">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#FF7dbfcf"/>
+                                        <Setter Property="Foreground" Value="#000000"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
 
     </Grid>
 </Window>

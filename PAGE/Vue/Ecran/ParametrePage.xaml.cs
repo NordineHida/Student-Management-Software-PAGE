@@ -1,4 +1,5 @@
 ﻿using PAGE.Model;
+using PAGE.Model.Enumerations;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,15 +12,18 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class ParametrePage : Window
     {
+        //on sauve la promo pour la redonner à la fenetre principal quand on ferme les parametres
+        private Promotion promo;
 
         /// <summary>
         /// Constructeur de paramètre (initialise le path du word au bureau)
         /// </summary>
+        /// <param name="promo">promotion actuelle</param>
         /// <author>Nordine</author>
-        public ParametrePage()
+        public ParametrePage(Promotion promo)
         {
             InitializeComponent();
-
+            this.promo = promo;
             InitialiserComboBoxSelectedItem();
 
             //Initialise le label
@@ -65,7 +69,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void FermerFenetre()
         {
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
+            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(promo);
             fenetrePrincipal.Show();
 
             this.Close();

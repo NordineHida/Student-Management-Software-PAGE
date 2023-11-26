@@ -43,11 +43,12 @@ namespace APIEtudiant.Model
         /// <summary>
         /// Renvoi tout les étudiants
         /// </summary>
+        /// <param name="promo">Promo dont on veut les etudiants</param>
         /// <returns>Ensemble de tout les étudiants</returns>
         /// <author>Nordine</author>
-        public IEnumerable<Etudiant> GetAllEtu()
+        public IEnumerable<Etudiant> GetAllEtu(Promotion promo)
         {
-            return EtuDAO.GetAllEtu();
+            return EtuDAO.GetAllEtu(promo);
         }
 
         /// <summary>
@@ -56,9 +57,9 @@ namespace APIEtudiant.Model
         /// <param name="etu">étudiant à ajouter</param>
         /// <returns>true si l'ajout a fonctionné</returns>
         /// <author>Nordine</author>
-        public bool AddEtu(Etudiant etu)
+        public bool AddEtu(Etudiant etu,Promotion promo)
         {
-            return EtuDAO.AddEtu(etu);
+            return EtuDAO.AddEtu(etu, promo);
         }
 
         /// <summary>
@@ -67,9 +68,9 @@ namespace APIEtudiant.Model
         /// <param name="listeEtu">Liste d'étudiant à ajouter</param>
         /// <returns>true si l'ajout est un succes</returns>
         /// <author>Nordine</author>
-        public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu)
+        public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu, Promotion promo)
         {
-            return EtuDAO.AddSeveralEtu(listeEtu);
+            return EtuDAO.AddSeveralEtu(listeEtu, promo);
         }
 
         /// <summary>
@@ -77,9 +78,9 @@ namespace APIEtudiant.Model
         /// </summary>
         /// <param name="etu">etudiant à ajouté</param>
         /// <returns>si l'ajout est un succès</returns>
-        public bool CreateEtu(Etudiant etu)
+        public bool CreateEtu(Etudiant etu,Promotion promo)
         {
-            return EtuDAO.CreateEtu(etu);
+            return EtuDAO.CreateEtu(etu,promo);
         }
 
 

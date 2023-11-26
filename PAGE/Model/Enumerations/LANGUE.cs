@@ -1,4 +1,4 @@
-﻿namespace PAGE.Model
+﻿namespace PAGE.Model.Enumerations
 {
     /// <summary>
     /// Les langue possibles de l'application

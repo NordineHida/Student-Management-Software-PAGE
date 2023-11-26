@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
 using System.Linq;
+using PAGE.Model.Enumerations;
 
 namespace PAGE.Vue.Ecran
 {
@@ -19,29 +20,18 @@ namespace PAGE.Vue.Ecran
         private Etudiants etudiants;
         private List<Etudiant> etudiantAffichage;
         private bool TriCroissant=false;
-
-        Promotion promo;
-
-        /// <summary>
-        /// Initialise la fenetre principal
-        /// </summary>
-        /// <author>Nordine & Stephane</author>
-        public FenetrePrincipal()
-        {
-            InitializeComponent();
-            ChargementDiffereInitial();
-
-        }
+        private Promotion promo;
 
         /// <summary>
         /// Initialise la fenetre principal depuis l'annee selectionner
         /// </summary>
+        /// <param name="promo">Promo d'étudiant selectionner</param>
         /// <author>Nordine/Yamato</author>
         public FenetrePrincipal(Promotion promo)
         {
             InitializeComponent();
-            ChargementDiffereInitial();
             this.promo = promo;
+            ChargementDiffereInitial();     
 
         }
 
@@ -53,8 +43,8 @@ namespace PAGE.Vue.Ecran
         private async Task ChargementDiffereInitial()
         {
             // On récupère l'ensemble des étudiants via l'API
-            EtuDAO Etudao = new EtuDAO();
-            this.etudiants = new Etudiants((List<Etudiant>)await Etudao.GetAllEtu());
+            EtuDAO etuDAO = new EtuDAO();
+            this.etudiants = new Etudiants((List<Etudiant>)await etuDAO.GetAllEtu(this.promo));
 
             //On récupère l'ensemble des utilisateurs via l'API
             List<Utilisateur> listUser;
@@ -82,7 +72,7 @@ namespace PAGE.Vue.Ecran
         {
             // On récupère l'ensemble des étudiants via l'API
             EtuDAO dao = new EtuDAO();
-            this.etudiants = new Etudiants((List<Etudiant>)await dao.GetAllEtu());
+            this.etudiants = new Etudiants((List<Etudiant>)await dao.GetAllEtu(promo));
 
             //On récupère l'ensemble des utilisateurs via l'API
             List<Utilisateur> listUser;
@@ -108,7 +98,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void OpenLoginPage(object sender, RoutedEventArgs e)
         {
-            LoginPage loginPage = new LoginPage(new Utilisateur("",""));
+            LoginPage loginPage = new LoginPage(new Utilisateur("",""),promo);
             loginPage.Show();
 
             this.Close();
@@ -122,7 +112,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void OpenParametresPage(object sender, RoutedEventArgs e)
         {
-            ParametrePage parametre = new ParametrePage();
+            ParametrePage parametre = new ParametrePage(promo);
             parametre.Show();
 
             this.Close();
@@ -135,7 +125,7 @@ namespace PAGE.Vue.Ecran
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <author>Nordine & Stephane</author>
-        private void ImporterEtudiants(object sender, RoutedEventArgs e)
+        private async void ImporterEtudiants(object sender, RoutedEventArgs e)
         {
             // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -148,10 +138,11 @@ namespace PAGE.Vue.Ecran
                 // Appelez la méthode GetEtudiants avec le chemin du fichier
                 LecteurExcel lc = new LecteurExcel();
                 EtuDAO dao = new EtuDAO();
-                dao.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
+                dao.AddSeveralEtu(lc.GetEtudiants(selectedFilePath),this.promo);
             }
 
             //On actualise l'affichage
+            await Task.Delay(1000);
             ActualiserEtudiant();
         }
 
@@ -199,7 +190,7 @@ namespace PAGE.Vue.Ecran
         {
             if (etudiants != null)
             {
-                FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant(etudiants);
+                FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant(etudiants,this.promo);
                 fenetreCreerEtudiant.Show();
             }
             else
@@ -246,7 +237,7 @@ namespace PAGE.Vue.Ecran
                 if (etudiantSelectionne != null)
                 {
                     // on affiche ces informations
-                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants);
+                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants,this.promo);
                     informationsSupplementaires.Show();
                 }
             }
@@ -517,7 +508,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void ClickAfficherEtudiantByCategorie(object sender, RoutedEventArgs e)
         {
-            FenetreEtudiantByCategorie fenetreEtudiantByCategorie = new FenetreEtudiantByCategorie(this.etudiants);
+            FenetreEtudiantByCategorie fenetreEtudiantByCategorie = new FenetreEtudiantByCategorie(this.etudiants,this.promo);
             fenetreEtudiantByCategorie.Show();
 
             this.Close();

@@ -28,7 +28,7 @@ namespace APIEtudiant.Stockage
         /// </summary>
         /// <param name="annee">année à supprimer</param>
         /// <returns>true si la suppression est effectué</returns>
-        public bool DeleteAnnee(int annee);
+        public bool DeleteAnnee(int? annee);
 
     }
 }

@@ -8,6 +8,7 @@ using System.Windows;
 using Microsoft.Win32;
 using System.Linq;
 using System.Windows.Controls;
+using PAGE.Model.Enumerations;
 
 namespace PAGE.Vue.Ecran
 {
@@ -21,10 +22,12 @@ namespace PAGE.Vue.Ecran
         private List<Tuple<Etudiant, int>> etudiantEtNote;
         private bool TriCroissant = false;
         private CATEGORIE categorieComboBox;
+        private Promotion promo;
 
-        public FenetreEtudiantByCategorie(Etudiants etudiants)
+        public FenetreEtudiantByCategorie(Etudiants etudiants,Promotion promo)
         {
             InitializeComponent();
+            this.promo = promo;
             this.etudiants = etudiants;
             etudiantEtNote = new List<Tuple<Etudiant, int>>();
         }
@@ -81,7 +84,7 @@ namespace PAGE.Vue.Ecran
                 if (etudiantSelectionne != null)
                 {
                     // on affiche ces informations
-                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants);
+                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants,this.promo);
                     informationsSupplementaires.Show();
                 }
             }
@@ -353,7 +356,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void FermerFenetre(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            FenetrePrincipal fp = new FenetrePrincipal();
+            FenetrePrincipal fp = new FenetrePrincipal(promo);
             fp.Show();
         }
 

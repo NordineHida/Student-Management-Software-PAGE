@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PAGE.Model.Enumerations;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

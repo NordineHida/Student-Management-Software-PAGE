@@ -30,6 +30,7 @@ namespace PAGE.Vue.Ecran
         private bool estBoursier;
         private REGIME regimeEtu;
         private GROUPE groupeEtu;
+        private Promotion promo;
 
 
         /// <summary>
@@ -37,9 +38,10 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="EtudiantActuel">etudiant actuel</param>
         /// <author>Yamato & Laszlo & Nordine</author>
-        public InformationsSupplementaires(Etudiant EtudiantActuel, Etudiants etudiants)
+        public InformationsSupplementaires(Etudiant EtudiantActuel, Etudiants etudiants,Promotion promo)
         {
             InitializeComponent();
+            this.promo = promo;
             etudiant = EtudiantActuel;
             this.etudiants = etudiants;
             ChargerInfosImpEtudiant();
@@ -142,11 +144,29 @@ namespace PAGE.Vue.Ecran
         /// <author>Yamato / Lucas / Nordine</author>
         public void ChargerInfosCompEtudiant()
         {
-            txtDateNaissance2.SelectedDate = etudiant.DateNaissance;
+            //si il a une date de naissance
+            if (etudiant.DateNaissance != DateTime.MinValue)
+            {
+                txtDateNaissance2.SelectedDate = etudiant.DateNaissance;
+            }
+            else
+                txtDateNaissance2.SelectedDate = null ;
 
             txtAdresse2.Text = etudiant.Adresse;
-            txtTelFixe2.Text = etudiant.TelFixe.ToString();
-            txtTelPortable2.Text = etudiant.TelPortable.ToString();
+
+            if (etudiant.TelFixe != 0)
+            {
+                txtTelFixe2.Text = etudiant.TelFixe.ToString();
+            }
+            else
+                txtTelFixe2.Text = "";
+
+            if (etudiant.TelPortable != 0)
+            {
+                txtTelPortable2.Text = etudiant.TelPortable.ToString();
+            }
+            else
+                txtTelPortable2.Text = "";
             txtLogin2.Text = etudiant.Login;
             
         }
@@ -228,7 +248,7 @@ namespace PAGE.Vue.Ecran
             Etudiant updateEtu = GetEtudiantUpdated();
             //On l'ajoute (le mets a jour puisqu'il existe)
             EtuDAO dao = new EtuDAO();
-            dao.AddEtudiant(updateEtu);
+            dao.AddEtudiant(updateEtu,this.promo);
             etudiants.UpdateEtu(etudiant);
         }
 

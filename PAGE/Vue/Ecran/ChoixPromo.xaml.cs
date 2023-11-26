@@ -5,6 +5,7 @@ using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace PAGE.Vue.Ecran
@@ -105,7 +106,7 @@ namespace PAGE.Vue.Ecran
         /// Bouton ouvrant une nouvelle fenetre permettant d'ajouter une année
         /// </summary>
         /// <author>Yamato/Nordine</author>        
-        private void AjouterAnnee(object sender, RoutedEventArgs e)
+        private async void AjouterAnnee(object sender, RoutedEventArgs e)
         {
             // On ouvre une nouvelle fenêtre permettant la saisie de l'année à ajouter
             AjoutAnnee ajoutAnnee = new AjoutAnnee();
@@ -122,6 +123,7 @@ namespace PAGE.Vue.Ecran
             dao.CreateAnnee(nouvelleAnnee.AnneeDebut);
 
             //on remet a jour la combobox
+            await Task.Delay(1000);
             MettreAJourComboBox();
         }
 

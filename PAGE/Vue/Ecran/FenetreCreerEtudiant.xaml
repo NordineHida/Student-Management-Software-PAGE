@@ -623,7 +623,7 @@
 
         <Rectangle Stretch="UniformToFill" Fill="White" Stroke="Black" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="59" />
 
-        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="1"  VerticalAlignment="Top" Height="300" Width="260" Margin="0,40,0,0" Grid.RowSpan="25"  />
+        <Image Source="/Vue/Ressources/Img/photo.png" Grid.Row="1"  VerticalAlignment="Top" Height="300" Width="450" Margin="0,40,0,0" Grid.RowSpan="25"  />
 
         <!-- Informations Importantes -->
 
@@ -712,27 +712,27 @@
 
         <!-- Date de naissance -->
         <TextBlock x:Name="txtDateNaissance1" FontSize="20" Text="{DynamicResource Birth*}"  Grid.Row="19" Grid.Column="1"  />
-        <DatePicker HorizontalAlignment="Left" FontSize="20" x:Name="txtDateNaissance2" Width="350" SelectedDateFormat="Short" Margin="0,0,80,20" Grid.Row="19" Grid.RowSpan="2" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <DatePicker HorizontalAlignment="Left" FontSize="20" x:Name="txtDateNaissance2" Width="500" SelectedDateFormat="Short" Margin="500,0,0,20" Grid.Row="19" Grid.RowSpan="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
 
         <!-- Adresse de résidence -->
         <TextBlock x:Name="txtAdresse1" FontSize="20" Text="{DynamicResource Adresse}"   Grid.Row="21" Grid.Column="1"/>
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtAdresse2" FontSize="20"   Grid.Row="21" Grid.Column="3" />
-          
+
 
         <!-- Téléphone fixe -->
         <TextBlock x:Name="txtTelFixe1" FontSize="20" Text="{DynamicResource TelFixe}"   Grid.Row="23" Grid.Column="1"/>
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtTelFixe2" FontSize="20" Text=""   Grid.Row="23" Grid.Column="3"/>
-            
+
 
         <!-- Téléphone portable -->
         <TextBlock x:Name="txtTelPortable1" FontSize="20" Text="{DynamicResource TelPort}"   Grid.Row="25" Grid.Column="1"/>
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtTelPortable2" FontSize="20" Text=""    Grid.Row="25" Grid.Column="3" />
-            
+
 
         <!-- Login réseau -->
         <TextBlock x:Name="txtLogin1" FontSize="20" Text="{DynamicResource LoginRes}"  Grid.Row="27" Grid.Column="1" />
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtLogin2" FontSize="20" Text=""  Grid.Row="27" Grid.Column="3" />
-        
+
     </Grid>
 
 </Window>

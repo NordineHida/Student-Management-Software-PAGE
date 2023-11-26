@@ -1,4 +1,5 @@
 ﻿using PAGE.Model;
+using PAGE.Model.Enumerations;
 using PAGE.Vue.Ecran;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -70,7 +71,7 @@ namespace PAGE.Stockage
             return annee;
         }
 
-        /// <summary>
+        /// <summary>ane
         /// Supprime une année de la bdd
         /// </summary>
         /// <param name="annee">année supprimé</param>

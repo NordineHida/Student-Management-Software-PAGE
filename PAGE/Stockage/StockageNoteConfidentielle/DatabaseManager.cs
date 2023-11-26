@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SQLite;
 
-namespace PAGE.Model.StockageNoteConfidentielles
+namespace PAGE.Stockage.StockageNoteConfidentielle
 {
     /// <summary>
     /// Gestion de la base de données

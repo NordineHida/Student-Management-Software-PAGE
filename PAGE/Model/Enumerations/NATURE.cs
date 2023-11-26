@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PAGE.Model
+namespace PAGE.Model.Enumerations
 {
     /// <summary>
     /// Différentes natures possibles d'une note
@@ -12,6 +12,6 @@ namespace PAGE.Model
     ///<author>Laszlo</author>
     public enum NATURE
     {
-        MAIL,RDV,LETTRE,APPEL,AUTRE
+        MAIL, RDV, LETTRE, APPEL, AUTRE
     }
 }

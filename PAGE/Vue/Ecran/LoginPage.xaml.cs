@@ -23,9 +23,11 @@ namespace PAGE.Vue.Ecran
     public partial class LoginPage : Window
     {
         private Utilisateur user;
-        public LoginPage(Utilisateur user)
+        private Promotion promo;
+        public LoginPage(Utilisateur user,Promotion promo)
         {
             this.user = user;
+            this.promo = promo;
             DataContext = user;
             InitializeComponent();
         }
@@ -38,7 +40,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas</author>
         private void CloseLoginWindow(object sender, RoutedEventArgs e)
         {
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
+            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(promo);
             fenetrePrincipal.Show();
 
             this.Close();
@@ -57,7 +59,7 @@ namespace PAGE.Vue.Ecran
 
             IUtilisateurDAO dao = new UtilisateurDAO();
             Token token = await dao.Connexion(user.Login,user.HashMdp);
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
+            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(promo);
             fenetrePrincipal.Show();
 
             this.Close();

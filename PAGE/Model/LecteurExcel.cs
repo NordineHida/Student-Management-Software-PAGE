@@ -11,6 +11,7 @@ using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Office2016.Excel;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using PAGE.Model.Enumerations;
 
 namespace PAGE.Model
 {
@@ -67,6 +68,9 @@ namespace PAGE.Model
 
                 foreach (Row row in sheetData.Elements<Row>())
                 {
+                    //on reset l'apogee
+                    apogeeInt = -1;
+
                     //On enleve la ligne de header
                     header += 1;
                     foreach (Cell cell in row.Elements<Cell>())
@@ -167,8 +171,9 @@ namespace PAGE.Model
                             estBoursierBool = false;
                             if (estBoursier == "OUI") estBoursierBool = true;
 
+                            dateNaissanceDT = DateTime.MinValue;
                             //Conversion string en DateTime
-                            if (dateNaissance!= null)
+                            if (dateNaissance!= null && dateNaissance != "")
                             {
                                 // Ajoutez le nombre de jours à la date de base pour obtenir la date correcte
                                 dateNaissanceDT = baseDate.AddDays(int.Parse(dateNaissance) - 2); // Soustrayez 2 jours pour corriger un décalage de 2 jours dans Excel
@@ -180,16 +185,22 @@ namespace PAGE.Model
 
                         }
                     }
-                    //On crée l'étudiant
-                    Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupeEtu, estBoursierBool, regimeEtu, dateNaissanceDT, login, telPortableInt, telFixeInt, adresse);
 
-                    //On l'ajoute à la liste d'étudiant
-                    etudiants.Add(etudiant);
+                    if (apogeeInt!= -1)
+                    {
+                        // Vérifie si un étudiant avec le même numéro Apogee existe déjà dans la liste
+                        if (!etudiants.Any(e => e.NumApogee == apogeeInt))
+                        {
+                            // On crée l'étudiant
+                            Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupeEtu, estBoursierBool, regimeEtu, dateNaissanceDT, login, telPortableInt, telFixeInt, adresse);
+
+                            // On l'ajoute à la liste d'étudiant
+                            etudiants.Add(etudiant);
+                        }
+                    }
                 }
                 
             }
-            //On enlève le header
-            etudiants.RemoveAt(0);
             return etudiants;
         }
 
