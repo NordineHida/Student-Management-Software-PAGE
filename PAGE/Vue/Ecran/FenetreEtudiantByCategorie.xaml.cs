@@ -356,7 +356,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void FermerFenetre(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            FenetrePrincipal fp = new FenetrePrincipal();
+            FenetrePrincipal fp = new FenetrePrincipal(promo);
             fp.Show();
         }
 

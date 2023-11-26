@@ -20,19 +20,7 @@ namespace PAGE.Vue.Ecran
         private Etudiants etudiants;
         private List<Etudiant> etudiantAffichage;
         private bool TriCroissant=false;
-
-        Promotion promo;
-
-        /// <summary>
-        /// Initialise la fenetre principal
-        /// </summary>
-        /// <author>Nordine & Stephane</author>
-        public FenetrePrincipal()
-        {
-            InitializeComponent();
-            ChargementDiffereInitial();
-
-        }
+        private Promotion promo;
 
         /// <summary>
         /// Initialise la fenetre principal depuis l'annee selectionner
@@ -43,8 +31,7 @@ namespace PAGE.Vue.Ecran
         {
             InitializeComponent();
             this.promo = promo;
-            ChargementDiffereInitial();
-            
+            ChargementDiffereInitial();     
 
         }
 
@@ -111,7 +98,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void OpenLoginPage(object sender, RoutedEventArgs e)
         {
-            LoginPage loginPage = new LoginPage(new Utilisateur("",""));
+            LoginPage loginPage = new LoginPage(new Utilisateur("",""),promo);
             loginPage.Show();
 
             this.Close();
@@ -125,7 +112,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void OpenParametresPage(object sender, RoutedEventArgs e)
         {
-            ParametrePage parametre = new ParametrePage();
+            ParametrePage parametre = new ParametrePage(promo);
             parametre.Show();
 
             this.Close();
