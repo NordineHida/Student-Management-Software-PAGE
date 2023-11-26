@@ -146,12 +146,12 @@ namespace PAGE.Stockage
                 {
                     if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
                     {
-                        PopUp popUp = new PopUp("Utilisateur", "L'utilisateur est modifié", TYPEICON.SUCCES);
+                        PopUp popUp = new PopUp("Creation/Modification du rôle", "Le role à bien été modifié/créer", TYPEICON.SUCCES);
                         popUp.ShowDialog();
                     }
                     else
                     {
-                        PopUp popUp = new PopUp("User", "User has been updated", TYPEICON.SUCCES);
+                        PopUp popUp = new PopUp("Creation/Update role", "User's role has been updated/created", TYPEICON.SUCCES);
                         popUp.ShowDialog();
                     }
                 }
