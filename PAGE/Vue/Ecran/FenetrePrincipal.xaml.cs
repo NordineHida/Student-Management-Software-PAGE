@@ -125,7 +125,7 @@ namespace PAGE.Vue.Ecran
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <author>Nordine & Stephane</author>
-        private void ImporterEtudiants(object sender, RoutedEventArgs e)
+        private async void ImporterEtudiants(object sender, RoutedEventArgs e)
         {
             // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -142,6 +142,7 @@ namespace PAGE.Vue.Ecran
             }
 
             //On actualise l'affichage
+            await Task.Delay(1000);
             ActualiserEtudiant();
         }
 
