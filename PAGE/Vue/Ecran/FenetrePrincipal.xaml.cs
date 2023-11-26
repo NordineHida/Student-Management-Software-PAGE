@@ -34,7 +34,7 @@ namespace PAGE.Vue.Ecran
             this.promo = promo;
             if (tokenUtilisateur != null )
             {
-                this.token=token;
+                this.token=tokenUtilisateur;
 
                 if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.ADMIN)
                 {
