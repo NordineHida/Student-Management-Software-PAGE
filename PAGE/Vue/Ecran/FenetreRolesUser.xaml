@@ -592,7 +592,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="0.6*" />
+            <ColumnDefinition Width="0.2*" />
             <ColumnDefinition Width="6*" />
         </Grid.ColumnDefinitions>
 
@@ -601,7 +601,7 @@
         <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0"  Width="250" Height="Auto" Grid.ColumnSpan="3"/>
         <Image Source="/Vue/Ressources/Img/photo.png" Stretch="UniformToFill" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,300" Grid.RowSpan="7" Width="260" Height="280"  />
 
-        <Button FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" Height="100" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnAjouterRole}" x:Name="BoutonCreernote" Click="Creer_Click" VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" >
+        <Button FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" Height="100" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnAjouterRole}" x:Name="BoutonCreernote" Click="AjouterRole_Click" VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" Margin="20, 0" >
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -643,14 +643,14 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="817" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
 
             <!--Header du scrollViewer-->
             <WrapPanel Grid.Row="1" Grid.Column="1" Background="#3DA79D" Height="50" VerticalAlignment="Top"  >
-                <Button Content="{Binding Annee}" Height="50"  HorizontalAlignment="Left"  MinWidth="120" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
-                <Button Content="Role" Height="50" HorizontalAlignment="Left" MinWidth="205" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0" />
+                <Button Content="{Binding Annee}" Height="50"  HorizontalAlignment="Left"  MinWidth="180" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0"/>
+                <Button Content="Role" Height="50" HorizontalAlignment="Left" MinWidth="205" VerticalAlignment="Center" FontFamily="Open Sauce One SemiBold" Foreground="White" FontSize="25" Background="{x:Null}" BorderThickness="0" Width="637" />
             </WrapPanel>
 
             <!--Pour pouvoir scroller (Nordine)-->
