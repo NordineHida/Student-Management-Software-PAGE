@@ -36,15 +36,18 @@ namespace PAGE.Vue.Ecran
             {
                 this.token=tokenUtilisateur;
 
-                if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.ADMIN)
+                if (token.UserToken.Roles.ContainsKey(promo.AnneeDebut))
                 {
-                    BtnGestionUtilisateur.Visibility = Visibility.Visible;
-                    BtnImporterEtudiant.Visibility = Visibility.Visible;
-                }
-                if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.DIRECTEURDEPARTEMENT)
-                {
-                    BtnImporterEtudiant.Visibility = Visibility.Visible;
-                    BtnCreerEtudiant.Visibility= Visibility.Visible;
+                    if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.ADMIN)
+                    {
+                        BtnGestionUtilisateur.Visibility = Visibility.Visible;
+                        BtnImporterEtudiant.Visibility = Visibility.Visible;
+                    }
+                    if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.DIRECTEURDEPARTEMENT)
+                    {
+                        BtnImporterEtudiant.Visibility = Visibility.Visible;
+                        BtnCreerEtudiant.Visibility = Visibility.Visible;
+                    }
                 }
             }
             ChargementDiffereInitial();     

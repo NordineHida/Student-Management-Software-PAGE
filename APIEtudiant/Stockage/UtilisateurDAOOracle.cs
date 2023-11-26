@@ -199,7 +199,37 @@ namespace APIEtudiant.Stockage
                 {
                     user = new Utilisateur(readerUtilisateur.GetString(readerUtilisateur.GetOrdinal("login")), readerUtilisateur.GetString(readerUtilisateur.GetOrdinal("hashPassword")));
                 }
-                
+
+                //On récupère l'ID
+                int idUser = 0;
+                string getIdRequete = String.Format("SELECT idUtilisateur FROM Utilisateur Where login='{0}'", user.Login);
+
+                OracleCommand getId = new OracleCommand(getIdRequete, con.OracleConnexion);
+                OracleDataReader readerId = getId.ExecuteReader();
+
+                while (readerId.Read())
+                {
+                    idUser = readerId.GetInt32(readerId.GetOrdinal("idUtilisateur"));
+                }
+
+
+                OracleCommand cmdRoleCount = new OracleCommand(String.Format("Select COUNT(*) From RoleUtilisateur WHERE idUtilisateur='{0}'", idUser), con.OracleConnexion);
+                OracleDataReader readerRoleCount = cmdRoleCount.ExecuteReader();
+                while (readerRoleCount.Read())
+                {
+                    if (readerRoleCount.GetInt32(readerRoleCount.GetOrdinal("Count(*)")) != 0)
+                    {
+                        OracleCommand cmdRole = new OracleCommand(String.Format("Select idRole, annee From RoleUtilisateur WHERE idUtilisateur='{0}'", idUser), con.OracleConnexion);
+                        OracleDataReader readerRole = cmdRole.ExecuteReader();
+
+                        while (readerRole.Read())
+                        {
+                            int annee = readerRole.GetInt32(readerRole.GetOrdinal("annee"));
+                            int idRole = readerRole.GetInt32(readerRole.GetOrdinal("idRole"));
+                            user.Roles[annee] = GetRoleById(idRole);
+                        }
+                    }
+                }
             }
             // Gestion des exceptions
             catch (OracleException ex)
