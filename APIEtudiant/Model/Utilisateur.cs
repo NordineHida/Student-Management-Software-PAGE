@@ -1,4 +1,5 @@
 ﻿using APIEtudiant.Model.Enumerations;
+using System.Text.Json.Serialization;
 
 namespace APIEtudiant.Model
 {
@@ -13,6 +14,7 @@ namespace APIEtudiant.Model
         /// <summary>
         /// Renvoie ou définit le login de l'utilisateur
         /// </summary>
+        /// <author>Laszlo</author>
         public string Login
         {
             get { return login; }
@@ -20,8 +22,9 @@ namespace APIEtudiant.Model
         }
 
         /// <summary>
-        /// Renvoie ou définit le mot de passe de l'utilisateur
+        /// Renvoie le mot de passe hashé
         /// </summary>
+        /// <author>Laszlo</author>
         public string HashMdp
         {
             get { return hashMdp; }
@@ -37,16 +40,23 @@ namespace APIEtudiant.Model
             get { return roles; }
             set { roles = value; }
         }
+
+
         /// <summary>
         /// Construit un utilisateur en lui donnant un login et un mot de passe
         /// </summary>
         /// <param name="login">login de l'utilisateur</param>
         /// <param name="mdp">mot de passe de l'utilisateur</param>
-        /// <author>Laszlo</author>
-        public Utilisateur(string login, string hashMdp)
+        /// <author>Laszlo/nordine</author>
+        public Utilisateur(string login, string? hashmdp)
         {
             this.login = login;
-            this.hashMdp = hashMdp;
+
+            if (hashmdp != null)
+            {
+                this.hashMdp = hashmdp;
+            }
+
             roles = new Dictionary<int, ROLE>();
         }
 

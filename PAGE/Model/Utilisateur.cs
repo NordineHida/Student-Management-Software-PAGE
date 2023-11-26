@@ -48,7 +48,7 @@ namespace PAGE.Model
         /// <author>Laszlo</author>
         public string HashMdp
         {
-            get { return GetHashMdp(mdp); }
+            get { return hashMdp; }
             set { hashMdp = value; }
         }
 
@@ -68,11 +68,20 @@ namespace PAGE.Model
         /// </summary>
         /// <param name="login">login de l'utilisateur</param>
         /// <param name="mdp">mot de passe de l'utilisateur</param>
-        /// <author>Laszlo</author>
-        public Utilisateur(string login, string mdp) 
+        /// <author>Laszlo/nordine</author>
+        public Utilisateur(string login, string? mdp, string? hashmdp) 
         {
             this.login = login;
-            this.mdp = mdp;
+
+            if(mdp != null)
+            {
+                this.mdp = mdp;
+            }
+            else if (hashmdp != null)
+            {
+                this.hashMdp = hashmdp;
+            }
+
             roles = new Dictionary<int, ROLE>();
         }
 
