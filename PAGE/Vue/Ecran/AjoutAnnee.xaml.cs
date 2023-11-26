@@ -21,6 +21,11 @@ namespace PAGE.Vue.Ecran
         {
             get { return getAnneeSaisie(); }
         }
+
+        /// <summary>
+        /// constructeur de fenetre AjoutAnnee
+        /// </summary>
+        /// <author>Nordine</author>
         public AjoutAnnee()
         {
             InitializeComponent();
@@ -50,55 +55,46 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private int getAnneeSaisie()
         {
-            int anneeSaisie=-1;
+            int anneeSaisie;
+            int anneeMin = 1800;
+            int anneeMax = DateTime.Now.Year + 2;
 
-            if (Int32.TryParse(txtAnneeSaisie.Text, out anneeSaisie))
+            Int32.TryParse(txtAnneeSaisie.Text, out anneeSaisie);
+
+            //si l'annee n'est pas dans les bornes elle est concidere comme incorrecte
+            if (anneeSaisie < anneeMin || anneeSaisie > anneeMax)
             {
-                int anneeMin = 1800;
-                int anneeMax = DateTime.Now.Year + 2;
-
-                if (anneeSaisie < anneeMin || anneeSaisie > anneeMax)
-                {
-                    anneeSaisie = -1;
-
-                    // Afficher la pop-up d'erreur
-                    string titre = (Parametre.Instance.Langue == LANGUE.FRANCAIS) ? "Erreur année" : "Bad year";
-                    string message = (Parametre.Instance.Langue == LANGUE.FRANCAIS) ? "Veuillez sélectionner une année correcte" : "Please select a correct year";
-
-                    PopUp popUp = new PopUp(titre, message, TYPEICON.ERREUR);
-                    popUp.ShowDialog();
-                }
-                else
-                    anneeSaisie = Int32.Parse(txtAnneeSaisie.Text);
+                anneeSaisie = 0;
             }
 
-            return -1; 
+            return anneeSaisie; 
         }
 
 
         /// <summary>
         /// Ferme la fenêtre lors du click sur le bouton OK
         /// </summary>
-        /// <author>Yamato</author>
+        /// <author>Yamato/nordine</author>
         private void OkClick(object sender, RoutedEventArgs e)
         {
-
-    
-
+            if (AnneeSaisie > 0 )
+            {
                 this.Close();
-           
+            }
             else
             {
+                //Afficher pop-up erreur
                 if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
-                {
-                    PopUp popUp = new PopUp("Erreur année", "Veuillez selectionner une année correcte", TYPEICON.ERREUR);
-                    popUp.ShowDialog();
-                }
-                else
-                {
-                    PopUp popUp = new PopUp("Bad year", "Please select a correct year", TYPEICON.ERREUR);
-                    popUp.ShowDialog();
-                }
+                    {
+                        PopUp popUp = new PopUp("Erreur année", "Veuillez selectionner une année correcte", TYPEICON.ERREUR);
+                        popUp.ShowDialog();
+                    }
+                    else
+                    {
+                        PopUp popUp = new PopUp("Bad year", "Please select a correct year", TYPEICON.ERREUR);
+                        popUp.ShowDialog();
+                    }
+                
             }
         }
     }
