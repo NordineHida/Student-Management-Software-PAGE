@@ -19,7 +19,7 @@
                     <StackPanel Orientation="Horizontal">
                         <!-- Rond de l'année (Nordine)-->
                         <Border Background="#2B2B5A" Margin="15 3"  Width="140" Height="70" CornerRadius="25" BorderThickness="2" BorderBrush="Black"  >
-                            <TextBlock Text="{Binding Annee}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="25"  FontFamily="{StaticResource OpenSauceOne}"  />
+                            <TextBlock Text="{Binding AnneeString}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="25"  FontFamily="{StaticResource OpenSauceOne}"  />
                         </Border>
                         <!-- Rôle de l'utilisateur (Nordine)-->
                         <WrapPanel>

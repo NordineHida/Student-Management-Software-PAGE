@@ -24,6 +24,8 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         public int Annee { get; set; }
 
+        public string AnneeString { get; set; }
+
 
         /// <summary>
         /// constructeur de component
@@ -33,7 +35,9 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         public RoleEtAnneeComponent(int annee, ROLE role)
         {
+
             InitializeComponent();
+            DataContext = this;
             switch (role)
             {
                 case ROLE.DIRECTEURDEPARTEMENT:
@@ -58,6 +62,8 @@ namespace PAGE.Vue.Ecran
             }
             Role = role;
             Annee = annee;
+            AnneeString = annee.ToString();
+
         }
     }
 }
