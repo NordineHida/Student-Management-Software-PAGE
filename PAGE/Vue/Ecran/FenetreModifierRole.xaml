@@ -606,7 +606,7 @@
 
         </Label>
 
-        <ComboBox Grid.Column="2" Grid.Row="1" Margin="30" Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxAnnee" SelectionChanged="ComboBoxAnnee_SelectionChanged">
+        <ComboBox Grid.Column="2" Grid.Row="1" Margin="30" Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxAnnee" SelectionChanged="ComboBoxAnnee_SelectionChanged" ItemsSource="{Binding annees}" DisplayMemberPath="AnneeDebut">
 
         </ComboBox>
 

@@ -18,11 +18,19 @@ namespace PAGE.Vue.Ecran
         private ROLE role;
         private Utilisateur user;
         private bool modeCreation;
-        private List<Annee> annees;
+        private List<Annee> annees = new List<Annee>();
 
+        /// <summary>
+        /// Fenetre de modification/Création de rôle
+        /// </summary>
+        /// <param name="user">utilisateur en question</param>
+        /// <param name="annee">annee du role (-1 si on créer un role)</param>
+        /// <param name="role">role /param>
+        /// <author>Nordine</author>
         public FenetreModifierRole(Utilisateur user, int annee, ROLE role)
         {
             InitializeComponent();
+            DataContext= this;
 
             this.annee = annee;
             this.role = role;
@@ -44,18 +52,24 @@ namespace PAGE.Vue.Ecran
             //Mode affichage/modification de rôle seulement
             else
             {
+                
                 ComboBoxAnnee.SelectedItem = annee;
                 ComboBoxAnnee.IsEnabled = false;
+
+                InitialisationComboBoxRole(role);
             }
 
         }
 
 
+
         //Quand on clique sur valider, mets a jour le rôle, ou le créer s'il n'existe pas
-        private void clickBtnValider(object sender, RoutedEventArgs e)
+        private async void clickBtnValider(object sender, RoutedEventArgs e)
         {
             UtilisateurDAO userDAO= new UtilisateurDAO();
-            //userDAO.UpdateRole(user, role, annee);
+            await userDAO.UpdateRole(user, role, annee);
+            
+            
 
             this.Close();
         }
@@ -77,6 +91,10 @@ namespace PAGE.Vue.Ecran
         /// <author>Yamato</author>
         private async void MettreAJourComboBox()
         {
+
+            ComboBoxAnnee.ItemsSource = annees;
+            ComboBoxAnnee.DisplayMemberPath = "AnneeDebut";
+
             AnneeDAO dao = new AnneeDAO();
             annees = await dao.GetAllAnnee();
 
@@ -96,12 +114,9 @@ namespace PAGE.Vue.Ecran
         {
             if (ComboBoxAnnee.SelectedItem != null)
             {
-                // Convertissez l'objet sélectionné en int 
-                if (int.TryParse(ComboBoxAnnee.SelectedItem.ToString(), out int selectedYear))
-                {
-                    //on l'affecte a l'attribut
-                    annee = selectedYear;
-                }
+                Annee anneeComboBox = (Annee)ComboBoxAnnee.SelectedItem;
+                this.annee = anneeComboBox.AnneeDebut;
+
             }
         }
 
@@ -139,5 +154,44 @@ namespace PAGE.Vue.Ecran
                     break;
             }
         }
+
+
+        /// <summary>
+        /// Change la selection du combobox en fonction du role donnée
+        /// </summary>
+        /// <param name="role">role a mettre dans la combobox</param>
+        /// <author>Nordine</author>
+        private void InitialisationComboBoxRole(ROLE role)
+        {
+            int index;
+            switch (role)
+            {
+                case ROLE.LAMBDA:
+                    index = 0;
+                    break;
+                case ROLE.DIRECTEURDEPARTEMENT:
+                    index = 1;
+                    break;
+                case ROLE.DIRECTEURETUDES1:
+                    index = 2;
+                    break;
+                case ROLE.DIRECTEURETUDES2:
+                    index = 3;
+                    break;
+                case ROLE.DIRECTEURETUDES3:
+                    index = 4;
+                    break;
+                case ROLE.ADMIN:
+                    index = 5;
+                    break;
+                default :
+                    index = 0;
+                    break;
+
+            }
+
+            ComboBoxRole.SelectedIndex = index;
+        }
+
     }
 }
