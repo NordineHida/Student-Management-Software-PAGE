@@ -112,19 +112,24 @@ namespace PAGE.Vue.Ecran
             AjoutAnnee ajoutAnnee = new AjoutAnnee();
             ajoutAnnee.ShowDialog();
 
-            // On créer une nouvelle année avec l'année saisie
-            Annee nouvelleAnnee = new Annee(ajoutAnnee.AnneeSaisie);
+            //si l'année saisie est correct
+            if (ajoutAnnee.AnneeSaisie >1800)
+            {
+                // On créer une nouvelle année avec l'année saisie
+                Annee nouvelleAnnee = new Annee(ajoutAnnee.AnneeSaisie);
 
-            // On l'ajoute à la liste d'années
-            annees.Add(nouvelleAnnee);
+                // On l'ajoute à la liste d'années
+                annees.Add(nouvelleAnnee);
 
-            // Création de l'année 
-            AnneeDAO dao = new AnneeDAO();
-            dao.CreateAnnee(nouvelleAnnee.AnneeDebut);
+                // Création de l'année 
+                AnneeDAO dao = new AnneeDAO();
+                dao.CreateAnnee(nouvelleAnnee.AnneeDebut);
 
-            //on remet a jour la combobox
-            await Task.Delay(1000);
-            MettreAJourComboBox();
+                //on remet a jour la combobox
+                await Task.Delay(1000);
+                MettreAJourComboBox();
+            }
+
         }
 
         private void SupprimerAnnee(object sender, RoutedEventArgs e)
