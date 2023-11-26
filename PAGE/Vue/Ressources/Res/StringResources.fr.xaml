@@ -105,6 +105,7 @@
 
     <system:String x:Key="LabelChpObli">* = Champ obligatoire</system:String>
     <system:String x:Key="Birth">Date de naissance : </system:String>
+    <system:String x:Key="Birth*">Date de naissance :*</system:String>
     <system:String x:Key="Adresse">Adresse de résidence : </system:String>
     <system:String x:Key="TelFixe">Téléphone fixe :</system:String>
     <system:String x:Key="TelPort">Téléphone portable :</system:String>
