@@ -6,9 +6,10 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-
         Title="{DynamicResource TitreFenetreChoixPromo}" Height="450" Width="800"
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+        xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+    
+    
     <Window.Resources>
         <!-- style des combox stéphane -->
         <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One </FontFamily>

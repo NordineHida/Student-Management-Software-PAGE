@@ -28,7 +28,13 @@
     <Compile Update="Vue\Ecran\FenetreEtudiantByCategorie.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\FenetreModifierRole.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\FenetrePrincipal.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\FenetreRolesUser.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\GestionUtilisateurs.xaml.cs">
@@ -47,6 +53,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\EtudiantComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\RoleEtAnneeComponent.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\UserComponent.xaml.cs">
@@ -78,7 +87,13 @@
     <Page Update="Vue\Ecran\FenetreEtudiantByCategorie.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Vue\Ecran\FenetreModifierRole.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\FenetrePrincipal.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\FenetreRolesUser.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\GestionUtilisateurs.xaml">
@@ -100,6 +115,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\EtudiantComponent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\RoleEtAnneeComponent.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\UserComponent.xaml">
