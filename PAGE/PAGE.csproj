@@ -119,6 +119,9 @@
     <Content Include="Vue\Ressources\Fonts\OpenSauceOne-SemiBoldItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Vue\Ressources\Img\photo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Vue\Ressources\Picto\minus-circle-outline.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -147,9 +150,6 @@
     <Resource Include="Vue\Ressources\Img\Notes\noteResultats.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Vue\Ressources\Img\photo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Vue\Ressources\Picto\account-arrow-right.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
