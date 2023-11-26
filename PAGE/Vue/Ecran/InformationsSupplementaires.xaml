@@ -742,7 +742,7 @@
         </Button>
 
         <!-- Bouton "Modifier" (lucas) -->
-        <Button x:Name="BoutonModifier" FontFamily="{StaticResource OpenSauceOne}" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" Content="{DynamicResource BtnModifInfos}" Click="Modifier_Click" Margin="20,0,20,27" Grid.Row="13" Grid.RowSpan="4">
+        <Button x:Name="BoutonModifier" FontFamily="{StaticResource OpenSauceOne}" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" Content="{DynamicResource BtnModifInfos}" Click="Modifier_Click" Visibility="Collapsed" Margin="20,0,20,27" Grid.Row="13" Grid.RowSpan="4">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -807,7 +807,7 @@
 
         <!-- Bouton "Créer note" pour créer une note pour l'étudiant (Lucas) -->
 
-        <Button FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnCreerNote}" x:Name="BoutonCreernote" Click="Creer_Click"  Margin="20,0,20,29" Grid.RowSpan="4" Grid.Row="9">
+        <Button FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnCreerNote}" x:Name="BoutonCreernote" Click="Creer_Click" Visibility="Collapsed" Margin="20,0,20,29" Grid.RowSpan="4" Grid.Row="9">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">

@@ -410,35 +410,35 @@
         <!-- Buttons (Nordine) -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
 
-            <Button ToolTip="{DynamicResource ToolTipPageGestionUtilisateurs}" Style="{StaticResource ImageButtonStyle}" Click="OpenGestionUtilisateur">
+            <Button ToolTip="{DynamicResource ToolTipPageGestionUtilisateurs}" Style="{StaticResource ImageButtonStyle}" Click="OpenGestionUtilisateur" x:Name="BtnGestionUtilisateur" Visibility="Collapsed">
                 <Image Source="/Vue/Ressources/Picto/account-edit.png" Stretch="Uniform" Margin="7"/>
             </Button>
 
-            <Button ToolTip="{DynamicResource TootTipFenetreCategorie}" Style="{StaticResource ImageButtonStyle}" Click="ClickAfficherEtudiantByCategorie">
+            <Button ToolTip="{DynamicResource TootTipFenetreCategorie}" Style="{StaticResource ImageButtonStyle}" Click="ClickAfficherEtudiantByCategorie" x:Name="BtnAfficherEtudiantByCategorie">
                 <Image Source="/Vue/Ressources/Picto/note-search.png" Stretch="Uniform" Margin="7"/>
             </Button>
 
-            <Button ToolTip="{DynamicResource ToolTipPageConnexion}" Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage">
+            <Button ToolTip="{DynamicResource ToolTipPageConnexion}" Style="{StaticResource ImageButtonStyle}" Click="OpenLoginPage" x:Name="BtnLoginPage">
                 <Image Source="/Vue/Ressources/Picto/account.png" Stretch="Uniform" Margin="7"/>
             </Button>
 
-            <Button ToolTip="{DynamicResource ToolTipPageParamètres}" Style="{StaticResource ImageButtonStyle}" Click="OpenParametresPage">
+            <Button ToolTip="{DynamicResource ToolTipPageParamètres}" Style="{StaticResource ImageButtonStyle}" Click="OpenParametresPage" x:Name="BtnParametres">
                 <Image Source="/Vue/Ressources/Picto/settings.png" Stretch="Uniform" Margin="10" />
             </Button>
 
-            <Button ToolTip="{DynamicResource ToolTipImportation}" Style="{StaticResource ImageButtonStyle}" Click="ImporterEtudiants">
+            <Button ToolTip="{DynamicResource ToolTipImportation}" Style="{StaticResource ImageButtonStyle}" Click="ImporterEtudiants" x:Name="BtnImporterEtudiant" Visibility="Collapsed">
                 <Image Source="/Vue/Ressources/Picto/import.png"  Stretch="Uniform" Margin="13"/>
             </Button>
 
-            <Button ToolTip="{DynamicResource ToolTipActualisation}" Style="{StaticResource ImageButtonStyle}" Click="BoutonActualiserListeEtudiant">
+            <Button ToolTip="{DynamicResource ToolTipActualisation}" Style="{StaticResource ImageButtonStyle}" Click="BoutonActualiserListeEtudiant" x:Name="BtnActualiserListeEtudiant">
                 <Image Source="/Vue/Ressources/Picto/refresh.png"  Stretch="Uniform" Margin="9"/>
             </Button>
 
-            <Button ToolTip="{DynamicResource ToolTipCreerEtudiant}" Style="{StaticResource ImageButtonStyle}" Click="BoutonCreerEtudiant">
+            <Button ToolTip="{DynamicResource ToolTipCreerEtudiant}" Style="{StaticResource ImageButtonStyle}" Click="BoutonCreerEtudiant" x:Name="BtnCreerEtudiant" Visibility="Collapsed">
                 <Image Source="/Vue/Ressources/Picto/account-plus.png"  Stretch="Uniform" Margin="9"/>
             </Button>
 
-            <Button ToolTip="{DynamicResource ToolTipChoixPromo}" Style="{StaticResource ImageButtonStyle}" Click="OpenPromoPage">
+            <Button ToolTip="{DynamicResource ToolTipChoixPromo}" Style="{StaticResource ImageButtonStyle}" Click="OpenPromoPage" x:Name="BtnPromoPage">
                 <Image Source="/Vue/Ressources/Picto/calendar-account.png"  Stretch="Uniform" Margin="10"/>
             </Button>
 

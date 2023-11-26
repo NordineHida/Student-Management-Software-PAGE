@@ -31,6 +31,7 @@ namespace PAGE.Vue.Ecran
         private REGIME regimeEtu;
         private GROUPE groupeEtu;
         private Promotion promo;
+        private Token token;
 
 
         /// <summary>
@@ -38,12 +39,24 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="EtudiantActuel">etudiant actuel</param>
         /// <author>Yamato & Laszlo & Nordine</author>
-        public InformationsSupplementaires(Etudiant EtudiantActuel, Etudiants etudiants,Promotion promo)
+        public InformationsSupplementaires(Etudiant EtudiantActuel, Etudiants etudiants,Promotion promo, Token? tokenUtilisateur)
         {
             InitializeComponent();
             this.promo = promo;
             etudiant = EtudiantActuel;
             this.etudiants = etudiants;
+
+            if (tokenUtilisateur != null )
+            {
+                this.token = tokenUtilisateur;
+                if (token.UserToken.Roles[promo.AnneeDebut] != ROLE.LAMBDA || token.UserToken.Roles[promo.AnneeDebut] != ROLE.ADMIN)
+                {
+                    BoutonCreernote.Visibility = Visibility.Visible;
+                    BoutonModifier.Visibility = Visibility.Visible;
+                }
+
+            }
+
             ChargerInfosImpEtudiant();
             ChargerInfosCompEtudiant();
 
@@ -52,6 +65,7 @@ namespace PAGE.Vue.Ecran
 
             //on charge les notes de l'étudiant
             ChargementDiffereNotes();
+            
         }
 
         /// <summary>
@@ -745,7 +759,15 @@ namespace PAGE.Vue.Ecran
         {
             if (notes != null)
             {
-                CreationNote creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false);
+                CreationNote creernote;
+                if (this.token != null)
+                {
+                    creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false,this.promo, token);
+                }
+                else
+                {
+                    creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false,this.promo, null);
+                }
                 creernote.Show();
             }
             else
@@ -791,7 +813,15 @@ namespace PAGE.Vue.Ecran
                 if (noteSelectionne != null)
                 {
                     // Créez une instance de la fenêtre CreationNote en passant la note et notes
-                    CreationNote affichageNote = new CreationNote(noteSelectionne, this.notes, true);
+                    CreationNote affichageNote;
+                    if (this.token != null)
+                    {
+                        affichageNote = new CreationNote(noteSelectionne, this.notes, true,this.promo, token);
+                    }
+                    else
+                    {
+                        affichageNote = new CreationNote(noteSelectionne, this.notes, true,this.promo, null);
+                    }
                     affichageNote.Show();
                 }
             }
