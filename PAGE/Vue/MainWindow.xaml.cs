@@ -38,6 +38,8 @@ namespace PAGE.Vue
         /// <author>Nordine</author>
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            Activate();
+
             // On affiche quelques secondes la fenêtre
             await Task.Delay(4000);
 
