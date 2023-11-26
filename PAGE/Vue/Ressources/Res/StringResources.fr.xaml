@@ -141,8 +141,13 @@
     <system:String x:Key="CreationUtilisateur">Création Utilisateur</system:String>
     <system:String x:Key="CreerunUtilisateur">Création d'un Utilisateur</system:String>
 
-    <!--Page Gestion des utilisateurs (Lucas) -->
+    <!--Page Gestion des utilisateurs (Lucas/nordine) -->
+    <system:String x:Key="GestionUser">Gestion des utilisateurs</system:String>
 
+    <system:String x:Key="BtnAjouterRole">Ajouter un rôle</system:String>
+
+    <!-- Page rôle et année-->
+    <system:String x:Key="Annee">Année</system:String>
     
     
     <!-- Page AjoutAnnee (nordine) -->
