@@ -9,6 +9,7 @@
         WindowState="Maximized"
         Title="{DynamicResource TitreFenetreInformationsSupplementaires}" Height="1000" Width="1500"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+    
     <Window.Resources>
         <!-- style des combox stéphane -->
         <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
