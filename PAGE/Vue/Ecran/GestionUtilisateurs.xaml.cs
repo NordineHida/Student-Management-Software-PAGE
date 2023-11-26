@@ -47,7 +47,7 @@ namespace PAGE.Vue.Ecran
         {
             if (users != null)
             {
-                CreationUtilisateur creerUtilisateur = new CreationUtilisateur(new Utilisateur("", ""), users, promo);
+                CreationUtilisateur creerUtilisateur = new CreationUtilisateur(new Utilisateur("", null,null), users, promo);
                 creerUtilisateur.Show();
             }
             else

@@ -598,7 +598,7 @@
 
 
         <Rectangle Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="4" Fill="White"  />
-        <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0"  Width="250" Height="Auto" Grid.ColumnSpan="3"/>
+        <Image Source="/Vue/Ressources/Img/logoIUT.png" Stretch="UniformToFill" Grid.Row="0"  Width="250" Height="250" Grid.ColumnSpan="3"/>
         <Image Source="/Vue/Ressources/Img/photo.png" Stretch="UniformToFill" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,300" Grid.RowSpan="7" Width="260" Height="280"  />
 
         <Button FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" Height="100" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnAjouterRole}" x:Name="BoutonCreernote" Click="AjouterRole_Click" VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" Margin="20, 0" >

@@ -117,11 +117,11 @@ namespace PAGE.Vue.Ecran
             LoginPage loginPage;
             if (token != null)
             {
-                loginPage = new LoginPage(new Utilisateur("", ""), promo,token);
+                loginPage = new LoginPage(new Utilisateur("", null,null), promo,token);
             }
             else
             {
-                loginPage = new LoginPage(new Utilisateur("", ""), promo, null);
+                loginPage = new LoginPage(new Utilisateur("",null,null), promo, null);
             }
             loginPage.Show();
 
