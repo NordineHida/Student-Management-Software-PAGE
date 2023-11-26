@@ -15,6 +15,7 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class FenetreCreerEtudiant : Window
     {
+        private Token token;
         private Etudiants etudiants;
         private SEXE sexeSelectionne;
         private bool estBoursier;
@@ -34,6 +35,19 @@ namespace PAGE.Vue.Ecran
             ReinitialisationChamps();
 
         }
+
+        /// <summary>
+        /// Constructeur (initialiser le sexe à AUTRE  et le bool boursier a false
+        /// </summary>
+        /// <author>Nordine</author>
+        public FenetreCreerEtudiant(Etudiants etudiants, Token token)
+        {
+            InitializeComponent();
+            this.etudiants = etudiants;
+            ReinitialisationChamps();
+            this.token = token;
+        }
+
         /// <summary>
         /// Cette méthode permet de réinitialiser les champs après la création d'un étudiant pour en créer un autre
         /// </summary>

@@ -24,10 +24,15 @@ namespace PAGE.Vue.Ecran
     {
         private Utilisateur user;
         private Promotion promo;
-        public LoginPage(Utilisateur user,Promotion promo)
+        private Token token;
+        public LoginPage(Utilisateur user,Promotion promo, Token? tokenUtilisateur)
         {
             this.user = user;
             this.promo = promo;
+            if (tokenUtilisateur != null)
+            {
+                this.token = tokenUtilisateur;
+            }
             DataContext = user;
             InitializeComponent();
         }
@@ -40,7 +45,15 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas</author>
         private void CloseLoginWindow(object sender, RoutedEventArgs e)
         {
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(promo);
+            FenetrePrincipal fenetrePrincipal;
+            if (token == null)
+            {
+                fenetrePrincipal = new FenetrePrincipal(promo, null);
+            }
+            else
+            {
+                fenetrePrincipal = new FenetrePrincipal(promo, token);
+            }
             fenetrePrincipal.Show();
 
             this.Close();
@@ -53,13 +66,14 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <author>Laszlo</author>
         private async void BoutonLogin(object sender, RoutedEventArgs e)
         {
             user.Mdp = txtPassword.Password;
 
             IUtilisateurDAO dao = new UtilisateurDAO();
-            Token token = await dao.Connexion(user.Login,user.HashMdp);
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(promo);
+            token = await dao.Connexion(user.Login,user.HashMdp);
+            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(promo,token);
             fenetrePrincipal.Show();
 
             this.Close();

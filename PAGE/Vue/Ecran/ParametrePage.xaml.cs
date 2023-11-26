@@ -12,22 +12,28 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class ParametrePage : Window
     {
-        //on sauve la promo pour la redonner à la fenetre principal quand on ferme les parametres
+        //on sauve la promo et le token pour la redonner à la fenetre principal quand on ferme les parametres
         private Promotion promo;
+        private Token token;
 
         /// <summary>
         /// Constructeur de paramètre (initialise le path du word au bureau)
         /// </summary>
         /// <param name="promo">promotion actuelle</param>
         /// <author>Nordine</author>
-        public ParametrePage(Promotion promo)
+        public ParametrePage(Promotion promo, Token? tokenUtilisateur)
         {
             InitializeComponent();
             this.promo = promo;
+            if (tokenUtilisateur != null)
+            {
+                this.token = tokenUtilisateur;
+            }
             InitialiserComboBoxSelectedItem();
 
             //Initialise le label
             LabelPathGeneration.Text = Parametre.Instance.PathGenerationWord;
+            this.token = token;
         }
 
         /// <summary>
@@ -69,7 +75,16 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void FermerFenetre()
         {
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(promo);
+            FenetrePrincipal fenetrePrincipal;
+            if (this.token != null)
+            {
+                fenetrePrincipal = new FenetrePrincipal(promo,token);
+            }
+            else
+            {
+                fenetrePrincipal = new FenetrePrincipal(promo, null);
+            }
+            
             fenetrePrincipal.Show();
 
             this.Close();
