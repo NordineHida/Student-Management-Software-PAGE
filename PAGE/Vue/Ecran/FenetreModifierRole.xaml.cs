@@ -64,11 +64,17 @@ namespace PAGE.Vue.Ecran
 
 
 
-        //Quand on clique sur valider, mets a jour le rôle, ou le créer s'il n'existe pas
+        /// <summary>
+        /// Quand on clique sur valider, mets a jour le rôle, ou le créer s'il n'existe pas et rouvre la fenetre de gestion des utilisateur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine/Laszlo</author>
         private async void clickBtnValider(object sender, RoutedEventArgs e)
         {
             UtilisateurDAO userDAO= new UtilisateurDAO();
             await userDAO.UpdateRole(user, role, annee);
+
             GestionUtilisateurs gestionUtilisateurs = new GestionUtilisateurs(promo);
             gestionUtilisateurs.Show();
 
@@ -76,13 +82,16 @@ namespace PAGE.Vue.Ecran
         }
 
         /// <summary>
-        /// ferme la fenetre sans sauvegarder
+        /// ferme la fenetre et rouvre la fenetreRoleUser
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <author>Nordine</author>
         private void clickBtnAnnuler(object sender, RoutedEventArgs e)
         {
+            FenetreRolesUser fenetreRoleUser = new FenetreRolesUser(user, promo);
+            fenetreRoleUser.Show();
+
             this.Close();
         }
 
