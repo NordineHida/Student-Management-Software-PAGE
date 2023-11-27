@@ -54,11 +54,11 @@ namespace PAGE.Stockage
 
 
         /// <summary>
-        /// Renvoi tout les étudiants de la BDD qui ont une note de la categorie donner
+        /// Renvoi tout les étudiants de la promotion qui ont une note de la categorie donner
         /// </summary>
         /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
         /// <author>Nordine</author>
-        public Task<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie);
+        public Task<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie, Promotion promo);
 
     }
 }
