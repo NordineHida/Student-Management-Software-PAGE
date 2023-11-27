@@ -43,7 +43,7 @@ namespace PAGE.Vue.Ecran
             ComboBoxAnnee.ItemsSource = annees;
             ComboBoxAnnee.DisplayMemberPath = "AnneeDebut";
 
-            this.token = token;
+            this.token = tokenUtilisateur;
         }
 
         /// <summary>

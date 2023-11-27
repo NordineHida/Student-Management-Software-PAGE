@@ -39,7 +39,11 @@ namespace PAGE.Model
         public string Mdp
         {
             get { return mdp; }
-            set { mdp = value; }
+            set 
+                { 
+                    mdp = value;
+                    this.hashMdp = GetHashMdp(value);
+                }
         }
 
         /// <summary>
@@ -76,6 +80,7 @@ namespace PAGE.Model
             if(mdp != null)
             {
                 this.mdp = mdp;
+                this.hashMdp = GetHashMdp(mdp);
             }
             else if (hashmdp != null)
             {

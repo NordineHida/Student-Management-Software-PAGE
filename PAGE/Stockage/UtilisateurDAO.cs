@@ -86,14 +86,14 @@ namespace PAGE.Stockage
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<Token?> Connexion(string login, string mdp)
+        public async Task<Token?> Connexion(string login, string hashMdp)
         {
             Token token = null;
             // Créez une instance de HttpClient
             using (HttpClient client = new HttpClient())
             {
                 // Spécifiez l'URL de l'API
-                string apiUrl = String.Format("https://localhost:7038/Utilisateur/Connexion?login={0}&mdp={1}",login,mdp);
+                string apiUrl = String.Format("https://localhost:7038/Utilisateur/Connexion?login={0}&mdp={1}",login,hashMdp);
 
                 // Effectuez la requête GET
                 HttpResponseMessage reponse = await client.GetAsync(apiUrl);
