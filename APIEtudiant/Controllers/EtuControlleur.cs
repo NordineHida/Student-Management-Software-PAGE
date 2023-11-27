@@ -109,16 +109,21 @@ namespace APIEtudiant.Controllers
         /// <summary>
         /// Renvoi tout les étudiants de la BDD qui ont une note de la categorie donner
         /// </summary>
+        /// <param name="anneeDebut">Annee de la promotion voulu</param>
+        /// <param name="categorie">Categorie choisie</param>
+        /// <param name="nomPromo">nompromo de la promo voulu</param>
         /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
         /// <author>Nordine</author>
         [HttpGet("GetAllEtuByCategorie")]
-        public ActionResult<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie)
+        public ActionResult<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie, NOMPROMOTION nomPromo,int anneeDebut)
         {
+            Promotion promo = new Promotion(nomPromo, anneeDebut);
+
             //Cas par défaut
             ActionResult<List<Tuple<Etudiant, int>>> reponse = BadRequest();
 
             //On récupere les etudiants depuis le manager
-            List<Tuple<Etudiant, int>> etudiants = EtuManager.Instance.GetAllEtuByCategorie(categorie);
+            List<Tuple<Etudiant, int>> etudiants = EtuManager.Instance.GetAllEtuByCategorie(categorie, promo);
 
             //Si c'est pas null on renvoi un Ok avec les etudiants
             if (etudiants != null) reponse = Ok(etudiants);
