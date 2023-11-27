@@ -46,10 +46,12 @@ namespace APIEtudiant.Stockage
         public bool CreateEtu(Etudiant etu, Promotion promo);
 
         /// <summary>
-        /// Renvoi tout les étudiants de la BDD qui ont une note de la categorie donner
+        /// Renvoi tous les étudiants ayant au moins une note de la catégorie spécifiée dans la promo specifie
         /// </summary>
-        /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
+        /// <param name="categorie">Catégorie spécifiée</param>
+        /// <param name="promo">Promo dans laquel on cherche les etudiants</param>
+        /// <returns>Un dictionnaire(liste de Tuple) avec les étudiants et le nombre de notes de la catégorie</returns>
         /// <author>Nordine</author>
-        public List<Tuple<Etudiant, int>> GetAllEtuByCategorie(CATEGORIE categorie);
+        public List<Tuple<Etudiant, int>> GetAllEtuByCategorie(CATEGORIE categorie, Promotion promo);
     }
 }

@@ -210,12 +210,13 @@ namespace PAGE.Stockage
         /// </summary>
         /// <returns>Un dictionnaire etudiant/nombre de note de cette categorie</returns>
         /// <author>Nordine</author>
-        public async Task<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie)
+        public async Task<List<Tuple<Etudiant, int>>> GetAllEtuByCategorie(CATEGORIE categorie,Promotion promo)
         {
-            //Dictionnaire d'étudiant (cle = etudiant , valeur = etudiant)
+            //Liste de couple  etudiant/nb note de la categorie choisie
             List<Tuple<Etudiant, int>> etudiantEtNbNote = new List<Tuple<Etudiant, int>>();
 
             int idCategorie=-1;
+            int nomPromo = -1;
 
             switch (categorie)
             {
@@ -239,11 +240,24 @@ namespace PAGE.Stockage
                     break;
             }
 
+            switch(promo.NomPromotion)
+            {
+                case NOMPROMOTION.BUT1:
+                    nomPromo = 0;
+                    break;
+                case NOMPROMOTION.BUT2:
+                    nomPromo = 1;
+                    break;
+                case NOMPROMOTION.BUT3:
+                    nomPromo = 2;
+                    break;
+            }
+
             // Créez une instance de HttpClient
             using (HttpClient client = new HttpClient())
             {
                 // Spécifiez l'URL de l'API
-                string apiUrl = $"https://localhost:7038/EtuControlleur/GetAllEtuByCategorie?categorie={idCategorie}";
+                string apiUrl = $"https://localhost:7038/EtuControlleur/GetAllEtuByCategorie?categorie={idCategorie}&nomPromo={nomPromo}&anneeDebut={promo.AnneeDebut}";
 
                 // Effectuez la requête GET
                 HttpResponseMessage reponse = await client.GetAsync(apiUrl);

@@ -110,10 +110,11 @@ namespace APIEtudiant.Stockage
         }
 
         /// <summary>
-        /// Supprime une année de la bdd
-        /// </summary>
+        /// Supprime une année et tout ce qu'il y a en rapport (promotion, role)
+        /// /// </summary>
         /// <param name="annee">année à supprimer</param>
         /// <returns>true si la suppression est effectué</returns>
+        /// <author>Nordine</author>
         public bool DeleteAnnee(int? annee)
         {
             bool suppressionReussie = false;
@@ -137,6 +138,11 @@ namespace APIEtudiant.Stockage
                         string deleteAnnee = $"DELETE FROM Annee WHERE anneeDebut = {annee}";
                         OracleCommand deleteAnneeCmd = new OracleCommand(deleteAnnee, con.OracleConnexion);
                         deleteAnneeCmd.ExecuteNonQuery();
+
+                        // Supprimer les rôles pendant cette année
+                        string deleteAnneeRole = $"delete from roleutilisateur where annee = {annee}";
+                        OracleCommand deleteAnneeRoleCmd = new OracleCommand(deleteAnneeRole, con.OracleConnexion);
+                        deleteAnneeRoleCmd.ExecuteNonQuery();
 
                         // Valider la transaction si toutes les opérations ont réussi
                         transaction.Commit();
