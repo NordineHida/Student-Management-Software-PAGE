@@ -166,8 +166,9 @@ namespace PAGE.Vue.Ecran
 
                 if (userSelectionne != null)
                 {
-                    FenetreRolesUser fru = new FenetreRolesUser(userSelectionne);
+                    FenetreRolesUser fru = new FenetreRolesUser(userSelectionne,promo);
                     fru.Show();
+                    this.Close();
                 }
             }
         }
