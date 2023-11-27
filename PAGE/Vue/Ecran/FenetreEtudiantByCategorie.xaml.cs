@@ -46,9 +46,8 @@ namespace PAGE.Vue.Ecran
         {
             // On récupère l'ensemble des étudiants et leur nbNote via l'API
             EtuDAO dao = new EtuDAO();
-            etudiantEtNote = await dao.GetAllEtuByCategorie(categorieComboBox);
+            etudiantEtNote = await dao.GetAllEtuByCategorie(categorieComboBox, promo);
 ;
-            //await dao.GetAllEtuByCategorie(categorieComboBox);
             this.etudiants = new Etudiants(etudiantEtNote.Select(tuple => tuple.Item1).ToList());
 
             etudiantAffichage = etudiants.ListeEtu;
