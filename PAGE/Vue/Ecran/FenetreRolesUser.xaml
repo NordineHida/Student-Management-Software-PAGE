@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAGE.Vue.Ecran"
         mc:Ignorable="d"
+        Closing="FermerFenetre"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         Title="FenetreRoleUser" 
+        
         Height="1000" Width="1500"
         xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
