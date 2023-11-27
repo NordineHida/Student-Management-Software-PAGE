@@ -604,7 +604,6 @@ namespace APIEtudiant.Stockage
                     Console.WriteLine(ex.Message);
                 }
             }
-
             return idPromo;
         }
 
@@ -741,30 +740,35 @@ namespace APIEtudiant.Stockage
 
 
         /// <summary>
-        /// Renvoi tous les étudiants ayant au moins une note de la catégorie spécifiée
+        /// Renvoi tous les étudiants ayant au moins une note de la catégorie spécifiée dans la promo specifie
         /// </summary>
         /// <param name="categorie">Catégorie spécifiée</param>
-        /// <returns>Un dictionnaire avec les étudiants et le nombre de notes de la catégorie</returns>
+        /// <param name="promo">Promo dans laquel on cherche les etudiants</param>
+        /// <returns>Un dictionnaire(liste de Tuple) avec les étudiants et le nombre de notes de la catégorie</returns>
         /// <author>Nordine</author>
-        public List<Tuple<Etudiant, int>> GetAllEtuByCategorie(CATEGORIE categorie)
+        public List<Tuple<Etudiant, int>> GetAllEtuByCategorie(CATEGORIE categorie,Promotion promo)
         {
             // Création d'une connexion Oracle
             Connection con = new Connection();
             // Dictionnaire pour stocker les résultats
             List<Tuple<Etudiant, int>> etudiantsByCategorie = new List<Tuple<Etudiant, int>>();
 
+            //on recupere l'id de la promo choisie
+            int idPromo = GetIdPromotion(promo);
             try
             {
                 string requete = "SELECT e.numApogee, e.nom, e.prenom, e.sexe, e.typeBac, e.mail, e.groupe, e.estBoursier, e.regimeFormation, e.dateNaissance, e.adresse, e.telPortable, e.telFixe, e.login, COUNT(n.idNote) AS NombreNotes " +
-                     "FROM Etudiant e " +
-                     "JOIN Note n ON e.numApogee = n.apogeeEtudiant " +
-                     "WHERE n.idCategorie = :categorie " +
-                     "GROUP BY e.numApogee, e.nom, e.prenom, e.sexe, e.typeBac, e.mail, e.groupe, e.estBoursier, e.regimeFormation, e.dateNaissance, e.adresse, e.telPortable, e.telFixe, e.login";
-
+                                 "FROM Etudiant e " +
+                                 "JOIN Note n ON e.numApogee = n.apogeeEtudiant " +
+                                 "JOIN Promotion_Etudiant pe ON e.numApogee = pe.numApogee " +
+                                 "WHERE n.idCategorie = :categorie " +
+                                 "AND pe.idPromotion = :idPromotion " +
+                                 "GROUP BY e.numApogee, e.nom, e.prenom, e.sexe, e.typeBac, e.mail, e.groupe, e.estBoursier, e.regimeFormation, e.dateNaissance, e.adresse, e.telPortable, e.telFixe, e.login";
 
                 using (OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion))
                 {
                     cmd.Parameters.Add("categorie", OracleDbType.Int32).Value = (int)categorie;
+                    cmd.Parameters.Add("idPromotion", OracleDbType.Int32).Value = idPromo;
 
                     OracleDataReader reader = cmd.ExecuteReader();
 
