@@ -14,12 +14,14 @@ namespace PAGE.Vue.Ecran
     {
         private bool TriCroissant = false;
         private Utilisateur user;
+        private Promotion promo;
 
-        public FenetreRolesUser(Utilisateur user)
+        public FenetreRolesUser(Utilisateur user, Promotion promo)
         {
             InitializeComponent();
             AfficherLesEtuComponent(user.Roles, TYPETRI.ANNEE);
             this.user = user;
+            this.promo = promo;
 
         }
 
@@ -32,8 +34,9 @@ namespace PAGE.Vue.Ecran
                 ROLE roleSelectionne = roleComponent.Role;
 
                 // on affiche ces informations
-                FenetreModifierRole FmodifRole = new FenetreModifierRole(this.user,anneeSelectionne, roleSelectionne); ;
+                FenetreModifierRole FmodifRole = new FenetreModifierRole(this.user,anneeSelectionne, roleSelectionne,promo); ;
                 FmodifRole.Show();
+                this.Close();
 
             }
         }
@@ -87,8 +90,9 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void AjouterRole_Click(object sender, RoutedEventArgs e)
         {
-            FenetreModifierRole fmr = new FenetreModifierRole(user, -1, ROLE.LAMBDA);
+            FenetreModifierRole fmr = new FenetreModifierRole(user, -1, ROLE.LAMBDA,this.promo);
             fmr.Show();
+            this.Close();
         }
     }
 }

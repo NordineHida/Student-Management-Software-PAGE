@@ -19,6 +19,7 @@ namespace PAGE.Vue.Ecran
         private Utilisateur user;
         private bool modeCreation;
         private List<Annee> annees = new List<Annee>();
+        private Promotion promo;
 
         /// <summary>
         /// Fenetre de modification/Création de rôle
@@ -27,7 +28,7 @@ namespace PAGE.Vue.Ecran
         /// <param name="annee">annee du role (-1 si on créer un role)</param>
         /// <param name="role">role /param>
         /// <author>Nordine</author>
-        public FenetreModifierRole(Utilisateur user, int annee, ROLE role)
+        public FenetreModifierRole(Utilisateur user, int annee, ROLE role, Promotion promo)
         {
             InitializeComponent();
             DataContext= this;
@@ -35,7 +36,7 @@ namespace PAGE.Vue.Ecran
             this.annee = annee;
             this.role = role;
             this.user = user;
-
+            this.promo = promo;
             //si année incorrect alors on est en mode création, sinon mode affichage/modification de rôle
             modeCreation = annee < 0;
             
@@ -68,8 +69,8 @@ namespace PAGE.Vue.Ecran
         {
             UtilisateurDAO userDAO= new UtilisateurDAO();
             await userDAO.UpdateRole(user, role, annee);
-            
-            
+            GestionUtilisateurs gestionUtilisateurs = new GestionUtilisateurs(promo);
+            gestionUtilisateurs.Show();
 
             this.Close();
         }
