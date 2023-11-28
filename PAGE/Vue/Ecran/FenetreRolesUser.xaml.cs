@@ -95,17 +95,5 @@ namespace PAGE.Vue.Ecran
             this.Close();
         }
         
-        
-        /// <summary>
-        /// quand la fenetre se ferme on revient a la fenetre de gestion des utilisateurs
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void FermerFenetre(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            GestionUtilisateurs gu = new GestionUtilisateurs(promo);
-            gu.Show();
-        }
     }
 }

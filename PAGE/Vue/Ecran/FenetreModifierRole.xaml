@@ -606,11 +606,11 @@
 
         </Label>
 
-        <ComboBox Grid.Column="2" Grid.Row="1" Margin="30" Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxAnnee" SelectionChanged="ComboBoxAnnee_SelectionChanged" ItemsSource="{Binding annees}" DisplayMemberPath="AnneeDebut">
+        <ComboBox Grid.Column="2" Grid.Row="1" Margin="30" Style="{DynamicResource ComboBoxStyle1}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="ComboBoxAnnee" SelectionChanged="ComboBoxAnnee_SelectionChanged" ItemsSource="{Binding annees}" DisplayMemberPath="AnneeDebut">
 
         </ComboBox>
 
-        <ComboBox Grid.Column="2" Grid.Row="2" Margin="30" Style="{DynamicResource ComboBoxStyle1}" x:Name="ComboBoxRole" SelectionChanged="ComboBoxRole_SelectionChanged">
+        <ComboBox Grid.Column="2" Grid.Row="2" Margin="30" Style="{DynamicResource ComboBoxStyle1}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" x:Name="ComboBoxRole" SelectionChanged="ComboBoxRole_SelectionChanged">
 
             <ComboBoxItem Content="Pas de rôle"/>
             <ComboBoxItem Content="Directeur du département"/>

@@ -33,7 +33,7 @@ namespace PAGE.Vue.Ecran
             etudiantEtNote = new List<Tuple<Etudiant, int>>();
             if (tokenUtilisateur != null)
             {
-                this.token = token;
+                this.token = tokenUtilisateur;
             }
         }
 
