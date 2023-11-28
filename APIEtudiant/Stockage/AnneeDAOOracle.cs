@@ -129,6 +129,12 @@ namespace APIEtudiant.Stockage
 
                     try
                     {
+                        // Supprimer les promotions/etudiant associées à l'année
+                        string deletePromotionEtudiant = $"DELETE FROM promotion_etudiant WHERE idpromotion IN (SELECT idpromotion FROM promotion WHERE anneedebut = {annee})";
+                        OracleCommand deletePromotionEtudiantcmd = new OracleCommand(deletePromotionEtudiant, con.OracleConnexion);
+                        deletePromotionEtudiantcmd.ExecuteNonQuery();
+
+
                         // Supprimer les promotions associées à l'année
                         string deletePromotions = $"DELETE FROM Promotion WHERE anneeDebut = {annee}";
                         OracleCommand deletePromotionsCmd = new OracleCommand(deletePromotions, con.OracleConnexion);
