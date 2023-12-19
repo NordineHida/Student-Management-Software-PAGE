@@ -106,7 +106,7 @@ namespace PAGE.Stockage
 
                 if (token.UserToken == null)
                 {
-                    PopUp popUp = new PopUp("Connexion", "Il y a eu un problème lors de la connexion. Veuillez Réessayer", TYPEICON.ERREUR);
+                    PopUp popUp = new PopUp("Connexion", "Il y a eu un problème lors de la connexion. Veuillez Réessayer.", TYPEICON.ERREUR);
                     popUp.ShowDialog();
                 }
                 else

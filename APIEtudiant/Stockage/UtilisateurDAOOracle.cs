@@ -201,17 +201,19 @@ namespace APIEtudiant.Stockage
                 }
 
                 //On récupère l'ID
-                int idUser = 0;
-                string getIdRequete = String.Format("SELECT idUtilisateur FROM Utilisateur Where login='{0}'", user.Login);
-
-                OracleCommand getId = new OracleCommand(getIdRequete, con.OracleConnexion);
-                OracleDataReader readerId = getId.ExecuteReader();
-
-                while (readerId.Read())
+                int idUser = -1;
+                if (user != null)
                 {
-                    idUser = readerId.GetInt32(readerId.GetOrdinal("idUtilisateur"));
-                }
+                    string getIdRequete = String.Format("SELECT idUtilisateur FROM Utilisateur Where login='{0}'", user.Login);
 
+                    OracleCommand getId = new OracleCommand(getIdRequete, con.OracleConnexion);
+                    OracleDataReader readerId = getId.ExecuteReader();
+
+                    while (readerId.Read())
+                    {
+                        idUser = readerId.GetInt32(readerId.GetOrdinal("idUtilisateur"));
+                    }
+                }
 
                 OracleCommand cmdRoleCount = new OracleCommand(String.Format("Select COUNT(*) From RoleUtilisateur WHERE idUtilisateur='{0}'", idUser), con.OracleConnexion);
                 OracleDataReader readerRoleCount = cmdRoleCount.ExecuteReader();

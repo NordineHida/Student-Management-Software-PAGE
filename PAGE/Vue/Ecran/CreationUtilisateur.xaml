@@ -90,7 +90,7 @@
         <!-- Combobox gérant la catégorie de la note -->
         <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="54" Margin="251,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Center" Width="175" RadiusX="10" RadiusY="10"/>
         <Label FontSize="19" VerticalContentAlignment="Center" FontFamily="{StaticResource OpenSauceOne}" HorizontalContentAlignment="Center" Grid.Column="1" Content="{DynamicResource LabelPassword}" HorizontalAlignment="Left" Margin="251,0,0,0" Grid.Row="2" VerticalAlignment="Center" Foreground="#FFFFFF" Height="54" RenderTransformOrigin="0.5,0.5" Width="175"/>
-        <TextBox Style="{DynamicResource TextBoxStyle1}" FontSize="20" FontFamily="{StaticResource OpenSauceOne}" x:Name="txtMDP" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" Height="54" Margin="420,0,0,0" BorderThickness="2" Text="{Binding Mdp}" Grid.ColumnSpan="2"/>
+        <PasswordBox FontSize="20" FontFamily="{StaticResource OpenSauceOne}" x:Name="txtMDP" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" Height="54" Margin="420,0,0,0" BorderThickness="2" Grid.ColumnSpan="2"/>
 
         <!-- Boutons créer -->
 

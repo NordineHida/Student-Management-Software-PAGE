@@ -34,19 +34,22 @@ namespace PAGE.Vue.Ecran
             this.promo = promo;
             if (tokenUtilisateur != null )
             {
-                this.token=tokenUtilisateur;
-
-                if (token.UserToken.Roles.ContainsKey(promo.AnneeDebut))
+                if (tokenUtilisateur.UserToken != null)
                 {
-                    if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.ADMIN)
+                    this.token = tokenUtilisateur;
+
+                    if (token.UserToken.Roles.ContainsKey(promo.AnneeDebut))
                     {
-                        BtnGestionUtilisateur.Visibility = Visibility.Visible;
-                        BtnImporterEtudiant.Visibility = Visibility.Visible;
-                    }
-                    if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.DIRECTEURDEPARTEMENT)
-                    {
-                        BtnImporterEtudiant.Visibility = Visibility.Visible;
-                        BtnCreerEtudiant.Visibility = Visibility.Visible;
+                        if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.ADMIN)
+                        {
+                            BtnGestionUtilisateur.Visibility = Visibility.Visible;
+                            BtnImporterEtudiant.Visibility = Visibility.Visible;
+                        }
+                        if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.DIRECTEURDEPARTEMENT)
+                        {
+                            BtnImporterEtudiant.Visibility = Visibility.Visible;
+                            BtnCreerEtudiant.Visibility = Visibility.Visible;
+                        }
                     }
                 }
             }

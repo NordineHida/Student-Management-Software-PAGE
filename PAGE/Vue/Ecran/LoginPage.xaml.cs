@@ -73,10 +73,17 @@ namespace PAGE.Vue.Ecran
 
             IUtilisateurDAO dao = new UtilisateurDAO();
             token = await dao.Connexion(user.Login,user.HashMdp);
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(promo,token);
-            fenetrePrincipal.Show();
+            if (token.UserToken != null)
+            {
+                FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(promo, token);
+                fenetrePrincipal.Show();
 
-            this.Close();
+                this.Close();
+            }
+            else
+            {
+                txtPassword.Password = "";
+            }
         }
     }
 }
