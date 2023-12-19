@@ -70,7 +70,7 @@ namespace PAGE.Vue.Ecran
                     popUp.ShowDialog();
                 }
             }
-            if (txtMDP.Text == "")
+            if (txtMDP.Password == "")
             {
                 ok = false;
                 
