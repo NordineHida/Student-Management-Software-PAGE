@@ -561,6 +561,17 @@ namespace PAGE.Vue.Ecran
 
             this.Close();
         }
+
+        /// <summary>
+        /// Génére le word quand la fenetre principal est fermer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void GenererWord(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            WordGenerateur.GenererWord(new List<Note>(), promo);
+        }
     }
 }
 
