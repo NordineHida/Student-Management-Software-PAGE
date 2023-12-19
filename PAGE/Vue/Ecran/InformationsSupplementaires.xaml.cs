@@ -771,11 +771,11 @@ namespace PAGE.Vue.Ecran
                 CreationNote creernote;
                 if (this.token != null)
                 {
-                    creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false,this.promo, token);
+                    creernote = new CreationNote(new Note(CATEGORIE.AUTRE,"", DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false,this.promo, token);
                 }
                 else
                 {
-                    creernote = new CreationNote(new Note(CATEGORIE.AUTRE, DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false,this.promo, null);
+                    creernote = new CreationNote(new Note(CATEGORIE.AUTRE,"", DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false,this.promo, null);
                 }
                 creernote.Show();
             }

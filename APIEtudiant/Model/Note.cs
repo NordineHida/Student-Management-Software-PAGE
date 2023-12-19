@@ -15,6 +15,7 @@ namespace APIEtudiant.Model
         private DateTime datePublication;
         private NATURE nature;
         private string commentaire;
+        private string titre;
         private int apogeeEtudiant;
         #endregion
 
@@ -60,6 +61,12 @@ namespace APIEtudiant.Model
         public string Commentaire { get { return commentaire; } set { commentaire = value; } }
 
         /// <summary>
+        /// Récupère ou définit le titre de la note.
+        /// </summary>
+        /// <author>Laszlo</author>
+        public string Titre { get { return titre; } set { titre = value; } }
+
+        /// <summary>
         /// Récupère ou définit le numéro apogée de l'étudiant dont la note parle.
         /// </summary>
         /// <author>Laszlo</author>
@@ -79,12 +86,13 @@ namespace APIEtudiant.Model
         /// <param name="apogeeEtudiant">Numéro apogée de l'étudiant dont la note parle</param>
         /// <param name="confidentialite">Confidentialite de la note</param>
         /// <author>Laszlo/Nordine</author>
-        public Note(CATEGORIE categorie, DateTime datePublication, NATURE nature, string commentaire, int apogeeEtudiant, CONFIDENTIALITE confidentialite)
+        public Note(CATEGORIE categorie, string titre, DateTime datePublication, NATURE nature, string commentaire, int apogeeEtudiant, CONFIDENTIALITE confidentialite)
         {
             this.categorie = categorie;
             this.datePublication = datePublication;
             this.nature = nature;
             this.commentaire = commentaire;
+            this.titre = titre;
             this.apogeeEtudiant = apogeeEtudiant;
             this.confidentialite = confidentialite;
         }

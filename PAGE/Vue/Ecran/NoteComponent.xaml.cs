@@ -26,7 +26,7 @@ namespace PAGE.Vue.Ecran
             InitializeComponent();
             Note = note;
 
-            LabelDate.Text= note.DatePublication.ToString("D");
+            LabelTitre.Text= note.Titre;
             //Affiche la bonne image
             PictoNote.Source = RessourceManager.Instance.GetImage(note.Categorie.ToString());
 

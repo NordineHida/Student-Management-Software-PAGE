@@ -112,7 +112,7 @@ namespace PAGE.Vue.Ecran
                 }
 
 
-
+                TitreBox.IsReadOnly= true;
                 ComboBoxConfidentialite.IsEnabled = false;
                 ComboBoxCategorie.IsEnabled = false;
                 ComboBoxNature.IsEnabled = false;
@@ -126,6 +126,7 @@ namespace PAGE.Vue.Ecran
                 //si la note n'existe pas, on met la date du jour par defaut
                 DateCreationNote.SelectedDate = DateTime.Now;
                 note.Commentaire = "";
+                note.Titre = "";
                 BoutonSupprimer.Visibility = Visibility.Collapsed;
             }
 
@@ -176,6 +177,7 @@ namespace PAGE.Vue.Ecran
             ComboBoxCategorie.IsEnabled = true;
             ComboBoxNature.IsEnabled = true;
             TextCommentaire.IsReadOnly = false;
+            TitreBox.IsReadOnly = false;
             DateCreationNote.IsEnabled = true;
         }
 
@@ -409,6 +411,15 @@ namespace PAGE.Vue.Ecran
             this.Close();
         }
 
-
+        /// <summary>
+        /// Quand on change le titre, on change aussi l'attribut
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void TextTitre_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            note.Titre = (string)TitreBox.Text;
+        }
     }
 }
