@@ -41,5 +41,12 @@ namespace APIEtudiant.Stockage
         /// <author>Nordine</author>
         public bool UpdateNote(Note note);
 
+        /// <summary>
+        /// Renvoi un dictionnaire("Nom Prenom", liste notes) d'une promo
+        /// </summary>
+        /// <param name="promo">promo dont on veut les notes</param>
+        /// <returns>dictionnaire("Nom Prenom", liste notes)</returns>
+        public Dictionary<string, IEnumerable<Note>> GetAllNotesByPromo(Promotion promo);
+
     }
 }

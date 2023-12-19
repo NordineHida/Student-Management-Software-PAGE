@@ -1,4 +1,5 @@
 ﻿using APIEtudiant.Model;
+using APIEtudiant.Model.Enumerations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIEtudiant.Controllers
@@ -48,7 +49,7 @@ namespace APIEtudiant.Controllers
         }
 
         /// <summary>
-        /// Supprime une note de la BDD
+        /// renvoi toute les note d'un étudiant de la BDD
         /// </summary>
         /// <param name="note">Note à Supprimer</param>
         /// <author>Laszlo</author>
@@ -85,7 +86,37 @@ namespace APIEtudiant.Controllers
             return reponse;
         }
 
+        /// <summary>
+        /// Renvoi un dictionnaire("Nom Prenom", liste notes) d'une promo
+        /// </summary>
+        /// <param name="anneeDebut">Annee de la promotion</param>
+        /// <param name="typeBUT">0 = But1, 1 = but2, 2 = but3</param>
+        /// <author>Nordine</author>
+        [HttpGet("GetAllNotesByPromo")]
+        public ActionResult<Dictionary<string, IEnumerable<Note>>> GetAllNotesByPromo(int anneeDebut, int typeBUT)
+        {
+            //Cas par défaut
+            ActionResult<Dictionary<string, IEnumerable<Note>>> reponse = BadRequest();
 
+            NOMPROMOTION nompromo = NOMPROMOTION.BUT1;
+            switch (typeBUT)
+            {
+                case 1:
+                    nompromo = NOMPROMOTION.BUT2;
+                    break;
+                case 2:
+                    nompromo = NOMPROMOTION.BUT3;
+                    break;
 
+            }
+            Promotion promo = new Promotion(nompromo, anneeDebut);
+
+            //On récupere les etudiants depuis le manager
+            Dictionary<string, IEnumerable<Note>> notes = NoteManager.Instance.GetAllNotesByPromo(promo);
+
+            //Si c'est pas null on renvoi un Ok avec les etudiants
+            if (notes != null) reponse = Ok(notes);
+            return reponse;
+        }
     }
 }

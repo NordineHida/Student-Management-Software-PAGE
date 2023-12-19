@@ -77,5 +77,17 @@ namespace APIEtudiant.Model
             return NoteDAO.UpdateNote(note);
         }
 
+
+        /// <summary>
+        /// renvoi la liste des notes d'une promotions
+        /// </summary>
+        /// <param name="promo">promo dont on veut les notes</param>
+        /// <returns>IEnumerable de note</returns>
+        /// <author>Nordine</author>
+        public Dictionary<string, IEnumerable<Note>> GetAllNotesByPromo(Promotion promo)
+        {
+            return NoteDAO.GetAllNotesByPromo(promo);
+        }
+
     }
 }
