@@ -182,17 +182,6 @@ namespace PAGE.Vue.Ecran
         }
 
         /// <summary>
-        /// Actualise la liste des étudiants
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void BoutonActualiserListeEtudiant(object sender, RoutedEventArgs e)
-        {
-            ActualiserEtudiant();
-        }
-
-        /// <summary>
         /// Actualise l'affichage de la liste des étudiants
         /// </summary>
         /// <author>Nordine</author>
