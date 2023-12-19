@@ -432,14 +432,13 @@ namespace PAGE.Vue.Ecran
         }
 
         /// <summary>
-        /// ajoute l'extension de mail de l'iut
+        /// Créer le mail de l'iut au format prenom.nom@iut-dijon.u-bourgogne.Fr
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void AddMailExtension(object sender, RoutedEventArgs e)
         {
-            if (!txtMail.Text.Contains("@iut-dijon.u-bourgogne.fr"))
-                txtMail.Text += "@iut-dijon.u-bourgogne.fr";
+            txtMail.Text = $"{txtPrenom.Text.ToLower()}.{txtName.Text.ToLower()}@iut-dijon.u-bourgogne.fr";
         }
     }
 }
