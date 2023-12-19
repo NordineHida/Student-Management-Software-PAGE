@@ -177,6 +177,7 @@ namespace PAGE.Vue.Ecran
             ComboBoxNature.IsEnabled = true;
             TextCommentaire.IsReadOnly = false;
             DateCreationNote.IsEnabled = true;
+            
         }
 
         /// <summary>
