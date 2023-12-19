@@ -53,7 +53,7 @@ namespace PAGE.Vue.Ecran
             //Mode affichage/modification de rôle seulement
             else
             {
-                
+                btnSupprimer.Visibility= Visibility.Visible;
                 ComboBoxAnnee.SelectedItem = annee;
                 ComboBoxAnnee.IsEnabled = false;
 
@@ -142,25 +142,22 @@ namespace PAGE.Vue.Ecran
             switch (ComboBoxRole.SelectedIndex)
             {
                 case 0:
-                    this.role = ROLE.LAMBDA;
-                    break;
-                case 1:
                     this.role = ROLE.DIRECTEURDEPARTEMENT;
                     break;
-                case 2:
+                case 1:
                     this.role = ROLE.DIRECTEURETUDES1;
                     break;
-                case 3:
+                case 2:
                     this.role = ROLE.DIRECTEURETUDES2;
                     break;
-                case 4:
+                case 3:
                     this.role = ROLE.DIRECTEURETUDES3;
                     break;
-                case 5:
+                case 4:
                     this.role = ROLE.ADMIN;
                     break;
                 default:
-                    this.role = ROLE.LAMBDA;
+                    this.role = ROLE.DIRECTEURDEPARTEMENT;
                     break;
             }
         }
@@ -203,5 +200,15 @@ namespace PAGE.Vue.Ecran
             ComboBoxRole.SelectedIndex = index;
         }
 
+        private async void clickBtnSupprimer(object sender, RoutedEventArgs e)
+        {
+            UtilisateurDAO userDAO = new UtilisateurDAO();
+            await userDAO.UpdateRole(user, ROLE.LAMBDA, annee);
+
+            GestionUtilisateurs gestionUtilisateurs = new GestionUtilisateurs(promo);
+            gestionUtilisateurs.Show();
+
+            this.Close();
+        }
     }
 }

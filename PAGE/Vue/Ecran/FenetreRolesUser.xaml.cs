@@ -72,13 +72,16 @@ namespace PAGE.Vue.Ecran
 
             foreach (int annee in listRole.Keys)
             {
-                // Si l'année n'est pas déjà dans le StackPanel, on l'y ajoute
-                if (!StackPanelRoles.Children.OfType<RoleEtAnneeComponent>().Any(uc => uc.Annee == annee))
+                if (listRole[annee] != ROLE.LAMBDA)
                 {
-                    // Ajoute le rôle personnalisé au StackPanel
-                    RoleEtAnneeComponent roleComponent = new RoleEtAnneeComponent(annee, listRole[annee]);
-                    StackPanelRoles.Children.Add(roleComponent);
-                }
+                    // Si l'année n'est pas déjà dans le StackPanel, on l'y ajoute
+                    if (!StackPanelRoles.Children.OfType<RoleEtAnneeComponent>().Any(uc => uc.Annee == annee))
+                    {
+                        // Ajoute le rôle personnalisé au StackPanel
+                        RoleEtAnneeComponent roleComponent = new RoleEtAnneeComponent(annee, listRole[annee]);
+                        StackPanelRoles.Children.Add(roleComponent);
+                    }
+                }   
             }
         }
 
@@ -94,6 +97,10 @@ namespace PAGE.Vue.Ecran
             fmr.Show();
             this.Close();
         }
-        
+
+        private void SupprimerRole(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

@@ -60,6 +60,7 @@
     <None Remove="Vue\Ressources\Picto\calendar.svg" />
     <None Remove="Vue\Ressources\Picto\check-bold.png" />
     <None Remove="Vue\Ressources\Picto\checkmark.png" />
+    <None Remove="Vue\Ressources\Picto\corbeille.png" />
     <None Remove="Vue\Ressources\Picto\error.png" />
     <None Remove="Vue\Ressources\Picto\filter-settings.svg" />
     <None Remove="Vue\Ressources\Picto\import.png" />
