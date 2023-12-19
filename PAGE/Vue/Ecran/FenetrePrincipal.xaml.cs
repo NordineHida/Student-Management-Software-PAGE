@@ -568,9 +568,11 @@ namespace PAGE.Vue.Ecran
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <author>Nordine</author>
-        private void GenererWord(object sender, System.ComponentModel.CancelEventArgs e)
+        private async void GenererWord(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            WordGenerateur.GenererWord(new List<Note>(), promo);
+            NoteDAO dao = new NoteDAO();
+            Dictionary<string, IEnumerable<Note>> notes = await dao.GetAllNotesByPromo(promo);
+            WordGenerateur.GenererWord(notes, promo);
         }
     }
 }
