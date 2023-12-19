@@ -9,7 +9,8 @@
         Height="1000" Width="1500"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+        Closing="GenererWord"
+        xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Window.Background>
         <SolidColorBrush Color="#bfd7eb" />

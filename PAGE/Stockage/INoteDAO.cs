@@ -41,5 +41,13 @@ namespace PAGE.Stockage
         /// <returns>true si la modification est un succès</returns>
         /// <author>Nordine</author>
         public Task UpdateNote(Note note);
+
+        /// <summary>
+        /// Renvoi un dictionnaire("Nom Prenom", liste notes) d'une promo
+        /// </summary>
+        /// <param name="promo">promo dont on veut les notes</param>
+        /// <returns>dictionnaire("Nom Prenom", liste notes)</returns>
+        /// <author>Nordine</author>
+        public Task<Dictionary<string, IEnumerable<Note>>> GetAllNotesByPromo(Promotion promo);
     }
 }

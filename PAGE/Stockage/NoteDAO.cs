@@ -58,7 +58,7 @@ namespace PAGE.Stockage
         /// <summary>
         /// Renvoie les notes d'un etudiant
         /// </summary>
-        /// <returns>Un ensemble den notes</returns>
+        /// <returns>Un ensemble de notes</returns>
         /// <author>Laszlo & Nordine</author>
         public async Task<IEnumerable<Note>> GetAllNotesByApogee(int apogeeEtudiant)
         {
@@ -164,5 +164,50 @@ namespace PAGE.Stockage
                 }
             }
         }
+
+        /// <summary>
+        /// Renvoi un dictionnaire("Nom Prenom", liste notes) d'une promo
+        /// </summary>
+        /// <param name="promo">promo dont on veut les notes</param>
+        /// <returns>dictionnaire("Nom Prenom", liste notes)</returns>
+        /// <author>Nordine</author>
+        public async Task<Dictionary<string, IEnumerable<Note>>> GetAllNotesByPromo(Promotion promo)
+        {
+            //Liste de notes 
+            Dictionary<string, IEnumerable<Note>> notes = new Dictionary<string, IEnumerable<Note>>();
+
+            // On convertir le nompromo par un int (par defaut but1) (but1=0,but2=1;but3=2)
+            int typepromo = 0;
+            switch (promo.NomPromotion)
+            {
+                case NOMPROMOTION.BUT2:
+                    typepromo = 1;
+                    break;
+                case NOMPROMOTION.BUT3:
+                    typepromo = 2;
+                    break;
+            }
+
+            // Créez une instance de HttpClient
+            using (HttpClient client = new HttpClient())
+            {
+                // Spécifiez l'URL de l'API
+                string apiUrl = $"https://localhost:7038/Note/GetAllNotesByPromo?anneeDebut={promo.AnneeDebut}&typeBUT={typepromo}";
+
+                // Effectuez la requête GET
+                HttpResponseMessage reponse = await client.GetAsync(apiUrl);
+
+                //On récupere le json contenant la liste de notes
+                string reponseString = await reponse.Content.ReadAsStringAsync();
+
+                //On la deserialise et on lit en IEnumerable qu'on convertit en List<Note>
+                notes = JsonSerializer.Deserialize<Dictionary<string, IEnumerable<Note>>>(reponseString);
+            }
+
+            return notes;
+        }
+
+
+
     }
 }
