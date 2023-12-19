@@ -48,7 +48,7 @@ namespace PAGE.Vue.Ecran
             if (users != null)
             {
                 CreationUtilisateur creerUtilisateur = new CreationUtilisateur(new Utilisateur("", null,null), users, promo);
-                creerUtilisateur.Show();
+                creerUtilisateur.ShowDialog();
             }
             else
             {
@@ -167,7 +167,7 @@ namespace PAGE.Vue.Ecran
                 if (userSelectionne != null)
                 {
                     FenetreRolesUser fru = new FenetreRolesUser(userSelectionne,promo);
-                    fru.Show();
+                    fru.ShowDialog();
                     this.Close();
                 }
             }

@@ -831,7 +831,7 @@ namespace PAGE.Vue.Ecran
                     {
                         affichageNote = new CreationNote(noteSelectionne, this.notes, true,this.promo, null);
                     }
-                    affichageNote.Show();
+                    affichageNote.ShowDialog();
                 }
             }
         }

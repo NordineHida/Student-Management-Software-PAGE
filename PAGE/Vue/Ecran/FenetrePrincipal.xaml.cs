@@ -289,7 +289,7 @@ namespace PAGE.Vue.Ecran
                     {
                         informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants, this.promo, null);
                     }
-                    informationsSupplementaires.Show();
+                    informationsSupplementaires.ShowDialog();
                 }
             }
         }
@@ -534,7 +534,7 @@ namespace PAGE.Vue.Ecran
             if (users != null)
             {
                 GestionUtilisateurs gestionUtilisateurs = new GestionUtilisateurs(promo);
-                gestionUtilisateurs.Show();
+                gestionUtilisateurs.ShowDialog();
             }
             else
             {
