@@ -16,6 +16,10 @@
     <system:String x:Key="Non">No</system:String>
     <system:String x:Key="Login">Login</system:String>
 
+    <system:String x:Key="FI">Initial Education</system:String>
+    <system:String x:Key="FA">Alternate Education</system:String>
+    <system:String x:Key="FC">Continuing Education</system:String>
+
 
     <!--Parametre (nordine)-->
     <system:String x:Key="TitreParam">Settings</system:String>
@@ -107,7 +111,7 @@
     <system:String x:Key="TelFixe">Phone number :</system:String>
     <system:String x:Key="TelPort">Mobile phone :</system:String>
     <system:String x:Key="LoginRes">Network login :</system:String>
-
+    <system:String x:Key="AddMail">IUT's mail</system:String>
 
     <!--InformationsSupplementaires (Lucas)-->
     <system:String x:Key="TitreFenetreInformationsSupplementaires">Additionnal Information</system:String>

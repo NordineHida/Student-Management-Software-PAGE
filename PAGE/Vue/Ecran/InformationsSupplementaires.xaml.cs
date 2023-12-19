@@ -244,6 +244,7 @@ namespace PAGE.Vue.Ecran
             BoutonModifier.Visibility = Visibility.Collapsed;
             BoutonValider.Visibility = Visibility.Visible;
             BoutonCreernote.IsEnabled = false;
+            BoutonAddMail.IsEnabled = true;
             BoutonCreernote.Background = new SolidColorBrush(Colors.Gray);
         }
 
@@ -617,8 +618,6 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void ActiverInput()
         {
-            
-
             // Rend les TextBox éditables
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
             {
@@ -657,6 +656,9 @@ namespace PAGE.Vue.Ecran
             // Active l'édition des comboboxes de regime et groupe
             comboBoxRegime.IsEnabled = true;
             comboBoxGroupe.IsEnabled = true;
+
+            //active le bouton pour ajouter un mail
+            BoutonAddMail.IsEnabled = true;
         }
 
         /// <summary>
@@ -703,6 +705,9 @@ namespace PAGE.Vue.Ecran
             //rend les comboboxes de regime et groupe en lecture seule
             comboBoxRegime.IsEnabled = false;
             comboBoxGroupe.IsEnabled = false;
+
+            //desactive le bouton mail
+            BoutonAddMail.IsEnabled = false;
         }
 
 
@@ -829,6 +834,16 @@ namespace PAGE.Vue.Ecran
                     affichageNote.Show();
                 }
             }
+        }
+
+        /// <summary>
+        /// Créer le mail de l'iut au format prenom.nom@iut-dijon.u-bourgogne.Fr
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddMailExtension(object sender, RoutedEventArgs e)
+        {
+            txtMail.Text = $"{txtPrenom.Text.ToLower()}.{txtName.Text.ToLower()}@iut-dijon.u-bourgogne.fr";
         }
     }
 }

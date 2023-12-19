@@ -29,6 +29,8 @@ namespace PAGE.Vue.Ecran
             LabelDate.Text= note.DatePublication.ToString("D");
             //Affiche la bonne image
             PictoNote.Source = RessourceManager.Instance.GetImage(note.Categorie.ToString());
+
+            PictoNote.ToolTip = note.Categorie.ToString();
         }
     }
 }
