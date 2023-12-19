@@ -283,6 +283,22 @@ namespace PAGE.Vue.Ecran
                 }
             }
 
+            else if (TitreBox.Text.Length > 50) 
+            {
+                valide = false;
+
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création note", "Veuillez choisir un titre moins long (50 caractères max)", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Note creation", "Please choose a shorter title (50 characters max)", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+            }
+
             return valide;
         }
 
