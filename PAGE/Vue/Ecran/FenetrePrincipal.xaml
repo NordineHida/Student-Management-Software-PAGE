@@ -430,10 +430,6 @@
                 <Image Source="/Vue/Ressources/Picto/import.png"  Stretch="Uniform" Margin="13"/>
             </Button>
 
-            <Button ToolTip="{DynamicResource ToolTipActualisation}" Style="{StaticResource ImageButtonStyle}" Click="BoutonActualiserListeEtudiant" x:Name="BtnActualiserListeEtudiant">
-                <Image Source="/Vue/Ressources/Picto/refresh.png"  Stretch="Uniform" Margin="9"/>
-            </Button>
-
             <Button ToolTip="{DynamicResource ToolTipCreerEtudiant}" Style="{StaticResource ImageButtonStyle}" Click="BoutonCreerEtudiant" x:Name="BtnCreerEtudiant" Visibility="Collapsed">
                 <Image Source="/Vue/Ressources/Picto/account-plus.png"  Stretch="Uniform" Margin="9"/>
             </Button>
