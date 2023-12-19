@@ -12,6 +12,6 @@
     
     <Grid Margin="10 " >
         <Image ToolTip="" x:Name="PictoNote" Margin="5" Stretch="Fill" Width="100" HorizontalAlignment="Left" />
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Margin="150,0,0,0" x:Name="LabelTitre"  FontFamily="{StaticResource OpenSauceOne}" FontSize="20" Grid.RowSpan="2" IsEnabled="False" IsHitTestVisible="False" MaxWidth="400"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="150,0,0,0" x:Name="LabelTitre"  FontFamily="{StaticResource OpenSauceOne}" FontSize="20" Grid.RowSpan="2" IsEnabled="False" IsHitTestVisible="False" Width="400" TextWrapping="Wrap"/>
     </Grid>
 </UserControl>
