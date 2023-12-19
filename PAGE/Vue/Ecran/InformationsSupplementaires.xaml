@@ -671,9 +671,9 @@
         <!-- Régime de formation (Nordine & Yamato)-->
         <TextBlock Text="{DynamicResource Regime:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="17" Grid.Column="1" />
         <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" Width="425" IsReadOnly="True" IsEnabled="False" x:Name="comboBoxRegime" HorizontalAlignment="Left" FontSize="15" Grid.Row="17" Grid.Column="3" BorderThickness="0" SelectionChanged="ComboBoxRegime_SelectionChanged">
-            <ComboBoxItem Content="FI"/>
-            <ComboBoxItem Content="FC"/>
-            <ComboBoxItem Content="FA"/>
+            <ComboBoxItem Content="{DynamicResource FI}"/>
+            <ComboBoxItem Content="{DynamicResource FC}"/>
+            <ComboBoxItem Content="{DynamicResource FA}"/>
         </ComboBox>
 
         <!-- Informations Complémentaires (Nordine & Yamato) -->

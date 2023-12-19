@@ -677,9 +677,9 @@
         <!-- Régime de formation (Nordine  )-->
         <TextBlock Text="{DynamicResource Regime}"  FontSize="20" Grid.Row="17" Grid.Column="1" />
         <ComboBox Style="{DynamicResource ComboBoxStyle2}" HorizontalAlignment="Left"  Width="500"  x:Name="comboBoxRegime"  FontSize="20" Grid.Row="17" Grid.Column="3" SelectionChanged="ComboBoxRegime_SelectionChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-            <ComboBoxItem Content="FI"/>
-            <ComboBoxItem Content="FC"/>
-            <ComboBoxItem Content="FA"/>
+            <ComboBoxItem Content="{DynamicResource FI}"/>
+            <ComboBoxItem Content="{DynamicResource FC}"/>
+            <ComboBoxItem Content="{DynamicResource FA}"/>
         </ComboBox>
 
         <!-- Informations Complémentaires (Nordine) -->

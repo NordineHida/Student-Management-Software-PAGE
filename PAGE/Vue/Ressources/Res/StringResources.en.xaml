@@ -16,6 +16,10 @@
     <system:String x:Key="Non">No</system:String>
     <system:String x:Key="Login">Login</system:String>
 
+    <system:String x:Key="FI">Initial Education</system:String>
+    <system:String x:Key="FA">Alternate Education</system:String>
+    <system:String x:Key="FC">Continuing Education</system:String>
+
 
     <!--Parametre (nordine)-->
     <system:String x:Key="TitreParam">Settings</system:String>
