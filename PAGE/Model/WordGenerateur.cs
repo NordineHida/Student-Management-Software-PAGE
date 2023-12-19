@@ -1,7 +1,6 @@
 ﻿using Spire.Doc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Drawing;
 using Spire.Doc.Documents;
 using Spire.Doc.Fields;
 
@@ -42,12 +41,12 @@ namespace PAGE.Model
                 Spire.Doc.Table table = section.AddTable(true);
 
                 // En-tête du tableau
-                string[] headers = { "Catégorie", "Date", "Nature", "Commentaire", "Titre" };
+                string[] headers = { "Titre" , "Date", "Catégorie", "Nature", "Commentaire" };
                 table.ResetCells(etudiantNotesList.Count() + 1, headers.Length);
                 TableRow headerRow = table.Rows[0];
                 headerRow.IsHeader = true;
                 headerRow.Height = 23;
-                headerRow.RowFormat.BackColor = Color.LightSeaGreen;
+                headerRow.RowFormat.BackColor = System.Drawing.ColorTranslator.FromHtml("#3DA79D");
 
                 for (int i = 0; i < headers.Length; i++)
                 {
@@ -69,12 +68,12 @@ namespace PAGE.Model
                     dataRow.Height = 20;
 
                     string[] rowData = {
-                note.Categorie.ToString(),
-                note.DatePublication.ToShortDateString(),
-                note.Nature.ToString(),
-                note.Commentaire,
-                note.Titre // Ajoutez cette ligne pour la colonne "Titre"
-            };
+                        note.Titre,
+                        note.DatePublication.ToShortDateString(),
+                        note.Categorie.ToString(),
+                        note.Nature.ToString(),
+                        note.Commentaire
+                    };
 
                     for (int i = 0; i < rowData.Length; i++)
                     {
@@ -91,8 +90,5 @@ namespace PAGE.Model
 
             doc.SaveToFile($"{path}/Note-{promo.NomPromotion}-{promo.AnneeDebut}-{promo.AnneeDebut + 1}.docx", FileFormat.Docx);
         }
-
-
-
     }
 }
