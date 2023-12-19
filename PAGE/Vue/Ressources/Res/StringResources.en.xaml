@@ -107,7 +107,7 @@
     <system:String x:Key="TelFixe">Phone number :</system:String>
     <system:String x:Key="TelPort">Mobile phone :</system:String>
     <system:String x:Key="LoginRes">Network login :</system:String>
-
+    <system:String x:Key="AddMail">IUT's mail</system:String>
 
     <!--InformationsSupplementaires (Lucas)-->
     <system:String x:Key="TitreFenetreInformationsSupplementaires">Additionnal Information</system:String>

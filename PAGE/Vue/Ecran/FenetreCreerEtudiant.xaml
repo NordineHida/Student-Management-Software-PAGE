@@ -10,6 +10,7 @@
         Title="{DynamicResource TitreFenetreCreerEtudiant}" Height="1000" Width="1500"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
+        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -651,8 +652,10 @@
             <ComboBoxItem Content="E2"/>
         </ComboBox>
 
+        <!-- Mail (Nordine)-->
         <TextBlock Text="{DynamicResource Mail}"  FontSize="20" Grid.Row="9" Grid.Column="1" />
         <TextBox HorizontalAlignment="Left"  Width="500"  x:Name="txtMail"  FontSize="20" Grid.Row="9" Grid.Column="3"/>
+        <Button x:Name="BoutonAddMail" HorizontalAlignment="Left" Content="{DynamicResource AddMail}" Foreground="#FFFFFF" Background="#FF3DA79D" Grid.Row="9" Grid.Column="2" FontFamily="{StaticResource OpenSauceOne}" Height="25" Width="75" Margin="515,0,0,0" Click="AddMailExtension" Panel.ZIndex="1000"/>
 
 
         <!-- Sexe (Nordine  )-->

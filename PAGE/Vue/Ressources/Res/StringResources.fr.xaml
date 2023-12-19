@@ -110,6 +110,8 @@
     <system:String x:Key="TelFixe">Téléphone fixe :</system:String>
     <system:String x:Key="TelPort">Téléphone portable :</system:String>
     <system:String x:Key="LoginRes">Login réseau :</system:String>
+    <system:String x:Key="AddMail">Mail IUT</system:String>
+    
 
 
     <!--InformationsSupplementaires (Lucas)-->
