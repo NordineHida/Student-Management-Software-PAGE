@@ -16,6 +16,9 @@
     <system:String x:Key="Non">Non</system:String>
     <system:String x:Key="Login">Login</system:String>
 
+    <system:String x:Key="FI">Formation Initiale</system:String>
+    <system:String x:Key="FA">Formation Alternance</system:String>
+    <system:String x:Key="FC">Formation Continue</system:String>
 
 
     <!--Parametre (nordine)-->
