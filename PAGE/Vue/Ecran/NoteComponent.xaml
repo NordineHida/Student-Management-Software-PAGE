@@ -6,8 +6,12 @@
              xmlns:local="clr-namespace:PAGE.Vue.Ecran"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="430">
+    <UserControl.Resources>
+        <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
+    </UserControl.Resources>
+    
     <Grid Margin="10 " >
         <Image ToolTip="" x:Name="PictoNote" Margin="5" Stretch="Fill" Width="100" HorizontalAlignment="Left" />
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Margin="150,0,0,0" x:Name="LabelDate"  FontFamily="Open Sauce One Italic" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Margin="150,0,0,0" x:Name="LabelTitre"  FontFamily="{StaticResource OpenSauceOne}" FontSize="20" Grid.RowSpan="2" IsEnabled="False" IsHitTestVisible="False" MaxWidth="400"/>
     </Grid>
 </UserControl>

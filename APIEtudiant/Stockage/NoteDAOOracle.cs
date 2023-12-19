@@ -67,9 +67,9 @@ namespace APIEtudiant.Stockage
                 try
                 {
                     // On crée la requête SQL
-                    string requete = String.Format("INSERT INTO Note(idNote, idCategorie, datePublication, idNature, commentaire, apogeeEtudiant, idConfidentialite) " +
-                        "VALUES(0, {0}, TO_DATE('{1}', 'YYYY-MM-DD'), {2}, '{3}', {4}, {5})",
-                        AssociationCategorieId.FirstOrDefault(x => x.Value == note.Categorie).Key, note.DatePublication.Date.ToString("yyyy-MM-dd"),
+                    string requete = String.Format("INSERT INTO Note(idNote, idCategorie,titre, datePublication, idNature, commentaire, apogeeEtudiant, idConfidentialite) " +
+                        "VALUES(0, {0},'{1}', TO_DATE('{2}', 'YYYY-MM-DD'), {3}, '{4}', {5}, {6})",
+                        AssociationCategorieId.FirstOrDefault(x => x.Value == note.Categorie).Key, note.Titre, note.DatePublication.Date.ToString("yyyy-MM-dd"),
                         AssociationNatureId.FirstOrDefault(x => x.Value == note.Nature).Key, note.Commentaire, note.ApogeeEtudiant,
                         AssociationConfidentialiteId.FirstOrDefault(x => x.Value == note.Confidentialite).Key);
 
@@ -177,7 +177,7 @@ namespace APIEtudiant.Stockage
 
             try
             {
-                string requete = "SELECT idNote, idCategorie, datePublication, idNature, commentaire, idConfidentialite, apogeeEtudiant FROM Note WHERE apogeeEtudiant = :apogeeEtudiant";
+                string requete = "SELECT idNote, idCategorie, titre, datePublication, idNature, commentaire, idConfidentialite, apogeeEtudiant FROM Note WHERE apogeeEtudiant = :apogeeEtudiant";
 
                 using (OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion))
                 {
@@ -189,6 +189,7 @@ namespace APIEtudiant.Stockage
                         {
                             int idNote = reader.GetInt32(reader.GetOrdinal("idNote"));
                             int idCategorie = reader.GetInt32(reader.GetOrdinal("idCategorie"));
+                            string titre = reader.IsDBNull(reader.GetOrdinal("titre")) ? string.Empty : reader.GetString(reader.GetOrdinal("titre"));
                             DateTime datePublication = reader.GetDateTime(reader.GetOrdinal("datePublication"));
                             int idNature = reader.GetInt32(reader.GetOrdinal("idNature"));
                             string commentaire = reader.IsDBNull(reader.GetOrdinal("commentaire")) ? string.Empty : reader.GetString(reader.GetOrdinal("commentaire"));
@@ -203,7 +204,7 @@ namespace APIEtudiant.Stockage
 
 
                             // Création de l'objet Note en utilisant les valeurs récupérées de la base de données
-                            Note note = new Note(categorie, datePublication,nature, commentaire, apogeeEtudiant, confidentialite);
+                            Note note = new Note(categorie, titre, datePublication,nature, commentaire, apogeeEtudiant, confidentialite);
                             note.IdNote = idNote;
 
                             notes.Add(note);
@@ -237,12 +238,13 @@ namespace APIEtudiant.Stockage
                     // On crée la requête SQL
                     string requete = String.Format("UPDATE Note " +
                                                    "SET idCategorie = {0}, " +
-                                                   "datePublication = TO_DATE('{1}', 'YYYY-MM-DD'), " +
-                                                   "idNature = {2}, " +
-                                                   "commentaire = '{3}', " +
-                                                   "idConfidentialite = {4} " +
-                                                   "WHERE idNote = {5}",
-                                                   AssociationCategorieId.FirstOrDefault(x => x.Value == note.Categorie).Key, note.DatePublication.Date.ToString("yyyy-MM-dd"), AssociationNatureId.FirstOrDefault(x => x.Value == note.Nature).Key, note.Commentaire, AssociationConfidentialiteId.FirstOrDefault(x => x.Value == note.Confidentialite).Key, note.IdNote);
+                                                   "titre = '{1}',"+
+                                                   "datePublication = TO_DATE('{2}', 'YYYY-MM-DD'), " +
+                                                   "idNature = {3}, " +
+                                                   "commentaire = '{4}', " +
+                                                   "idConfidentialite = {5} " +
+                                                   "WHERE idNote = {6}",
+                                                   AssociationCategorieId.FirstOrDefault(x => x.Value == note.Categorie).Key, note.Titre, note.DatePublication.Date.ToString("yyyy-MM-dd"), AssociationNatureId.FirstOrDefault(x => x.Value == note.Nature).Key, note.Commentaire, AssociationConfidentialiteId.FirstOrDefault(x => x.Value == note.Confidentialite).Key, note.IdNote);
                     // On exécute la requête
                     using (OracleCommand cmd = new OracleCommand(requete, con.OracleConnexion))
                     {

@@ -112,7 +112,7 @@ namespace PAGE.Vue.Ecran
                 }
 
 
-
+                TitreBox.IsReadOnly= true;
                 ComboBoxConfidentialite.IsEnabled = false;
                 ComboBoxCategorie.IsEnabled = false;
                 ComboBoxNature.IsEnabled = false;
@@ -126,6 +126,7 @@ namespace PAGE.Vue.Ecran
                 //si la note n'existe pas, on met la date du jour par defaut
                 DateCreationNote.SelectedDate = DateTime.Now;
                 note.Commentaire = "";
+                note.Titre = "";
                 BoutonSupprimer.Visibility = Visibility.Collapsed;
             }
 
@@ -176,6 +177,7 @@ namespace PAGE.Vue.Ecran
             ComboBoxCategorie.IsEnabled = true;
             ComboBoxNature.IsEnabled = true;
             TextCommentaire.IsReadOnly = false;
+            TitreBox.IsReadOnly = false;
             DateCreationNote.IsEnabled = true;
             
         }
@@ -278,6 +280,22 @@ namespace PAGE.Vue.Ecran
                 else
                 {
                     PopUp popUp = new PopUp("Note creation", "Please choose a correct date", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+            }
+
+            else if (TitreBox.Text.Length > 50) 
+            {
+                valide = false;
+
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création note", "Veuillez choisir un titre moins long (50 caractères max)", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Note creation", "Please choose a shorter title (50 characters max)", TYPEICON.ERREUR);
                     popUp.ShowDialog();
                 }
             }
@@ -410,6 +428,15 @@ namespace PAGE.Vue.Ecran
             this.Close();
         }
 
-
+        /// <summary>
+        /// Quand on change le titre, on change aussi l'attribut
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void TextTitre_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            note.Titre = (string)TitreBox.Text;
+        }
     }
 }

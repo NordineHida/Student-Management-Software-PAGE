@@ -1304,6 +1304,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="6*"/>
             <RowDefinition Height="2*"/>
@@ -1317,22 +1318,27 @@
 
         <!-- Titre de la page -->
         <Label x:Name="Titre" Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource TitreCreanote}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29" Foreground="#2B2B5A"/>
+        <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
+
         <Rectangle Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
+        <Label Grid.Column="1" Content="Titre" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" Margin="118,6,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
+        <TextBox FontFamily="{StaticResource OpenSauceOne}" x:Name="TitreBox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" Text="{Binding Titre}" TextChanged="TextTitre_TextChanged"/>
+
 
         <!-- Combobox gérant la confidentialité -->
-        <Rectangle Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
-        <Label Grid.Column="1" Content="{DynamicResource ComboboxConf}"  FontFamily="{StaticResource OpenSauceOne}"  HorizontalAlignment="Left" Margin="93,5,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FFFFFF"/>
-        <ComboBox Style="{DynamicResource ComboBoxStyle4}" x:Name="ComboBoxConfidentialite" Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}"  Grid.Row="1" HorizontalAlignment="Left" Width="250" Margin="185,0,0,21" BorderThickness="2" Background="#FF3DA79D" SelectionChanged="ComboBoxConfidentialite_SelectionChanged"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+        <Rectangle Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
+        <Label Grid.Column="1" Content="{DynamicResource ComboboxConf}"  FontFamily="{StaticResource OpenSauceOne}"  HorizontalAlignment="Left" Margin="93,5,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF"/>
+        <ComboBox Style="{DynamicResource ComboBoxStyle4}" x:Name="ComboBoxConfidentialite" Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}"  Grid.Row="2" HorizontalAlignment="Left" Width="250" Height="37" Margin="185,0,0,16" BorderThickness="2" Background="#FF3DA79D" SelectionChanged="ComboBoxConfidentialite_SelectionChanged"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <ComboBoxItem  FontFamily="{StaticResource OpenSauceOne}"  Content="{DynamicResource CateMedical}"/>
             <ComboBoxItem FontFamily="{StaticResource OpenSauceOne}"  Content="{DynamicResource CateConf}"/>
             <ComboBoxItem FontFamily="{StaticResource OpenSauceOne}"  Content="{DynamicResource CateInterne}"/>
             <ComboBoxItem FontFamily="{StaticResource OpenSauceOne}"  Content="{DynamicResource CatePublic}"/>
         </ComboBox>
-        <Rectangle Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
+        <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="87,0,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
 
         <!-- Combobox gérant la catégorie de la note -->
-        <Label Grid.Column="1" Content="{DynamicResource ComboboxCate}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" Margin="100,4,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" SelectionChanged="ComboBoxCategorie_SelectionChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+        <Label Grid.Column="1" Content="{DynamicResource ComboboxCate}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" Margin="100,4,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF" Height="31" RenderTransformOrigin="0.5,0.5"/>
+        <ComboBox Style="{DynamicResource ComboBoxStyle2}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxCategorie" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,0,0,0" BorderThickness="2" SelectionChanged="ComboBoxCategorie_SelectionChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <ComboBoxItem Content="{DynamicResource CateAbsenteisme}" FontFamily="{StaticResource OpenSauceOne}"/>
             <ComboBoxItem Content="{DynamicResource CatePersonnel}" FontFamily="{StaticResource OpenSauceOne}"/>
             <ComboBoxItem Content="{DynamicResource CateMedical}" FontFamily="{StaticResource OpenSauceOne}"/>
@@ -1342,10 +1348,10 @@
         </ComboBox>
 
         <!-- TextBox de la Nature de la note -->
-        <Rectangle Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="37" Margin="87,4,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
+        <Rectangle Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Height="37" Margin="87,4,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="110" RadiusX="10" RadiusY="10"/>
 
-        <Label Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource TextNature}" HorizontalAlignment="Left" Margin="113,9,0,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
-        <ComboBox Style="{DynamicResource ComboBoxStyle3}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxNature" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,4,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" SelectionChanged="ComboBoxNature_SelectionChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+        <Label Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource TextNature}" HorizontalAlignment="Left" Margin="113,9,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
+        <ComboBox Style="{DynamicResource ComboBoxStyle3}" FontFamily="{StaticResource OpenSauceOne}" x:Name="ComboBoxNature" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="37" Margin="185,4,0,0" BorderBrush="#FF3DA79D" BorderThickness="2" SelectionChanged="ComboBoxNature_SelectionChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <ComboBoxItem Content="{DynamicResource CateMail}" FontFamily="{StaticResource OpenSauceOne}"/>
             <ComboBoxItem Content="{DynamicResource CateRdv}" FontFamily="{StaticResource OpenSauceOne}"/>
             <ComboBoxItem Content="{DynamicResource CateLettre}" FontFamily="{StaticResource OpenSauceOne}"/>
@@ -1354,19 +1360,19 @@
         </ComboBox>
 
         <!-- Date picker de la note-->
-        <Rectangle Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="87,13,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="107" RadiusX="10" RadiusY="10"/>
-        <Label Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="Date : " HorizontalAlignment="Left" Margin="118,18,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
-        <DatePicker Style="{DynamicResource DatePickerStyle1}" FontFamily="{StaticResource OpenSauceOne}" x:Name="DateCreationNote" SelectedDateChanged="DateChanged" Grid.Column="1" HorizontalAlignment="Left" Margin="188,6,0,0" Grid.Row="4" VerticalAlignment="Top" Height="50"  Width="247" SelectedDateFormat="Short" FontSize="20" BorderBrush="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+        <Rectangle Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="87,13,0,0" Stroke="#3DA79D" Fill="#FF3DA79D" VerticalAlignment="Top" Width="107" RadiusX="10" RadiusY="10"/>
+        <Label Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="Date : " HorizontalAlignment="Left" Margin="118,18,0,0" Grid.Row="5" VerticalAlignment="Top" Foreground="#FFFFFF" RenderTransformOrigin="2.452,0.87"/>
+        <DatePicker Style="{DynamicResource DatePickerStyle1}" FontFamily="{StaticResource OpenSauceOne}" x:Name="DateCreationNote" SelectedDateChanged="DateChanged" Grid.Column="1" HorizontalAlignment="Left" Margin="188,6,0,0" Grid.Row="5" VerticalAlignment="Top" Height="50"  Width="247" SelectedDateFormat="Short" FontSize="20" BorderBrush="Transparent" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
 
 
         <!-- TextBox du commentaire de la note -->
 
-        <TextBox x:Name="TextCommentaire" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Commentaire}" VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0" TextChanged="TextCommentaire_TextChanged"/>
-        <Rectangle Grid.Row="4" HorizontalAlignment="Left" Height="37" Margin="0,74,0,0"  Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" Grid.RowSpan="2" RadiusX="10" RadiusY="10" Grid.Column="1"/>
-        <Label Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource CateCommentaire}" HorizontalAlignment="Left" Margin="10,78,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2"/>
+        <TextBox x:Name="TextCommentaire" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Commentaire}" VerticalAlignment="Stretch" BorderBrush="#FF3DA79D" BorderThickness="2" Padding="0,30,0,0" TextChanged="TextCommentaire_TextChanged"/>
+        <Rectangle Grid.Row="5" HorizontalAlignment="Left" Height="37" Margin="0,74,0,0"  Fill="#FF3DA79D" VerticalAlignment="Top" Width="106" Grid.RowSpan="2" RadiusX="10" RadiusY="10" Grid.Column="1"/>
+        <Label Grid.Column="1" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource CateCommentaire}" HorizontalAlignment="Left" Margin="10,78,0,0" Grid.Row="5" VerticalAlignment="Top" Foreground="#FFFFFF" Grid.RowSpan="2"/>
 
         <!-- Boutons créer et annuler -->
-        <Button x:Name="BoutonCreer" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="423,0,0,0">
+        <Button x:Name="BoutonCreer" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Content="{DynamicResource BtnCreer}" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickCreer" Margin="423,0,0,0">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -1388,7 +1394,7 @@
             </Button.Style>
         </Button>
 
-        <Button x:Name="BoutonModifier" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnModifier}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickModify" Margin="310,0,0,0" Visibility="Collapsed">
+        <Button x:Name="BoutonModifier" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnModifier}" HorizontalAlignment="Left"  Grid.Row="7" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickModify" Margin="310,0,0,0" Visibility="Collapsed">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -1410,7 +1416,7 @@
             </Button.Style>
         </Button>
 
-        <Button x:Name="BoutonAnnuler" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="201,0,0,0">
+        <Button x:Name="BoutonAnnuler" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Content="{DynamicResource BtnAnnuler}" HorizontalAlignment="Left"  Grid.Row="7" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickAnnuler" Margin="201,0,0,0">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -1432,7 +1438,7 @@
             </Button.Style>
         </Button>
 
-        <Button x:Name="BoutonValider" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnValider}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickValider" Margin="450,0,0,0" Visibility="Collapsed">
+        <Button x:Name="BoutonValider" FontFamily="Open Sauce One" Grid.Column="1" Content="{DynamicResource BtnValider}" HorizontalAlignment="Left"  Grid.Row="7" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Click="ClickValider" Margin="450,0,0,0" Visibility="Collapsed">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -1454,7 +1460,7 @@
             </Button.Style>
         </Button>
 
-        <Button x:Name="BoutonSupprimer" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Content="{DynamicResource HeaderSupprNote}" HorizontalAlignment="Left"  Grid.Row="6" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Visibility="Collapsed" Click="ClickSupprimer" Margin="62,0,0,0">
+        <Button x:Name="BoutonSupprimer" FontFamily="{StaticResource OpenSauceOne}" Grid.Column="1" Content="{DynamicResource HeaderSupprNote}" HorizontalAlignment="Left"  Grid.Row="7" VerticalAlignment="Center" Width="72" Height="28" Background="#FF3DA79D" Foreground="#FFFFFF" BorderThickness="0" Visibility="Collapsed" Click="ClickSupprimer" Margin="62,0,0,0">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Template">
