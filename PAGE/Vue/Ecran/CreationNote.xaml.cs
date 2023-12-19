@@ -208,6 +208,7 @@ namespace PAGE.Vue.Ecran
                 ComboBoxCategorie.IsEnabled = false;
                 ComboBoxNature.IsEnabled = false;
                 TextCommentaire.IsReadOnly = true;
+                TitreBox.IsReadOnly = true;
                 DateCreationNote.IsEnabled = false;
 
             }
