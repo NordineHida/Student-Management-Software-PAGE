@@ -72,6 +72,15 @@ namespace PAGE.Vue.Ecran
             txtDateNaissance2.SelectedDate = DateTime.Now.AddYears(-15);
         }
 
+        /// <summary>
+        /// Réinitialise uniquement le champ du numéro apogée
+        /// </summary>
+        /// <author>Lucas</author>
+        private void ReinitialiserChampNumApogee()
+        {
+            txtNumApogee.Text = "";
+        }
+
 
         /// <summary>
         /// Quand on clique sur créer un étudiant, vérifie si la saisis est cohérente, si oui créer l'étudiant
@@ -95,13 +104,37 @@ namespace PAGE.Vue.Ecran
                 regimeEtu, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
                 telFixe, telPortable, txtAdresse2.Text);
 
-                //on ajoute l'étudiant à la bdd
-                EtuDAO dao = new EtuDAO();
-                dao.CreateEtu(etudiant,this.promo);
-                etudiants.AddEtu(etudiant);
+                bool numApogeeDispo = true;
+                foreach (Etudiant etu in etudiants.ListeEtu)
+                {
+                    if (etu.NumApogee == etudiant.NumApogee)
+                        numApogeeDispo = false;
+                }
+                if (numApogeeDispo)
+                {
+                    //on ajoute l'étudiant à la bdd
+                    EtuDAO dao = new EtuDAO();
+                    dao.CreateEtu(etudiant, this.promo);
+                    etudiants.AddEtu(etudiant);
 
-                //on réinitialise la page
-                ReinitialisationChamps();
+                    //on réinitialise la page
+                    ReinitialisationChamps();
+                }
+                else
+                {
+                    if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                    {
+                        PopUp popUp = new PopUp("Création", "Veuillez saisir un numéro apogée non existant", TYPEICON.ERREUR);
+                        popUp.ShowDialog();
+                    }
+                    else
+                    {
+                        PopUp popUp = new PopUp("Creation", "Please enter an non existing apogee number", TYPEICON.ERREUR);
+                        popUp.ShowDialog();
+                    }
+                    ReinitialiserChampNumApogee();
+                }
+                
             }
 
         }
@@ -274,7 +307,7 @@ namespace PAGE.Vue.Ecran
                 saisiCorrect = false;
             }
 
-            else if ((txtTelFixe2.Text== null) && !int.TryParse(txtTelFixe2.Text, out _))
+            else if ((txtTelFixe2.Text == null) && !int.TryParse(txtTelFixe2.Text, out _))
             {
                 if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
                 {
