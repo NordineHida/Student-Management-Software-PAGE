@@ -7,8 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="430">
     <Grid Margin="10 " >
-        <Image x:Name="PictoNote" Margin="5" Stretch="Fill" Width="100" HorizontalAlignment="Left" />
+        <Image ToolTip="" x:Name="PictoNote" Margin="5" Stretch="Fill" Width="100" HorizontalAlignment="Left" />
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Margin="150,0,0,0" x:Name="LabelDate"  FontFamily="Open Sauce One Italic" FontSize="20"/>
-
     </Grid>
 </UserControl>
