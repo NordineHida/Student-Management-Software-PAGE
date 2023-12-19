@@ -9,7 +9,7 @@
         WindowState="Maximized"
         Title="{DynamicResource TitreFenetreInformationsSupplementaires}" Height="1000" Width="1500"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
-    
+
     <Window.Resources>
         <!-- style des combox stéphane -->
         <FontFamily x:Key="OpenSauceOne">/Vue/Ressources/Fonts/#Open Sauce One</FontFamily>
@@ -646,7 +646,8 @@
         </ComboBox>
 
         <TextBlock Text="{DynamicResource Mail:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="9" Grid.Column="1" />
-        <TextBox Width="425" IsReadOnly="True" FontFamily="{StaticResource OpenSauceOne}" x:Name="txtMail" HorizontalAlignment="Left" FontSize="15" Grid.Row="9" Grid.Column="3" BorderThickness="0"/>
+        <TextBox Width="380" IsReadOnly="True" FontFamily="{StaticResource OpenSauceOne}" x:Name="txtMail" HorizontalAlignment="Left" FontSize="15" Grid.Row="9" Grid.Column="3" BorderThickness="0"/>
+        <Button x:Name="BoutonAddMail" HorizontalAlignment="Left" Content="{DynamicResource AddMail}" IsEnabled="False" Foreground="#FFFFFF" Background="#FF3DA79D" Grid.Row="9" Grid.Column="2" FontFamily="{StaticResource OpenSauceOne}" Height="25" Width="75" Margin="385,0,0,0" Click="AddMailExtension" Panel.ZIndex="1000"/>
 
         <!-- Sexe (Nordine & Yamato)-->
         <TextBlock Text="{DynamicResource Sexe:}" FontFamily="{StaticResource OpenSauceOne}" HorizontalAlignment="Left" FontSize="20" Grid.Row="11" Grid.Column="1" />
@@ -679,7 +680,7 @@
         <!-- Informations Complémentaires (Nordine & Yamato) -->
 
         <!-- Bouton pour afficher les informations complémentaires (Nordine & Yamato & Lucas)-->
-        <Button x:Name="BoutonInfoComp" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="Open Sauce One" Content="{DynamicResource BtnAffiInfoComp}" Click="InfosComp_Click" Margin="20,29,20,0" Grid.Row="16" Grid.RowSpan="4">
+        <Button x:Name="BoutonInfoComp" FontSize="20" Foreground="#FFFFFF" Background="#FF3DA79D" FontFamily="{StaticResource OpenSauceOne}" Content="{DynamicResource BtnAffiInfoComp}" Click="InfosComp_Click" Margin="20,29,20,0" Grid.Row="16" Grid.RowSpan="4">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
