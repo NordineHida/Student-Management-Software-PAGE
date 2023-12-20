@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
+    <ApplicationIcon>IconPage.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -78,6 +79,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="IconPage.ico" />
     <Content Include="Vue\Ressources\Fonts\OpenSauceOne-Black.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
