@@ -67,12 +67,23 @@ namespace PAGE.Model
                     TableRow dataRow = table.Rows[rowIndex++];
                     dataRow.Height = 20;
 
+                    //On affiche pas le contenu des note confidentielles ou médicales
+                    string titreNote = "Information Confidentielle";
+                    string commentaireNote = "Information Confidentielle";
+
+                    if (note.Confidentialite != Enumerations.CONFIDENTIALITE.CONFIDENTIEL && note.Confidentialite != Enumerations.CONFIDENTIALITE.MEDICAL)
+                    {
+                        titreNote = note.Titre;
+                        commentaireNote = note.Commentaire;
+                    }
+                        
+
                     string[] rowData = {
-                        note.Titre,
+                        titreNote,
                         note.DatePublication.ToShortDateString(),
                         note.Categorie.ToString(),
                         note.Nature.ToString(),
-                        note.Commentaire
+                        commentaireNote
                     };
 
                     for (int i = 0; i < rowData.Length; i++)
