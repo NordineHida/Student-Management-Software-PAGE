@@ -68,6 +68,8 @@
 
     <system:String x:Key="CateCommentaire">Commentary</system:String>
     <system:String x:Key="CateDate">Date</system:String>
+    <system:String x:Key="TitreNote">Title</system:String>
+    
 
 
     <!--ToolTips (Lucas) -->
