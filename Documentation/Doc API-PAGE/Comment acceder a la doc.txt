@@ -1,0 +1,3 @@
+- Ouvrir le dossier html
+
+- Ouvrir le fichier "index.html"
