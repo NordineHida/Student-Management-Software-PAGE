@@ -35,7 +35,7 @@ namespace APIEtudiant.Controllers
         /// <returns>IEnumerable d'années</returns>
         /// <author>Yamato</author>
         [HttpGet("GetAllAnnee")]
-        public ActionResult<List<Annee>> GetAllEtu()
+        public ActionResult<List<Annee>> GetAllAnnee()
         {
             //Cas par défaut
             ActionResult<List<Annee>> reponse = BadRequest();
