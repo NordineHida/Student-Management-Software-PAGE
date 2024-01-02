@@ -1,9 +1,5 @@
-﻿using APIEtudiant.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using APIEtudiant.Model.Enumerations;
+
 
 namespace APIEtudiant.Model
 {
@@ -11,7 +7,7 @@ namespace APIEtudiant.Model
     /// un Etudiant en BUT Informatique
     /// </summary>
     /// <author>Nordine</author>
-    public class Etudiant
+    public class Etudiant : IEquatable<Etudiant>
     {
         #region Attributs
 
@@ -21,9 +17,9 @@ namespace APIEtudiant.Model
         private SEXE sexe;
         private string typeBac;
         private string mail;
-        private string groupe;
+        private GROUPE groupe;
         private bool estBoursier;
-        private string typeFormation;
+        private REGIME typeFormation;
         private DateTime dateNaissance;
         private string login;
         private long telFixe;
@@ -73,7 +69,7 @@ namespace APIEtudiant.Model
         /// Obtient ou définit le groupe.
         /// </summary>
         /// <author>Nordine</author>
-        public string Groupe { get { return groupe; } set { groupe = value; } }
+        public GROUPE Groupe { get { return groupe; } set { groupe = value; } }
 
         /// <summary>
         /// Obtient ou définit si l'étudiant est boursier.
@@ -85,7 +81,7 @@ namespace APIEtudiant.Model
         /// Obtient ou définit le type de formation.
         /// </summary>
         /// <author>Nordine</author>
-        public string TypeFormation { get { return typeFormation; } set { typeFormation = value; } }
+        public REGIME TypeFormation { get { return typeFormation; } set { typeFormation = value; } }
 
         /// <summary>
         /// Obtient ou définit la date de naissance.
@@ -140,7 +136,7 @@ namespace APIEtudiant.Model
         /// <param name="telPortable">Le numéro de téléphone portable de l'étudiant.(15 chiffres max)</param>
         /// <param name="adresse">L'adresse de l'étudiant. (150 caractères maximum)</param>
         /// <author>Nordine</author>
-        public Etudiant(int numApogee, string nom, string prenom, SEXE sexe, string typeBac, string mail, string groupe, bool estBoursier, string typeFormation,
+        public Etudiant(int numApogee, string nom, string prenom, SEXE sexe, string typeBac, string mail, GROUPE groupe, bool estBoursier, REGIME typeFormation,
             DateTime dateNaissance, string login, long telFixe, long telPortable, string adresse)
         {
             this.numApogee = numApogee;
@@ -167,6 +163,64 @@ namespace APIEtudiant.Model
         public override string ToString()
         {
             return this.nom;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Etudiant etudiant &&
+                   numApogee == etudiant.numApogee &&
+                   nom == etudiant.nom &&
+                   prenom == etudiant.prenom &&
+                   sexe == etudiant.sexe &&
+                   typeBac == etudiant.typeBac &&
+                   mail == etudiant.mail &&
+                   groupe == etudiant.groupe &&
+                   estBoursier == etudiant.estBoursier &&
+                   typeFormation == etudiant.typeFormation &&
+                   dateNaissance == etudiant.dateNaissance &&
+                   login == etudiant.login &&
+                   telFixe == etudiant.telFixe &&
+                   telPortable == etudiant.telPortable &&
+                   adresse == etudiant.adresse;
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(numApogee);
+            hash.Add(nom);
+            hash.Add(prenom);
+            hash.Add(sexe);
+            hash.Add(typeBac);
+            hash.Add(mail);
+            hash.Add(groupe);
+            hash.Add(estBoursier);
+            hash.Add(typeFormation);
+            hash.Add(dateNaissance);
+            hash.Add(login);
+            hash.Add(telFixe);
+            hash.Add(telPortable);
+            hash.Add(adresse);
+            return hash.ToHashCode();
+        }
+
+        public bool Equals(Etudiant? other)
+        {
+            return other is Etudiant etudiant &&
+            numApogee == etudiant.numApogee &&
+            nom == etudiant.nom &&
+            prenom == etudiant.prenom &&
+            sexe == etudiant.sexe &&
+            typeBac == etudiant.typeBac &&
+            mail == etudiant.mail &&
+            groupe == etudiant.groupe &&
+            estBoursier == etudiant.estBoursier &&
+            typeFormation == etudiant.typeFormation &&
+            dateNaissance == etudiant.dateNaissance &&
+            login == etudiant.login &&
+            telFixe == etudiant.telFixe &&
+            telPortable == etudiant.telPortable &&
+            adresse == etudiant.adresse;
         }
         #endregion
     }

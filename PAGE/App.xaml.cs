@@ -1,13 +1,7 @@
 ﻿using PAGE.Model;
 using PAGE.Model.PatternObserveur;
-using PAGE.Model.StockageNoteConfidentielles;
+using PAGE.Stockage.StockageNoteConfidentielle;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PAGE
@@ -27,6 +21,7 @@ namespace PAGE
 
             //L'app regarde les paramètres (nordine)
             Parametre.Instance.Register(this);
+
 
             #region Yamato BDD SQLite
             // Création de la database

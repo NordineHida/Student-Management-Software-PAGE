@@ -11,6 +11,7 @@ using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Office2016.Excel;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using PAGE.Model.Enumerations;
 
 namespace PAGE.Model
 {
@@ -48,6 +49,8 @@ namespace PAGE.Model
             long telFixeInt = -1;
             DateTime dateNaissanceDT = new DateTime();
             SEXE sexeEtu = SEXE.AUTRE;
+            REGIME regimeEtu = REGIME.FI;
+            GROUPE groupeEtu = GROUPE.A1;
             bool estBoursierBool = false;
 
             //Date de base d'Excel à partir de laquel on compte le nombre de jour
@@ -65,6 +68,9 @@ namespace PAGE.Model
 
                 foreach (Row row in sheetData.Elements<Row>())
                 {
+                    //on reset l'apogee
+                    apogeeInt = -1;
+
                     //On enleve la ligne de header
                     header += 1;
                     foreach (Cell cell in row.Elements<Cell>())
@@ -113,12 +119,61 @@ namespace PAGE.Model
                                     break;
                             }
 
+                            //Conversion du string en REGIME
+                            switch (regimeFormation)
+                            {
+                                case "FI":
+                                    regimeEtu = REGIME.FI;
+                                    break;
+                                case "FC":
+                                    regimeEtu = REGIME.FC;
+                                    break;
+                                case "FA":
+                                    regimeEtu = REGIME.FA;
+                                    break;
+                            }
+
+                            //Conversion du string groupe en valeur de l'énumération GROUPE
+                            switch (groupe)
+                            {
+                                case "A2":
+                                    groupeEtu = GROUPE.A2;
+                                    break;
+                                case "B1":
+                                    groupeEtu = GROUPE.B1;
+                                    break;
+                                case "B2":
+                                    groupeEtu = GROUPE.B2;
+                                    break;
+                                case "C1":
+                                    groupeEtu = GROUPE.C1;
+                                    break;
+                                case "C2":
+                                    groupeEtu = GROUPE.C2;
+                                    break;
+                                case "D1":
+                                    groupeEtu = GROUPE.D1;
+                                    break;
+                                case "D2":
+                                    groupeEtu = GROUPE.D2;
+                                    break;
+                                case "E1":
+                                    groupeEtu = GROUPE.E1;
+                                    break;
+                                case "E2":
+                                    groupeEtu = GROUPE.E2;
+                                    break;
+                            }
+
+
+
                             //Conversion du string en Bool
                             estBoursierBool = false;
                             if (estBoursier == "OUI") estBoursierBool = true;
 
+                            dateNaissanceDT = DateTime.MinValue;
                             //Conversion string en DateTime
-                            if (dateNaissance!= null)
+                            if (dateNaissance!= null && dateNaissance != "")
                             {
                                 // Ajoutez le nombre de jours à la date de base pour obtenir la date correcte
                                 dateNaissanceDT = baseDate.AddDays(int.Parse(dateNaissance) - 2); // Soustrayez 2 jours pour corriger un décalage de 2 jours dans Excel
@@ -130,16 +185,22 @@ namespace PAGE.Model
 
                         }
                     }
-                    //On crée l'étudiant
-                    Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupe, estBoursierBool, regimeFormation, dateNaissanceDT, login, telPortableInt, telFixeInt, adresse);
 
-                    //On l'ajoute à la liste d'étudiant
-                    etudiants.Add(etudiant);
+                    if (apogeeInt!= -1)
+                    {
+                        // Vérifie si un étudiant avec le même numéro Apogee existe déjà dans la liste
+                        if (!etudiants.Any(e => e.NumApogee == apogeeInt))
+                        {
+                            // On crée l'étudiant
+                            Etudiant etudiant = new Etudiant(apogeeInt, nom, prenom, sexeEtu, typeBac, mail, groupeEtu, estBoursierBool, regimeEtu, dateNaissanceDT, login, telPortableInt, telFixeInt, adresse);
+
+                            // On l'ajoute à la liste d'étudiant
+                            etudiants.Add(etudiant);
+                        }
+                    }
                 }
                 
             }
-            //On enlève le header
-            etudiants.RemoveAt(0);
             return etudiants;
         }
 

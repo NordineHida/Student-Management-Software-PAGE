@@ -1,31 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup>
+    <_LastSelectedProfileId>C:\Users\Admin\Documents\SAE3-C2-NYL2S\PAGE\Properties\PublishProfiles\ClickOnceProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
   <ItemGroup>
     <ApplicationDefinition Update="App.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Vue\Ecran\AjoutAnnee.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\ChoixPromo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\CreationNote.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\CreationUtilisateur.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\EtudiantEtNoteComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\FenetreCreerEtudiant.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\FenetreEtudiantByCategorie.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\FenetreModifierRole.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\FenetrePrincipal.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Vue\Ecran\InformationsSupplementaires.xaml.cs">
+    <Compile Update="Vue\Ecran\FenetreRolesUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\GestionUtilisateurs.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\Ecran\LoginPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Vue\Ecran\NoteComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Vue\Ecran\ParametrePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\PopUp.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\EtudiantComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\RoleEtAnneeComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Vue\Ecran\UserComponent.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Vue\MainWindow.xaml.cs">
@@ -33,16 +68,37 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Vue\Ecran\AjoutAnnee.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\ChoixPromo.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\CreationNote.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Vue\Ecran\CreationUtilisateur.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\EtudiantEtNoteComponent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\FenetreCreerEtudiant.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Vue\Ecran\FenetreEtudiantByCategorie.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\FenetreModifierRole.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\FenetrePrincipal.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\FenetreRolesUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\GestionUtilisateurs.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\Ecran\InformationsSupplementaires.xaml">
@@ -51,7 +107,22 @@
     <Page Update="Vue\Ecran\LoginPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Vue\Ecran\NoteComponent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Vue\Ecran\ParametrePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\PopUp.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\EtudiantComponent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\RoleEtAnneeComponent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Vue\Ecran\UserComponent.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Vue\MainWindow.xaml">

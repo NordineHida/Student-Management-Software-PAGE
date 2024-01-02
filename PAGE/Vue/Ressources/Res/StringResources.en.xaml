@@ -2,13 +2,28 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=netstandard">
 
-    <!--General (nordine)-->
+    <!--General (nordine/Lucas)-->
     <system:String x:Key="BtnValider">Submit</system:String>
     <system:String x:Key="BtnAnnuler">Cancel</system:String>
+    <system:String x:Key="BtnModifier">Modify</system:String>
+    <system:String x:Key="BtnCreer">Create</system:String>
+
+    <system:String x:Key="Nom">Name</system:String>
+    <system:String x:Key="Prenom">First Name</system:String>
+    <system:String x:Key="GroupeHead">Group</system:String>
+    <system:String x:Key="NumApogee">Apogee</system:String>
+    <system:String x:Key="Oui">Yes</system:String>
+    <system:String x:Key="Non">No</system:String>
+    <system:String x:Key="Login">Login</system:String>
+
+    <system:String x:Key="FI">Initial Education</system:String>
+    <system:String x:Key="FA">Alternate Education</system:String>
+    <system:String x:Key="FC">Continuing Education</system:String>
+
 
     <!--Parametre (nordine)-->
     <system:String x:Key="TitreParam">Settings</system:String>
-    <system:String x:Key="LabelLangueSelect">Language selected:</system:String>
+    <system:String x:Key="LabelLangueSelect">Language selected :</system:String>
     <system:String x:Key="LabelPathGeneration">Path :</system:String>
     <system:String x:Key="BtnParcourir">Browse...</system:String>
 
@@ -20,12 +35,129 @@
     <!--Connexion (nordine)-->
     <system:String x:Key="TitreFenetreConnexion">Connection</system:String>
     <system:String x:Key="TitreConnexion">Type your login informations</system:String>
-    <system:String x:Key="LabelLogin">Login or mail :</system:String>
-    <system:String x:Key="LabelPassword">Password</system:String>
+    <system:String x:Key="LabelLogin">Login :</system:String>
+    <system:String x:Key="LabelPassword">Password :</system:String>
     <system:String x:Key="BtnLogin">Log in</system:String>
 
     <!--Bienvenue (nordine)-->
     <system:String x:Key="TitreBienvenue">Welcome !</system:String>
+
+    <!--CreationNote (Lucas)-->
+    <system:String x:Key="TitreCreanote">Note</system:String>
+
+    <system:String x:Key="ComboboxConf">Confidentiality</system:String>
+    <system:String x:Key="CateMedical">Medical</system:String>
+    <system:String x:Key="CateConf">Confidential</system:String>
+    <system:String x:Key="CateInterne">Internal</system:String>
+    <system:String x:Key="CatePublic">Public</system:String>
+
+    <system:String x:Key="ComboboxCate">Category</system:String>
+
+    <system:String x:Key="CateAbsenteisme">Absenteeism</system:String>
+    <system:String x:Key="CatePersonnel">Personal </system:String>
+    <system:String x:Key="CateResultats">Results</system:String>
+    <system:String x:Key="CateOrientation">Orientation</system:String>
+    <system:String x:Key="CateAutre">Other</system:String>
+
+    <system:String x:Key="TextNature">Nature</system:String>
+
+    <system:String x:Key="CateMail">Mail</system:String>
+    <system:String x:Key="CateRdv">Appointment</system:String>
+    <system:String x:Key="CateLettre">Letter</system:String>
+    <system:String x:Key="CateAppel">Call</system:String>
+
+    <system:String x:Key="CateCommentaire">Commentary</system:String>
+    <system:String x:Key="CateDate">Date</system:String>
+    <system:String x:Key="TitreNote">Title</system:String>
     
 
+
+    <!--ToolTips (Lucas) -->
+    <system:String x:Key="ToolTipPageConnexion">Login</system:String>
+    <system:String x:Key="ToolTipPageCrerutilisateur">Create User</system:String>
+    <system:String x:Key="ToolTipPageGestionUtilisateurs">User Management</system:String>
+    <system:String x:Key="ToolTipPageParamètres">Parameters</system:String>
+    <system:String x:Key="ToolTipImportation">Import students</system:String>
+    <system:String x:Key="ToolTipActualisation">Refresh student list</system:String>
+    <system:String x:Key="ToolTipCreerEtudiant">Create a student</system:String>
+    <system:String x:Key="ToolTipChoixPromo">Choose the promotion</system:String>
+
+    <!--PagePrincipale (Lucas)-->
+    <system:String x:Key="LabelTrie">Filter by:</system:String>
+    <system:String x:Key="TitreFenetrePrincipal">PAGE</system:String>
+
+    <!--CréerEtudiant (Lucas)-->
+    <system:String x:Key="TitreFenetreCreerEtudiant">Create a student</system:String>
+
+    <system:String x:Key="Nom*">Name :*</system:String>
+    <system:String x:Key="Prenom*">First Name :*</system:String>
+    <system:String x:Key="NumApogee*">Apogee :*</system:String>
+
+    <system:String x:Key="Mail">Mail Adress :*</system:String>
+    <system:String x:Key="Groupe">Group :*</system:String>
+    <system:String x:Key="Sexe">Gender :*</system:String>
+    <system:String x:Key="CateSexeH">Male</system:String>
+    <system:String x:Key="CateSexeF">Female</system:String>
+    <system:String x:Key="CateSexeA">Other</system:String>
+    <system:String x:Key="Bac">A-levels :*</system:String>
+    <system:String x:Key="Boursier">Scholar :*</system:String>
+    <system:String x:Key="Regime">Plan :*</system:String>
+
+    <system:String x:Key="BtnCreerEtudiant">Create a Student</system:String>
+    <system:String x:Key="BtnAffiInfoComp">More Informations</system:String>
+
+    <system:String x:Key="LabelChpObli">* = Mandatory field</system:String>
+    <system:String x:Key="Birth">Birth date :</system:String>
+    <system:String x:Key="Birth*">Birth date :*</system:String>
+    <system:String x:Key="Adresse">Address :</system:String>
+    <system:String x:Key="TelFixe">Phone number :</system:String>
+    <system:String x:Key="TelPort">Mobile phone :</system:String>
+    <system:String x:Key="LoginRes">Network login :</system:String>
+    <system:String x:Key="AddMail">IUT's mail</system:String>
+
+    <!--InformationsSupplementaires (Lucas)-->
+    <system:String x:Key="TitreFenetreInformationsSupplementaires">Additionnal Information</system:String>
+
+
+    <system:String x:Key="Nom:">Name :</system:String>
+    <system:String x:Key="Prenom:">First Name :</system:String>
+    <system:String x:Key="NumApogee:">Apogee:</system:String>
+    <system:String x:Key="Mail:">Mail:</system:String>
+    <system:String x:Key="Groupe:">Group:</system:String>
+    <system:String x:Key="Sexe:">Gender :</system:String>
+    <system:String x:Key="Bac:">A-levels obtained :</system:String>
+    <system:String x:Key="Boursier:">Scholar :</system:String>
+    <system:String x:Key="Regime:">Plan :</system:String>
+
+    <system:String x:Key="BtnCreerNote">Create a note</system:String>
+    <system:String x:Key="BtnModifInfos">Modify informations</system:String>
+    <system:String x:Key="BtnAfficherInfosComp">More Informations</system:String>
+    <system:String x:Key="BtnCacherInfoComp">Hide Informations</system:String>
+
+    <system:String x:Key="NoteEtudiant">Student's notes :</system:String>
+    <system:String x:Key="HeaderSupprNote">Delete</system:String>
+    <system:String x:Key="BtnAfficherEtudiantByCate">Show student by note's category</system:String>
+
+    <!--Pages Créer un utilisateur (Lucas/Nordine) -->
+
+    <system:String x:Key="CreationUtilisateur">User Creation</system:String>
+    <system:String x:Key="CreerunUtilisateur">User Creation</system:String>
+
+    <system:String x:Key="BtnAjouterRole">Add role</system:String>
+    
+
+    <!--Page Gestion des utilisateurs (Lucas) -->
+
+    <system:String x:Key="GestionUser">User Management</system:String>
+    <system:String x:Key="TootTipFenetreCategorie">Show student by note's category</system:String>
+
+    <!-- Page rôle et année-->
+
+    <system:String x:Key="Annee">Year</system:String>
+
+
+    <!-- Page AjoutAnnee (nordine) -->
+    <system:String x:Key="LabelSelectionAnnee">Please select a year:</system:String>
+    <system:String x:Key="TitreFenetreAnnee">Add a year</system:String>
+    
 </ResourceDictionary>

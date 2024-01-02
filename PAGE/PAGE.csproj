@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
+    <ApplicationIcon>IconPage.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,6 +37,12 @@
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-SemiBold.ttf" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOne-SemiBoldItalic.ttf" />
     <None Remove="Vue\Ressources\Fonts\OpenSauceOneBlack.ttf" />
+    <None Remove="Vue\Ressources\Img\Notes\noteAbsenteisme.png" />
+    <None Remove="Vue\Ressources\Img\Notes\noteAutre.png" />
+    <None Remove="Vue\Ressources\Img\Notes\noteMedical.png" />
+    <None Remove="Vue\Ressources\Img\Notes\noteOrientation.png" />
+    <None Remove="Vue\Ressources\Img\Notes\notePersonnel.png" />
+    <None Remove="Vue\Ressources\Img\Notes\noteResultats.png" />
     <None Remove="Vue\Ressources\Img\photo.png" />
     <None Remove="Vue\Ressources\Picto\account-arrow-right.png" />
     <None Remove="Vue\Ressources\Picto\account-check.png" />
@@ -53,8 +60,15 @@
     <None Remove="Vue\Ressources\Picto\calendar-account.png" />
     <None Remove="Vue\Ressources\Picto\calendar.svg" />
     <None Remove="Vue\Ressources\Picto\check-bold.png" />
+    <None Remove="Vue\Ressources\Picto\checkmark.png" />
+    <None Remove="Vue\Ressources\Picto\corbeille.png" />
+    <None Remove="Vue\Ressources\Picto\error.png" />
     <None Remove="Vue\Ressources\Picto\filter-settings.svg" />
     <None Remove="Vue\Ressources\Picto\import.png" />
+    <None Remove="Vue\Ressources\Picto\information.png" />
+    <None Remove="Vue\Ressources\Picto\minus-circle-outline.png" />
+    <None Remove="Vue\Ressources\Picto\plus-circle-outline.png" />
+    <None Remove="Vue\Ressources\Picto\note-search.png" />
     <None Remove="Vue\Ressources\Picto\refresh.png" />
     <None Remove="Vue\Ressources\Picto\settings.png" />
     <None Remove="Vue\Ressources\Picto\settings.svg" />
@@ -65,6 +79,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="IconPage.ico" />
     <Content Include="Vue\Ressources\Fonts\OpenSauceOne-Black.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -110,6 +125,34 @@
     <Content Include="Vue\Ressources\Img\photo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Vue\Ressources\Picto\minus-circle-outline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Vue\Ressources\Picto\plus-circle-outline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+
+    <Content Include="Vue\Ressources\Picto\note-search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Vue\Ressources\Img\Notes\noteAbsenteisme.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Vue\Ressources\Img\Notes\noteAutre.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Vue\Ressources\Img\Notes\noteMedical.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Vue\Ressources\Img\Notes\noteOrientation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Vue\Ressources\Img\Notes\notePersonnel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Vue\Ressources\Img\Notes\noteResultats.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Vue\Ressources\Picto\account-arrow-right.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -140,9 +183,11 @@
     <Content Include="Vue\Ressources\Picto\check-bold.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Vue\Ressources\Picto\error.png" />
     <Content Include="Vue\Ressources\Picto\import.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Vue\Ressources\Picto\information.png" />
     <Content Include="Vue\Ressources\Picto\refresh.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -153,6 +198,7 @@
 
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
+    <PackageReference Include="FreeSpire.Doc" Version="11.6.0" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
   </ItemGroup>
 
@@ -167,6 +213,16 @@
     <Content Include="Vue\Ressources\Img\logoPage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Vue\Ressources\Picto\checkmark.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Vue\Ecran\InformationsSupplementaires.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

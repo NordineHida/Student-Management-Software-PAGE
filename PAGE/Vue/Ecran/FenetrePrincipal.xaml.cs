@@ -1,16 +1,13 @@
-﻿using DocumentFormat.OpenXml.ExtendedProperties;
-using Microsoft.Win32;
+﻿using PAGE.Model.PatternObserveur;
 using PAGE.Model;
-using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+using Microsoft.Win32;
+using System.Linq;
+using PAGE.Model.Enumerations;
 
 namespace PAGE.Vue.Ecran
 {
@@ -19,160 +16,75 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class FenetrePrincipal : Window, IObservateur
     {
-        private UIElement initialContent;
+        private Utilisateurs users;
         private Etudiants etudiants;
+        private List<Etudiant> etudiantAffichage;
+        private bool TriCroissant=false;
+        private Promotion promo;
+        private Token token;
 
         /// <summary>
-        /// Initialise la fenetre principal
+        /// Initialise la fenetre principal depuis l'annee selectionner
         /// </summary>
-        /// <author>Nordine & Stephane</author>
-        public FenetrePrincipal()
+        /// <param name="promo">Promo d'étudiant selectionner</param>
+        /// <author>Nordine/Yamato</author>
+        public FenetrePrincipal(Promotion promo, Token? tokenUtilisateur)
         {
             InitializeComponent();
+            this.promo = promo;
+            if (tokenUtilisateur != null )
+            {
+                if (tokenUtilisateur.UserToken != null)
+                {
+                    this.token = tokenUtilisateur;
 
-            initialContent = (UIElement?)this.Content;
-
-            ChargementDiffere();
+                    if (token.UserToken.Roles.ContainsKey(promo.AnneeDebut))
+                    {
+                        if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.ADMIN)
+                        {
+                            BtnGestionUtilisateur.Visibility = Visibility.Visible;
+                            BtnImporterEtudiant.Visibility = Visibility.Visible;
+                        }
+                        if (token.UserToken.Roles[promo.AnneeDebut] == ROLE.DIRECTEURDEPARTEMENT)
+                        {
+                            BtnImporterEtudiant.Visibility = Visibility.Visible;
+                            BtnCreerEtudiant.Visibility = Visibility.Visible;
+                        }
+                    }
+                }
+            }
+            ChargementDiffereInitial();     
 
         }
 
-        /// <summary>
-        /// trie la liste a partir de la liste cliqué
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stéphane</author>
-        private bool isSortAscending = true;
-
-        #region trie 
 
         /// <summary>
-        /// code pour trié par ordre croisant et décroisant quand on clic sur une colone.
+        /// Chargement des etudiants différé via l'API et initisalise la liste d'étudiants à afficher
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stephane</author>
-        private void Trie_Click(object sender, RoutedEventArgs e)
+        /// <author>Nordine</author>
+        private async Task ChargementDiffereInitial()
         {
-            GridViewColumnHeader column = (sender as GridViewColumnHeader);
+            // On récupère l'ensemble des étudiants via l'API
+            EtuDAO etuDAO = new EtuDAO();
+            this.etudiants = new Etudiants((List<Etudiant>)await etuDAO.GetAllEtu(this.promo));
 
-            string sortBy = column.Tag.ToString();
-
-            // Vérifie s'il existe des descriptions de tri pour les éléments de la liste.
-            if (maListView.Items.SortDescriptions.Count > 0)
-            {
-                // Efface les descriptions de tri existantes.
-                maListView.Items.SortDescriptions.Clear();
-            }
+            //On récupère l'ensemble des utilisateurs via l'API
+            List<Utilisateur> listUser;
+            UtilisateurDAO userDAO = new UtilisateurDAO();
+            listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
             
-            ListSortDirection newDir;
+            this.users = new Utilisateurs(listUser);
 
 
-            // Détermine la direction de tri en fonction de la valeur de 'isSortAscending'.
-            // Si 'isSortAscending' est vrai, le tri est défini sur croissant, sinon sur décroissant.
-            // Inverse ensuite la valeur de 'isSortAscending'.
-            if (isSortAscending)
-            {
-                newDir = ListSortDirection.Ascending; //trie croisant 
-                isSortAscending = false;
-            }
-            else
-            {
-                newDir = ListSortDirection.Descending; //trie décroisant
-                isSortAscending = true;
-            }
+            //Affiche les components des etudiants (trie par numero apogee par defaut
+            AfficherLesEtuComponent(etudiants.ListeEtu, TYPETRI.APOGEE);
 
-            // Ajouter une nouvelle description de tri à la liste 
-            maListView.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
+            // On enregistre cette fenetre comme observeur des notes
+            etudiants.Register(this);
+
+            //initialisation etudiant a afficher
+            etudiantAffichage = etudiants.ListeEtu;
         }
-
-        /// <summary>
-        /// renvoi le filtre selctionner dans le combobox
-        /// </summary>
-        /// <returns>le filtre adapter</returns>
-        /// <author>Stephane</author>
-        private Predicate<object> GetFilter()
-        {
-
-            Predicate<object> resultat = null;
-
-            switch (FilterBy.SelectedIndex)
-            {
-                case 0: // "Nom"
-                    resultat = NameFilter;
-                    break;
-                case 1: // "Prenom"
-                    resultat = FirstNameFilter;
-                    break;
-                default: // trie de base par nom
-                    resultat = NameFilter;
-                    break;
-            }
-
-            return resultat;
-
-        }
-        /// <summary>
-        /// La fonction utilise les nom pour filtrer les Etudiant.
-        /// </summary>
-        /// <param name="obj"></param>
-        ///<returns>renvoie le filtre par nom</returns>
-        /// <returns></returns>
-        private bool NameFilter(object obj) 
-        {
-            var Filterobj = obj as Etudiant;
-            return Filterobj.Nom.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
-        }
-
-
-        /// <summary>
-        /// La fonction utilise les prenom pour filtrer les Etudiant.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns>renvoie le filtre par prénom</returns>
-        /// <author>Stephane</author>
-        private bool FirstNameFilter(object obj)
-        {
-            var Filterobj = obj as Etudiant;
-            return Filterobj.Prenom.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
-        }
-
-
-        /// <summary>
-        /// Et utilisé quand la sélection de l'élément change dans le contrôle de sélection FilterBy.
-        /// Elle met à jour le filtre appliqué fonction du choix de l'utilisateur.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stephane</author>
-        private void FilterBy_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Applique le filtre approprié dans maListView en fonction du choix de l'utilisateur.
-            maListView.Items.Filter = GetFilter();
-
-        }
-
-        /// <summary>
-        /// Et utilisé quand un événement TextChanged est déclenché par le contrôle FilterTextBox.
-        /// Elle met à jour le filtre appliqué à la collection d'objets affichée dans maListView en fonction du texte entré par l'utilisateur.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stephane</author>
-        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if(FilterTextBox.Text == null)
-            {
-                // Si le texte est vide, supprimer tout filtre appliqué à la collection d'objets de maListView.
-                maListView.Items.Filter = null;
-            }
-            else
-            {
-                // Si un texte est présent, appliquer le filtre approprié dans maListView en fonction du texte saisi par l'utilisateur.
-                maListView.Items.Filter = GetFilter();
-            }
-        }
-        #endregion
 
         /// <summary>
         /// Chargement des etudiants différé via l'API
@@ -180,22 +92,24 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine & Stephane</author>
         private async Task ChargementDiffere()
         {
-            //On reinitialise la liste
-            maListView.Items.Clear();
+            // On récupère l'ensemble des étudiants via l'API
+            EtuDAO dao = new EtuDAO();
+            this.etudiants = new Etudiants((List<Etudiant>)await dao.GetAllEtu(promo));
 
-            //On récupere l'ensemble des étudiants via l'API
-            this.etudiants = new Etudiants((List<Etudiant>)await EtuDAO.Instance.GetAllEtu());
+            //On récupère l'ensemble des utilisateurs via l'API
+            List<Utilisateur> listUser;
+            UtilisateurDAO userDAO = new UtilisateurDAO();
+            listUser = (List<Utilisateur>)await userDAO.GetAllUtilisateurs();
+            
+            this.users = new Utilisateurs(listUser);
 
-            foreach (Etudiant etu in etudiants.ListeEtu)
-            {
-                //Si l'étudiant est pas déjà dans la liste on l'y ajoute
-                if (!maListView.Items.Contains(etu))
-                    maListView.Items.Add(etu);
-            }
+            //Affiche les components des etudiants (trie par numero apogee par defaut
+            AfficherLesEtuComponent(etudiants.ListeEtu,TYPETRI.APOGEE);
 
-            //On enregistre cette fenetre comme observeur des notes
+            // On enregistre cette fenetre comme observeur des notes
             etudiants.Register(this);
         }
+
 
 
         /// <summary>
@@ -203,30 +117,45 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <author>Nordine</author>
         private void OpenLoginPage(object sender, RoutedEventArgs e)
         {
-            LoginPage loginPage = new LoginPage();
+            LoginPage loginPage;
+            if (token != null)
+            {
+                loginPage = new LoginPage(new Utilisateur("", null,null), promo,token);
+            }
+            else
+            {
+                loginPage = new LoginPage(new Utilisateur("",null,null), promo, null);
+            }
             loginPage.Show();
 
             this.Close();
         }
+
         /// <summary>
         /// Ouvre la fenêtre des paramètres
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <author>Nordine</author>
         private void OpenParametresPage(object sender, RoutedEventArgs e)
         {
-            ParametrePage parametre = new ParametrePage();
+            ParametrePage parametre;
+            if (this.token != null)
+            {
+               parametre = new ParametrePage(promo, token);
+            }
+            else
+            {
+                parametre = new ParametrePage(promo, null);
+            }
             parametre.Show();
- 
+
             this.Close();
         }
 
-        private void ParamPage_ReturnToMainWindow(object sender, EventArgs e)
-        {
-            this.Content = initialContent;
-        }
 
         /// <summary>
         /// Quand on clique sur le bouton importer pour chercher le fichier excel avec les étudiants
@@ -234,7 +163,7 @@ namespace PAGE.Vue.Ecran
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <author>Nordine & Stephane</author>
-        private void ImporterEtudiants(object sender, RoutedEventArgs e)
+        private async void ImporterEtudiants(object sender, RoutedEventArgs e)
         {
             // Utilisez OpenFileDialog pour permettre à l'utilisateur de sélectionner un fichier
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -246,21 +175,12 @@ namespace PAGE.Vue.Ecran
 
                 // Appelez la méthode GetEtudiants avec le chemin du fichier
                 LecteurExcel lc = new LecteurExcel();
-                EtuDAO.Instance.AddSeveralEtu(lc.GetEtudiants(selectedFilePath));
+                EtuDAO dao = new EtuDAO();
+                dao.AddSeveralEtu(lc.GetEtudiants(selectedFilePath),this.promo);
             }
 
             //On actualise l'affichage
-            ActualiserEtudiant();
-        }
-
-        /// <summary>
-        /// Actualise la liste des étudiants
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Nordine</author>
-        private void BoutonActualiserListeEtudiant(object sender, RoutedEventArgs e)
-        {
+            await Task.Delay(1000);
             ActualiserEtudiant();
         }
 
@@ -278,34 +198,22 @@ namespace PAGE.Vue.Ecran
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <author>Nordine</author>
         private void OpenPromoPage(object sender, RoutedEventArgs e)
         {
-            ChoixPromo choixPromo = new ChoixPromo();
+            ChoixPromo choixPromo;
+            if (this.token != null)
+            {
+                choixPromo = new ChoixPromo(token);
+            }
+            else
+            {
+                choixPromo = new ChoixPromo(null);
+            }
             choixPromo.Show();
             this.Close();
         }
 
-        /// <summary>
-        /// Ouvre la fenêtre Informations Supplémentaires lors d'un double clique sur un étudiant de la liste
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Yamato</author>
-        private void maListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (maListView.SelectedItem != null)
-            {
-                // Obtenez l'étudiant sélectionné dans la ListView
-                Etudiant etudiantSelectionne = maListView.SelectedItem as Etudiant;
-
-                if (etudiantSelectionne != null)
-                {
-                    // Créez une instance de la fenêtre InformationsSupplementaires en passant l'étudiant sélectionné en paramètre
-                    InformationsSupplementaires informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne,etudiants);
-                    informationsSupplementaires.Show();
-                }
-            }
-        }
 
         /// <summary>
         /// Ouvre la fenêtre pour créer un étudiant
@@ -315,15 +223,359 @@ namespace PAGE.Vue.Ecran
         /// <author>Nordine</author>
         private void BoutonCreerEtudiant(object sender, RoutedEventArgs e)
         {
-            FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant(etudiants);
-            fenetreCreerEtudiant.Show();
+            if (etudiants != null)
+            {
+                FenetreCreerEtudiant fenetreCreerEtudiant = new FenetreCreerEtudiant(etudiants,this.promo);
+                fenetreCreerEtudiant.Show();
+            }
+            else
+            {
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Veuillez attendre la fin du chargement des étudiants", TYPEICON.INFORMATION);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "Please wait until the students have finished loading", TYPEICON.INFORMATION);
+                    popUp.ShowDialog();
+                }
+            }
+
         }
 
+        /// <summary>
+        /// Une modification a ete recu, on raffraichis l'affichage
+        /// </summary>
+        /// <param name="Message">message specifique</param>
+        /// <author>Nordine/Laszlo</author>
         public async void Notifier(string Message)
         {
             await Task.Delay(1000);
 
             ChargementDiffere();
+        }
+
+        /// <summary>
+        /// Ouvre la fenêtre Informations Supplémentaires lors d'un double clique sur un étudiant de la liste
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void EtudiantComponent_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (sender is EtudiantComponent EtudiantComponent)
+            {
+                // On recupère l'étudiant associé au EtudiantComponent
+                Etudiant etudiantSelectionne = EtudiantComponent.Etudiant;
+
+                if (etudiantSelectionne != null)
+                {
+                    // on affiche ces informations
+                    InformationsSupplementaires informationsSupplementaires;
+                    if (token != null)
+                    {
+                        informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants, this.promo, token);
+                    }
+                    else
+                    {
+                        informationsSupplementaires = new InformationsSupplementaires(etudiantSelectionne, etudiants, this.promo, null);
+                    }
+                    informationsSupplementaires.ShowDialog();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Affiche les EtudiantComponent pour les Etudiant de la liste
+        /// </summary>
+        /// <param name="listEtudiants">liste des etudiants à afficher</param>
+        /// <param name="typetri">type de tri</param>
+        /// <author>Nordine</author>
+        private void AfficherLesEtuComponent(List<Etudiant> listEtudiants, TYPETRI ?typetri)
+        {
+            // On réinitialise le StackPanel
+            StackPanelEtudiants.Children.Clear();
+
+            // Affiche la liste triée dans l'ordre croissant ou non du typetri choisi (par defaut NumApogee)
+            switch (typetri)
+            {
+                case TYPETRI.PRENOM:
+                    listEtudiants = TriCroissant ?
+                        listEtudiants.OrderByDescending(etudiant => etudiant.Prenom).ToList() :
+                        listEtudiants.OrderBy(etudiant => etudiant.Prenom).ToList();
+                    break;
+                case TYPETRI.NOM:
+                    listEtudiants = TriCroissant ?
+                        listEtudiants.OrderByDescending(etudiant => etudiant.Nom).ToList() :
+                        listEtudiants.OrderBy(etudiant => etudiant.Nom).ToList();
+                    break;
+                case TYPETRI.GROUPE:
+                    listEtudiants = TriCroissant ?
+                        listEtudiants.OrderByDescending(etudiant => etudiant.Groupe).ToList() :
+                        listEtudiants.OrderBy(etudiant => etudiant.Groupe).ToList();
+                    break;
+                case TYPETRI.APOGEE:
+                    listEtudiants = TriCroissant ?
+                        listEtudiants.OrderByDescending(etudiant => etudiant.NumApogee).ToList() :
+                        listEtudiants.OrderBy(etudiant => etudiant.NumApogee).ToList();
+                    break;
+                default:
+                    listEtudiants = TriCroissant ?
+                        listEtudiants.OrderByDescending(etudiant => etudiant.NumApogee).ToList() :
+                        listEtudiants.OrderBy(etudiant => etudiant.NumApogee).ToList();
+                    break;
+            }
+
+            foreach (Etudiant etu in listEtudiants)
+            {
+                // Si l'étudiant n'est pas déjà dans le StackPanel, on l'y ajoute
+                if (!StackPanelEtudiants.Children.OfType<EtudiantComponent>().Any(uc => uc.NumeroApogee == etu.NumApogee))
+                {
+                    // Ajoute l'EtudiantComponent personnalisé au StackPanel
+                    EtudiantComponent EtudiantComponent = new EtudiantComponent(etu);
+                    StackPanelEtudiants.Children.Add(EtudiantComponent);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Affiche la liste des etudiants filtré
+        /// </summary>
+        /// <param name="listEtudiants">liste des étudiants a filtrer</param>
+        /// <param name="filterType">type de filtre</param>
+        /// <param name="filterText">texte saisi pour filtrer</param>
+        /// <author>Nordine</author>
+        private void AfficherLesEtuComponentFiltre(List<Etudiant> listEtudiants, TYPETRI filterType, string filterText)
+        {
+            // On réinitialise le StackPanel
+            StackPanelEtudiants.Children.Clear();
+
+            // Applique le filtre sur la liste d'étudiants
+            List<Etudiant> filteredList = (List<Etudiant>)listEtudiants.Where(GetFilter(filterType, filterText)).ToList();
+
+            if(String.IsNullOrEmpty(filterText))
+            {
+                ChargementDiffereInitial();
+            }
+            else
+                etudiantAffichage = filteredList;
+
+
+            AfficherLesEtuComponent(filteredList, null);
+        }
+
+
+        /// <summary>
+        /// Inverse le bool de l'ordre de tri (par prenom)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void OrderByPrenom(object sender, RoutedEventArgs e)
+        {
+            // Inversion de la valeur de TriCroissant
+            TriCroissant = !TriCroissant;
+
+            //on raffiche les etudiants dans le bonne ordres
+            AfficherLesEtuComponent(etudiantAffichage, TYPETRI.PRENOM);
+        }
+
+        /// <summary>
+        /// Inverse le bool de l'ordre de tri (par nom)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void OrderByNom(object sender, RoutedEventArgs e)
+        {
+            // Inversion de la valeur de TriCroissant
+            TriCroissant = !TriCroissant;
+
+            //on raffiche les etudiants dans le bonne ordres
+            AfficherLesEtuComponent(etudiantAffichage, TYPETRI.NOM);
+        }
+
+        /// <summary>
+        /// Inverse le bool de l'ordre de tri (par num apogee)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void OrderByApogee(object sender, RoutedEventArgs e)
+        {
+            // Inversion de la valeur de TriCroissant
+            TriCroissant = !TriCroissant;
+
+            //on raffiche les etudiants dans le bonne ordres
+            AfficherLesEtuComponent(etudiantAffichage, TYPETRI.APOGEE);
+        }
+
+        /// <summary>
+        /// Inverse le bool de l'ordre de tri (par groupe)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void OrderByGroupe(object sender, RoutedEventArgs e)
+        {
+            // Inversion de la valeur de TriCroissant
+            TriCroissant = !TriCroissant;
+
+            //on raffiche les etudiants dans le bonne ordres
+            AfficherLesEtuComponent(etudiantAffichage, TYPETRI.GROUPE);
+        }
+
+
+        /// <summary>
+        /// Quand on change le filtre selectionner dans la combobox des filtres
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void SelectionFiltreChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            //on recupere le filtre selectionner dans la combobox
+            TYPETRI filterType = TYPETRI.APOGEE;
+            switch (ComboBoxFiltre.SelectedIndex)
+            {
+                case 1:
+                    filterType = TYPETRI.NOM;
+                    break;
+                case 0:
+                    filterType = TYPETRI.PRENOM;
+                    break;
+                case 2:
+                    filterType = TYPETRI.GROUPE;
+                    break;
+
+            }
+            //on recupere le string saisi dans le textbox
+            string filterText = TexteFiltre.Text;
+
+            // Appel de la méthode avec le filtre sélectionné
+            AfficherLesEtuComponentFiltre(etudiants.ListeEtu, filterType, filterText);
+        }
+
+        /// <summary>
+        /// Quand le texte du filtre/Recherche a changer on mets a jour l'affichage des etudiants avec ce nouveau filtre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void TexteFiltreChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            //si un filtre du combobox a été selectionner
+            if(ComboBoxFiltre.SelectedIndex!=-1)
+            {
+                //on recupere le filtre selectionner dans la combobox
+                TYPETRI filterType = TYPETRI.APOGEE;
+                switch (ComboBoxFiltre.SelectedIndex)
+                {
+                    case 1:
+                        filterType = TYPETRI.NOM;
+                        break;
+                    case 0:
+                        filterType = TYPETRI.PRENOM;
+                        break;
+                    case 2:
+                        filterType = TYPETRI.GROUPE;
+                        break;
+
+                }
+                //on recupere le string saisi dans le textbox
+                string filterText = TexteFiltre.Text;
+
+                // Appel de la méthode avec le filtre sélectionné
+                AfficherLesEtuComponentFiltre(etudiantAffichage, filterType, filterText);
+            }
+
+        }
+
+
+        /// <summary>
+        /// Renvoi le filtre d'étudiant 
+        /// </summary>
+        /// <param name="filterType">type de filtre choisi (nom, prenom...)</param>
+        /// <param name="filterText">Texte saisi pour filtre</param>
+        /// <returns></returns>
+        /// <author>Nordine</author>
+        private Func<Etudiant, bool>? GetFilter(TYPETRI filterType, string filterText)
+        {
+            Func<Etudiant, bool> filter = null;
+            switch (filterType)
+            {
+                case TYPETRI.PRENOM:
+                    filter = etudiant => etudiant.Prenom.Contains(filterText, StringComparison.OrdinalIgnoreCase);
+                    break;
+                case TYPETRI.NOM:
+                    filter = etudiant => etudiant.Nom.Contains(filterText, StringComparison.OrdinalIgnoreCase);
+                    break;
+                case TYPETRI.GROUPE:
+                    filter = etudiant => etudiant.Groupe.ToString().Contains(filterText, StringComparison.OrdinalIgnoreCase);
+                    break;
+                case TYPETRI.APOGEE:
+                    filter = etudiant => etudiant.NumApogee.ToString().Contains(filterText, StringComparison.OrdinalIgnoreCase);
+                    break;
+            }
+            return filter;
+        }
+
+        private void OpenGestionUtilisateur(object sender, RoutedEventArgs e)
+        {
+            if (users != null)
+            {
+                GestionUtilisateurs gestionUtilisateurs = new GestionUtilisateurs(promo);
+                gestionUtilisateurs.ShowDialog();
+            }
+            else
+            {
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Erreur de chargement", "La liste d'utilisateurs n'a pas encore été chargé. Veuillez patienter..", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Loading error", "The user list has not yet been loaded. Please wait..", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Ouvre la fenetre avec les étudiants qui ont une certaine categorie de note
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private void ClickAfficherEtudiantByCategorie(object sender, RoutedEventArgs e)
+        {
+            FenetreEtudiantByCategorie fenetreEtudiantByCategorie;
+            if (token != null)
+            {
+                fenetreEtudiantByCategorie = new FenetreEtudiantByCategorie(this.etudiants, this.promo, token);
+            }
+            else
+            {
+                fenetreEtudiantByCategorie = new FenetreEtudiantByCategorie(this.etudiants, this.promo, null);
+            }
+            fenetreEtudiantByCategorie.Show();
+
+            this.Close();
+        }
+
+        /// <summary>
+        /// Génére le word quand la fenetre principal est fermer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Nordine</author>
+        private async void GenererWord(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            NoteDAO dao = new NoteDAO();
+            Dictionary<string, IEnumerable<Note>> notes = await dao.GetAllNotesByPromo(promo);
+            WordGenerateur.GenererWord(notes, promo);
         }
     }
 }

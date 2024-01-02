@@ -1,9 +1,5 @@
 ﻿using APIEtudiant.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using APIEtudiant.Model.Enumerations;
 
 namespace APIEtudiant.Stockage
 {
@@ -14,58 +10,48 @@ namespace APIEtudiant.Stockage
     public interface IEtuDAO
     {
         /// <summary>
-        /// Renvoi tout les étudiants
+        /// Renvoi tout les étudiants de la promo
         /// </summary>
-        /// <returns>Un ensemble d'étudiant</returns>
+        /// <param name="promo">Promo dont on veut le etudiants</param>
+        /// <returns>la liste des étudiants de la promo</returns>
         /// <author>Nordine</author>
-        public IEnumerable<Etudiant> GetAllEtu();
+        public IEnumerable<Etudiant> GetAllEtu(Promotion promo);
 
         /// <summary>
-        /// Ajoute un étudiant
+        /// Ajoute un nouvelle étudiant (ou le modifie s'il existe déjà)
         /// </summary>
-        /// <param name="etudiant">étudiant à ajouter</param>
-        /// <returns>true si l'ajout a fonctionner</returns>
+        /// <param name="etu">etudiant qu'on veut ajouter</param>
+        /// <param name="promotion">promo dans laquel on doit mettre l'etudiant</param>
+        /// <returns>si l'ajout est un succes</returns>
         /// <author>Nordine</author>
-        public bool AddEtu(Etudiant etudiant);
+        public bool AddEtu(Etudiant etu, Promotion promotion);
 
 
         /// <summary>
         /// Ajoute les touts les étudiants de la liste d'étudiants
         /// </summary>
         /// <param name="listeEtu">Liste d'étudiant à ajouter</param>
+        /// <param name="promotion">promo dans laquel on ajoute les étudiants</param>
         /// <returns>true si l'ajout est un succes</returns>
         /// <author>Nordine</author>
-        public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu);
+        public bool AddSeveralEtu(IEnumerable<Etudiant> listeEtu, Promotion promotion);
+
 
         /// <summary>
-        /// Ajoute une note à la BDD
+        /// Ajout un étudiant a la BDD s'il n'existe PAS et renvoi true, sinon renvoi false
         /// </summary>
-        /// <param name="note">Note à ajouter</param>
-        /// <returns>true si l'ajout est un succès</returns>
-        /// <author>Laszlo</author>
-        public bool CreateNote(Note note);
+        /// <param name="etu">etudiant à ajouté</param>
+        /// <param name="promo">Promo actuel où on veut ajouter l'étu</param>
+        /// <returns>si l'ajout est un succès</returns>
+        public bool CreateEtu(Etudiant etu, Promotion promo);
 
         /// <summary>
-        /// Supprime une note de la BDD
+        /// Renvoi tous les étudiants ayant au moins une note de la catégorie spécifiée dans la promo specifie
         /// </summary>
-        /// <param name="note">Note à supprimer</param>
-        /// <returns>true si la suppression est un succès</returns>
-        /// <author>Laszlo</author>
-        public bool DeleteNote(Note note);
-
-        /// <summary>
-        /// Renvoie toutes les notes d'un étudiant 
-        /// </summary>
-        /// <returns>la liste de notes/returns>
-        /// <author>Laszlo</author>
-        public IEnumerable<Note> GetAllNotesByApogee(int apogeeEtudiant);
-
-        /// <summary>
-        /// Renvoie toutes les notes 
-        /// </summary>
-        /// <returns>la liste de notes/returns>
-        /// <author>Laszlo</author>
-        public IEnumerable<Note> GetAllNotes();
-
+        /// <param name="categorie">Catégorie spécifiée</param>
+        /// <param name="promo">Promo dans laquel on cherche les etudiants</param>
+        /// <returns>Un dictionnaire(liste de Tuple) avec les étudiants et le nombre de notes de la catégorie</returns>
+        /// <author>Nordine</author>
+        public List<Tuple<Etudiant, int>> GetAllEtuByCategorie(CATEGORIE categorie, Promotion promo);
     }
 }

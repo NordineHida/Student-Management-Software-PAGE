@@ -1,5 +1,6 @@
 using APIEtudiant.Controllers;
 using APIEtudiant.Model;
+using APIEtudiant.Model.Enumerations;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 

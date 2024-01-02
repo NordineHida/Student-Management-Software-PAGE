@@ -1,0 +1,76 @@
+﻿using APIEtudiant.Model.Enumerations;
+using System.Text.Json.Serialization;
+
+namespace APIEtudiant.Model
+{
+
+    // Classe gérant les utilisateurs pouvant se connecter sur l'application et récupérer leurs droits
+    public class Utilisateur
+    {
+        private string login;
+        private string hashMdp;
+        private Dictionary<int, ROLE> roles;
+
+        /// <summary>
+        /// Renvoie ou définit le login de l'utilisateur
+        /// </summary>
+        /// <author>Laszlo</author>
+        public string Login
+        {
+            get { return login; }
+            set { login = value; }
+        }
+
+        /// <summary>
+        /// Renvoie le mot de passe hashé
+        /// </summary>
+        /// <author>Laszlo</author>
+        public string HashMdp
+        {
+            get { return hashMdp; }
+            set { hashMdp = value; }
+        }
+
+        /// <summary>
+        /// renvoie le role avec en cle l'annee
+        /// </summary>
+        /// <author>Laszlo</author>
+        public Dictionary<int, ROLE> Roles
+        {
+            get { return roles; }
+            set { roles = value; }
+        }
+
+
+        /// <summary>
+        /// Construit un utilisateur en lui donnant un login et un mot de passe
+        /// </summary>
+        /// <param name="login">login de l'utilisateur</param>
+        /// <param name="mdp">mot de passe de l'utilisateur</param>
+        /// <author>Laszlo/nordine</author>
+        public Utilisateur(string login, string? hashmdp)
+        {
+            this.login = login;
+
+            if (hashmdp != null)
+            {
+                this.hashMdp = hashmdp;
+            }
+
+            roles = new Dictionary<int, ROLE>();
+        }
+
+        /// <summary>
+        /// Attribue un role pour une certaine année à l'utilisateur
+        /// </summary>
+        /// <param name="annee">annee pour laquelle le role est valide</param>
+        /// <param name="role">role attribué</param>
+        /// <author>Laszlo</author>
+        public void AddRole(int annee, ROLE role)
+        {
+            roles.Add(annee, role);
+        }
+
+
+    }
+}

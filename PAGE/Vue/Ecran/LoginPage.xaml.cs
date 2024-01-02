@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using PAGE.Model;
+using PAGE.Stockage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +22,18 @@ namespace PAGE.Vue.Ecran
     /// </summary>
     public partial class LoginPage : Window
     {
-        public LoginPage()
+        private Utilisateur user;
+        private Promotion promo;
+        private Token token;
+        public LoginPage(Utilisateur user,Promotion promo, Token? tokenUtilisateur)
         {
+            this.user = user;
+            this.promo = promo;
+            if (tokenUtilisateur != null)
+            {
+                this.token = tokenUtilisateur;
+            }
+            DataContext = user;
             InitializeComponent();
         }
 
@@ -32,28 +45,45 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas</author>
         private void CloseLoginWindow(object sender, RoutedEventArgs e)
         {
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
+            FenetrePrincipal fenetrePrincipal;
+            if (token == null)
+            {
+                fenetrePrincipal = new FenetrePrincipal(promo, null);
+            }
+            else
+            {
+                fenetrePrincipal = new FenetrePrincipal(promo, token);
+            }
             fenetrePrincipal.Show();
 
             this.Close();
 
         }
 
+
         /// <summary>
         /// Ferme la page de login et affiche la fenetre principal avec les nouvelles informations
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BoutonLogin(object sender, RoutedEventArgs e)
+        /// <author>Laszlo</author>
+        private async void BoutonLogin(object sender, RoutedEventArgs e)
         {
-            //LE LOGIN N'EST PAS ENCORE IMPLEMENTé
-            throw new NotImplementedException();
+            user.Mdp = txtPassword.Password;
 
+            IUtilisateurDAO dao = new UtilisateurDAO();
+            token = await dao.Connexion(user.Login,user.HashMdp);
+            if (token.UserToken != null)
+            {
+                FenetrePrincipal fenetrePrincipal = new FenetrePrincipal(promo, token);
+                fenetrePrincipal.Show();
 
-            FenetrePrincipal fenetrePrincipal = new FenetrePrincipal();
-            fenetrePrincipal.Show();
-
-            this.Close();
+                this.Close();
+            }
+            else
+            {
+                txtPassword.Password = "";
+            }
         }
     }
 }

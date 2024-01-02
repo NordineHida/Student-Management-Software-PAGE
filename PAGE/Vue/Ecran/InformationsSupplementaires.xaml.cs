@@ -1,13 +1,17 @@
-﻿using PAGE.Model;
+﻿using DocumentFormat.OpenXml.Drawing;
+using PAGE.Model;
+using PAGE.Model.Enumerations;
 using PAGE.Model.PatternObserveur;
 using PAGE.Stockage;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Media;
 using MessageBox = System.Windows.Forms.MessageBox;
 using RadioButton = System.Windows.Controls.RadioButton;
 using TextBox = System.Windows.Controls.TextBox;
@@ -24,17 +28,39 @@ namespace PAGE.Vue.Ecran
         private Notes notes;
         private SEXE sexeSelectionne;
         private bool estBoursier;
+        private REGIME regimeEtu;
+        private GROUPE groupeEtu;
+        private Promotion promo;
+        private Token token;
+
 
         /// <summary>
         /// Constructeur qui prend l'étudiant selectionné avec le double clique
         /// </summary>
         /// <param name="EtudiantActuel">etudiant actuel</param>
         /// <author>Yamato & Laszlo & Nordine</author>
-        public InformationsSupplementaires(Etudiant EtudiantActuel, Etudiants etudiants)
+        public InformationsSupplementaires(Etudiant EtudiantActuel, Etudiants etudiants,Promotion promo, Token? tokenUtilisateur)
         {
             InitializeComponent();
+            this.promo = promo;
             etudiant = EtudiantActuel;
             this.etudiants = etudiants;
+
+            if (tokenUtilisateur != null )
+            {
+                this.token = tokenUtilisateur;
+                if (token.UserToken.Roles.ContainsKey(promo.AnneeDebut))
+                {
+                    if (token.UserToken.Roles[promo.AnneeDebut] != ROLE.LAMBDA && token.UserToken.Roles[promo.AnneeDebut] != ROLE.ADMIN)
+                    {
+                        BoutonCreernote.Visibility = Visibility.Visible;
+                        BoutonModifier.Visibility = Visibility.Visible;
+                    }
+                }
+                   
+
+            }
+
             ChargerInfosImpEtudiant();
             ChargerInfosCompEtudiant();
 
@@ -43,6 +69,7 @@ namespace PAGE.Vue.Ecran
 
             //on charge les notes de l'étudiant
             ChargementDiffereNotes();
+            
         }
 
         /// <summary>
@@ -54,7 +81,7 @@ namespace PAGE.Vue.Ecran
             txtName.Text = etudiant.Nom;
             txtPrenom.Text = etudiant.Prenom;
             txtNumApogee.Text = etudiant.NumApogee.ToString();
-            txtGroupe.Text = etudiant.Groupe;
+
             txtMail.Text = etudiant.Mail;
 
             //Radio boutton sexe
@@ -64,10 +91,10 @@ namespace PAGE.Vue.Ecran
                     radioFemme.IsChecked = true;
                     break;
                 case SEXE.MASCULIN:
-                    radioFemme.IsChecked = true;
+                    radioHomme.IsChecked = true;
                     break;
                 case SEXE.AUTRE:
-                    radioFemme.IsChecked = true;
+                    radioAutre.IsChecked = true;
                     break;
             }
 
@@ -80,8 +107,53 @@ namespace PAGE.Vue.Ecran
             else
                 radioBoursierFalse.IsChecked= true;
 
+            //Charge la combobox de regime
+            switch (etudiant.TypeFormation)
+            {
+                case REGIME.FI:
+                    comboBoxRegime.SelectedIndex = 1;
+                    break;
+                case REGIME.FA:
+                    comboBoxRegime.SelectedIndex = 2;
+                    break;
+                case REGIME.FC:
+                    comboBoxRegime.SelectedIndex = 0;
+                    break;
+            }
 
-            txtRegime.Text = etudiant.TypeFormation;
+            switch (etudiant.Groupe)
+            {
+                case GROUPE.A1:
+                    comboBoxGroupe.SelectedIndex = 0;
+                    break;
+                case GROUPE.A2:
+                    comboBoxGroupe.SelectedIndex = 1;
+                    break;
+                case GROUPE.B1:
+                    comboBoxGroupe.SelectedIndex = 2;
+                    break;
+                case GROUPE.B2:
+                    comboBoxGroupe.SelectedIndex = 3;
+                    break;
+                case GROUPE.C1:
+                    comboBoxGroupe.SelectedIndex = 4;
+                    break;
+                case GROUPE.C2:
+                    comboBoxGroupe.SelectedIndex = 5;
+                    break;
+                case GROUPE.D1:
+                    comboBoxGroupe.SelectedIndex = 6;
+                    break;
+                case GROUPE.D2:
+                    comboBoxGroupe.SelectedIndex = 7;
+                    break;
+                case GROUPE.E1:
+                    comboBoxGroupe.SelectedIndex = 8;
+                    break;
+                case GROUPE.E2:
+                    comboBoxGroupe.SelectedIndex = 9;
+                    break;
+            }
         }
 
         /// <summary>
@@ -90,34 +162,74 @@ namespace PAGE.Vue.Ecran
         /// <author>Yamato / Lucas / Nordine</author>
         public void ChargerInfosCompEtudiant()
         {
-            txtDateNaissance2.SelectedDate = etudiant.DateNaissance;
+            //si il a une date de naissance
+            if (etudiant.DateNaissance != DateTime.MinValue)
+            {
+                txtDateNaissance2.SelectedDate = etudiant.DateNaissance;
+            }
+            else
+                txtDateNaissance2.SelectedDate = null ;
 
             txtAdresse2.Text = etudiant.Adresse;
-            txtTelFixe2.Text = etudiant.TelFixe.ToString();
-            txtTelPortable2.Text = etudiant.TelPortable.ToString();
+
+            if (etudiant.TelFixe != 0)
+            {
+                txtTelFixe2.Text = etudiant.TelFixe.ToString();
+            }
+            else
+                txtTelFixe2.Text = "";
+
+            if (etudiant.TelPortable != 0)
+            {
+                txtTelPortable2.Text = etudiant.TelPortable.ToString();
+            }
+            else
+                txtTelPortable2.Text = "";
             txtLogin2.Text = etudiant.Login;
             
         }
 
 
         /// <summary>
-        /// Rend visible les informations complétementaires lors du clique sur le bouton ou les rend invisibles
+        /// Rend visible les informations complétementaires lors du clique sur le bouton
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// <author>Yamato</author>
+        /// <author>Lucas</author>
         private void InfosComp_Click(object sender, RoutedEventArgs e)
         {
             if (contInfosComp.Visibility == Visibility.Collapsed)
             {
                 contInfosComp.Visibility = Visibility.Visible;
-                BoutonInfoComp.Content = "Cacher les informations complémentaires";
+                BoutonInfoComp.Visibility = Visibility.Collapsed;
+                BoutonCacherInfoComp.Visibility = Visibility.Visible;
+
+                if(etudiant.TelFixe == 0)
+                {
+                    txtTelFixe2.Text = "";
+                }
+
+                if (etudiant.TelPortable == 0)
+                {
+                    txtTelPortable2.Text = "";
+                }
             }
-            else
+        }
+
+        /// <summary>
+        /// Rend Invisible les informations complétementaires lors du clique sur le bouton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Lucas</author>
+        private void HideInfosComp_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (contInfosComp.Visibility == Visibility.Visible)
             {
                 contInfosComp.Visibility = Visibility.Collapsed;
-                BoutonInfoComp.Content = "Afficher les informations complémentaires";
-
+                BoutonInfoComp.Visibility = Visibility.Visible;
+                BoutonCacherInfoComp.Visibility = Visibility.Collapsed;
             }
         }
         /// <summary>
@@ -129,6 +241,11 @@ namespace PAGE.Vue.Ecran
         private void Modifier_Click(object sender, RoutedEventArgs e)
         {
             ActiverInput();
+            BoutonModifier.Visibility = Visibility.Collapsed;
+            BoutonValider.Visibility = Visibility.Visible;
+            BoutonCreernote.IsEnabled = false;
+            BoutonAddMail.IsEnabled = true;
+            BoutonCreernote.Background = new SolidColorBrush(Colors.Gray);
         }
 
         /// <summary>
@@ -139,11 +256,18 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
+            BoutonValider.Visibility = Visibility.Collapsed;
+            BoutonModifier.Visibility = Visibility.Visible;
+            BoutonCreernote.IsEnabled = true;
+            BoutonCreernote.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3DA79D"));
+
             DesactiverInput();
+
             //On récupere les nouvelles de l'étudiant
             Etudiant updateEtu = GetEtudiantUpdated();
             //On l'ajoute (le mets a jour puisqu'il existe)
-            EtuDAO.Instance.AddEtudiant(updateEtu);
+            EtuDAO dao = new EtuDAO();
+            dao.AddEtudiant(updateEtu,this.promo);
             etudiants.UpdateEtu(etudiant);
         }
 
@@ -151,6 +275,7 @@ namespace PAGE.Vue.Ecran
         /// Renvoi l'étudiant avec les nouvelles informations saisis par l'utilisateur
         /// </summary>
         /// <returns>l'étudiant modifié</returns>
+        /// <author>Laszlo</author>
         private Etudiant GetEtudiantUpdated()
         {
             Etudiant etudiantUpdated = null;
@@ -160,87 +285,274 @@ namespace PAGE.Vue.Ecran
                 long telPortable = 0;
                 long.TryParse(txtTelFixe2.Text, out telFixe);
                 long.TryParse(txtTelPortable2.Text, out telPortable);
+
+
                 //on créer l'étudiant a partir des infos saisis dans la fenêtre
                 etudiantUpdated = new Etudiant(
-                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, txtGroupe.Text, estBoursier,
-                txtRegime.Text, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
+                int.Parse(txtNumApogee.Text), txtName.Text, txtPrenom.Text, sexeSelectionne, txtTypebac.Text, txtMail.Text, groupeEtu, estBoursier,
+                regimeEtu, txtDateNaissance2.SelectedDate.Value, txtLogin2.Text,
                 telFixe, telPortable, txtAdresse2.Text);
             }
             return etudiantUpdated;
         }
-        #region Verification modifiaction étudiant
+
         /// <summary>
-        /// Verifie toutes les conditions nécessaires de la saisis de l'utilisateur pour une modification d'étudiant sans erreur
+        /// Quand on change le regime de la combobox, change la valeur du régime de l'etudiant 
         /// </summary>
-        /// <returns>Si la saisi de l'utilisateur rempli toutes les conditions pour être valide</returns>
-        /// <author>Nordine</author>
-        private bool IsSaisiCorrect()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void ComboBoxRegime_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            switch (comboBoxRegime.SelectedIndex)
+            {
+                case 0:
+                    regimeEtu = REGIME.FI;
+                    break;
+                case 1:
+                    regimeEtu = REGIME.FC;
+                    break;
+                case 2:
+                    regimeEtu = REGIME.FA;
+                    break;
+            }
+
+        }
+
+        /// <summary>
+        /// Quand on change le groupe de la combobox, change la valeur du groupe de l'etudiant 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <author>Laszlo</author>
+        private void ComboBoxGroupe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (comboBoxGroupe.SelectedIndex)
+            {
+                case 0:
+                    groupeEtu = GROUPE.A1;
+                    break;
+                case 1:
+                    groupeEtu = GROUPE.A2;
+                    break;
+                case 2:
+                    groupeEtu = GROUPE.B1;
+                    break;
+                case 3:
+                    groupeEtu = GROUPE.B2;
+                    break;
+                case 4:
+                    groupeEtu = GROUPE.C1;
+                    break;
+                case 5:
+                    groupeEtu = GROUPE.C2;
+                    break;
+                case 6:
+                    groupeEtu = GROUPE.D1;
+                    break;
+                case 7:
+                    groupeEtu = GROUPE.D2;
+                    break;
+                case 8:
+                    groupeEtu = GROUPE.E1;
+                    break;
+                case 9:
+                    groupeEtu = GROUPE.E2;
+                    break;
+            }
+        }
+
+            #region Verification modifiaction étudiant
+            /// <summary>
+            /// Verifie toutes les conditions nécessaires de la saisis de l'utilisateur pour une modification d'étudiant sans erreur
+            /// </summary>
+            /// <returns>Si la saisi de l'utilisateur rempli toutes les conditions pour être valide</returns>
+            /// <author>Nordine</author>
+            private bool IsSaisiCorrect()
+         {
             bool saisiCorrect = true;
             if ((!string.IsNullOrWhiteSpace(txtNumApogee.Text)) && !System.Text.RegularExpressions.Regex.IsMatch(txtNumApogee.Text, "^[0-9]{1,8}$"))
             {
-                MessageBox.Show("Le numéro d'apogée doit contenir uniquement des chiffres (maximum 8 chiffres).", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le numéro d'apogée doit contenir uniquement des chiffres (maximum 8 chiffres)", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The apogee number must contain only digits (maximum 8 digits)", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtNumApogee.Text))
             {
-                MessageBox.Show("Veuillez saisir un numéro apogée.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Veuillez saisir un numéro apogée", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "Please enter an apogee number", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                MessageBox.Show("Le champ Nom ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ Nom ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The Name field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtPrenom.Text))
             {
-                MessageBox.Show("Le champ Prénom ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ Prénom ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The First Name field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtTypebac.Text))
             {
-                MessageBox.Show("Le champ Type de Bac ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if(Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ de Type de Bac ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The A-Level Type field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
+
             else if (string.IsNullOrWhiteSpace(txtMail.Text) || !txtMail.Text.Contains("@"))
             {
-                MessageBox.Show("Le champ E-mail est vide ou invalide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ e-mail ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The e-mail field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
-            else if (string.IsNullOrWhiteSpace(txtGroupe.Text))
+            else if (comboBoxGroupe.SelectedIndex == -1)
             {
-                MessageBox.Show("Le champ Groupe ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ Groupe ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The Group field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
-            else if (string.IsNullOrWhiteSpace(txtRegime.Text))
+            else if (comboBoxRegime.SelectedIndex == -1)
             {
-                MessageBox.Show("Le champ Régime ne peut pas être vide.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le champ Régime ne peut pas être vide", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The Plan field cannot be empty", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
+
             else if (txtDateNaissance2.SelectedDate.HasValue)
             {
                 DateTime dateNaissance = txtDateNaissance2.SelectedDate.Value;
                 DateTime dateActuelle = DateTime.Now;
                 int age = dateActuelle.Year - dateNaissance.Year;
+
                 if (age < 13)
                 {
-                    MessageBox.Show("L'âge de l'étudiant doit être d'au moins 15 ans.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                    {
+                        PopUp popUp = new PopUp("Création", "L'âge de l'étudiant doit être d'au moins 13 ans", TYPEICON.ERREUR);
+                        popUp.ShowDialog();
+                    }
+                    else
+                    {
+                        PopUp popUp = new PopUp("Creation", "The student must be at least 13 years old", TYPEICON.ERREUR);
+                        popUp.ShowDialog();
+                    }
                     saisiCorrect = false;
                 }
             }
+
             else if (!txtDateNaissance2.SelectedDate.HasValue)
             {
-                MessageBox.Show("Veuillez saisir une date de naissance", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Veuillez saisir une date de naissance", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "Please enter a date of birth", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
+
             else if ((txtTelFixe2.Text == null) && !int.TryParse(txtTelFixe2.Text, out _))
             {
-                MessageBox.Show("Le numéro de téléphone fixe ne peut contenir que des chelse iffres.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le numéro de téléphone fixe ne peut contenir que des chiffres", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "The landline telephone number can only contain digits", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
+
             else if ((txtTelPortable2.Text == null) && !int.TryParse(txtTelPortable2.Text, out _))
             {
-                MessageBox.Show("Le numéro de téléphone portable ne peut contenir que des chelse iffres.", "Erreur de saisie", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Création", "Le numéro de téléphone portable ne peut contenir que des chiffres", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("Creation", "Mobile phone numbers can only contain digits", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
                 saisiCorrect = false;
             }
             return saisiCorrect;
@@ -306,8 +618,6 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void ActiverInput()
         {
-            BoutonValider.Visibility = Visibility.Visible;
-
             // Rend les TextBox éditables
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
             {
@@ -343,6 +653,12 @@ namespace PAGE.Vue.Ecran
             // Active l'édition de la date de naissance
             txtDateNaissance2.IsEnabled = true;
 
+            // Active l'édition des comboboxes de regime et groupe
+            comboBoxRegime.IsEnabled = true;
+            comboBoxGroupe.IsEnabled = true;
+
+            //active le bouton pour ajouter un mail
+            BoutonAddMail.IsEnabled = true;
         }
 
         /// <summary>
@@ -352,7 +668,7 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas / Nordine</author>
         private void DesactiverInput()
         {
-            BoutonValider.Visibility = Visibility.Collapsed;
+            
 
             // Rend les TextBox en lecture seule
             foreach (TextBox tx in GridInfoSupp.Children.OfType<TextBox>())
@@ -386,306 +702,61 @@ namespace PAGE.Vue.Ecran
             // Rend la date de naissance en lecture seule
             txtDateNaissance2.IsEnabled = false;
 
-        }
+            //rend les comboboxes de regime et groupe en lecture seule
+            comboBoxRegime.IsEnabled = false;
+            comboBoxGroupe.IsEnabled = false;
 
-        #region affichage trie note
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stéphane</author>
-
-        private void ConfidentielCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            // Vérifie si la case à cocher est cochée
-            if (ConfidentielCheckBox.IsChecked == true)
-            {
-                // Affiche la ComboBox si la case à cocher est cochée
-                ConfidentielCombobox.Visibility = Visibility.Visible;
-            }
+            //desactive le bouton mail
+            BoutonAddMail.IsEnabled = false;
         }
-        // Vérifie si la case à cocher est cochée
-        private void ConfidentielCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (ConfidentielCheckBox.IsChecked == false)
-            {
-                // cache la ComboBox si la case à cocher n'est pas cochée
-                ConfidentielCombobox.Visibility = Visibility.Hidden;
-                maListViewNote.Items.Filter = null;
-            }
-        }
-        // Vérifie si la case à cocher est cochée
-        private void CategorieCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            if (CategorieCheckBox.IsChecked == true)
-            {
-                // Affiche la ComboBox si la case à cocher est cochée
-                CategorieCombobox.Visibility = Visibility.Visible;
-                
-            }
-        }
-        // Vérifie si la case à cocher est cochée
-        private void CategorieCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (CategorieCheckBox.IsChecked == false)
-            {
-                // cache la ComboBox si la case à cocher n'est pas cochée
-
-                CategorieCombobox.Visibility = Visibility.Hidden;
-                maListViewNote.Items.Filter = null;
-            }
-        }
-
 
 
         /// <summary>
-        /// trie la liste a partir de la liste cliqué
+        /// Charge les notes depuis le DAO, les affiches et s'enregistre en observateur
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stéphane</author>
-        private bool isSortAscending = true;
-        
-
-        private void Trie_ClickNote(object sender, RoutedEventArgs e)
-        {
-            GridViewColumnHeader column = (sender as GridViewColumnHeader);
-
-            string sortBy = column.Tag.ToString();
-
-            // Vérifie s'il existe des descriptions de tri pour les éléments de la liste.
-            if (maListViewNote.Items.SortDescriptions.Count > 0)
-            {
-                // Efface les descriptions de tri existantes.
-                maListViewNote.Items.SortDescriptions.Clear();
-            }
-
-            ListSortDirection newDir;
-
-
-            // Détermine la direction de tri en fonction de la valeur de 'isSortAscending'.
-            // Si 'isSortAscending' est vrai, le tri est défini sur croissant, sinon sur décroissant.
-            // Inverse ensuite la valeur de 'isSortAscending'.
-            if (isSortAscending)
-            {
-                newDir = ListSortDirection.Ascending; //trie croisant 
-                isSortAscending = false;
-            }
-            else
-            {
-                newDir = ListSortDirection.Descending; //trie décroisant
-                isSortAscending = true;
-            }
-
-            // Ajouter une nouvelle description de tri à la liste 
-            maListViewNote.Items.SortDescriptions.Add(new SortDescription(sortBy, newDir));
-        }
-
-        /// <summary>
-        /// Et utilisé quand la sélection de l'élément change.
-        /// Elle met à jour le filtre appliqué fonction du choix de l'utilisateur.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stephane</author>
-        private void CategorieCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Applique le filtre approprié dans maListView en fonction du choix de l'utilisateur.
-            maListViewNote.Items.Filter = GetFilter();
-
-        }
-
-        /// <summary>
-        /// Et utilisé quand la sélection de l'élément change.
-        /// Elle met à jour le filtre appliqué fonction du choix de l'utilisateur.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <author>Stephane</author>
-        private void ConfidentielCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Applique le filtre approprié dans maListView en fonction du choix de l'utilisateur.
-            maListViewNote.Items.Filter = GetFilter();
-
-        }
-
-
-
-        /// <summary>
-        /// renvoi le filtre selctionner dans le combobox
-        /// </summary>
-        /// <returns>le filtre adapter</returns>
-        /// <author>Stephane</author>
-        private Predicate<object> GetFilter()
-        {
-
-            Predicate<object> resultat = null;
-
-            switch (CategorieCombobox.SelectedIndex)
-            {
-                case 0: // "pour les raisons d'absences"
-                    resultat = Absenteisme;
-                    break;
-                case 1: // "pour les raisons personnels"
-                    resultat = Personnel;
-                    break;
-                case 2: // "pour les raisons medical"
-                    resultat = Medical;
-                    break;
-                case 3: // "pour les resultats"
-                    resultat = Resultats;
-                    break;
-                case 4: // "pour les orientation"
-                    resultat = Orientation;
-                    break;
-                case 5: // "pour toutes les autres raisons"
-                    resultat = Autre;
-                    break;
-            }
-
-            return resultat;
-
-        }
-        /// <summary>
-        /// La fonction utilise la catégorie Absentéisme pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        ///<returns>renvoie le filtre par Absentéisme</returns>
         /// <returns></returns>
-        private bool Absenteisme(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Absentéisme", StringComparison.OrdinalIgnoreCase);
-        }
-
-
-        /// <summary>
-        /// La fonction utilise la catégorie Personnel  pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns>renvoie le filtre par raison Personnel</returns>
-        /// <author>Stephane</author>
-        private bool Personnel(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Personnel", StringComparison.OrdinalIgnoreCase);
-        }
-        /// <summary>
-        /// La fonction utilise la catégorie Médical  pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns>renvoie le filtre par raison Médical</returns>
-        /// <author>Stephane</author>
-        private bool Medical(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Médical", StringComparison.OrdinalIgnoreCase);
-        }
-        /// <summary>
-        /// La fonction utilise la catégorie Résultats  pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns>renvoie le filtre par Résultats</returns>
-        /// <author>Stephane</author>
-        private bool Resultats(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Résultats", StringComparison.OrdinalIgnoreCase);
-        }
-
-        /// <summary>
-        /// La fonction utilise la catégorie orientation pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        ///<returns>renvoie le filtre par orientation</returns>
-        /// <returns></returns>
-        private bool Orientation(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Orientation", StringComparison.OrdinalIgnoreCase);
-        }
-
-        /// <summary>
-        /// La fonction utilise la catégorie Autre pour filtrer les Notes.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns>renvoie le filtre par Autre</returns>
-        /// <author>Stephane</author>
-        private bool Autre(object obj)
-        {
-            var Filterobj = obj as Note;
-            return Filterobj.Categorie.Contains("Autre", StringComparison.OrdinalIgnoreCase);
-        }
-
-
-        #endregion
-
-
-
-        /// <summary>
-        /// Chargement des notes différé via l'API
-        /// </summary>
-        /// <author>Laszlo</author>
+        /// <author>Laszlo/Nordine</author>
         private async Task ChargementDiffereNotes()
         {
-            //On reinitialise la liste
-            maListViewNote.Items.Clear();
 
-            //On récupere l'ensemble des étudiants via l'API
-            this.notes = new Notes((await EtuDAO.Instance.GetAllNotesByApogee(etudiant.NumApogee)).ToList());
+            // On récupère l'ensemble des étudiants via l'API
+            NoteDAO dao = new NoteDAO();
+            this.notes = new Notes((await dao.GetAllNotesByApogee(etudiant.NumApogee)).ToList());
 
-            foreach (Note note in notes.ListeNotes) 
-            {
-                //Si l'étudiant est pas déjà dans la liste on l'y ajoute
-                if (!maListViewNote.Items.Contains(note))
-                    maListViewNote.Items.Add(note);
-            }
-
-            //On enregistre cette fenetre comme observeur des notes
+            // On enregistre cette fenêtre comme observateur des notes
             notes.Register(this);
 
+            // Remplir le WrapPanel avec les NoteComponent
+            RemplirWrapPanelNotes(notes.ListeNotes);
         }
 
-        /// <summary>
-        /// Supprime une note via l'API
-        /// </summary>
-        /// <author>Laszlo</author>
-        private void DeleteNote(object sender, RoutedEventArgs e)
-        {
-            if (maListViewNote.SelectedItem != null)
-            {
-                // Obtenez l'étudiant sélectionné dans la ListView
-                Note noteSelectionne = maListViewNote.SelectedItem as Note;
-                if (noteSelectionne != null)
-                {
-                    EtuDAO.Instance.DeleteNote(noteSelectionne);
-                    notes.RemoveNote(noteSelectionne);
-
-                }
-            }
-
-        }
 
         /// <summary>
-        /// Ouvre une fenêtre affichant la note lorsqu'on double clique sur la note
+        /// Remplit le WrapPanel des notes 
         /// </summary>
-        /// <author>Laszlo</author>
-        private void maListView_MouseDoubleClick(object sender, RoutedEventArgs e)
+        /// <param name="notes">Liste de notes à afficher</param>
+        /// <author>Nordine</author>
+        private void RemplirWrapPanelNotes(List<Note> notes)
         {
-            if (maListViewNote.SelectedItem != null)
-            {
-                // Obtenez l'étudiant sélectionné dans la ListView
-                Note noteSelectionne = maListViewNote.SelectedItem as Note;
+            // Efface les anciens éléments
+            WrapPanelNote.Children.Clear();
 
-                if (noteSelectionne != null)
-                {
-                    // Créez une instance de la fenêtre InformationsSupplementaires en passant l'étudiant sélectionné en paramètre
-                    CreationNote affichageNote = new CreationNote(noteSelectionne,this.notes);
-                    affichageNote.Show();
+            //on trie les notes du plus recent au plus ancient
+            notes = notes.OrderByDescending(note => note.DatePublication).ToList();
+
+            foreach (Note note in notes)
+            {
+                // Si la note n'est pas déjà dans le WrapPanel, on l'y ajoute
+                if (!WrapPanelNote.Children.OfType<NoteComponent>().Any(nc => nc.Note.IdNote == note.IdNote))
+                { 
+                    // Ajoute le NoteComponent personnalisé au WrapPanel
+                    NoteComponent noteComponent = new NoteComponent(note);
+                    WrapPanelNote.Children.Add(noteComponent);
                 }
             }
         }
+
+
 
         /// <summary>
         /// Crée une note pour un étudiant quand on clique sur le bouton créer et on initialise les valeurs nulles
@@ -695,9 +766,32 @@ namespace PAGE.Vue.Ecran
         /// <author>Lucas</author>
         private void Creer_Click(object sender, RoutedEventArgs e)
         {
-            CreationNote creernote = new CreationNote(new Note("",DateTime.Now,"","",etudiant.NumApogee), this.notes);
-            creernote.Show();
-            ChargementDiffereNotes();
+            if (notes != null)
+            {
+                CreationNote creernote;
+                if (this.token != null)
+                {
+                    creernote = new CreationNote(new Note(CATEGORIE.AUTRE,"", DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false,this.promo, token);
+                }
+                else
+                {
+                    creernote = new CreationNote(new Note(CATEGORIE.AUTRE,"", DateTime.Now, NATURE.AUTRE, "", etudiant.NumApogee, CONFIDENTIALITE.PUBLIC), this.notes, false,this.promo, null);
+                }
+                creernote.Show();
+            }
+            else
+            {
+                if (Parametre.Instance.Langue == LANGUE.FRANCAIS)
+                {
+                    PopUp popUp = new PopUp("Une erreur est survenue", "Veuillez attendre la fin du chargement des notes", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+                else
+                {
+                    PopUp popUp = new PopUp("An error has occurred", "Please wait until the notes have finished loading", TYPEICON.ERREUR);
+                    popUp.ShowDialog();
+                }
+            }
         }
 
         /// <summary>
@@ -713,5 +807,43 @@ namespace PAGE.Vue.Ecran
             ChargementDiffereNotes();
         }
 
+
+        /// <summary>
+        /// Ouvre une fenêtre affichant la note lorsqu'on double clique sur la note
+        /// </summary>
+        /// <author>Nordine</author>
+        private void DoubleCliqueSurNote(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (sender is NoteComponent noteComponent)
+            {
+                // On recupère l'étudiant associé au EtudiantComponent
+                Note noteSelectionne = noteComponent.Note;
+
+                if (noteSelectionne != null)
+                {
+                    // Créez une instance de la fenêtre CreationNote en passant la note et notes
+                    CreationNote affichageNote;
+                    if (this.token != null)
+                    {
+                        affichageNote = new CreationNote(noteSelectionne, this.notes, true,this.promo, token);
+                    }
+                    else
+                    {
+                        affichageNote = new CreationNote(noteSelectionne, this.notes, true,this.promo, null);
+                    }
+                    affichageNote.ShowDialog();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Créer le mail de l'iut au format prenom.nom@iut-dijon.u-bourgogne.Fr
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddMailExtension(object sender, RoutedEventArgs e)
+        {
+            txtMail.Text = $"{txtPrenom.Text.ToLower()}.{txtName.Text.ToLower()}@iut-dijon.u-bourgogne.fr";
+        }
     }
 }

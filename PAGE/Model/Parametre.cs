@@ -1,4 +1,5 @@
-﻿using PAGE.Model.PatternObserveur;
+﻿using PAGE.Model.Enumerations;
+using PAGE.Model.PatternObserveur;
 using System;
 using System.Collections.Generic;
 using System.Linq;
